@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.11.16)  1 DEC 2015 15:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.11.16)  1 DEC 2015 17:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -891,23 +891,38 @@ LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10> not available
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+
+Underfull \hbox (badness 1087) in paragraph at lines 219--219
+\T1/ppl/m/n/10 a com-plete sim-u-la-tion of net-work stacks and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 219--219
+
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 219--219
+[]\T1/ppl/m/n/10 Ability to run the code na-tively on the
+ []
+
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 269.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 256.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
- [2
+[2
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/logo.png> <./fig
 ures/aodv-1.png>] (./poster.aux) ) 
 Here is how much of TeX's memory you used:
- 19216 strings out of 493054
- 408026 string characters out of 6140585
- 507170 words of memory out of 5000000
- 22343 multiletter control sequences out of 15000+600000
+ 19214 strings out of 493054
+ 408000 string characters out of 6140585
+ 506257 words of memory out of 5000000
+ 22341 multiletter control sequences out of 15000+600000
  28665 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,11n,92p,499b,987s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -919,7 +934,7 @@ lic/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/sha
 re/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/
 type1/urw/palatino/uplri8a.pfb>
-Output written on poster.pdf (1 page, 333869 bytes).
+Output written on poster.pdf (1 page, 332197 bytes).
 PDF statistics:
  77 PDF objects out of 1000 (max. 8388607)
  43 compressed objects within 1 object stream

@@ -207,28 +207,15 @@ Integer sed lectus vel mauris euismod suscipit. Praesent a est a est ultricies p
 
 \headerbox{Simulation Tools}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
 
-The following materials were required to complete the research:
+NS3 is a ``discrete-event network simulator'' that allows for a network of nodes to be setup using a complete simulation of network stacks and communication. This is done using a number of helper classes for creating variations of specific setups, which can then be visualised in a separate program called NetAnim. However, discussion began on the benefits of using NS3 and dealing with the overhead of doing so, or pursuing an alternative method.
+\newline
 
+Using NS3 has proven to be more time consuming than originally expected. Due to this, the network simulation will now be built from the ground up, allowing the abstraction or inclusion of features and elements as is appropriate. This will be done in C++, for the following reasons:
 \begin{itemize}\compresslist
-\item Curabitur pellentesque dignissim
-\item Eu facilisis est tempus quis
-\item Duis porta consequat lorem
-\item Eu facilisis est tempus quis
+\item Ability to run the code natively on the drones, something not possible with NS3.
+\item Custom network stacks can be easily constructed
+\item Low level and efficient
 \end{itemize}
-
-The following equations were used for statistical analysis:
-
-\begin{equation}
-\cos^3 \theta =\frac{1}{4}\cos\theta+\frac{3}{4}\cos 3\theta
-\label{eq:refname}
-\end{equation}\
-
-\begin{equation}
-E = mc^{2}
-\label{eqn:Einstein}
-\end{equation}
-
-Phasellus imperdiet, tortor vitae congue bibendum, felis enim sagittis lorem, et volutpat ante orci sagittis mi. Morbi rutrum laoreet semper. Morbi accumsan enim nec tortor consectetur non commodo nisi sollicitudin. Proin sollicitudin. Pellentesque eget orci eros. Fusce ultricies, tellus et pellentesque fringilla, ante massa luctus libero, quis tristique purus urna nec nibh.
 }
 
 %----------------------------------------------------------------------------------------
