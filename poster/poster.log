@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.11.16)  27 NOV 2015 11:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.11.16)  1 DEC 2015 15:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -856,31 +856,38 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
- (./poster.bbl)
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--175
-[]\T1/ppl/m/n/10 https://github.com/mcnutty26/effacious-
+Underfull \hbox (badness 10000) in paragraph at lines 149--149
+
+ []
+
+<figures/aodv-1.png, id=35, 734.745pt x 447.6725pt>
+File: figures/aodv-1.png Graphic file (type png)
+ <use figures/aodv-1.png>
+Package pdftex.def Info: figures/aodv-1.png used on input line 149.
+(pdftex.def)             Requested size: 183.68579pt x 111.91785pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--149
+
  []
 
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 213.
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+(./poster.bbl)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 202.
 
-(/usr/share/texmf-dist/tex/latex/psnfss/omsppl.fd
+ (/usr/share/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 213.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 202.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -888,34 +895,34 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 280.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 269.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
  [2
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/logo.png>] (./po
-ster.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/logo.png> <./fig
+ures/aodv-1.png>] (./poster.aux) ) 
 Here is how much of TeX's memory you used:
- 19363 strings out of 493054
- 411084 string characters out of 6140585
- 512383 words of memory out of 5000000
- 22491 multiletter control sequences out of 15000+600000
+ 19216 strings out of 493054
+ 408026 string characters out of 6140585
+ 507170 words of memory out of 5000000
+ 22343 multiletter control sequences out of 15000+600000
  28665 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,92p,408b,1333s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
-b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
-texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-dist/fonts/typ
-e1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplr
-i8a.pfb>
-Output written on poster.pdf (1 page, 308235 bytes).
+ 62i,11n,92p,499b,987s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8
+r.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/sha
+re/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/
+type1/urw/palatino/uplri8a.pfb>
+Output written on poster.pdf (1 page, 333869 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
+ 77 PDF objects out of 1000 (max. 8388607)
  43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 126 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 131 words of extra memory for PDF output out of 10000 (max. 10000000)
 
