@@ -1,7 +1,5 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.11.16)  1 DEC 2015 17:44
-entering extended mode
+This is LuaTeX, Version beta-0.80.0 (TeX Live 2015/Arch Linux) (rev 5238)  (format=lualatex 2015.11.16)  2 DEC 2015 14:47
  restricted \write18 enabled.
- %&-line parsing enabled.
 **poster.tex
 (./poster.tex
 LaTeX2e <2015/10/01> patch level 2
@@ -25,8 +23,8 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.
-de/uni/poster/
+baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.d
+e/uni/poster/
 baposter: Reinhold Kainhofer, 2011 | http://reinhold.kainhofer.com/
 \baposter@basepaperwidth=\skip43
 \baposter@basepaperheight=\skip44
@@ -292,7 +290,8 @@ File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
 File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
-) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
 File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 )))
 (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
@@ -394,8 +393,8 @@ snakes.code.tex
 File: tikzlibrarysnakes.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.7)
 
 
-Package pgf Warning: Snakes have been superseded by decorations. Please use the
- decoration libraries instead of the snakes library on input line 14.
+Package pgf Warning: Snakes have been superseded by decorations. Please use the 
+decoration libraries instead of the snakes library on input line 14.
 
 
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
@@ -634,13 +633,12 @@ File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 shapes.geometric.code.tex
-File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
-)
+File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
 
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geomet
 ric.code.tex
 File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
-
 ))
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 shapes.misc.code.tex
@@ -672,13 +670,12 @@ shapes.callouts.code.tex
 ts.code.tex))
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 shapes.multipart.code.tex
-File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
-)
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
 
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multip
 art.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
-
 \pgfnodepartlowerbox=\box73
 \pgfnodeparttwobox=\box74
 \pgfnodepartthreebox=\box75
@@ -709,7 +706,7 @@ File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
 \arrowsize=\dimen265
 ))
 (./poster.aux)
-\openout1 = `poster.aux'.
+\openout1 = poster.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
@@ -742,17 +739,22 @@ File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 \everyMPtoPDFconversion=\toks37
 ) ABD: EveryShipout initializing macros
 (/usr/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+
 
 (/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
+Package ifluatex Info: LuaTeX detected.
 )
-Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/luatex-loader.sty
+Package: luatex-loader 2010/03/09 v0.4 Lua module loader (HO)
+
+(/usr/share/texmf-dist/scripts/oberdiek/oberdiek.luatex.lua))
+\pdftexcmds@toks=\toks38
 )
 (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -771,19 +773,14 @@ Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
 (/usr/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
 )))
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
+(grfext)             [.png,.pdf,.jpg,.mps,.tif,.jpeg,.PNG,.PDF,.JPG,.JPEG,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 452.
 
 (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+
 ))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -846,22 +843,16 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 77.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 94.
 LaTeX Font Info:    Font shape `T1/ppl/bx/sc' in size <14.4> not available
 (Font)              Font shape `T1/ppl/b/sc' tried instead on input line 94.
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
 
 Underfull \hbox (badness 10000) in paragraph at lines 149--149
 
  []
 
-<figures/aodv-1.png, id=35, 734.745pt x 447.6725pt>
+<figures/aodv-1.png, id=34, 734.745pt x 447.6725pt>
 File: figures/aodv-1.png Graphic file (type png)
  <use figures/aodv-1.png>
 Package pdftex.def Info: figures/aodv-1.png used on input line 149.
@@ -871,73 +862,102 @@ Underfull \hbox (badness 10000) in paragraph at lines 149--149
 
  []
 
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
 (./poster.bbl)
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 202.
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
 
- (/usr/share/texmf-dist/tex/latex/psnfss/omsppl.fd
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 221.
+(/usr/share/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 202.
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 221.
 
-Underfull \hbox (badness 1087) in paragraph at lines 219--219
-\T1/ppl/m/n/10 a com-plete sim-u-la-tion of net-work stacks and
+Underfull \hbox (badness 1184) in paragraph at lines 221--221
+[][]\T1/ppl/m/n/10 Abil-ity to run the code na-tively on the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--219
+Underfull \hbox (badness 1043) in paragraph at lines 247--247
+\T1/ppl/m/n/10 other drones, the fol-low-ing al-go-rithm is pro-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
 
  []
 
 
-Underfull \hbox (badness 1184) in paragraph at lines 219--219
-[]\T1/ppl/m/n/10 Ability to run the code na-tively on the
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
+
  []
 
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 256.
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
+
+ []
+
 [2
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/logo.png> <./fig
-ures/aodv-1.png>] (./poster.aux) ) 
-Here is how much of TeX's memory you used:
- 19214 strings out of 493054
- 408000 string characters out of 6140585
- 506257 words of memory out of 5000000
- 22341 multiletter control sequences out of 15000+600000
- 28665 words of font info for 50 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 62i,11n,92p,499b,987s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8
-r.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/sha
-re/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/
-type1/urw/palatino/uplri8a.pfb>
-Output written on poster.pdf (1 page, 332197 bytes).
-PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 131 words of extra memory for PDF output out of 10000 (max. 10000000)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+<./figures/logo.png><./figures/aodv-1.png>] (./poster.aux))
+
+Here is how much of LuaTeX's memory you used:
+ 19782 strings out of 494897
+ 125010,552014 words of node,token memory allocated
+ 623 words of node memory still in use:
+   13 hlist, 2 vlist, 2 rule, 2 glue, 3 kern, 53 glue_spec, 2 write, 16 pdf_lite
+ral, 8 pdf_refxform, 16 pdf_colorstack nodes
+   avail lists: 2:27,3:2038,4:4868,5:392,6:10918,7:166,9:1293,10:1014
+ 22543 multiletter control sequences out of 65536+600000
+ 62 fonts using 2446987 bytes
+ 62i,11n,92p,498b,990s stack positions out of 5000i,500n,10000p,200000b,100000s
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}<</usr/share/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb><</usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb><</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+10.pfb><</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><</usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><</usr/share/texmf-dist
+/fonts/type1/urw/palatino/uplb8a.pfb><</usr/share/texmf-dist/fonts/type1/urw/pal
+atino/uplr8a.pfb><</usr/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on poster.pdf (1 page, 326310 bytes).
+
+PDF statistics: 76 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 131072)
+ 124 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -153,7 +153,7 @@ For MANETS, reactive protocols like AODV are preferred to proactive protocols (s
 %----------------------------------------------------------------------------------------
 
 \headerbox{Project Management}{name=references,column=0,above=bottom}{
-Integer sed lectus vel mauris euismod suscipit. Praesent a est a est ultricies pellentesque. Donec tincidunt, nunc in feugiat varius, lectus lectus auctor lorem, egestas molestie risus erat ut nibh.
+Weekly group meetings and an agile development methodology are used to manage project progress. Project material is handled by a git repository.
 }
 
 %----------------------------------------------------------------------------------------
@@ -190,13 +190,15 @@ Integer sed lectus vel mauris euismod suscipit. Praesent a est a est ultricies p
 \headerbox{Planned Work}{name=conclusion,column=2,span=2,row=0,below=results,above=references}{
 
 \begin{multicols}{2}
-
-\begin{itemize}\compresslist
-\item Pellentesque eget orci eros. Fusce ultricies, tellus et pellentesque fringilla, ante massa luctus libero, quis tristique purus urna nec nibh. Phasellus fermentum rutrum elementum. Nam quis justo lectus.
-\item Vestibulum sem ante, hendrerit a gravida ac, blandit quis magna.
-\item Donec sem metus, facilisis at condimentum eget, vehicula ut massa. Morbi consequat, diam sed convallis tincidunt, arcu nunc.
-\item Nunc at convallis urna. isus ante. Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. Donec et dui non massa tristique adipiscing.
-\end{itemize}
+\begin{enumerate}\compresslist
+\item Simulation of (scalable) drone network
+\item Implement autonomous movement
+\item Design and implement the base station
+\item Implement communications routing
+\item Collision detection and physical routing
+\item Problem detection and node exclusion
+\item User tasking input and execution
+\end{enumerate}
 
 \end{multicols}
 }
@@ -224,35 +226,24 @@ Using NS3 has proven to be more time consuming than originally expected. Due to 
 
 \headerbox{Physical Routing}{name=results2,column=1,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
 
-Donec faucibus purus at tortor egestas eu fermentum dolor facilisis. Maecenas tempor dui eu neque fringilla rutrum. Mauris \emph{lobortis} nisl accumsan.
+Pathfinding for aerial vehicles is often easier than their ground based counterparts given the relative lack of obstacles. Given that the scope of the project extends only to pre-defined areas, problems with pylons and buildings can be avoided by providing coordinates of these fixtures in advance of deployment.
 
-\begin{center}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\captionof{table}{Table caption}
-\end{center}
+In order to have drones avoid collisions with other drones, the following algorithm is proposed:
+\newline
 
-Nulla ut porttitor enim. Suspendisse venenatis dui eget eros gravida tempor. Mauris feugiat elit et augue placerat ultrices. Morbi accumsan enim nec tortor consectetur non commodo.
+1) Each node begins with a pass counter $p = 0$.
+\newline
 
-\begin{center}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\captionof{table}{Table caption}
-\end{center}
+2) When two nodes $i$ and $j$ identify themselves as being within a predefined collision radius they compare $p_i$ and $p_j$.
+\newline
+
+3) If $p_i < p_j$ then node $i$ waits for $p_j$ to pass, or vice versa.
+\newline
+
+4) A passing drone sets $p = 0$ and a passed drone sets $p = p + 1$.
+\newline
+
+5) A drone undertaking a high priority task sets $p = \infty$.
 }
 
 %----------------------------------------------------------------------------------------
