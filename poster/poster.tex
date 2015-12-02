@@ -134,26 +134,35 @@ Where $P$ is the power of the radio signal, $G$ the gain (or efficiency) of the 
 L = 10n {\log_{10}}d + C
 \end{equation}
 
-Multiple algorithms exist to route packets within a network, which are usually classified into topological and positional. 
+Multiple algorithms exist to route packets within a network, which are usually classified into topological and positional. For mobile networks, topological models are ineffective due to the aforementioned dynamic topologies employed.
+\newline
+
+Ad hoc On-Demand Distance Vector (AODV) routing is one of the most popular reactive protocols used in MANETS\cite{perkins2003ad}. When a node wishes to send a message but does not have a route to the destination, it broadcasts a route request (RREQ) packet to it's neighbours. Each neighbour either returns a route if it has one (RREP) or rebroadcasts the RREQ to it's own neighbours. Sequence numbers are used to eliminate suboptimal routes and by extension to prevent cyclical routes.
+
+\includegraphics[scale=0.25]{figures/aodv-1}
+
+If the network topology has changed and a route is invalid, a node returns a route error (RERR) message. This causes other nodes to flush the parts of their routing tables which have become invalid. AODV does not have a security component, but this can be added separately. As all nodes in the network are known beforehand, keys can be distributed prior to deployment.
+\newline
+
+For MANETS, reactive protocols like AODV are preferred to proactive protocols (such as OLSR) due to low power and processing requirements.
 \end{multicols}
-\vspace{5cm}
 }
 
 %----------------------------------------------------------------------------------------
 %	REFERENCES
 %----------------------------------------------------------------------------------------
 
-\headerbox{Existing Literature}{name=references,column=0,above=bottom}{
-Integer sed lectus vel mauris euismod suscipit. Praesent a est a est ultricies pellentesque. Donec tincidunt, nunc in feugiat varius, lectus lectus auctor lorem, egestas molestie risus erat ut nibh.
+\headerbox{Project Management}{name=references,column=0,above=bottom}{
+Weekly group meetings and an agile development methodology are used to manage project progress. Project material is handled by a git repository.
 }
 
 %----------------------------------------------------------------------------------------
 %	FUTURE RESEARCH
 %----------------------------------------------------------------------------------------
 
-\headerbox{References}{name=futureresearch,column=1,span=2,aligned=references,above=bottom}{ % This block is as tall as the references block
+\headerbox{References}{name=futureresearch,column=1,span=3,aligned=references,above=bottom}{ % This block is as tall as the references block
 
-\begin{multicols}{2}
+\begin{multicols}{3}
 \renewcommand{\section}[2]{\vskip 0.05em} % Get rid of the default "References" section title
 \nocite{*} % Insert publications even if they are not cited in the poster
 \footnotesize{ % Reduce the font size in this block
@@ -167,12 +176,12 @@ Integer sed lectus vel mauris euismod suscipit. Praesent a est a est ultricies p
 %	CONTACT INFORMATION
 %----------------------------------------------------------------------------------------
 
-\headerbox{Respository}{name=contact,column=3,aligned=references,above=bottom}{ % This block is as tall as the references block
+%\headerbox{Respository}{name=contact,column=3,aligned=references,above=bottom}{ % This block is as tall as the references block
 
-\begin{description}\compresslist
-\item[Web] https://github.com/mcnutty26/effacious-octo-weasel
-\end{description}
-}
+%\begin{description}\compresslist
+%\item[Web] https://github.com/mcnutty26/effacious-octo-weasel
+%\end{description}
+%}
 
 %----------------------------------------------------------------------------------------
 %	CONCLUSION
@@ -181,33 +190,15 @@ Integer sed lectus vel mauris euismod suscipit. Praesent a est a est ultricies p
 \headerbox{Planned Work}{name=conclusion,column=2,span=2,row=0,below=results,above=references}{
 
 \begin{multicols}{2}
-
-\tikzstyle{decision} = [diamond, draw, fill=blue!20, text width=4.5em, text badly centered, node distance=2cm, inner sep=0pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse, fill=red!20, node distance=3cm, minimum height=2em]
-
-\begin{tikzpicture}[node distance = 2cm, auto]
-\node [block] (init) {Initialize Model};
-\node [cloud, left of=init] (Start) {Start};
-\node [cloud, right of=init] (Start2) {Start Two};
-\node [block, below of=init] (init2) {Initialize Two};
-\node [decision, below of=init2] (End) {End};
-\path [line] (init) -- (init2);
-\path [line] (init2) -- (End);
-\path [line, dashed] (Start) -- (init);
-\path [line, dashed] (Start2) -- (init);
-\path [line, dashed] (Start2) |- (init2);
-\end{tikzpicture}
-
-%------------------------------------------------
-
-\begin{itemize}\compresslist
-\item Pellentesque eget orci eros. Fusce ultricies, tellus et pellentesque fringilla, ante massa luctus libero, quis tristique purus urna nec nibh. Phasellus fermentum rutrum elementum. Nam quis justo lectus.
-\item Vestibulum sem ante, hendrerit a gravida ac, blandit quis magna.
-\item Donec sem metus, facilisis at condimentum eget, vehicula ut massa. Morbi consequat, diam sed convallis tincidunt, arcu nunc.
-\item Nunc at convallis urna. isus ante. Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. Donec et dui non massa tristique adipiscing.
-\end{itemize}
+\begin{enumerate}\compresslist
+\item Simulation of (scalable) drone network
+\item Implement autonomous movement
+\item Design and implement the base station
+\item Implement communications routing
+\item Collision detection and physical routing
+\item Problem detection and node exclusion
+\item User tasking input and execution
+\end{enumerate}
 
 \end{multicols}
 }
@@ -216,30 +207,17 @@ Integer sed lectus vel mauris euismod suscipit. Praesent a est a est ultricies p
 %	MATERIALS AND METHODS
 %----------------------------------------------------------------------------------------
 
-\headerbox{Materials \& Methods}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+\headerbox{Simulation Tools}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
 
-The following materials were required to complete the research:
+NS3 is a ``discrete-event network simulator'' that allows for a network of nodes to be setup using a complete simulation of network stacks and communication. This is done using a number of helper classes for creating variations of specific setups, which can then be visualised in a separate program called NetAnim. However, discussion began on the benefits of using NS3 and dealing with the overhead of doing so, or pursuing an alternative method.
+\newline
 
+Using NS3 has proven to be more time consuming than originally expected. Due to this, the network simulation will now be built from the ground up, allowing the abstraction or inclusion of features and elements as is appropriate. This will be done in C++, for the following reasons:
 \begin{itemize}\compresslist
-\item Curabitur pellentesque dignissim
-\item Eu facilisis est tempus quis
-\item Duis porta consequat lorem
-\item Eu facilisis est tempus quis
+\item Ability to run the code natively on the drones, something not possible with NS3.
+\item Custom network stacks can be easily constructed
+\item Low level and efficient
 \end{itemize}
-
-The following equations were used for statistical analysis:
-
-\begin{equation}
-\cos^3 \theta =\frac{1}{4}\cos\theta+\frac{3}{4}\cos 3\theta
-\label{eq:refname}
-\end{equation}\
-
-\begin{equation}
-E = mc^{2}
-\label{eqn:Einstein}
-\end{equation}
-
-Phasellus imperdiet, tortor vitae congue bibendum, felis enim sagittis lorem, et volutpat ante orci sagittis mi. Morbi rutrum laoreet semper. Morbi accumsan enim nec tortor consectetur non commodo nisi sollicitudin. Proin sollicitudin. Pellentesque eget orci eros. Fusce ultricies, tellus et pellentesque fringilla, ante massa luctus libero, quis tristique purus urna nec nibh.
 }
 
 %----------------------------------------------------------------------------------------
@@ -248,35 +226,24 @@ Phasellus imperdiet, tortor vitae congue bibendum, felis enim sagittis lorem, et
 
 \headerbox{Physical Routing}{name=results2,column=1,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
 
-Donec faucibus purus at tortor egestas eu fermentum dolor facilisis. Maecenas tempor dui eu neque fringilla rutrum. Mauris \emph{lobortis} nisl accumsan.
+Pathfinding for aerial vehicles is often easier than their ground based counterparts given the relative lack of obstacles. Given that the scope of the project extends only to pre-defined areas, problems with pylons and buildings can be avoided by providing coordinates of these fixtures in advance of deployment.
 
-\begin{center}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\captionof{table}{Table caption}
-\end{center}
+In order to have drones avoid collisions with other drones, the following algorithm is proposed:
+\newline
 
-Nulla ut porttitor enim. Suspendisse venenatis dui eget eros gravida tempor. Mauris feugiat elit et augue placerat ultrices. Morbi accumsan enim nec tortor consectetur non commodo.
+1) Each node begins with a pass counter $p = 0$.
+\newline
 
-\begin{center}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\captionof{table}{Table caption}
-\end{center}
+2) When two nodes $i$ and $j$ identify themselves as being within a predefined collision radius they compare $p_i$ and $p_j$.
+\newline
+
+3) If $p_i < p_j$ then node $i$ waits for $p_j$ to pass, or vice versa.
+\newline
+
+4) A passing drone sets $p = 0$ and a passed drone sets $p = p + 1$.
+\newline
+
+5) A drone undertaking a high priority task sets $p = \infty$.
 }
 
 %----------------------------------------------------------------------------------------
