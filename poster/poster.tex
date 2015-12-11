@@ -104,6 +104,7 @@ This project focuses on methods by which such networks can be controlled and tas
 \end{enumerate}
 
 \includegraphics[scale=0.21]{figures/drone}
+{\tiny DJI Phantom 2 - http://droneandquadcopter.com/dji-phantom-2-pros-and-cons-before-you-buy/}
 }
 
 %----------------------------------------------------------------------------------------
@@ -196,7 +197,7 @@ Weekly group meetings and an agile development methodology are used to manage pr
 \item Implement fault tolerance
 \end{enumerate}
 
-\includegraphics[scale=0.30]{figures/gannt}
+\includegraphics[scale=0.30]{figures/gannt2}
 
 \end{multicols}
 }
@@ -218,7 +219,7 @@ In order to have drones avoid collisions with other drones, the following algori
 2) When two nodes $i$ and $j$ identify themselves as being within a predefined collision radius they compare $p_i$ and $p_j$.
 \newline
 
-3) If $p_i < p_j$ then node $i$ waits for $p_j$ to pass, or vice versa.
+3) If $p_i < p_j$ then node $i$ waits for $j$ to pass, or vice versa.
 \newline
 
 4) A passing drone sets $p = 0$ and a passed drone sets $p = p + 1$.

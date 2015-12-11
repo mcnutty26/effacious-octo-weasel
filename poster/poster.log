@@ -1,4 +1,4 @@
-This is LuaTeX, Version beta-0.80.0 (TeX Live 2015/Arch Linux) (rev 5238)  (format=lualatex 2015.11.16)  3 DEC 2015 17:26
+This is LuaTeX, Version beta-0.80.0 (TeX Live 2015/Arch Linux) (rev 5238)  (format=lualatex 2015.11.16)  10 DEC 2015 15:28
  restricted \write18 enabled.
 **poster.tex
 (./poster.tex
@@ -705,9 +705,9 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
 \arrowsize=\dimen265
 ))
-No file poster.aux.
-
+(./poster.aux)
 \openout1 = poster.aux
+
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
@@ -721,7 +721,7 @@ LaTeX Font Info:    ... okay on input line 49.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
 LaTeX Font Info:    Try loading font information for T1+ppl on input line 49.
-(/usr/share/texmf-dist/tex/latex/psnfss/t1ppl.fd
+ (/usr/share/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )
 (/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
@@ -851,70 +851,65 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/sc' in size <14.4> not available
 <figures/drone.jpg, id=34, 1027.84pt x 602.25pt>
 File: figures/drone.jpg Graphic file (type jpg)
  <use figures/drone.jpg>
-Package pdftex.def Info: figures/drone.jpg used on input line 107.
+Package pdftex.def Info: figures/drone.jpg used on input line 108.
 (pdftex.def)             Requested size: 215.85277pt x 126.47623pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 107--107
+Underfull \hbox (badness 10000) in paragraph at lines 108--108
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 107--107
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 
  []
 
 <figures/aodv-1.png, id=35, 734.745pt x 447.6725pt>
 File: figures/aodv-1.png Graphic file (type png)
  <use figures/aodv-1.png>
-Package pdftex.def Info: figures/aodv-1.png used on input line 150.
+Package pdftex.def Info: figures/aodv-1.png used on input line 151.
 (pdftex.def)             Requested size: 183.68579pt x 111.91785pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 
  []
 
-<figures/gannt.png, id=36, 710.655pt x 262.9825pt>
-File: figures/gannt.png Graphic file (type png)
- <use figures/gannt.png>
-Package pdftex.def Info: figures/gannt.png used on input line 202.
-(pdftex.def)             Requested size: 213.19814pt x 78.89534pt.
+<figures/gannt2.png, id=36, 710.655pt x 263.98625pt>
+File: figures/gannt2.png Graphic file (type png)
+ <use figures/gannt2.png>
+Package pdftex.def Info: figures/gannt2.png used on input line 203.
+(pdftex.def)             Requested size: 213.19814pt x 79.19647pt.
 
-Underfull \hbox (badness 1043) in paragraph at lines 228--228
+Underfull \hbox (badness 1043) in paragraph at lines 229--229
 \T1/ppl/m/n/10 other drones, the fol-low-ing al-go-rithm is pro-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
+Underfull \hbox (badness 10000) in paragraph at lines 229--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
+Underfull \hbox (badness 10000) in paragraph at lines 229--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
+Underfull \hbox (badness 10000) in paragraph at lines 229--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
+Underfull \hbox (badness 10000) in paragraph at lines 229--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
+Underfull \hbox (badness 10000) in paragraph at lines 229--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 241--241
+Underfull \hbox (badness 10000) in paragraph at lines 242--242
 
  []
 
@@ -945,22 +940,18 @@ Missing character: There is no ; (U+003B) in font nullfont!
 Missing character: There is no ; (U+003B) in font nullfont!
 Missing character: There is no ; (U+003B) in font nullfont!
 Missing character: There is no ; (U+003B) in font nullfont!
-<./figures/logo.png><./figures/drone.jpg><./figures/aodv-1.png><./figures/gannt.
-png>] (./poster.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-)
+<./figures/logo.png><./figures/drone.jpg><./figures/aodv-1.png><./figures/gannt2
+.png>] (./poster.aux))
 
 Here is how much of LuaTeX's memory you used:
- 19770 strings out of 494897
- 125006,552014 words of node,token memory allocated
+ 19778 strings out of 494897
+ 125009,552014 words of node,token memory allocated
  625 words of node memory still in use:
    13 hlist, 2 vlist, 2 rule, 2 glue, 3 kern, 53 glue_spec, 2 write, 16 pdf_lite
 ral, 8 pdf_refxform, 16 pdf_colorstack nodes
-   avail lists: 2:27,3:1974,4:4374,5:362,6:9690,7:80,9:1223,10:904
- 22530 multiletter control sequences out of 65536+600000
- 58 fonts using 2289955 bytes
+   avail lists: 2:27,3:1976,4:4389,5:372,6:9864,7:80,9:1221,10:916
+ 22531 multiletter control sequences out of 65536+600000
+ 60 fonts using 2368427 bytes
  62i,11n,92p,481b,984s stack positions out of 5000i,500n,10000p,200000b,100000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}<</usr/share/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmmi10.pfb><</usr/share/texmf-dist/fonts/type1/public/
@@ -969,7 +960,7 @@ amsfonts/cm/cmmi7.pfb><</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 are/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><</usr/share/texmf-dist
 /fonts/type1/urw/palatino/uplb8a.pfb><</usr/share/texmf-dist/fonts/type1/urw/pal
 atino/uplr8a.pfb>
-Output written on poster.pdf (1 page, 486299 bytes).
+Output written on poster.pdf (1 page, 486424 bytes).
 
 PDF statistics: 75 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream
