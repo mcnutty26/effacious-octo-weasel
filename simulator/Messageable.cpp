@@ -1,14 +1,14 @@
 #include "Messageable.hpp"
 
-Messageable::Messageable(CommMod cm)
-:communicationsModule(cm)
+Messageable::Messageable(CommMod* cm)
 {
 	messageFun = nullptr;
+	communicationsModule = cm;
 }
 
 void Messageable::send_message(std::string contents)
 {
-	communicationsModule.push_out_message(contents);
+	communicationsModule->push_out_message(contents);
 }
 
 std::string Messageable::wait_for_message()

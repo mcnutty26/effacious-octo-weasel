@@ -8,12 +8,13 @@
 	class CommMod
 	{
 		public:
-			CommMod(std::function<void()> fun);
-			broadcast(std::string message);
+			void broadcast(std::string message);
+			void push_out_message(std::string message);
+			void push_in_message(std::string message);
+		protected:
+			virtual void comm_function() = 0;
 			std::queue<std::string> outQueue;
 			std::queue<std::string> inQueue;
-		private:
-			std::function<void()> commFun;
 	};
 
 #endif

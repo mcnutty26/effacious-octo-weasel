@@ -10,7 +10,7 @@
 	class Messageable
 	{
 		public:
-			Messageable(CommMod cm);
+			Messageable(CommMod* cm);
 			void send_message(std::string contents);
 			std::string wait_for_message();
 			void push_message(std::string contents);
@@ -20,7 +20,7 @@
 			virtual bool message_callback(std::string) = 0;
 		protected:
 			std::queue<std::string> inQueue;
-			CommMod communicationsModule;
+			CommMod* communicationsModule;
 			std::function<void(std::string)> messageFun;
 	};
 
