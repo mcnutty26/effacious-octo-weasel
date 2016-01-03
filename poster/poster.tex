@@ -80,39 +80,41 @@ linewidth=2pt % Width of the border lines around content boxes
 %	OBJECTIVES
 %----------------------------------------------------------------------------------------
 
-\headerbox{Objectives}{name=objectives,column=1,row=0}{
+\headerbox{Introduction}{name=objectives,column=0,row=0}{
 
-This project focuses on methods by which such networks can be controlled and tasked. We are working to create a framework by which autonomous flying vehicles can be tasked remotely to map sensor properties over predefined areas. This encompasses:
+A great amount of work has gone into research surrounding sensor networks in recent years, and the explosion in popularity of the internet of things (IoT) means there is a great deal of support from both academia and industry for development in the field. 
 
-\begin{enumerate}\compresslist
-\item Routing of drones through shared airspace
-\item Routing of communications
-\item Specification of tasking language
-\item Fault tolerance of the network
-\item Division and dissemination of instructions
-\end{enumerate}
+The use of quadcopters (and drones in general) has also increased in both the civilian and military sectors. By combining the power of distributed sensor networks with the manoeuvrability of unmanned drones it is possible to quickly survey and map properties over a large area.
 }
 
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
 
-\headerbox{Introduction}{name=introduction,column=0,row=0,bottomaligned=objectives}{
+\headerbox{Objectives}{name=introduction,column=1,row=0}{
 
-A great amount of work has gone into research surrounding sensor networks in recent years, and the explosion in popularity of the internet of things (IoT) means there is a great deal of support from both academia and industry for development in the field. 
+This project focuses on methods by which such networks can be controlled and tasked. We are working to create a framework by which autonomous flying vehicles can be tasked remotely to map sensor properties over predefined areas. This encompasses:
 
-The use of quadcopters (and drones in general) has also increased in both the civilian and military sectors. By combining the power of distributed sensor networks with the manoeuvrability of unmanned drones it is possible to quickly survey and map properties over a large area.
+\begin{enumerate}\compresslist
+\item Creation of network simulator
+\item Physical routing of drones
+\item Routing of communications
+\item Fault tolerance of the network
+\item Division and dissemination of instructions
+\end{enumerate}
+
+\includegraphics[scale=0.21]{figures/drone}
+{\tiny DJI Phantom 2 - http://droneandquadcopter.com/dji-phantom-2-pros-and-cons-before-you-buy/}
 }
+
 %----------------------------------------------------------------------------------------
 %	RESULTS 1
 %----------------------------------------------------------------------------------------
 
 \headerbox{Communications Routing}{name=results,column=2,span=2,row=0}{
-
 \begin{multicols}{2}
-\vspace{1em}
 
-Mobile Ad-hoc Networks (MANETs) have several distinguishing characteristics which must be accounted for when designing and evaluating routing algorithms\cite{macker1999mobile}:
+Mobile Ad-hoc Networks (MANETs) have several distinguishing characteristics which must be accounted for when designing and evaluating routing algorithms[1]:
 
 \begin{enumerate}\compresslist
 \item Dynamic topologies
@@ -137,7 +139,7 @@ L = 10n {\log_{10}}d + C
 Multiple algorithms exist to route packets within a network, which are usually classified into topological and positional. For mobile networks, topological models are ineffective due to the aforementioned dynamic topologies employed.
 \newline
 
-Ad hoc On-Demand Distance Vector (AODV) routing is one of the most popular reactive protocols used in MANETS\cite{perkins2003ad}. When a node wishes to send a message but does not have a route to the destination, it broadcasts a route request (RREQ) packet to it's neighbours. Each neighbour either returns a route if it has one (RREP) or rebroadcasts the RREQ to it's own neighbours. Sequence numbers are used to eliminate suboptimal routes and by extension to prevent cyclical routes.
+Ad hoc On-Demand Distance Vector (AODV) routing is one of the most popular reactive protocols used in MANETS[2]. When a node wishes to send a message but does not have a route to the destination, it broadcasts a route request (RREQ) packet to it's neighbours. Each neighbour either returns a route if it has one (RREP) or rebroadcasts the RREQ to it's own neighbours. Sequence numbers are used to eliminate suboptimal routes and by extension to prevent cyclical routes.
 
 \includegraphics[scale=0.25]{figures/aodv-1}
 
@@ -152,7 +154,7 @@ For MANETS, reactive protocols like AODV are preferred to proactive protocols (s
 %	REFERENCES
 %----------------------------------------------------------------------------------------
 
-\headerbox{Project Management}{name=references,column=0,above=bottom}{
+\headerbox{Project Management}{name=references,column=0,span=2,above=bottom}{
 Weekly group meetings and an agile development methodology are used to manage project progress. Project material is handled by a git repository.
 }
 
@@ -160,26 +162,24 @@ Weekly group meetings and an agile development methodology are used to manage pr
 %	FUTURE RESEARCH
 %----------------------------------------------------------------------------------------
 
-\headerbox{References}{name=futureresearch,column=1,span=3,aligned=references,above=bottom}{ % This block is as tall as the references block
+\headerbox{References}{name=futureresearch,column=2,span=2,aligned=references,above=bottom}{ % This block is as tall as the references block
+\scriptsize{ % Reduce the font size in this block
+\noindent [1]Macker, Joseph. "Mobile ad hoc networking (MANET): Routing protocol performance issues and evaluation considerations." (1999).
 
-\begin{multicols}{3}
-\renewcommand{\section}[2]{\vskip 0.05em} % Get rid of the default "References" section title
-\nocite{*} % Insert publications even if they are not cited in the poster
-\footnotesize{ % Reduce the font size in this block
-\bibliographystyle{unsrt}
-\bibliography{bibliography} % Use sample.bib as the bibliography file
+[2]Perkins, Charles, Elizabeth Belding-Royer, and Samir Das. Ad hoc on-demand distance vector (AODV) routing. No. RFC 3561. 2003.
 }
-\end{multicols}
 }
 
 %----------------------------------------------------------------------------------------
 %	CONTACT INFORMATION
 %----------------------------------------------------------------------------------------
 
-%\headerbox{Respository}{name=contact,column=3,aligned=references,above=bottom}{ % This block is as tall as the references block
+%\headerbox{Contact Information}{name=contact,column=3,aligned=references,above=bottom}{ % This block is as tall as the references block
 
 %\begin{description}\compresslist
-%\item[Web] https://github.com/mcnutty26/effacious-octo-weasel
+%\item[Web] www.university.edu/smithlab
+%\item[Email] john@smith.com
+%\item[Phone] +1 (000) 111 1111
 %\end{description}
 %}
 
@@ -191,14 +191,13 @@ Weekly group meetings and an agile development methodology are used to manage pr
 
 \begin{multicols}{2}
 \begin{enumerate}\compresslist
-\item Simulation of (scalable) drone network
-\item Implement autonomous movement
-\item Design and implement the base station
+\item Finish implementing Simulator
+\item Implement physical routing
 \item Implement communications routing
-\item Collision detection and physical routing
-\item Problem detection and node exclusion
-\item User tasking input and execution
+\item Implement fault tolerance
 \end{enumerate}
+
+\includegraphics[scale=0.30]{figures/gannt2}
 
 \end{multicols}
 }
@@ -207,24 +206,7 @@ Weekly group meetings and an agile development methodology are used to manage pr
 %	MATERIALS AND METHODS
 %----------------------------------------------------------------------------------------
 
-\headerbox{Simulation Tools}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
-
-NS3 is a ``discrete-event network simulator'' that allows for a network of nodes to be setup using a complete simulation of network stacks and communication. This is done using a number of helper classes for creating variations of specific setups, which can then be visualised in a separate program called NetAnim. However, discussion began on the benefits of using NS3 and dealing with the overhead of doing so, or pursuing an alternative method.
-\newline
-
-Using NS3 has proven to be more time consuming than originally expected. Due to this, the network simulation will now be built from the ground up, allowing the abstraction or inclusion of features and elements as is appropriate. This will be done in C++, for the following reasons:
-\begin{itemize}\compresslist
-\item Ability to run the code natively on the drones, something not possible with NS3.
-\item Custom network stacks can be easily constructed
-\item Low level and efficient
-\end{itemize}
-}
-
-%----------------------------------------------------------------------------------------
-%	RESULTS 2
-%----------------------------------------------------------------------------------------
-
-\headerbox{Physical Routing}{name=results2,column=1,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+\headerbox{Physical Routing}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
 
 Pathfinding for aerial vehicles is often easier than their ground based counterparts given the relative lack of obstacles. Given that the scope of the project extends only to pre-defined areas, problems with pylons and buildings can be avoided by providing coordinates of these fixtures in advance of deployment.
 
@@ -237,13 +219,26 @@ In order to have drones avoid collisions with other drones, the following algori
 2) When two nodes $i$ and $j$ identify themselves as being within a predefined collision radius they compare $p_i$ and $p_j$.
 \newline
 
-3) If $p_i < p_j$ then node $i$ waits for $p_j$ to pass, or vice versa.
+3) If $p_i < p_j$ then node $i$ waits for $j$ to pass, or vice versa.
 \newline
 
 4) A passing drone sets $p = 0$ and a passed drone sets $p = p + 1$.
 \newline
 
 5) A drone undertaking a high priority task sets $p = \infty$.
+}
+
+%----------------------------------------------------------------------------------------
+%	RESULTS 2
+%----------------------------------------------------------------------------------------
+
+\headerbox{Tools}{name=results2,column=1,below=introduction,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+
+NS3 is a popular ``discrete-event network simulator'' that allows for a complete simulation of network stacks and communications. However, using NS3 has proven to be more time consuming and complex than originally expected. 
+\newline
+
+Due to this, the network simulation will now be custom built, allowing the abstraction of features as appropriate. This will be done in C++ because it is easily portable to real drones, as well as being easily extensible and efficient. We can specify different modules in our program for tasks such as communication, one sending simulated packets and one sending packets to a real radio link.
+
 }
 
 %----------------------------------------------------------------------------------------
