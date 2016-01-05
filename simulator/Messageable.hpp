@@ -10,10 +10,15 @@
 	class Messageable
 	{
 		public:
-			Messageable(CommMod* cm);
+			Messageable(CommMod* cm, double xp, yp, zp);
 			void send_message(std::string contents);
 			std::string wait_for_message();
 			void push_message(std::string contents);
+			void receive_message(std::string contents);
+
+			double getX();
+			double getY();
+			double getZ();
 			
 			//returns true if the message is consumed by the callback.
 			//false otherwise.
@@ -22,6 +27,9 @@
 			std::queue<std::string> inQueue;
 			CommMod* communicationsModule;
 			std::function<void(std::string)> messageFun;
+			double xPos;
+			double yPos;
+			double zPos;
 	};
 
 #endif

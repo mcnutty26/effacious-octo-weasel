@@ -2,6 +2,7 @@
 	#define EOW_ENVIRONMENT_HPP
 
 	#include <vector>
+	#include <tuple>
 	#include <map>
 	#include <string>
 
@@ -14,13 +15,12 @@
 
 		public:
 			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range)
-			Environment(BaseStation bs);
-			void addData(std::string name, data_type data);
-			void addDrone(Drone d);
+			void addData(std::string type, data_type d);
+			void addMessageable(Messageable* m);
 
 		private:
 			BaseStation baseStation;
-			std::vector<Messageable> drones;
+			std::vector<Messageable*> messageables;
 			std::map<std::string, data_type> data;
 	};
 
