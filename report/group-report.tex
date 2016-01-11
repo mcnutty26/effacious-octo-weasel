@@ -1,0 +1,142 @@
+\documentclass[12pt,a4paper,twoside]{report}
+
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage[titletoc]{appendix}
+\usepackage{lipsum}
+
+\linespread{1.3}
+\titleformat{\chapter}{\large\bf\centering}{CHAPTER \MakeUppercase{\thechapter}.}{1em}{}
+\titleformat{\section}{\normalfont\bf}{{\thesection}}{1em}{}
+\titleformat{\subsection}{\normalfont\bf}{{\thesubsection}}{1em}{}
+
+\begin{document}
+\pagenumbering{roman}
+\begin{titlepage}
+\begin{center}
+
+\textsc{\LARGE CS407 Group Report}\\[1.5cm]
+\vspace{1.5cm}
+
+\hrule
+\vspace{0.2cm}
+\textsc{\LARGE A framework for autonomous drone networks}\\
+\vspace{0.2cm}
+\hrule
+
+\vspace{1.5cm}
+\noindent
+\begin{minipage}{0.4\textwidth}
+	\begin{flushleft} \large
+		\emph{Authors:}\\
+		William \textsc{Seymour}, \\ Jon \textsc{Gibson}, \\ Alex \textsc{Henson}, \\ Ben \textsc{De Ivey}
+	\end{flushleft}
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+	\begin{flushright} \large
+		\emph{Supervisor:} \\
+		Dr.~Arshad \textsc{Jhumka}
+	\end{flushright}
+\end{minipage}
+
+\vfill
+\large Department of Computer Science\\
+\large University of Warwick\\
+\large Summer 2016\\
+\vfill
+\includegraphics[width=0.50\textwidth]{img/dcslogo.png}~\\[1cm]
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\abstract{\lipsum[1]}
+
+\chapter{Opening}
+\pagenumbering{arabic}
+	\section{Key Words}
+	Autonomous Drones, Sensor Networks, Pathfinding
+	\section{Word Count}
+	The document contains 30,000 words. This number was calculated from the document source by TeXstudio.
+
+	\section{Acknowledgements}
+	(kind words go here)
+	
+	\section{Introduction}
+
+\chapter{Background}
+	\subsection{Definitions}
+	\subsection{Quadcopters}
+	\subsection{Sensor Networks}
+		\subsubsection{The Internet of Things}
+	\subsection{Drone Networks}
+	\section{Just an example of how we might break them down}
+	
+\chapter{Literature Review}
+	\section{Uh, I don't know how to divide these}
+	\section{You get the idea though}
+
+\chapter{Specification}
+	\section{Objectives}
+	\section{Justification}
+	\section{Requirements Identification}
+			\subsubsection{Functional Requirements}
+			\subsubsection{Non-functional Requirements}
+	\section{Project Deliverables}
+	\section{Changes From Original Specification}
+	
+\chapter{Simulation Software}
+	\section{Existing Solutions}
+		\subsection{NS3}
+		\subsection{NS2}
+		\subsection{Some}
+		\subsection{other}
+		\subsection{stuff}
+		\section{Summary of Existing Solutions}
+	
+	\section{Preliminary Work}
+		\subsection{Stakeholder Analysis}
+		\subsection{Feasibility Study}
+	\section{Development Methodology}
+	\section{Requirements Identification}
+		\subsection{Functional Requirements}
+		\subsection{Non-functional Requirements}
+	\section{Code Structure}
+		\subsection{The Environment}
+		\subsection{Communication Modules}
+		\subsection{Drone}
+		\subsection{Base Station}
+	\section{Results}
+	\section{Review Against Original Objectives}
+
+\chapter{Physical Routing}
+
+\chapter{Communications Routing}
+
+\chapter{Physical Deployment}
+	\section{Objectives}
+	\section{Equipment and Feasability}
+		\subsection{Arduino}
+		\subsection{RaspberryPi}
+		\subsection{Something else}
+	\section{Adapting the Simulator Code}
+	\section{Results}
+	\section{Review Against Original Objectives}
+
+\chapter{Project Outcome}
+	\section{Projects Deliverables}
+	\section{Review Against Original Objectives}
+	\section{Project Appraisal}
+	\section{Future Work}
+
+\chapter{Project Management}
+	\section{Team Structure}
+	\section{Progress Tracking}
+	\section{Source Control}
+
+\end{document}
