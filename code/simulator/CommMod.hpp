@@ -7,7 +7,7 @@
 	class CommMod
 	{
 		public:
-			CommMod(Environment* env)
+			CommMod(Environment* env);
 			void broadcast(std::string message, double xPos, double yPos, double zPos, double range);
 			void push_out_message(std::string message);
 			void push_in_message(std::string message);
