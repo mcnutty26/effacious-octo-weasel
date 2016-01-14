@@ -10,7 +10,7 @@
 	class Messageable
 	{
 		public:
-			Messageable(CommMod* cm, double xp, yp, zp);
+			Messageable(CommMod* cm, double xp, yp, zp, std::string ip_addr);
 			void send_message(std::string contents);
 			std::string wait_for_message();
 			void push_message(std::string contents);
@@ -30,6 +30,7 @@
 			double xPos;
 			double yPos;
 			double zPos;
+      std::string ip_address;
 	};
 
 #endif

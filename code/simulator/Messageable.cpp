@@ -1,6 +1,6 @@
 #include "Messageable.hpp"
 
-Messageable::Messageable(CommMod* cm, double xp, double yp, double zp)
+Messageable::Messageable(CommMod* cm, double xp, double yp, double zp, std::string ip_addr)
 {
 	messageFun = nullptr;
 	communicationsModule = cm;
@@ -8,6 +8,8 @@ Messageable::Messageable(CommMod* cm, double xp, double yp, double zp)
 	xPos = xp;
 	yPos = yp;
 	zPos = zp;
+  
+  ip_address = ip_addr
 }
 
 double getX()

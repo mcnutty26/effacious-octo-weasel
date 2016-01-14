@@ -17,3 +17,5 @@ class Aodv: public CommMod {
 		send_rrep();
 		send_rerr();
 }
+
+//all of this is pending the helper classes for AODV messages

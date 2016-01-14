@@ -1,8 +1,9 @@
 #include "CommMod.hpp"
 
-CommMod::CommMod(Envrionment* env)
+CommMod::CommMod(Envrionment* env, std::string ip_addr)
 {
 	environment = env;
+  ip_address = ip_addr;
 }
 
 void broadcast(std::string message, double xPos, double yPos, double zPos, double range)
