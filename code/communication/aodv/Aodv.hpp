@@ -1,21 +1,23 @@
 #include <string>
+#include <map>
 
 class Aodv: public CommMod {
 	public:
-		Aodv(Environment* env, String ip_address);
+		Aodv(Environment* env, std::string ip_address);
 	protected:
 		comm_function();
 	private:
+		std::map<Route> route_table;
 		std::string ip_address;
-		final int HELLO_INTERVAL;
-		final int SEQUENCE NUMBER;
-		final int ACTIVE_ROUTE_TIMEOUT;
-		final int PATH_DISCOVERY_TIME;
+		int HELLO_INTERVAL;
+		int SEQUENCE NUMBER;
+		int ACTIVE_ROUTE_TIMEOUT;
+		int PATH_DISCOVERY_TIME;
 
-		send_hello();
-		send_rreq();
-		send_rrep();
-		send_rerr();
+		void send_hello();
+		void send_rreq();
+		void send_rrep();
+		void send_rerr();
 }
 
 //all of this is pending the helper classes for AODV messages
