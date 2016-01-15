@@ -14,8 +14,8 @@
 			Messageable(CommMod* cm, double xp, yp, zp, std::string ip_addr);
 			void send_message(Message contents);
 			Message wait_for_message();
-			void push_message(Message contents);
-			void receive_message(Message contents);
+			void push_message(std::string contents);
+			void receive_message(std::string contents);
 
 			double getX();
 			double getY();
@@ -25,9 +25,9 @@
 			//false otherwise.
 			virtual bool message_callback(Message) = 0;
 		protected:
-			std::queue<Message> inQueue;
+			std::queue<std::string> inQueue;
 			CommMod* communicationsModule;
-			std::function<void(Message)> messageFun;
+			std::function<void(std::string)> messageFun;
 			double xPos;
 			double yPos;
 			double zPos;

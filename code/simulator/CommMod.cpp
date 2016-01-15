@@ -16,7 +16,7 @@ void CommMod::push_in_message(Message message)
 	inQueue.push(message);
 }
 
-void CommMod::push_out_message(Message message)
+void CommMod::push_out_message(std::string message)
 {
 	outQueue.push(message);
 }
