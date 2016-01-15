@@ -3,20 +3,21 @@
 
 	#include <string>
 	#include <queue>
+	#include "Mesage.hpp"
 
 	class CommMod
 	{
 		public:
 			CommMod(Environment* env, std::string ip_addr);
-			void broadcast(std::string message, double xPos, double yPos, double zPos, double range);
-			void push_out_message(std::string message);
-			void push_in_message(std::string message);
+			void broadcast(Message message, double xPos, double yPos, double zPos, double range);
+			void push_out_message(Message message);
+			void push_in_message(Message message);
 		protected:
 			virtual void comm_function() = 0;
-			std::queue<std::string> outQueue;
-			std::queue<std::string> inQueue;
+			std::queue<Message> outQueue;
+			std::queue<Message> inQueue;
 			Environment* environment;
-      std::string ip_address;
+			std::string ip_address;
 	};
 
 #endif

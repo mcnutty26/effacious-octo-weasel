@@ -27,17 +27,17 @@ double getZ()
 	return zPos;
 }
 
-void Messageable::send_message(std::string contents)
+void Messageable::send_message(Message contents)
 {
 	communicationsModule->push_out_message(contents);
 }
 
-void Messageable::receive_message(std::string contents)
+void Messageable::receive_message(Message contents)
 {
 	communicationsModule->push_in_message(contents);
 }
 
-std::string Messageable::wait_for_message()
+Message Messageable::wait_for_message()
 {
 	while(inQueue.empty()){}
 	std::string message = inQueue.front();
@@ -45,7 +45,7 @@ std::string Messageable::wait_for_message()
 	return message;
 }
 
-void Messageable::push_message(std::string contents)
+void Messageable::push_message(Message contents)
 {
 	if(!message_callback(contents))
 	{
