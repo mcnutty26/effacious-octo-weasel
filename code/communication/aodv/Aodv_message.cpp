@@ -11,6 +11,16 @@ std::string get_dest_ip(){
   return dest_ip;
 }
 
+int get_ttl(){
+    return ttl;
+}
+
 int get_dest_seq(){
   return dest_seq;
+}
+
+std::string serialize(){
+	std::string result;
+	result = dest_ip + "," + std::to_string(dest_seq) + "," + std::to_string(ttl);
+	return result;
 }
