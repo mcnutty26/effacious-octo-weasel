@@ -1,10 +1,22 @@
 #include "Message.hpp"
 
-Message(){
-	time_stamp = 0;
-	//TODO: set time to environment time
+Message::Message(std::string type)
+{
+	this->type = type;
 }
 
-int get_time_stamp(){
-	return time_stamp;
+Message::Message(std::string type, std::string initialiser)
+:Message(type)
+{
+	from_string(initialiser)
+}
+
+time_t Message::get_current_time()
+{
+	return time(nullptr);
+}
+
+std::string Message::get_type()
+{
+	return type;
 }

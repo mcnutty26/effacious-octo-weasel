@@ -18,7 +18,7 @@ void Environment::addMessageable(Messageable* m)
 }
 
 //thread safe (I hope) may be a little slow though... meh, it'll be fine (again... I hope)
-void Environment::broadcast(Message message, double xOrigin, double yOrigin, double zOrigin, double range)
+void Environment::broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range)
 {
 	while(lock_broadcast.test_and_set()){}
 	for(int i = 0; i < messageables.size(); ++i)

@@ -1,7 +1,6 @@
 #ifndef EOW_MESSAGEABLE_HPP
 	#define EOW_MESSAGEABLE_HPP
 
-	#include <functional>
 	#include <string>
 	#include <queue>
 
@@ -11,10 +10,10 @@
 	class Messageable
 	{
 		public:
-			Messageable(CommMod* cm, double xp, yp, zp, std::string ip_addr);
-			void send_message(Message contents);
-			Message wait_for_message();
-			void push_message(std::string contents);
+			Messageable(CommMod* cm, double xp, double yp, double zp);
+			void send_message(Message* contents);
+			Message* wait_for_message();
+			void push_message(Message* contents);
 			void receive_message(std::string contents);
 
 			double getX();
@@ -23,15 +22,15 @@
 			
 			//returns true if the message is consumed by the callback.
 			//false otherwise.
-			virtual bool message_callback(Message) = 0;
+			virtual bool message_callback(Message* message) = 0;
+
+			virtual void run() = 0;
 		protected:
-			std::queue<std::string> inQueue;
+			std::queue<Message*> inQueue;
 			CommMod* communicationsModule;
-			std::function<void(std::string)> messageFun;
 			double xPos;
 			double yPos;
 			double zPos;
-			std::string ip_address;
 	};
 
 #endif

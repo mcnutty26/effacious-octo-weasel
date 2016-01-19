@@ -1,22 +1,17 @@
 #ifndef EOW_BASE_STATION_HPP
 	#define EOW_BASE_STATION_HPP
 
-	#include <functional>
 	#include <string>
 
+	#include "Messageable.hpp"
 	#include "CommMod.hpp"
 
 	class BaseStation
+	:protected Messageable
 	{
 		public:
-			BaseStation(std::function<void(std::string)> fun, CommMod cm);
-			void run();
-			void send_message(std::string contents);
-			std::string wait_for_message();
-			void message_callback(std::function<void()>)
-		private:
-			std::function<void(std::string)> bs_fun;
-			CommMod communicationsModule;
+			BaseStation(CommMod* cm, double xp, double yp, double zp, std::string ip_addr)
+			virtual void BaseStationFunction() = 0;
 	};
 
 #endif

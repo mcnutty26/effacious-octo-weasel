@@ -15,7 +15,7 @@
 		typedef std::vector<std::vector<std::vector<double>>> data_type;
 
 		public:
-			void broadcast(Message message, double xOrigin, double yOrigin, double zOrigin, double range)
+			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range)
 			void addData(std::string type, data_type d);
 			void addMessageable(Messageable* m);
 
