@@ -18,6 +18,10 @@ class Aodv: public CommMod {
 		void send_rreq();
 		void send_rrep();
 		void send_rerr();
-}
 
-//all of this is pending the helper classes for AODV messages
+		Aodv_message deserialize(std::string);
+		Aodv_message deserialize_message(std::string);
+		Aodv_rreq deserialize_rreq(std::string);
+		Aodv_rrep deserialize_rrep(std::string);
+		Aodv_rerr deserialize_rerr(std::string);
+}

@@ -7,6 +7,7 @@ class Aodv_message: public Message{
 		std::string get_dest_ip();
 		std::string serialize();
 		int get_dest_seq();
+		int get_ttl();
 	private:
 		std::string dest_ip;
 		int dest_seq;
