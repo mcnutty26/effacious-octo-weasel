@@ -23,3 +23,11 @@ std::string get_source_ip(){
 int get_life_time(){
 	return life_time;
 }
+
+std::string serialize(){
+	std::string result = Aodv_message::serialze();
+	result = "RREP;" + result;
+	result += ";" + std::to_string(hop_count) + ";" + std::to_string(rreq_id) + ";" 
+		+ source_ip + ";" + std::to_string(life_time);
+	return result;
+}

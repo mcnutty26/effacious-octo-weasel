@@ -6,10 +6,11 @@ class Aodv_rreq: public Aodv_message {
 		int get_hop_count();
 		int get_rreq_id();
 		std::string get_source_ip();
+		std::string serialize();
 		int get_source_seq();
 	private:
 		int hop_count;
 		int rreq_id;
 		std::string source_ip;
 		int source_seq;
-}
+};
