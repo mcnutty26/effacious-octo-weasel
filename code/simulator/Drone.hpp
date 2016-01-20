@@ -14,7 +14,6 @@
 
 			double xAng, yAng, zAng = 0;
 
-			virtual void droneFunction() = 0;
 			void upkeep();
 
 		protected:

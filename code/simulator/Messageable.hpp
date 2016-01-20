@@ -24,6 +24,7 @@
 			//false otherwise.
 			virtual bool message_callback(Message* message) = 0;
 
+			//should terminate when the task is finished.
 			virtual void run() = 0;
 		protected:
 			std::queue<Message*> inQueue;

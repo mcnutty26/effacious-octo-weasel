@@ -9,9 +9,6 @@
 	class BaseStation
 	:protected Messageable
 	{
-		public:
-			BaseStation(CommMod* cm, double xp, double yp, double zp, std::string ip_addr)
-			virtual void BaseStationFunction() = 0;
 	};
 
 #endif

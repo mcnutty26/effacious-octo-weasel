@@ -19,6 +19,9 @@
 			void addData(std::string type, data_type d);
 			void addMessageable(Messageable* m);
 
+			//should be called once and only once (per run)
+			void run();
+
 		private:
 			BaseStation baseStation;
 			std::vector<Messageable*> messageables;

@@ -3,6 +3,8 @@
 #include<cmath>
 #include<atomic>
 
+#include<thread>
+
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 
 //should not be called by anything other than the main thread
@@ -32,4 +34,18 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 		}
 	}
 	lock_broadcast.clear();
+}
+
+void Environment::run()
+{
+	std::vector<std::thread> threads;
+	for(auto x : messageables)
+	{
+		threads.emplace_back(x->run);
+	}
+
+	for(auto x: messageables)
+	{
+		x.join();
+	}
 }
