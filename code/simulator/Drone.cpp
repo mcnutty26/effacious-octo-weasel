@@ -24,15 +24,19 @@ void Drone::upkeep()
 			break;
 		case Direction::LEFT:
 			xPos += distance*sin((ang - 90)*radcon);
+			yPos += distance*cos((ang - 90)*radcon);
 			break;
 		case Direction::RIGHT:
 			xPos += distance*sin((ang + 90)*radcon);
+			yPos += distance*cos((ang + 90)*radcon);
 			break;
 		case Direction::FORWARD:
 			xPos += distance*sin((ang)*radcon);
+			yPos += distance*cos((ang)*radcon);
 			break;
 		case Direction::BACK:
 			xPos += distance*sin((ang + 180)*radcon);
+			yPos += distance*cos((ang + 180)*radcon);
 			break;
 	}
 
