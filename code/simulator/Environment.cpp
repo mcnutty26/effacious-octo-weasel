@@ -42,6 +42,7 @@ void Environment::run()
 	for(auto x : messageables)
 	{
 		threads.emplace_back(x->run);
+		threads.emplace_back(x->runCommMod);
 	}
 
 	for(auto x: messageables)

@@ -8,7 +8,7 @@
 	class CommMod
 	{
 		public:
-			CommMod(Environment* env, std::string ip_addr);
+			CommMod(Environment* env);
 			void broadcast(std::string message, double xPos, double yPos, double zPos, double range);
 			void broadcast(Message* message, double xPos, double yPos, double zPos, double range);
 			void push_out_message(Message* message);

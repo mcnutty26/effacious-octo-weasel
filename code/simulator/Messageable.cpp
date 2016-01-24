@@ -50,3 +50,8 @@ void Messageable::push_message(Message* contents)
 		inQueue.push(contents);
 	}
 }
+
+void Messageable::runCommMod()
+{
+	communicationsModule->comm_function();
+}

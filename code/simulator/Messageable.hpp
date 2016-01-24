@@ -26,6 +26,8 @@
 
 			//should terminate when the task is finished.
 			virtual void run() = 0;
+
+			void runCommMod();
 		protected:
 			std::queue<Message*> inQueue;
 			CommMod* communicationsModule;
