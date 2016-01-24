@@ -14,45 +14,43 @@ void Drone::upkeep()
 	double radCon = PI/180;
 	double distance = moveDR < moveSpd? moveDR:moveSpd;
 
-	double xDistance = distance*sin(moveYAng*radCon);
-	double yDistance = distance*sin(moveZAngle*radCon);
-	double zDistance = distance*sin(moveXAngle*radCon);
+	switch(dir)
+	{
+		case Direction::UP:
+			zPos += distance;
+			break;
+		case Direction::DOWN:
+			zPos -= distance;
+			break;
+		case Direction::LEFT:
+			xPos += distance*sin((ang - 90)*radcon);
+			break;
+		case Direction::RIGHT:
+			xPos += distance*sin((ang + 90)*radcon);
+			break;
+		case Direction::FORWARD:
+			xPos += distance*sin((ang)*radcon);
+			break;
+		case Direction::BACK:
+			xPos += distance*sin((ang + 180)*radcon);
+			break;
+	}
 
-	xPos += xDistance;
-	yPos += yDistance;
-	zPos += zDistance;
-
-	moveDR -= distance;
 }
 
-void Drone::moveForward(double speed, double distance)
+void Drone::turn(double dAngle)
 {
-	moveAngle(speed, distance, xAng, yAng, zAng);
+	ang += dAngle;
+	if(ang > 360)
+	{
+		ang -= 360;
+	}
 }
 
-void Drone::moveUp(double speed, double distance)
+
+void Drone::move(Direction direction, double speed, double distance);
 {
-	moveAngle(speed, distance, xAng, yAng, zAng);
+	dir = direction;
+	moveDR = distance;
+	moveSpd = speed;
 }
-
-void Drone::moveDown(double speed, double distance)
-{
-	moveAngle(speed, distance, xAng, yAng, zAng);
-}
-
-void Drone::moveLeft(double speed, double distance)
-{
-	moveAngle(speed, distance, xAng, yAng, zAng);
-}
-
-void Drone::moveRight(double speed, double distance)
-{
-	moveAngle(speed, distance, xAng, yAng, zAng);
-}
-
-void Drone::moveBack(double speed, double distance)
-{
-	moveAngle(speed, distance, xAng+180, yAng, zAng);
-}
-
-
