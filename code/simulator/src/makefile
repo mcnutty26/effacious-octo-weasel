@@ -19,13 +19,12 @@ all: libdrone
 
 header_obj:
 	$(call colorecho,"Compiling simulator objects...")
-header_lib:
-	$(call colorecho,"Creating libraries...")
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o ../build/$@
 
-libdrone: $(OBJ_SET) header_lib
+libdrone: $(OBJ_SET)
+	$(call colorecho,"Creating libraries...")
 	ar rcs ../build/libdrone.a $(addprefix ../build/, $(OBJ_FILES))
 
 clean:
