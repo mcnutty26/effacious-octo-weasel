@@ -1,7 +1,7 @@
 #include "Environment.hpp"
 
 #include<cmath>
-#include<boost/thread.hpp>
+#include<thread>
 #include<atomic>
 
 
@@ -36,14 +36,16 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 
 void Environment::run()
 {
-	std::vector<boost::thread> threads;
+	std::vector<std::thread> threads;
 	for(auto x : messageables)
 	{
-		threads.emplace_back(x->run);
-		threads.emplace_back(x->runCommMod);
+		threads.emplace_back(&Messageable::run, x);
+		threads.emplace_back(&Messageable::runCommMod, x);
+		//threads.emplace_back(new boost::thread(boost::bind(&Messageable::run, x)));
+		//threads.emplace_back(new boost::thread(boost::bind(&Messageable::runCommMod, x)));
 	}
 
-	for(std::vector<boost::thread>::size_type i = 0; i < threads.size(); ++i)
+	for(std::vector<std::thread>::size_type i = 0; i < threads.size(); ++i)
 	{
 		threads[i].join();
 	}

@@ -11,7 +11,7 @@ void Drone::upkeep()
 		moveDR = 0;
 		return;
 	}
-	double radCon = PI/180;
+	double radcon = PI/180;
 	double distance = moveDR < moveSpd? moveDR:moveSpd;
 
 	switch(dir)
@@ -52,7 +52,7 @@ void Drone::turn(double dAngle)
 }
 
 
-void Drone::move(Direction direction, double speed, double distance);
+void Drone::move(Direction direction, double speed, double distance)
 {
 	dir = direction;
 	moveDR = distance;
