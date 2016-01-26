@@ -3,7 +3,10 @@
 
 	#include <string>
 	#include <queue>
-	#include "Mesage.hpp"
+	#include "Message.hpp"
+	#include "Environment.hpp"
+
+	class Environment;
 
 	class CommMod
 	{

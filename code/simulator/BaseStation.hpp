@@ -1,14 +1,10 @@
 #ifndef EOW_BASE_STATION_HPP
 	#define EOW_BASE_STATION_HPP
 
-	#include <string>
+	class Messageable;
 
 	#include "Messageable.hpp"
-	#include "CommMod.hpp"
 
-	class BaseStation
-	:protected Messageable
-	{
-	};
+	class BaseStation : public Messageable{};
 
 #endif

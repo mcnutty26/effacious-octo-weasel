@@ -2,7 +2,6 @@
 
 Messageable::Messageable(CommMod* cm, double xp, double yp, double zp)
 {
-	messageFun = nullptr;
 	communicationsModule = cm;
 
 	xPos = xp;
@@ -10,17 +9,17 @@ Messageable::Messageable(CommMod* cm, double xp, double yp, double zp)
 	zPos = zp;
 }
 
-double getX()
+double Messageable::getX()
 {
 	return xPos;
 }
 
-double getY()
+double Messageable::getY()
 {
 	return yPos;
 }
 
-double getZ()
+double Messageable::getZ()
 {
 	return zPos;
 }

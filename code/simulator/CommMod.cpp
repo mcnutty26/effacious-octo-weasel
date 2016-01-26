@@ -1,6 +1,6 @@
 #include "CommMod.hpp"
 
-CommMod::CommMod(Envrionment* env)
+CommMod::CommMod(Environment* env)
 {
 	environment = env;
 }

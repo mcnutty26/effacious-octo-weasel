@@ -7,6 +7,8 @@
 	#include "CommMod.hpp"
 	#include "Message.hpp"
 
+	class CommMod;
+
 	class Messageable
 	{
 		public:

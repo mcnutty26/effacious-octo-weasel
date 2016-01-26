@@ -1,9 +1,9 @@
 #include "Environment.hpp"
 
 #include<cmath>
+#include<boost/thread.hpp>
 #include<atomic>
 
-#include<thread>
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 
@@ -23,12 +23,10 @@ void Environment::addMessageable(Messageable* m)
 void Environment::broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range)
 {
 	while(lock_broadcast.test_and_set()){}
-	for(int i = 0; i < messageables.size(); ++i)
+	for(auto m:messageables)
 	{
-		Messageable* m = messageables[i];
-
 		//if messageable is within range
-		if(pow(m->getX() - xOrigin,2) + pow(m->getY() - yOrigin, 2) + pow(m->getZ() - zOrigin) < pow(range, 2))
+		if(pow(m->getX() - xOrigin,2) + pow(m->getY() - yOrigin, 2) + pow(m->getZ() - zOrigin, 2) < pow(range, 2))
 		{
 			m->receive_message(message);
 		}
@@ -38,15 +36,15 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 
 void Environment::run()
 {
-	std::vector<std::thread> threads;
+	std::vector<boost::thread> threads;
 	for(auto x : messageables)
 	{
 		threads.emplace_back(x->run);
 		threads.emplace_back(x->runCommMod);
 	}
 
-	for(auto x: messageables)
+	for(std::vector<boost::thread>::size_type i = 0; i < threads.size(); ++i)
 	{
-		x.join();
+		threads[i].join();
 	}
 }
