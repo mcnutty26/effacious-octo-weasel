@@ -1,34 +1,32 @@
 CXX		= g++
 LINKFLAGS	=
 CXXFLAGS	= -std=c++1y -Werror -Wall -Wextra -pthread
-objects		= header Messageable Message CommMod  BaseStation Environment Drone
+objects		= Messageable Message CommMod  BaseStation Environment Drone
 libraries	= -lglfw3 -lglew32 -lgdi32 -lopengl32
 headers		= Messageable.hpp CommMod.hpp Message.hpp BaseStation.hpp Drone.hpp
-exe		= 
+exe		=
 
-all:$(objects)
-	@echo "Objects successfully compiled"
+OBJ_FILES = BaseStation.o CommMod.o Drone.o Environment.o Message.o Messageable.o
+OBJ_SET = header_obj $(OBJ_FILES)
 
-header:
-	@echo "Compiling simulator objects..."
+define colorecho
+      @tput setaf 32
+      @echo $1
+      @tput sgr0
+endef
 
-Messageable: Messageable.cpp Messageable.hpp CommMod.hpp
-	$(CXX) -c -o ../build/Messageable.o Messageable.cpp $(CXXFLAGS)
+all: libdrone
 
-Message: Message.cpp Message.hpp
-	$(CXX) -c -o ../build/Message.o Message.cpp $(CXXFLAGS)
+header_obj:
+	$(call colorecho,"Compiling simulator objects...")
+header_lib:
+	$(call colorecho,"Creating libraries...")
 
-CommMod: CommMod.cpp CommMod.hpp Message.hpp Environment.hpp
-	$(CXX) -c -o ../build/CommMod.o CommMod.cpp $(CXXFLAGS)
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o ../build/$@
 
-BaseStation: BaseStation.cpp BaseStation.hpp CommMod.hpp Messageable.hpp
-	$(CXX) -c -o ../build/BaseStation.o BaseStation.cpp $(CXXFLAGS)
-
-Drone: Drone.cpp Drone.hpp CommMod.hpp Messageable.hpp
-	$(CXX) -c -o ../build/Drone.o Drone.cpp $(CXXFLAGS)
-
-Environment: Environment.cpp Environment.hpp BaseStation.hpp Drone.hpp
-	$(CXX) -c -o ../build/Environment.o Environment.cpp $(CXXFLAGS)
+libdrone: $(OBJ_SET) header_lib
+	ar rcs ../build/libdrone.a $(addprefix ../build/, $(OBJ_FILES))
 
 clean:
-	$(RM) ../build/*.o
+	$(RM) ../build/*
