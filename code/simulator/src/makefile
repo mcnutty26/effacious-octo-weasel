@@ -24,8 +24,7 @@ header_obj:
 	$(CXX) $(CXXFLAGS) -c $< -o ../build/$@
 
 libdrone: $(OBJ_SET)
-	$(call colorecho,"Creating libraries...")
-	#ar rcs ../build/libdrone.a $(addprefix ../build/, $(OBJ_FILES))
+	$(call colorecho,"Creating simulator library...")
 	$(CXX) -shared -fPIC -o ../build/liboctodrone.so $(addprefix ../build/, $(OBJ_FILES))
 
 clean:

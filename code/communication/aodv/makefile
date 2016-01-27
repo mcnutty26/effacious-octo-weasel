@@ -14,7 +14,7 @@ endef
 all: liboctodroneaodv
 
 header_obj:
-	$(call colorecho,"Compiling AODV objects...")
+	$(call colorecho,"Compiling communcations objects...")
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c $< -o build/$@
@@ -22,9 +22,9 @@ header_obj:
 liboctodrone:
 	cd ../../simulator/src && $(MAKE) all
 
-liboctodroneaodv: liboctodrone $(OBJ_FILES)
-	$(call colorecho,"Creating libraries...")
-	$(CXX) -shared -fPIC -o build/liboctodroneaodv.so $(addprefix build/, $(OBJ_FILES))
+liboctodroneaodv: liboctodrone $(OBJ_SET)
+	$(call colorecho,"Creating communications library...")
+	$(CXX) -shared -fPIC -o build/liboctodronecomms.so $(addprefix build/, $(OBJ_FILES))
 
 clean:
 	$(RM) build/*

@@ -14,10 +14,10 @@ void Aodv::init(){
 	BROADCAST_ID = 0;
 }
 
-std::string Aodv::get_attibute(std::string message){
-	std::string atribute;
+std::string Aodv::get_attribute(std::string message){
+	std::string attribute;
 	std::stringstream attr;
-	mtype.str(message);
+	attr.str(message);
 	std::getline(attr, attribute, ';');
 	return attribute;
 }
@@ -43,9 +43,14 @@ std::string Aodv::get_attibute(std::string message){
 
 	return result;
 }
-
+*/
 Aodv_rrep Aodv::deserialize_rrep(std::string message){
-	Aodv_message base_message = deserialize_message(&message);
+	std::string dest_ip = Aodv::get_attribute(message);
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	int dest_seq = atoi(Aodv::get_attribute(message).c_str());
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	int ttl = atoi(Aodv::get_attribute(message).c_str());
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 
 	std::string hop_count_string, source_ip, life_time_string;
 	int hop_count, life_time;
@@ -62,24 +67,29 @@ Aodv_rrep Aodv::deserialize_rrep(std::string message){
 	return result;
 }
 
-Aodv_rerr Aodv::deserialize_rerr(std::string message){
-	Aodv_message base_message = deserialize_message(&message);
+Aodv_rerr* Aodv::deserialize_rerr(std::string message){
+	std::string dest_ip = Aodv::get_attribute(message);
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	int dest_seq = atoi(Aodv::get_attribute(message).c_str());
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	int ttl = atoi(Aodv::get_attribute(message).c_str());
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 	
-	Aodv_rerr result = new Aodv_rerr(base_message.get_dest_ip(), base_message.get_dest_seq(), base_message.get_ttl());
+	Aodv_rerr* result = new Aodv_rerr(dest_ip, dest_seq, ttl);
 
 	return result;
-}*/
+}
 
-Aodv_rreq Aodv::create_hello(){
+Aodv_rreq* Aodv::create_hello(){
 	return Aodv::create_rreq(Aodv::ip_address, 1);
 }
 
-Aodv_rreq Aodv::create_rreq(std::string dest_ip, int ttl){
+Aodv_rreq* Aodv::create_rreq(std::string dest_ip, int ttl){
 	int hop = 0;
-	//int dest_seq = route_table[dest_ip].sequence_number;
+	int dest_seq = 0;//route_table[dest_ip].sequence_number;
 	BROADCAST_ID++;
 
-	Aodv_rreq to_send = new Aodv_rreq::Aodv_rreq(hop, BROADCAST_ID, ip_address, dest_ip, SEQUENCE_NUMBER, dest_seq, ttl);
+	Aodv_rreq* to_send = new Aodv_rreq(hop, BROADCAST_ID, ip_address, dest_ip, SEQUENCE_NUMBER, dest_seq, ttl);
 	return to_send;
 }
 
