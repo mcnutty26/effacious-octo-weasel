@@ -1,6 +1,6 @@
 CXX		= g++
 LINKFLAGS	=
-CXXFLAGS	= -std=c++1y -Werror -Wall -Wextra -pthread
+CXXFLAGS	= -std=c++1y -Werror -Wall -Wextra -pthread -fPIC
 objects		= Messageable Message CommMod  BaseStation Environment Drone
 libraries	= -lglfw3 -lglew32 -lgdi32 -lopengl32
 headers		= Messageable.hpp CommMod.hpp Message.hpp BaseStation.hpp Drone.hpp
@@ -25,7 +25,8 @@ header_obj:
 
 libdrone: $(OBJ_SET)
 	$(call colorecho,"Creating libraries...")
-	ar rcs ../build/libdrone.a $(addprefix ../build/, $(OBJ_FILES))
+	#ar rcs ../build/libdrone.a $(addprefix ../build/, $(OBJ_FILES))
+	$(CXX) -shared -fPIC -o ../build/liboctodrone.so $(addprefix ../build/, $(OBJ_FILES))
 
 clean:
 	$(RM) ../build/*
