@@ -23,7 +23,7 @@ int get_life_time(){
 	return life_time;
 }
 
-std::string serialize(){
+std::string to_string(){
 	std::string result = Aodv_message::serialze();
 	result = "RREP;" + result;
 	result += ";" + std::to_string(hop_count) + ";" + source_ip + ";" + std::to_string(life_time);
