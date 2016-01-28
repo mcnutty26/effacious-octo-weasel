@@ -43,7 +43,7 @@ std::string Aodv::get_attribute(std::string message){
 
 	return result;
 }
-
+*/
 Aodv_rrep Aodv::deserialize_rrep(std::string message){
 	std::string dest_ip = Aodv::get_attribute(message);
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
@@ -52,21 +52,18 @@ Aodv_rrep Aodv::deserialize_rrep(std::string message){
 	int ttl = atoi(Aodv::get_attribute(message).c_str());
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 
-	std::string hop_count_string, source_ip, life_time_string;
-	int hop_count, life_time;
+	int hop_count = atoi(Aodv::get_attribute(message).c_str());
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	std::string src_ip = Aodv::get_attribute(message);
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	int life_time = atoi(Aodv::get_attribute(message).c_str());
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 	
-	std::getline(message, hop_count_string, ';');
-	std::getline(message, source_ip, ';');
-	std::getline(message, life_time_string, ';');
-
-	hop_count = int (hop_count_string);
-	life_time = int (life_time_string);
-	Aodv_rrep result = new Aodv_rrep(hop_count, source_ip, base_message.get_dest_ip(), base_message.get_dest_seq(),
-		life_time, base_message.get_ttl());
+	Aodv_rrep result = Aodv_rrep(hop_count, src_ip, dest_ip, dest_seq, life_time, ttl);
 
 	return result;
 }
-*/
+
 Aodv_rerr* Aodv::deserialize_rerr(std::string message){
 	std::string dest_ip = Aodv::get_attribute(message);
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);

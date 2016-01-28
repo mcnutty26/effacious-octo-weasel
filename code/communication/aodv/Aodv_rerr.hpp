@@ -2,6 +2,7 @@
 	#define EOW_AODV_RERR
 
 	#include <string>
+	#include "Aodv_message.hpp"
 
 	class Aodv_rerr: public Aodv_message {
 		public:

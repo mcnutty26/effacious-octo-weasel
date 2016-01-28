@@ -2,10 +2,11 @@
 	#define EOW_AODV_RREP
 
 	#include <string>
+	#include "Aodv_message.hpp"
 
 	class Aodv_rrep: public Aodv_message {
 		public:
-			Aodv_rrep(int hop, std::string src_ip, std::string dst_ip, int dst_seq, int life, int ttl);
+			Aodv_rrep(int, std::string, std::string, int, int, int);
 			int get_hop_count();
 			std::string get_source_ip();
 			std::string to_string();

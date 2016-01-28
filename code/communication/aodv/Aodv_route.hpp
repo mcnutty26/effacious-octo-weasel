@@ -13,6 +13,6 @@
 			std::string dest_ip;
 			std::string next_ip;
 			int dest_seq;
-			int ACTIVE_ROUTE_TMEOUT;
+			int ACTIVE_ROUTE_TIMEOUT;
 	};
 #endif

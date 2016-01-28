@@ -13,14 +13,10 @@ endef
 all: liboctodronecomms
 
 makeobjs:
-	$(call colorecho,"Compiling communcations objects...")
 	cd aodv && $(MAKE) all
 	cd basic && $(MAKE) all
 
-liboctodrone:
-	cd ../simulator/src && $(MAKE) all
-
-liboctodronecomms: liboctodrone makeobjs
+liboctodronecomms: makeobjs
 	$(call colorecho,"Creating communications library...")
 	$(CXX) -shared -fPIC -o liboctodronecomms.so $(OBJ_FILES)
 
