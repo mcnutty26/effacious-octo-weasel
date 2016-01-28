@@ -52,5 +52,6 @@ void Messageable::push_message(Message* contents)
 
 void Messageable::runCommMod()
 {
+	communicationsModule->setMessageable(this);
 	communicationsModule->comm_function();
 }
