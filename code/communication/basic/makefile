@@ -1,7 +1,7 @@
 CXX		= g++
 LINKFLAGS	= -L ../../simulator/build -I ../../simulator/src
 CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC
-OBJ_FILES	= Basic.o
+OBJ_FILES	= Basic.o Basic_message.o
 OBJ_SET		= header_obj $(OBJ_FILES)
 libraries	= -loctodrone
 

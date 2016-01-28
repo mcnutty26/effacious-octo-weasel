@@ -1,6 +1,7 @@
 #include "Basic.hpp"
 #include <Message.hpp>
 #include <queue>
+#include "Basic_message.hpp"
 
 Basic::Basic(Environment* env): CommMod(env){
     RANGE = 1000000.0f;
@@ -9,14 +10,18 @@ Basic::Basic(Environment* env): CommMod(env){
 
 void Basic::comm_function(){
 	while (!inQueue.empty()){
-		
+		std::string message = inQueue.front();
+		inQueue.pop();
+		Message* to_push = new Basic_message(message);
+		messageable->push_message(to_push);
 	}
+	
 	while (!outQueue.empty()){
 		Message* message = outQueue.front();
 		outQueue.pop();
-		double xpos = 0.0f;
-		double ypos = 0.0f;
-		double zpos = 0.0f;
+		double xpos = messageable->getX();
+		double ypos = messageable->getY();;
+		double zpos = messageable->getZ();
 		environment->broadcast(message->to_string(), xpos, ypos, zpos, RANGE); 
 	}
 }

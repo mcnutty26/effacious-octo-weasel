@@ -17,19 +17,24 @@
 		protected:
 			void comm_function();
 		private:
-			std::map<std::string, Aodv_route> route_table;
+			std::map<std::string, Aodv_route*> route_table;
 			std::string ip_address;
 			int HELLO_INTERVAL;
 			int SEQUENCE_NUMBER;
 			int ACTIVE_ROUTE_TIMEOUT;
 			int PATH_DISCOVERY_TIME;
 			int BROADCAST_ID;
+			int RANGE;
 
 			void init();
 			Aodv_rreq* create_hello();
 			Aodv_rreq* create_rreq(std::string, int);
 			Aodv_rrep* create_rrep(std::string, int);
 			Aodv_rerr* create_rerr(std::string, int);
+
+			void process_rreq(Aodv_rreq*);
+			void process_rrep(Aodv_rrep*);
+			void process_rerr(Aodv_rerr*);
 
 			std::string get_attribute(std::string);
 			Aodv_rreq* deserialize_rreq(std::string);

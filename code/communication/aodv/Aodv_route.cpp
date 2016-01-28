@@ -1,19 +1,24 @@
 #include "Aodv_route.hpp"
 
-Aodv_route::Aodv_route(std::string dst_ip, std::string nxt_ip, int ART){
-	dest_ip = dst_ip;
-	next_ip = nxt_ip;
-	ACTIVE_ROUTE_TIMEOUT = ART;
+Aodv_route::Aodv_route(int dest_seq, int hop_cnt, std::string nxt_hop, int life){
+	dst_seq = dest_seq;
+	hop_count = hop_cnt;
+	next_hop = nxt_hop;
+	life_time = life;
 }
 
-std::string Aodv_route::get_dest_ip(){
-	return dest_ip;
+int Aodv_route::get_dst_seq(){
+	return dst_seq;
 }
 
-std::string Aodv_route::get_next_ip(){
-	return next_ip;
+int Aodv_route::get_hop_count(){
+	return hop_count;
 }
 
-int Aodv_route::get_timeout(){
-	return ACTIVE_ROUTE_TIMEOUT;
+std::string Aodv_route::get_next_hop(){
+	return next_hop;
+}
+
+int Aodv_route::get_life_time(){
+	return life_time;
 }

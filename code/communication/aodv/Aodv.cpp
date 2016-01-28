@@ -4,6 +4,9 @@
 
 Aodv::Aodv(Environment* env, std::string ip): CommMod(env){
 	ip_address = ip;
+	environment = env;
+	RANGE = 10;
+	route_table.insert(std::pair<std::string, Aodv_route*>("192.168.0.1", new Aodv_route(0, 0, "q", 0)));
 }
 
 void Aodv::init(){
@@ -83,7 +86,7 @@ Aodv_rreq* Aodv::create_hello(){
 
 Aodv_rreq* Aodv::create_rreq(std::string dst_ip, int ttl){
 	int hop = 0;
-	int dst_seq = 0;//route_table[dest_ip].sequence_number;
+	int dst_seq = route_table[dst_ip]->get_dst_seq();
 	BROADCAST_ID++;
 
 	Aodv_rreq* to_send = new Aodv_rreq(hop, BROADCAST_ID, ip_address, dst_ip, SEQUENCE_NUMBER, dst_seq, ttl);
@@ -104,5 +107,52 @@ Aodv_rerr* Aodv::create_rerr(std::string dst_ip, int ttl){
 
 	Aodv_rerr* to_send = new Aodv_rerr(dst_ip, dst_seq, ttl);
 	return to_send;
+}
+
+void Aodv::process_rreq(Aodv_rreq* message){
+	(void)message;
+}
+
+void Aodv::process_rrep(Aodv_rrep* message){
+	(void)message;
+}
+
+void Aodv::process_rerr(Aodv_rerr* message){
+	(void)message;
+}
+
+void Aodv::comm_function(){
+	while (!inQueue.empty()){
+		//get the message from the queue
+		std::string message = inQueue.front();
+		inQueue.pop();
+
+		//determine what type of message it is
+		std::string m_type = Aodv::get_attribute(message);
+		message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+
+		if (m_type == "RREQ"){
+			process_rreq(deserialize_rreq(message));
+		} else if (m_type == "RREP"){
+			process_rrep(deserialize_rrep(message));
+		} else if (m_type == "RERR"){
+			process_rerr(deserialize_rerr(message));
+		} else {
+			std::cout << "Throw an exception - what the hell kind of a message is this?!" << std::endl;
+		}
+			
+	}
+	while (outQueue.empty()){
+		//TODO turn into string and figure out where it's going
+		//and if we have a route there etc.
+		Message* message = outQueue.front();
+		outQueue.pop();
+
+		double xpos = messageable->getX();
+		double ypos = messageable->getY();;
+		double zpos = messageable->getZ();
+
+		environment->broadcast(message->to_string(), xpos, ypos, zpos, RANGE);
+	}
 }
 

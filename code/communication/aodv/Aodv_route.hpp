@@ -5,14 +5,16 @@
 
 	class Aodv_route{
 		public:
-			Aodv_route(std::string, std::string, int);
-			std::string get_dest_ip();
-			std::string get_next_ip();
-			int get_timeout();
+			Aodv_route(int, int, std::string, int);
+
+			int get_dst_seq();
+			int get_hop_count();
+			std::string get_next_hop();
+			int get_life_time();
 		private:
-			std::string dest_ip;
-			std::string next_ip;
-			int dest_seq;
-			int ACTIVE_ROUTE_TIMEOUT;
+			int dst_seq;
+			int hop_count;
+			std::string next_hop;
+			int life_time;
 	};
 #endif
