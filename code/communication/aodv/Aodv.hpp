@@ -13,7 +13,7 @@
 
 	class Aodv: public CommMod {
 		public:
-			Aodv(Environment* env);
+			Aodv(Environment*, std::string);
 		protected:
 			void comm_function();
 		private:
@@ -28,12 +28,12 @@
 			void init();
 			Aodv_rreq* create_hello();
 			Aodv_rreq* create_rreq(std::string, int);
-			Aodv_rrep* create_rrep(std::string);
-			Aodv_rerr* create_rerr();
+			Aodv_rrep* create_rrep(std::string, int);
+			Aodv_rerr* create_rerr(std::string, int);
 
 			std::string get_attribute(std::string);
-			Aodv_rreq deserialize_rreq(std::string);
-			Aodv_rrep deserialize_rrep(std::string);
+			Aodv_rreq* deserialize_rreq(std::string);
+			Aodv_rrep* deserialize_rrep(std::string);
 			Aodv_rerr* deserialize_rerr(std::string);
 	};
 #endif
