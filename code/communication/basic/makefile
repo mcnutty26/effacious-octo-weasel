@@ -1,7 +1,7 @@
 CXX		= g++
 LINKFLAGS	= -L ../../simulator/build -I ../../simulator/src
 CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC
-OBJ_FILES	= Aodv.o
+OBJ_FILES	= Basic.o
 OBJ_SET		= header_obj $(OBJ_FILES)
 libraries	= -loctodrone
 
@@ -14,7 +14,7 @@ endef
 all: $(OBJ_SET)
 
 header_obj:
-	$(call colorecho,"Compiling aodv objects...")
+	$(call colorecho,"Compiling basic objects...")
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c $< -o build/$@

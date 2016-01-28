@@ -43,7 +43,7 @@ std::string Aodv::get_attribute(std::string message){
 
 	return result;
 }
-*/
+
 Aodv_rrep Aodv::deserialize_rrep(std::string message){
 	std::string dest_ip = Aodv::get_attribute(message);
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
@@ -66,7 +66,7 @@ Aodv_rrep Aodv::deserialize_rrep(std::string message){
 
 	return result;
 }
-
+*/
 Aodv_rerr* Aodv::deserialize_rerr(std::string message){
 	std::string dest_ip = Aodv::get_attribute(message);
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);

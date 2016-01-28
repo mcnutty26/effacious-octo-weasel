@@ -32,8 +32,8 @@
 			Aodv_rerr* create_rerr();
 
 			std::string get_attribute(std::string);
-			Aodv_rreq* deserialize_rreq(std::string);
-			Aodv_rrep* deserialize_rrep(std::string);
+			Aodv_rreq deserialize_rreq(std::string);
+			Aodv_rrep deserialize_rrep(std::string);
 			Aodv_rerr* deserialize_rerr(std::string);
 	};
 #endif

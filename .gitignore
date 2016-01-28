@@ -1,2 +1,4 @@
 code/simulator/build/*
 code/communication/aodv/build/*
+code/communication/basic/build/*
+code/communication/liboctodronecomms.so
