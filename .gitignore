@@ -1,3 +1,4 @@
+
 documents/report/*.aux
 documents/report/*.bbl
 documents/report/*.blg
@@ -6,3 +7,8 @@ documents/report/*.log
 documents/report/*.lot
 documents/report/*.gz
 documents/report/*.toc
+code/simulator/build/*
+code/communication/aodv/build/*
+code/communication/basic/build/*
+code/communication/liboctodronecomms.so
+

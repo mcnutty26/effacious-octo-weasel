@@ -1,0 +1,24 @@
+#include "Aodv_route.hpp"
+
+Aodv_route::Aodv_route(int dest_seq, int hop_cnt, std::string nxt_hop, int life){
+	dst_seq = dest_seq;
+	hop_count = hop_cnt;
+	next_hop = nxt_hop;
+	life_time = life;
+}
+
+int Aodv_route::get_dst_seq(){
+	return dst_seq;
+}
+
+int Aodv_route::get_hop_count(){
+	return hop_count;
+}
+
+std::string Aodv_route::get_next_hop(){
+	return next_hop;
+}
+
+int Aodv_route::get_life_time(){
+	return life_time;
+}

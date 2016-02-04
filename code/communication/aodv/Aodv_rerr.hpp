@@ -1,7 +1,12 @@
-#include <string>
+#ifndef EOW_AODV_RERR
+	#define EOW_AODV_RERR
 
-class Aodv_rerr: public Aodv_message {
-	public:
-		Aodv_rerr(std::string dst_ip, int dst_seq, int ttl);
-		std::string serialize();
-};
+	#include <string>
+	#include "Aodv_message.hpp"
+
+	class Aodv_rerr: public Aodv_message {
+		public:
+			Aodv_rerr(std::string dst_ip, int dst_seq, int ttl);
+			std::string to_string();
+	};
+#endif

@@ -1,6 +1,6 @@
 #include "CommMod.hpp"
 
-CommMod::CommMod(Envrionment* env)
+CommMod::CommMod(Environment* env)
 {
 	environment = env;
 }
@@ -23,4 +23,9 @@ void CommMod::push_in_message(std::string message)
 void CommMod::push_out_message(Message* message)
 {
 	outQueue.push(message);
+}
+
+void CommMod::setMessageable(Messageable* msg)
+{
+	messageable = msg;
 }
