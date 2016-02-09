@@ -4,8 +4,21 @@
 #include<thread>
 #include<atomic>
 
-
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
+
+std::string passStr(std::string in)
+{
+	return in;
+}
+
+Environment::Environment()
+{
+	noiseFun = passStr;
+}
+
+Environment::Environment(std::function<std::string(std::string)> nFun)
+:noiseFun(nFun)
+{}
 
 //should not be called by anything other than the main thread
 void Environment::addData(std::string type, data_type d)
@@ -22,13 +35,14 @@ void Environment::addMessageable(Messageable* m)
 //thread safe (I hope) may be a little slow though... meh, it'll be fine (again... I hope)
 void Environment::broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range)
 {
+	nMessage = noiseFun(message);
 	while(lock_broadcast.test_and_set()){}
 	for(auto m:messageables)
 	{
 		//if messageable is within range
 		if(pow(m->getX() - xOrigin,2) + pow(m->getY() - yOrigin, 2) + pow(m->getZ() - zOrigin, 2) < pow(range, 2))
 		{
-			m->receive_message(message);
+			m->receive_message(nMessage);
 		}
 	}
 	lock_broadcast.clear();
@@ -49,4 +63,9 @@ void Environment::run()
 	{
 		threads[i].join();
 	}
+}
+
+double getData(std::string type, double x, double y, double z)
+{
+	return data[type][(int)std::round(x)][(int)std::round(y)][(int)std::round(z)];
 }

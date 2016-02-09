@@ -51,10 +51,22 @@ void Drone::turn(double dAngle)
 	}
 }
 
+Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e)
+:Messageable(cm, iX, iY, iZ)
+{
+	this->maxSpeed = maxSpeed;
+	env = e;
+}
+
 
 void Drone::move(Direction direction, double speed, double distance)
 {
 	dir = direction;
 	moveDR = distance;
 	moveSpd = speed;
+}
+
+double sense(std::string type)
+{
+	return env->getData(type, xPos, yPos, zPos);
 }
