@@ -13,11 +13,11 @@ std::string passStr(std::string in)
 }
 
 Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> * nfun)
+:noiseFun(nfun)
 {
 	baseStation = base;
 	messageables = mess;
 	data = sensor_data;
-	noiseFun = nfun;
 };
 
 Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std::map<std::string, data_type> sensor_data)
