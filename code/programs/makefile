@@ -1,9 +1,7 @@
 CXX		= g++
 LINKFLAGS	= -L ../simulator/build -I ../simulator -L ../communication/ -I ../communication/basic
 LIBFLAGS	= -loctodrone -loctodronecomms -lpthread
-CXXFLAGS	= -std=c++11 -Werror -Wextra -fPIC
-EXE_FILES	= test
-libraries	= -loctodrone
+CXXFLAGS	= -std=c++11 -Werror -Wextra
 
 define colorecho
       @tput setaf 32
@@ -17,13 +15,19 @@ deps:
 	cd ../simulator && $(MAKE)
 	sudo cp ../simulator/build/liboctodrone.so /usr/local/lib
 	cd ../communication && $(MAKE)
-	sudo cp ../communication/liboctodronecomms.so /usr/local/lib
+	sudo cp ../communication/build/liboctodronecomms.so /usr/local/lib
+
+program: 
+	$(call colorecho,"Compiling drone routines...")
+	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) -c -o build/Test.o Test.cpp
 
 exe:
-	$(call colorecho,"Creating test binary...")
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) -o test Test.cpp
+	$(call colorecho,"Creating executables...")
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) -I ../ -o build/test Test_exe.cpp build/Test.o
 
-complete: deps exe
+complete: deps program exe
 
 clean:
-	$(RM) test
+	$(RM) build/*
+	cd ../simulator && $(MAKE) clean
+	cd ../communication && $(MAKE) clean

@@ -10,5 +10,6 @@ documents/report/*.toc
 code/simulator/build/*
 code/communication/aodv/build/*
 code/communication/basic/build/*
-code/communication/liboctodronecomms.so
+code/communication/build/*
+code/programs/build/*
 

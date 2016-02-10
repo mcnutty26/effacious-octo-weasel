@@ -18,7 +18,7 @@ makeobjs:
 
 liboctodronecomms: makeobjs
 	$(call colorecho,"Creating communications library...")
-	$(CXX) -shared -fPIC -o liboctodronecomms.so $(OBJ_FILES)
+	$(CXX) -shared -fPIC -o build/liboctodronecomms.so $(OBJ_FILES)
 
 clean:
-	$(RM) liboctodronecomms.so
+	$(RM) build/*
