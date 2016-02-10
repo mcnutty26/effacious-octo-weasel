@@ -7,13 +7,12 @@
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 
-std::string Environment::passStr(std::string in)
+std::string passStr(std::string in)
 {
 	return in;
 }
 
 Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun)
-:noiseFun(nfun)
 {
 	baseStation = base;
 	messageables = mess;
@@ -22,7 +21,6 @@ Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std:
 };
 
 Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std::map<std::string, data_type> sensor_data)
-:noiseFun(passStr)
 {
 	baseStation = base;
 	messageables = mess;

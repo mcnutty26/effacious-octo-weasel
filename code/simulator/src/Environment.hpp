@@ -30,8 +30,7 @@
 			BaseStation * baseStation;
 			std::vector<Messageable*> messageables;
 			std::map<std::string, data_type> data;
-			std::function<std::string(std::string)> noiseFun;
-			std::string passStr(std::string);
+			std::function<std::string(std::string)>* noiseFun;
 	};
 
 #endif
