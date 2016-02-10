@@ -3,9 +3,16 @@
 #include<cmath>
 #include<thread>
 #include<atomic>
+#include "Messageable.hpp"
 
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
+
+Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std::map<std::string, data_type> sensor_data){
+	baseStation = base;
+	messageables = mess;
+	data = sensor_data;
+};
 
 //should not be called by anything other than the main thread
 void Environment::addData(std::string type, data_type d)

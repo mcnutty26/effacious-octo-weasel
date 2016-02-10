@@ -1,8 +1,13 @@
 #include "Drone.hpp"
 
 #include <cmath>
+#include "Messageable.hpp"
 
 #define PI 3.14159265
+
+Drone::Drone(CommMod* cm, double xp, double yp, double zp, double mxSpd): Messageable(cm, xp, yp, zp){
+	maxSpeed = mxSpd;
+}
 
 void Drone::upkeep()
 {

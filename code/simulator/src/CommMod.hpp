@@ -5,6 +5,7 @@
 	#include <queue>
 	#include "Message.hpp"
 	#include "Environment.hpp"
+	#include "Messageable.hpp"
 
 	class Environment;
 

@@ -6,17 +6,16 @@
 	#include <map>
 	#include <string>
 
-	class BaseStation;
-	class Drone;
 	class Messageable;
-
-	#include "Messageable.hpp"
+	class Drone;
+	class BaseStation;
 
 	class Environment
 	{
 		typedef std::vector<std::vector<std::vector<double>>> data_type;
 
 		public:
+			Environment(BaseStation*, std::vector<Messageable*>, std::map<std::string, data_type>);
 			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range);
 			void addData(std::string type, data_type d);
 			void addMessageable(Messageable* m);

@@ -2,9 +2,9 @@
 	#define EOW_DRONE_HPP
 
 	#include <string>
-
 	#include "Messageable.hpp"
-	#include "CommMod.hpp"
+
+	class CommMod;
 
 	enum class Direction
 	{
@@ -16,11 +16,9 @@
 		BACK
 	};
 
-	class Drone
-	:protected Messageable
-	{
+	class Drone: protected Messageable {
 		public:
-			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed);
+			Drone(CommMod*, double, double, double, double);
 			void upkeep();
 
 		protected:
