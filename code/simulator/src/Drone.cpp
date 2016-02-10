@@ -5,8 +5,11 @@
 
 #define PI 3.14159265
 
-Drone::Drone(CommMod* cm, double xp, double yp, double zp, double mxSpd): Messageable(cm, xp, yp, zp){
-	maxSpeed = mxSpd;
+Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e)
+:Messageable(cm, iX, iY, iZ)
+{
+	this->maxSpeed = maxSpeed;
+	env = e;
 }
 
 void Drone::upkeep()
@@ -56,10 +59,14 @@ void Drone::turn(double dAngle)
 	}
 }
 
-
 void Drone::move(Direction direction, double speed, double distance)
 {
 	dir = direction;
 	moveDR = distance;
 	moveSpd = speed;
+}
+
+double Drone::sense(std::string type)
+{
+	return env->getData(type, xPos, yPos, zPos);
 }

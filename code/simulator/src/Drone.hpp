@@ -18,7 +18,7 @@
 
 	class Drone: protected Messageable {
 		public:
-			Drone(CommMod*, double, double, double, double);
+			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e);
 			void upkeep();
 
 		protected:
@@ -33,11 +33,14 @@
 			//with the ground
 			double getMaxSpeed();
 
+			double sense(std::string type);
+
 		private:
 			Direction dir;
 			double maxSpeed;
 			double ang = 0;
 
+			Environment* env;
 			double moveDR, moveSpd;
 			
 	};

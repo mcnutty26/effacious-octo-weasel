@@ -5,6 +5,7 @@
 	#include <tuple>
 	#include <map>
 	#include <string>
+	#include <functional>
 
 	class Messageable;
 	class Drone;
@@ -15,10 +16,12 @@
 		typedef std::vector<std::vector<std::vector<double>>> data_type;
 
 		public:
+			Environment(BaseStation*, std::vector<Messageable*>, std::map<std::string, data_type>, std::function<std::string(std::string)>);
 			Environment(BaseStation*, std::vector<Messageable*>, std::map<std::string, data_type>);
 			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range);
 			void addData(std::string type, data_type d);
 			void addMessageable(Messageable* m);
+			double getData(std::string type, double x, double y, double z);
 
 			//should be called once and only once (per run)
 			void run();
@@ -27,6 +30,8 @@
 			BaseStation * baseStation;
 			std::vector<Messageable*> messageables;
 			std::map<std::string, data_type> data;
+			static std::function<std::string(std::string)> noiseFun;
+			std::string passStr(std::string);
 	};
 
 #endif
