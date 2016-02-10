@@ -16,7 +16,7 @@
 		typedef std::vector<std::vector<std::vector<double>>> data_type;
 
 		public:
-			Environment(BaseStation*, std::vector<Messageable*>, std::map<std::string, data_type>, std::function<std::string(std::string)>*);
+			Environment(BaseStation*, std::vector<Messageable*>, std::map<std::string, data_type>, std::function<std::string(std::string)>);
 			Environment(BaseStation*, std::vector<Messageable*>, std::map<std::string, data_type>);
 			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range);
 			void addData(std::string type, data_type d);
