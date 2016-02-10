@@ -63,8 +63,6 @@ void Environment::run()
 	{
 		threads.emplace_back(&Messageable::run, x);
 		threads.emplace_back(&Messageable::runCommMod, x);
-		//threads.emplace_back(new boost::thread(boost::bind(&Messageable::run, x)));
-		//threads.emplace_back(new boost::thread(boost::bind(&Messageable::runCommMod, x)));
 	}
 
 	for(std::vector<std::thread>::size_type i = 0; i < threads.size(); ++i)
