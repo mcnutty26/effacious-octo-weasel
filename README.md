@@ -1,8 +1,11 @@
 # effacious-octo-weasel
-A drone network simulator and framework for autonomous drone tasking
+A discrete event network simulator for drone networks
 
-## Building the simulator (liboctodrone)
-```cd code/simulator/src && make all```
+## Building the routines and executables
+```cd code/programs && make all```
 
-## Building the communications modules (liboctodronecomms)
-```cd code/communications/aodv && make all```
+## Building the simulator library (liboctodrone)
+```cd code/simulator && make all```
+
+## Building the communications library (liboctodronecomms)
+```cd code/communication && make all```
