@@ -1,5 +1,5 @@
 CXX		= g++
-LINKFLAGS	= -L ../../simulator/build -I ../../simulator/src
+LINKFLAGS	= -L ../../simulator/build -I ../../simulator
 CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC
 OBJ_FILES	= Basic.o Basic_message.o
 OBJ_SET		= header_obj $(OBJ_FILES)
