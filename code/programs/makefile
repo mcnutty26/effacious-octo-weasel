@@ -1,5 +1,5 @@
 CXX		= g++
-LINKFLAGS	= -L ../simulator/build -I ../simulator -L ../communication/ -I ../communication/basic
+LINKFLAGS	= -L ../simulator/build -I ../simulator -L ../communication/build -I ../communication/basic
 LIBFLAGS	= -loctodrone -loctodronecomms -lpthread
 CXXFLAGS	= -std=c++11 -Werror -Wextra
 
@@ -23,7 +23,7 @@ program:
 
 exe:
 	$(call colorecho,"Creating executables...")
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) -Wl,-rpath ./ -I ../ -o build/test Test_exe.cpp build/Test.o
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) -I ../ -o build/test Test_exe.cpp build/Test.o
 
 complete: deps program exe
 
