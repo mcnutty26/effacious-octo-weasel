@@ -12,16 +12,14 @@ std::string passStr(std::string in)
 	return in;
 }
 
-Environment::Environment(BaseStation* base, std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun)
+Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun)
 :noiseFun(nfun)
 {
-	baseStation = base;
 	data = sensor_data;
 };
 
-Environment::Environment(BaseStation* base, std::map<std::string, data_type> sensor_data)
+Environment::Environment(std::map<std::string, data_type> sensor_data)
 {
-	baseStation = base;
 	data = sensor_data;
 	noiseFun = &passStr;
 }
@@ -36,6 +34,10 @@ void Environment::addData(std::string type, data_type d)
 void Environment::addMessageable(Messageable* m)
 {
 	messageables.push_back(m);
+}
+
+void Environment::setBaseStation(BaseStation* b){
+    baseStation = b;
 }
 
 //thread safe (I hope) may be a little slow though... meh, it'll be fine (again... I hope)

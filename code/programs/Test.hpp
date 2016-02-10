@@ -6,6 +6,8 @@
 	#include <CommMod.hpp>
 	#include <Message.hpp>
 
+	typedef std::vector<std::vector<std::vector<double>>> data_type;
+
 	class Test: public Drone {
 		public:
 			Test(CommMod*, double, double, double, double, Environment*, bool);

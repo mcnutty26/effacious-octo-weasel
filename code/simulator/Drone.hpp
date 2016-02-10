@@ -16,7 +16,7 @@
 		BACK
 	};
 
-	class Drone: protected Messageable {
+	class Drone: public Messageable {
 		public:
 			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e);
 			void upkeep();

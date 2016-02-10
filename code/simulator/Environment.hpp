@@ -16,11 +16,12 @@
 		typedef std::vector<std::vector<std::vector<double>>> data_type;
 
 		public:
-			Environment(BaseStation*, std::map<std::string, data_type>, std::function<std::string(std::string)>);
-			Environment(BaseStation*, std::map<std::string, data_type>);
+			Environment(std::map<std::string, data_type>, std::function<std::string(std::string)>);
+			Environment(std::map<std::string, data_type>);
 			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range);
 			void addData(std::string type, data_type d);
 			void addMessageable(Messageable* m);
+			void setBaseStation(BaseStation* m);
 			double getData(std::string type, double x, double y, double z);
 
 			//should be called once and only once (per run)

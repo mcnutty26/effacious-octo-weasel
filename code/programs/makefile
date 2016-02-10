@@ -11,16 +11,19 @@ define colorecho
       @tput sgr0
 endef
 
-all: testexe
+all: complete
 
-testexe:
+deps:
 	cd ../simulator && $(MAKE)
 	sudo cp ../simulator/build/liboctodrone.so /usr/local/lib
 	cd ../communication && $(MAKE)
 	sudo cp ../communication/liboctodronecomms.so /usr/local/lib
 
+exe:
 	$(call colorecho,"Creating test binary...")
 	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) -o test Test.cpp
+
+complete: deps exe
 
 clean:
 	$(RM) test
