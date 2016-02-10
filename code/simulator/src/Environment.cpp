@@ -7,23 +7,27 @@
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 
-Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun){
+std::string Environment::passStr(std::string in)
+{
+	return in;
+}
+
+Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun)
+:noiseFun(nfun)
+{
 	baseStation = base;
 	messageables = mess;
 	data = sensor_data;
 	noiseFun = nfun;
 };
 
-Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std::map<std::string, data_type> sensor_data){
+Environment::Environment(BaseStation* base, std::vector<Messageable*> mess, std::map<std::string, data_type> sensor_data)
+:noiseFun(passStr)
+{
 	baseStation = base;
 	messageables = mess;
 	data = sensor_data;
 	noiseFun = passStr;
-}
-
-std::string Environment::passStr(std::string in)
-{
-	return in;
 }
 
 //should not be called by anything other than the main thread
