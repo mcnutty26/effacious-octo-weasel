@@ -25,7 +25,7 @@ void CommMod::push_out_message(Message* message)
 	outQueue.push(message);
 }
 
-void CommMod::setMessageable(Messageable* msg)
+void CommMod::set_messageable(Messageable* msg)
 {
 	messageable = msg;
 }

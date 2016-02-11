@@ -7,10 +7,10 @@
 		public:
 			Aodv_route(int, int, std::string, int);
 
-			int get_dst_seq();
-			int get_hop_count();
+			int get_seq();
+			int get_hop();
 			std::string get_next_hop();
-			int get_life_time();
+			int get_life();
 		private:
 			int dst_seq;
 			int hop_count;

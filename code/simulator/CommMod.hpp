@@ -13,7 +13,7 @@
 	{
 		public:
 			CommMod(Environment* env);
-			void setMessageable(Messageable* msg);
+			void set_messageable(Messageable* msg);
 			void broadcast(std::string message, double xPos, double yPos, double zPos, double range);
 			void broadcast(Message* message, double xPos, double yPos, double zPos, double range);
 			void push_out_message(Message* message);

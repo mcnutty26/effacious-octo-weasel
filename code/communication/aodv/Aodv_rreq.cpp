@@ -26,7 +26,7 @@ int Aodv_rreq::get_source_seq(){
 std::string Aodv_rreq::to_string(){
 	std::string result = Aodv_message::serialize();
 	result = "RREQ;" + result;
-	result += ";" + std::to_string(hop_count) + ";" + std::to_string(rreq_id) + ";"
-		+ source_ip + ";" + std::to_string(source_seq);
+	result += ";" + std::to_string(hop_count) + ";" + source_ip + ";"
+		+ std::to_string(rreq_id) + ";" + std::to_string(source_seq);
 	return result;
 }

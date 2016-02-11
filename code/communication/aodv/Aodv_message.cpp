@@ -20,6 +20,6 @@ int Aodv_message::get_dest_seq(){
 
 std::string Aodv_message::serialize(){
 	std::string result;
-	result = dest_ip + "," + std::to_string(dest_seq) + "," + std::to_string(ttl);
+	result = dest_ip + ";" + std::to_string(dest_seq) + ";" + std::to_string(ttl);
 	return result;
 }

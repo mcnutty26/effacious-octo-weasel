@@ -26,7 +26,10 @@
 			int BROADCAST_ID;
 			int RANGE;
 
-			void init();
+			double xpos;
+			double ypos;
+			double zpos;
+
 			Aodv_rreq* create_hello();
 			Aodv_rreq* create_rreq(std::string, int);
 			Aodv_rrep* create_rrep(std::string, int);
@@ -37,8 +40,13 @@
 			void process_rerr(Aodv_rerr*);
 
 			std::string get_attribute(std::string);
+			bool have_route(std::string);
+			void add_route(std::string, int, int, std::string, int);
+
 			Aodv_rreq* deserialize_rreq(std::string);
 			Aodv_rrep* deserialize_rrep(std::string);
 			Aodv_rerr* deserialize_rerr(std::string);
+
+			std::string current_message;
 	};
 #endif

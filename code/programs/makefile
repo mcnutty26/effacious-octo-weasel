@@ -1,5 +1,7 @@
 CXX		= g++
-LINKFLAGS	= -L ../simulator/build -I ../simulator -L ../communication/build -I ../communication/basic
+LINKFLAGS	= -L ../simulator/build -I ../simulator -L ../communication/build
+BASICLINK	= -I ../communication/basic
+AODVLINK	= -I ../communication/aodv $(BASICLINK)
 LIBFLAGS	= -loctodrone -loctodronecomms -lpthread
 CXXFLAGS	= -std=c++11 -Werror -Wextra
 
@@ -17,15 +19,17 @@ deps:
 	cd ../communication && $(MAKE)
 	cp ../communication/build/liboctodronecomms.so build/
 
-program: 
+programs: 
 	$(call colorecho,"Compiling drone routines...")
-	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) -c -o build/Test.o Test.cpp
+	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(BASICLINK) -c -o build/Test.o Test.cpp
+	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(AODVLINK) -c -o build/AodvComms.o AodvComms.cpp
 
-exe:
+exes:
 	$(call colorecho,"Creating executables...")
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) -I ../ -o build/test Test_exe.cpp build/Test.o
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(BASICLINK) -I ../ -o build/test Test_exe.cpp build/Test.o
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(AODVLINK) -I ../ -o build/aodvcomms AodvComms_exe.cpp build/AodvComms.o
 
-complete: deps program exe
+complete: deps programs exes
 
 clean:
 	$(RM) build/*
