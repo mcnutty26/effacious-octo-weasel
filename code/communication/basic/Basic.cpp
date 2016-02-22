@@ -6,9 +6,10 @@
 #include <chrono>
 #include <thread>
 
-Basic::Basic(Environment* env): CommMod(env){
+Basic::Basic(Environment* env, std::atomic_flag* flag): CommMod(env){
     RANGE = 1000000.0f;
     environment = env;
+    lock = flag;
 }
 
 void Basic::comm_function(){
@@ -23,7 +24,7 @@ void Basic::comm_function(){
 			inQueue.pop();
 			Message* to_push = new Basic_message(message);
 			messageable->push_message(to_push);
-			std::cout << "Basic: rec'd message" << std::endl;
+			log("rec'd message");
 		}
 	
 		while (!outQueue.empty()){
@@ -33,8 +34,14 @@ void Basic::comm_function(){
 			double ypos = messageable->getY();;
 			double zpos = messageable->getZ();
 			environment->broadcast(message->to_string(), xpos, ypos, zpos, RANGE); 
-			std::cout << "Basic: broadcast message" << std::endl;
+			log("broadcast message");
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
+}
+
+void Basic::log(std::string log_message){
+	while (lock->test_and_set()){}
+	std::cout << "basic: " << log_message << std::endl;
+	lock->clear();
 }

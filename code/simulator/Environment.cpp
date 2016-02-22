@@ -48,7 +48,7 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 	for(auto m:messageables)
 	{
 		//if messageable is within range
-		if(pow(m->getX() - xOrigin,2) + pow(m->getY() - yOrigin, 2) + pow(m->getZ() - zOrigin, 2) < pow(range, 2))
+		if(pow(m->getX() - xOrigin,2) + pow(m->getY() - yOrigin, 2) + pow(m->getZ() - zOrigin, 2) < range)
 		{
 			m->receive_message(nMessage);
 		}

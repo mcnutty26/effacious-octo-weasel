@@ -3,6 +3,7 @@
 #include <Basic.hpp>
 #include <CommMod.hpp>
 #include <map>
+#include <atomic>
 
 int main(int argv, char* argc[]){
 	//create the sensor map and optionally add in some data
@@ -12,11 +13,14 @@ int main(int argv, char* argc[]){
 
 	//create the environment and comm module
 	Environment* env = new Environment(*sensor_map);
-	CommMod* comm_basic = new Basic(env);
+	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
+
+	CommMod* comm_basic1 = new Basic(env, &stdout_lock);
+	CommMod* comm_basic2 = new Basic(env, &stdout_lock);
 
 	//create and add drones
-	Test* drone1 = new Test(comm_basic, 0.0, 0.0, 0.0, 0.0, env, false);
-	Test* drone2 = new Test(comm_basic, 1.0, 1.0, 0.0, 0.0, env, true);
+	Test* drone1 = new Test(comm_basic1, 0.0, 0.0, 0.0, 0.0, env, false);
+	Test* drone2 = new Test(comm_basic2, 1.0, 1.0, 0.0, 0.0, env, true);
 	env->addMessageable(drone1);
 	env->addMessageable(drone2);
 

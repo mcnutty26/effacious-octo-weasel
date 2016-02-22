@@ -10,11 +10,12 @@
 
 	class AodvComms: public Drone {
 		public:
-			AodvComms(CommMod*, double, double, double, double, Environment*, bool);
+			AodvComms(CommMod*, double, double, double, double, Environment*, int);
 			bool message_callback(Message*);
 			void run();
 		private:
-			bool sink_node;
-
+			int task;
+			void talk(std::string, std::string);
+			void quit();
 	};
 #endif
