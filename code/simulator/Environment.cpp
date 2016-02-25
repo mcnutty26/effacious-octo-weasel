@@ -1,9 +1,10 @@
 #include "Environment.hpp"
-
-#include<cmath>
-#include<thread>
-#include<atomic>
 #include "Messageable.hpp"
+
+#include <cmath>
+#include <iostream>
+#include <thread>
+#include <atomic>
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 
@@ -50,6 +51,7 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 		//if messageable is within range
 		if(pow(m->getX() - xOrigin,2) + pow(m->getY() - yOrigin, 2) + pow(m->getZ() - zOrigin, 2) < range)
 		{
+			std::cout << m->getY() << "|" << yOrigin << std::endl;
 			m->receive_message(nMessage);
 		}
 	}

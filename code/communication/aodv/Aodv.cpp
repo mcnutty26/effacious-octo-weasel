@@ -32,6 +32,7 @@ Aodv::Aodv(Environment* env, std::string ip, std::atomic_flag* flag, bool debug)
 
 std::string Aodv::get_attribute(std::string message){
 	std::string attribute;
+	
 	std::stringstream attr;
 	attr.str(message);
 	std::getline(attr, attribute, ';');
@@ -168,7 +169,8 @@ void Aodv::process_rreq(Aodv_rreq* message){
 		add_route(message->get_source_ip(), message->get_dest_seq(), 1, message->get_source_ip(), ACTIVE_ROUTE_TIMEOUT);
 		log("created info for " + message->get_source_ip());
 	}
-	
+
+	if (state == 0){
 	//do we know about the destination?
 	if (have_route(message->get_dest_ip()) && message->get_dest_seq() <= route_table[message->get_dest_ip()]->get_seq()){
 		//update internal state
@@ -178,6 +180,11 @@ void Aodv::process_rreq(Aodv_rreq* message){
 		Aodv_rrep* route_data = create_rrep(message->get_source_ip(), message->get_hop_count());
 		environment->broadcast(route_data->to_string(), xpos, ypos, zpos, RANGE);
 		log("returned info for " + message->get_dest_ip());
+	} else if (message->get_dest_ip() == ip_address){
+		//we are the destination
+		Aodv_rrep* route_data = create_rrep(message->get_source_ip(), message->get_hop_count());
+		environment->broadcast(route_data->to_string(), xpos, ypos, zpos, RANGE);
+		log("returned self info to " + message->get_source_ip());
 	} else {
 		//update internal state
 		state = 3;
@@ -186,6 +193,7 @@ void Aodv::process_rreq(Aodv_rreq* message){
 		Aodv_rreq* route_request = create_rreq(message->get_dest_ip(), message->get_ttl());
 		environment->broadcast(route_request->to_string(), xpos, ypos, zpos, RANGE);
 		log("forwarded request for " + message->get_dest_ip());
+	}
 	}
 }
 
@@ -216,29 +224,46 @@ void Aodv::process_rrep(Aodv_rrep* message){
 	} else if (state == 2){
 		//Now we have the route, send the data packet	
 		state = 0;
-		std::string data_message = "DATA;" + current_message.first;
+		std::string data_message = "DATA;" + current_message.second + ";" + route_table[current_message.second]->get_next_hop()
+		    + ip_address + ";" + current_message.first;
 		environment->broadcast(data_message, xpos, ypos, zpos, RANGE);
 		log("data packet sent");
 	} else if (state == 3) {
 		//We are a middle node in a multi hop route, so forward the packet
-		environment->broadcast(message->to_string(), xpos, ypos, zpos, RANGE);
+		log("forwarding RREP");
+		Aodv_rrep* route_data = create_rrep(message->get_dest_ip(), 0);
+		environment->broadcast(route_data->to_string(), xpos, ypos, zpos, RANGE);
 	}
 	
 }
 
 void Aodv::process_data(std::string message){
-	std::string address = Aodv::get_attribute(message);
+	std::string destination = Aodv::get_attribute(message);
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	std::string next_hop = Aodv::get_attribute(message);
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	std::string source = Aodv::get_attribute(message);
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	std::string content = Aodv::get_attribute(message);
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 
-	if (address == ip_address){
+	if (source == ip_address){
 		return;
 	} else {
-		log("rec'd a DATA packet");
+		log("rec'd a DATA packet from " + source);
 	}
-	
-	Message* to_push = new Basic_message(message);
-	log("!");		
-	messageable->push_message(to_push);
+
+	if (destination == ip_address){
+		//the message is for us!
+		Message* to_push = new Basic_message(message);
+		messageable->push_message(to_push);
+	} else {
+		//send the message 
+		std::string data_message = "DATA;" + destination + ";" + route_table[destination]->get_next_hop()
+		    + source + ";" + content;
+		environment->broadcast(data_message, xpos, ypos, zpos, RANGE);
+		log("Forwarded data packet");
+	}
 }
 
 void Aodv::process_rerr(Aodv_rerr* message){
@@ -281,10 +306,13 @@ void Aodv::comm_function(){
 			zpos = messageable->getZ();
 			
 			//get the message from the messageable if we are not currently processing a message
-			Message* message = outQueue.front();
-			Basic_message_addressed* addressed_message = dynamic_cast<Basic_message_addressed*>(message);
+			std::string message = outQueue.front()->to_string();
+			std::string address = Aodv::get_attribute(message);
+			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+			std::string content = Aodv::get_attribute(message);
+			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 
-			if (addressed_message->get_message() == "KILL"){
+			if (content == "KILL"){
 				//exit if our messageable sent us a kill packet
 				log("exiting");
 				return;
@@ -293,8 +321,8 @@ void Aodv::comm_function(){
 			outQueue.pop();
 
 			//record that we have started to proces this message
-			current_message = std::pair<std::string, std::string>(addressed_message->get_message(), addressed_message->get_address());
-			log("started for message " + addressed_message->get_message());
+			current_message = std::pair<std::string, std::string>(content, address);
+			log("started for message " + content);
 
 			//create hello to determine neighbours
 			Aodv_rreq* hello = create_hello();

@@ -2,7 +2,6 @@
 	#define EOW_BASIC_MESSAGE
 
 	#include <string>
-	#include "Basic_message.hpp"
 	#include <Message.hpp>
 
 	class Basic_message: public Message {
