@@ -21,9 +21,10 @@ int main(int argv, char* argc[]){
 	CommMod* comm_aodv3 = new Aodv(env, "10.0.0.3", &stdout_lock, debug_mode);
 
 	//create and add drones
-	AodvComms* drone1 = new AodvComms(comm_aodv1, 0.0, 0.0, 0.0, 0.0, env, 0);
-	AodvComms* drone2 = new AodvComms(comm_aodv2, 0.0, 7.0, 0.0, 0.0, env, -1);
-	AodvComms* drone3 = new AodvComms(comm_aodv3, 0.0, 14.0, 0.0, 0.0, env, 1);
+	int flag = 0;
+	AodvComms* drone1 = new AodvComms(comm_aodv1, 0.0, 0.0, 0.0, 0.0, env, 0, &flag);
+	AodvComms* drone2 = new AodvComms(comm_aodv2, 0.0, 7.0, 0.0, 0.0, env, -1, &flag);
+	AodvComms* drone3 = new AodvComms(comm_aodv3, 0.0, 14.0, 0.0, 0.0, env, 1, &flag);
 	env->addMessageable(drone1);
 	env->addMessageable(drone2);
 	env->addMessageable(drone3);

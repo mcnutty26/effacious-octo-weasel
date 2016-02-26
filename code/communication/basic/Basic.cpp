@@ -16,11 +16,6 @@ void Basic::comm_function(){
 	while(true){
 		while (!inQueue.empty()){
 			std::string message = inQueue.front();
-
-			if (message == "KILL"){
-			    return;
-			}
-
 			inQueue.pop();
 			Message* to_push = new Basic_message(message);
 			messageable->push_message(to_push);
@@ -30,10 +25,16 @@ void Basic::comm_function(){
 		while (!outQueue.empty()){
 			Message* message = outQueue.front();
 			outQueue.pop();
+			
+			if (message->to_string() == "KILL"){
+			    log("exiting");
+			    return;
+			}
+			
 			double xpos = messageable->getX();
 			double ypos = messageable->getY();;
 			double zpos = messageable->getZ();
-			environment->broadcast(message->to_string(), xpos, ypos, zpos, RANGE); 
+			environment->broadcast(message->to_string(), xpos, ypos, zpos, RANGE, this); 
 			log("broadcast message");
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));

@@ -10,6 +10,7 @@
 	class Messageable;
 	class Drone;
 	class BaseStation;
+	class CommMod;
 
 	class Environment
 	{
@@ -18,7 +19,7 @@
 		public:
 			Environment(std::map<std::string, data_type>, std::function<std::string(std::string)>);
 			Environment(std::map<std::string, data_type>);
-			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range);
+			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod*);
 			void addData(std::string type, data_type d);
 			void addMessageable(Messageable* m);
 			void setBaseStation(BaseStation* m);

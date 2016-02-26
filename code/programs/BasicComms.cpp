@@ -1,4 +1,4 @@
-#include "Test.hpp"
+#include "BasicComms.hpp"
 #include <iostream>
 #include <Basic_message.hpp>
 
@@ -14,6 +14,7 @@ void Test::run(){
 	if (sink_node){
 		std::cout << "Sink waiting for message" << std::endl;
 		std::cout << wait_for_message()->to_string() << std::endl;
+		send_message(new Basic_message("KILL"));
 	} else {
 		std::cout << "Source sending message" << std::endl;
 		send_message(new Basic_message("TEST MESSAGE PLEASE IGNORE"));

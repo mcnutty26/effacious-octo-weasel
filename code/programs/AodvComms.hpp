@@ -1,5 +1,5 @@
-#ifndef EOW_PROGRAMS_AODVCOMMS
-	#define EOW_PROGRAMS_AODVCOMMS
+#ifndef EOW_PROGRAMS_AODV
+	#define EOW_PROGRAMS_AODV
 
 	#include <string>
 	#include <Drone.hpp>
@@ -10,12 +10,12 @@
 
 	class AodvComms: public Drone {
 		public:
-			AodvComms(CommMod*, double, double, double, double, Environment*, int);
+			AodvComms(CommMod*, double, double, double, double, Environment*, int, int*);
 			bool message_callback(Message*);
 			void run();
 		private:
-			int task;
-			void talk(std::string, std::string);
+			int m_task;
+			int* m_flag;
 			void quit();
 	};
 #endif

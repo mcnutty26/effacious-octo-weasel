@@ -7,12 +7,12 @@ CommMod::CommMod(Environment* env)
 
 void CommMod::broadcast(Message* message, double xPos, double yPos, double zPos, double range)
 {
-	environment->broadcast(message->to_string(), xPos, yPos, zPos, range);
+	environment->broadcast(message->to_string(), xPos, yPos, zPos, range, this);
 }
 
 void CommMod::broadcast(std::string message, double xPos, double yPos, double zPos, double range)
 {
-	environment->broadcast(message, xPos, yPos, zPos, range);
+	environment->broadcast(message, xPos, yPos, zPos, range, this);
 }
 
 void CommMod::push_in_message(std::string message)

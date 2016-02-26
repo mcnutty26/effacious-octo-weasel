@@ -2,7 +2,6 @@
 #include "Messageable.hpp"
 
 #include <cmath>
-#include <iostream>
 #include <thread>
 #include <atomic>
 
@@ -42,16 +41,15 @@ void Environment::setBaseStation(BaseStation* b){
 }
 
 //thread safe (I hope) may be a little slow though... meh, it'll be fine (again... I hope)
-void Environment::broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range)
+void Environment::broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod* caller)
 {
 	std::string nMessage = noiseFun(message);
 	while(lock_broadcast.test_and_set()){}
 	for(auto m:messageables)
 	{
 		//if messageable is within range
-		if(pow(m->getX() - xOrigin,2) + pow(m->getY() - yOrigin, 2) + pow(m->getZ() - zOrigin, 2) < range)
+		if(pow(m->getX() - xOrigin,2) + pow(m->getY() - yOrigin, 2) + pow(m->getZ() - zOrigin, 2) < range && m->get_comm_mod() != caller)
 		{
-			std::cout << m->getY() << "|" << yOrigin << std::endl;
 			m->receive_message(nMessage);
 		}
 	}

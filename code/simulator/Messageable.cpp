@@ -55,3 +55,7 @@ void Messageable::runCommMod()
 	communicationsModule->set_messageable(this);
 	communicationsModule->comm_function();
 }
+
+CommMod* Messageable::get_comm_mod(){
+	return communicationsModule;
+}

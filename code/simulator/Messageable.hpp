@@ -17,6 +17,7 @@
 			Message* wait_for_message();
 			void push_message(Message* contents);
 			void receive_message(std::string contents);
+			CommMod* get_comm_mod();
 
 			double getX();
 			double getY();

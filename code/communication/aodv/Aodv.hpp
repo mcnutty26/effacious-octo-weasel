@@ -33,8 +33,8 @@
 			double zpos;
 
 			Aodv_rreq* create_hello();
-			Aodv_rreq* create_rreq(std::string, int);
-			Aodv_rrep* create_rrep(std::string, int);
+			Aodv_rreq* create_rreq(std::string, std::string, int);
+			Aodv_rrep* create_rrep(std::string, std::string, int);
 			Aodv_rerr* create_rerr(std::string, int);
 
 			void process_rreq(Aodv_rreq*);

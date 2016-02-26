@@ -21,12 +21,12 @@ deps:
 
 programs: 
 	$(call colorecho,"Compiling drone routines...")
-	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(BASICLINK) -c -o build/Test.o Test.cpp
+	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(BASICLINK) -c -o build/BasicComms.o BasicComms.cpp
 	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(AODVLINK) -c -o build/AodvComms.o AodvComms.cpp
 
 exes:
 	$(call colorecho,"Creating executables...")
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(BASICLINK) -I ../ -o build/test Test_exe.cpp build/Test.o
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(BASICLINK) -I ../ -o build/basiccomms BasicComms_exe.cpp build/BasicComms.o
 	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(AODVLINK) -I ../ -o build/aodvcomms AodvComms_exe.cpp build/AodvComms.o
 
 complete: deps programs exes
