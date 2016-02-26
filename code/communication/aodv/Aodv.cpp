@@ -74,8 +74,10 @@ Aodv_rrep* Aodv::deserialize_rrep(std::string message){
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 	int life_time = atoi(Aodv::get_attribute(message).c_str());
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+	std::string lst_hop = Aodv::get_attribute(message).c_str();
+	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 	
-	Aodv_rrep* result = new Aodv_rrep(hop_count, src_ip, dst_ip, dst_seq, life_time, ttl);
+	Aodv_rrep* result = new Aodv_rrep(hop_count, src_ip, dst_ip, lst_hop, dst_seq, life_time, ttl);
 	return result;
 }
 
@@ -120,10 +122,11 @@ Aodv_rrep* Aodv::create_rrep(std::string dst_ip, std::string src_ip, int ttl){
 	int dst_seq = 0;
 	if (have_route(dst_ip)){
 		dst_seq = route_table[dst_ip]->get_seq();
+
 	}
 	int life_time = 0;
 
-	Aodv_rrep* to_send = new Aodv_rrep(hop, src_ip, dst_ip, dst_seq, life_time, ttl);
+	Aodv_rrep* to_send = new Aodv_rrep(hop, src_ip, dst_ip, ip_address, dst_seq, life_time, ttl);
 	return to_send;
 }
 
@@ -194,6 +197,11 @@ void Aodv::process_rrep(Aodv_rrep* message){
 		add_route(message->get_source_ip(), message->get_dest_seq(), 1, message->get_source_ip(), ACTIVE_ROUTE_TIMEOUT);
 		log("created info for " + message->get_source_ip());
 	}
+	//do we know about the last hop?
+	if (!have_route(message->get_last_hop())){
+		add_route(message->get_last_hop(), 0, 1, message->get_last_hop(), ACTIVE_ROUTE_TIMEOUT);
+		log("created info for " + message->get_last_hop());
+	}
 	if (state == 1){
 		//now we know our neighbours, send out the proper RREQ
 		log("getting route to destination");
@@ -206,7 +214,10 @@ void Aodv::process_rrep(Aodv_rrep* message){
 		std::string data_message = "DATA;" + current_message.second + ";" + route_table[current_message.second]->get_next_hop()
 		    + ";" + ip_address + ";" + current_message.first;
 		environment->broadcast(data_message, xpos, ypos, zpos, RANGE, this);
-		log("data packet sent");
+		log("data packet sent via " + route_table[current_message.second]->get_next_hop());
+		for (auto r:route_table){
+			log(r.first);
+		}
 	} else if (state == 3) {
 		//We are a middle node in a multi hop route, so forward the packet
 		log("forwarding");
@@ -226,18 +237,24 @@ void Aodv::process_data(std::string message){
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 	std::string content = Aodv::get_attribute(message);
 
-	log("rec'd a DATA packet from " + source);
+	log("rec'd a DATA packet from " + source + ", via " + next_hop);
+
+	for (auto r:route_table){
+		log(r.first);
+	}
 
 	if (destination == ip_address){
 		//the message is for us!
 		Message* to_push = new Basic_message(message);
 		messageable->push_message(to_push);
-	} else {
+	} else if (next_hop == ip_address){
 		//send the message on
 		std::string data_message = "DATA;" + destination + ";" + route_table[destination]->get_next_hop()
 		    + ";" + source + ";" + content;
 		environment->broadcast(data_message, xpos, ypos, zpos, RANGE, this);
-		log("forwardeding");
+		log("forwarding");
+	} else {
+		log("dropped");
 	}
 }
 

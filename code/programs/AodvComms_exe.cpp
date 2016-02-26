@@ -19,15 +19,18 @@ int main(int argv, char* argc[]){
 	CommMod* comm_aodv1 = new Aodv(env, "10.0.0.1", &stdout_lock, debug_mode);
 	CommMod* comm_aodv2 = new Aodv(env, "10.0.0.2", &stdout_lock, debug_mode);
 	CommMod* comm_aodv3 = new Aodv(env, "10.0.0.3", &stdout_lock, debug_mode);
+	CommMod* comm_aodv4 = new Aodv(env, "10.0.0.4", &stdout_lock, debug_mode);
 
 	//create and add drones
 	int flag = 0;
 	AodvComms* drone1 = new AodvComms(comm_aodv1, 0.0, 0.0, 0.0, 0.0, env, 0, &flag);
 	AodvComms* drone2 = new AodvComms(comm_aodv2, 0.0, 7.0, 0.0, 0.0, env, -1, &flag);
-	AodvComms* drone3 = new AodvComms(comm_aodv3, 0.0, 14.0, 0.0, 0.0, env, 1, &flag);
+	AodvComms* drone3 = new AodvComms(comm_aodv3, 0.0, 14.0, 0.0, 0.0, env, -1, &flag);
+	AodvComms* drone4 = new AodvComms(comm_aodv4, 0.0, 21.0, 0.0, 0.0, env, 1, &flag);
 	env->addMessageable(drone1);
 	env->addMessageable(drone2);
 	env->addMessageable(drone3);
+	env->addMessageable(drone4);
 
 	//run the simulation
 	env->run();
