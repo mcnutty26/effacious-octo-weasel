@@ -22,7 +22,9 @@
 			double getX();
 			double getY();
 			double getZ();
-			
+
+			double getTime();
+
 			//returns true if the message is consumed by the callback.
 			//false otherwise.
 			virtual bool message_callback(Message* message) = 0;

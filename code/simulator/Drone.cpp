@@ -12,15 +12,28 @@ Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Envi
 	env = e;
 }
 
+bool Drone::isAlive()
+{
+	return alive;
+}
+
+void Drone::kill()
+{
+	alive = false;
+}
+
 void Drone::upkeep()
 {
+	double time = getTime();
+	double dTime = time - oTime;
+	oTime = time;
 	if(moveDR <= 0)
 	{
 		moveDR = 0;
 		return;
 	}
 	double radcon = PI/180;
-	double distance = moveDR < moveSpd? moveDR:moveSpd;
+	double distance = moveDR < moveSpd*dTime? moveDR:moveSpd*dTime;
 
 	switch(dir)
 	{

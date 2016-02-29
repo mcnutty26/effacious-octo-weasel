@@ -24,6 +24,11 @@ double Messageable::getZ()
 	return zPos;
 }
 
+double Messageable::getTime()
+{
+	return communicationsModule->getTime();
+}
+
 void Messageable::send_message(Message* contents)
 {
 	communicationsModule->push_out_message(contents);

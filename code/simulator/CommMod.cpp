@@ -29,3 +29,8 @@ void CommMod::set_messageable(Messageable* msg)
 {
 	messageable = msg;
 }
+
+double CommMod::getTime()
+{
+	return environment->getTime();
+}

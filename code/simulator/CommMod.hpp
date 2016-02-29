@@ -19,6 +19,8 @@
 			void push_out_message(Message* message);
 			void push_in_message(std::string message);
 			virtual void comm_function() = 0;
+
+			double getTime();
 		protected:
 			//the queue of outbound (sent) messages
 			std::queue<Message*> outQueue;

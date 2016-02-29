@@ -19,9 +19,11 @@
 	class Drone: public Messageable {
 		public:
 			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e);
+			bool isAlive();
 			void upkeep();
 
 		protected:
+			void kill();
 			//clockwise
 			void turn(double dAngle);
 			//speed is in units/tick, with units being items on the ENV data map and a tick
@@ -36,6 +38,8 @@
 			double sense(std::string type);
 
 		private:
+			double oTime;
+			bool alive = true;
 			Direction dir;
 			double maxSpeed;
 			double ang = 0;
