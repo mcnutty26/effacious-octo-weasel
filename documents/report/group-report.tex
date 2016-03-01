@@ -7,6 +7,10 @@
 \usepackage{titlesec}
 \usepackage[titletoc]{appendix}
 \usepackage{lipsum}
+\usepackage{natbib}
+\setcitestyle{authoryear,open={(},close={)}}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
 
 \linespread{1.3}
 \titleformat{\chapter}{\large\bf\centering}{CHAPTER \MakeUppercase{\thechapter}.}{1em}{}
@@ -69,26 +73,124 @@
 	This report will provide a comprehensive analysis of the project undertaken by our group on the subject of autonomous drones in sensor networks. There will be a background summary of the key components in this field, as well as a discussion of the ongoing research, development and production being carried out. We will supply an analysis of the potential problems for which a solution can be found in drone networks, and a justification for the resulting aims and objectives of our group. The report will detail the design, implementation and testing of the solution, including considerations for the management of the project. Finally, the project outcome will be evaluated, followed by a conclusion reflecting on the success of the project and considerations for future works.
 
 \chapter{Background}
-	\section{Definitions}
-	\section{Quadcopters}
+This section will introduce the components which will be researched into that form the basis of the project. The aim of this section is to provide the reader with definitions for keywords which will appear on numerous occasions throughout the project, as well as helping to lead into a definition of the problem space and the objectives of the project as a result. 
+	\section{Drones}
+		\subsection{Definition}
+		Unmanned Aerial Vehicles (UAVs), also known as drones, are aircraft which are either ‘piloted’, or perform autonomously using pre-programmed flight path and objectives \citep{chriscolejimwright2010}. Consumer-level drones are typically small in size, and take the form of quadcopters, which are multi-rotor helicopters with four rotors.  These types of drones are very lightweight, and powered by batteries; power consumption is almost completely attributed to fight time, although a modified drone will be required to exhaust power on its additional parts. We will be focusing on the use of these drones for the scale of this project.
+		\subsection{Sensor Capabilities}
+		Drones are typically equipped with cameras, as well as additional sensors, which vary depending on the type of drone, or its purpose. In the case of military drones, sensors such as multi-spectral targeting systems, night vision, infrared imaging and GPS are an absolute must \citep{ u.s.airforce2015}. However, mounted weaponry may also be included for direct warfare, unless the drone is designed specifically for intelligence, surveillance or reconnaissance, as power consumption is a primary concern, and must be limited. Military drones are controlled via satellite from a military base, although drones may also be controlled by Wi-Fi, radio or remote. Consumer-level drones have a wide range of usages, and the sensors that they require to accommodate these tasks are largely dependent on the price. It is possible to attach a large multitude of different sensors to drones; however the primary function of an aerial (consumer-level) drone is to collect high-quality imagery, often beyond the level of detail that the human eye can process.  These types of sensors include stereoscopic, thermal imaging, near-infrared and infrared, but other sensors such as thermal sensors and proximity sensors may also be used \citep{ questuav2015}.
+		\subsection{Usages}
+		Consumer-level drones have become increasingly popular in the past few years as they have become more affordable, capable and reliable to use. Due to their ability to capture high-quality imagery from impossible-to-reach locations, drones are incredibly useful in areas such as real estate, to take aerial shots of properties, or as a cheap alternative to huge, expensive helicopters for capturing news, such as high speed chases \citep{josephdussault2014}. Drones can also be employed for services such as delivery; there have been several initiatives for drone-based delivery of food or packaged goods by famous companies such as Amazon and Domino's Pizza \citep{marcusfaires2015}. Another possible usage for drones is in emergency services, such as the detection of forest fires, or search and rescue. It is these areas of drone research and development which can be considered to display the strength and importance of drones, as they are able to perform dangerous tasks which humans are incapable of and/or with no physical risk to human beings themselves. Compared to other types of mobile sensing, drones offer direct control over where to sample the environment, such that they can be explicitly told where to move to.
 	\section{Sensor Networks}
-		\subsection{The Internet of Things}
-	\section{Drone Networks}
-	\section{Just an example of how we might break them down}
-	
+		\subsection{Definition}
+		A wireless sensor network (WSN) is a wireless network consisting of spatially distributed autonomous devices using sensors to monitor physical or environmental conditions. These devices are referred to as nodes, which are able to communicate with each other and with a base node, commonly referred to as a gateway, which provides connectivity between itself, the nodes and the rest of the wired world \citep{ nationalinstruments2012}. Nodes may vary in size and number depending on the network, but will typically contain transceivers, a battery, an electronic circuit for interfacing with sensors and an energy source.  The ability to cooperatively pass sensor data to a main location has implications in many different industries, as well as military applications.
+		\subsection{Drone Networks}
+		In the context of drones, this refers to a wirelessly connected network of autonomous drones with a base station, which can distribute information or commands to the drones in the network, as well as facilitate communication between them and itself.  Given that autonomous drones are emerging as a powerful new breed of mobile sensing system which can carry rich sensor payloads with various methods of control, a collaborative network of drones has considerable potential, and can greatly extend the capabilities of traditional sensing systems \citep{lucamottola2014}. 
+	\section{Network Simulation}
+		\subsection{Definition}
+		As the name suggests, network simulation is a technique for modelling the behaviour of a network without performing a real, physical deployment, in order to test the effectiveness of the network, and assess how the network will behave under different conditions. Therefore, a simulation refers to software that predicts the behaviour of a network, so that performance can be analysed. By emulating an existing network, unexpected problems can be addressed or prevented prior to the deployment of the network.
+		\subsection{Structure and Testing}
+		A network simulation typically produces output in a GUI such that aspects of the network can be interpreted visually, such as to see how nodes interact, how data is sent, where connections go out of range or experience interference; it is possible to study the actual performance of a network and its protocols against the conceptual design. The simulation must be careful to provide an adequate level of detail to test the network without affecting the performance \citep{ leebreslauetal2000}. 
+	\section{Routing}
+		\subsection{Physical Routing}
+		In order for mobile sensor networks to gather data about the environment, they will be required to navigate freely using predetermined pathfinding algorithms. For a drone network, a drone will be required to navigate 3-D airspace and collect sensing information, whilst being careful to maintain an efficient route and avoiding problems such as collision with its neighbours or the limitations of its physical components, such as battery life. Pathfinding must take into account the possibility of nonlinear dynamics, various constraints and changing environments \citep{robertsivillietal2012}.
+		\subsection{Communications Routing}
+		One of the core aspects of a sensor network is the ability for nodes to communicate with each other, relaying data back to the gateway. For an optimal routing algorithm, the exchange of data must be robust, avoiding congestion and maintaining connectivity when faced with mobility, whilst trying to maximise the duration for which the sensing task can be performed \citep{ curtschurgers2010}. The properties of communications routing which are to be optimised are dependent upon the type of sensor network; a drone network with less than thirty minutes of battery life must be optimised for energy consumption.
+
 \chapter{Specification}
+In this section of the report, there will be an introduction to the possible problem(s) which are solvable through consumer-level drone networks, as defined in the previous section. After describing the problem, the objectives which need to be achieved in order to provide a solution for the problem space will be clearly laid out, to outline the foundation of the project. Justification for why the project solution to the aforementioned problem is both necessary and valid will also be given. There will be an analysis of the stakeholders in the project, followed by a feasibility study, where we provide a brief discussion of the scope of the problem which is to be handled, including the level of depth with which drone networks will be explored and implemented throughout the project. \\
+This study also allows us to identify the possible problems which may arise and analyse the economic implications of the project, as well as give a brief introduction to the management of the project, in order to show that the project is actually feasible to complete with the time and resources available. Having defined the objectives which must be completed to provide a solution for the project, the subsequent functional and non-functional requirements must be identified, to ensure that the project deliverables are measurable and well-defined. Finally, any changes from the original specification at the beginning of the project will be briefly discussed, with justification for these changes.
 	\section{Description of the Problem}
+	The problem, in the context of this project, is that there are many situations in which humans are unable to effectively carry out a task, or would be put at risk, and so the situation is too difficult or dangerous to handle. In such situations, a well implemented drone network could not only perform better than a human could in a risk-free environment, but the use of drones as a sensor network provides a better alternative to other possible sensor network solutions, which will be discussed later. We can define an arbitrary problem which is impossible or risky for humans such as search and rescue, or high altitude photography, as well as problems which are feasible for humans, but can be more readily solved by UAVs, such as automated delivery. \\
+	For this project, we have decided to focus on the possibility of using a drone network to detect and combat forest fires for the use of emergency services. While problems such as these have existed for a long time, solutions offered through sensor networks using drones is an area which is still in the early stages of research and development. While alternative solutions to using drone networks already exist, it is possible that the use of drones can expand upon existing solutions. Furthermore, the implementation of a drone network can hypothetically be applied to any similar problem area by altering the drone’s sensory inputs and outputs arbitrarily, and so a solution can be provided for the general use case, and applied to various other situations.
+The solution to this problem can be split into four main areas: the network simulation, the physical routing, the communications routing, and the physical deployment. In order to successfully design and implement a drone sensor network, it is necessary to construct a stimulator which will accurately model the performance of the drone network, with associated physical and communications routing algorithms for optimal performance, before finally transferring this model to the physical drones and deploying them. The general solution can then be tested in a real situation, and then possibly extended to handle specific problem-solving tasks with user input. 
 \section{Objectives}
-		\subsection{Quantitative Objectives}
-		\subsection{Qualitative Objectives}
+The aim of this project, then, is to design and implement a general-use drone sensor network in order to solve the arbitrary problem of detecting and counter-acting forest fires based on user input, with the capability to be extended to any potential situation in the problem space. The major components of the project were outlined in the project specification during the early stages of the project life cycle, and can be summarised as follows: \\
+(**THIS SECTION PROBABLY NEEDS WORK**) \\
+(in the sense that tasks could be reordered, bullet points could be added for each enumerated item for more detail, tasks could be added/removed/reworded)
+\begin{enumerate}
+  \item \textbf{Implement a network simulator}. Either using a pre-existing set of libraries, or by creating our own, which are specifically tailored to our domain
+  \item \textbf{Establish a network of drones with a base station}. Drones can communicate with one another and the base station, sending data between them
+  \item \textbf{Provide autonomy to drones}. Each drone must be able to dynamically control itself, as opposed to remote control, in order to operate autonomously in a network
+\item \textbf{Implement drone pathfinding}. Drones must carefully navigate through an area of physical space using well-defined rules for physical routing
+\item \textbf{User input tasking}. The user must be able to define a problem for the network to detect, which is passed from the base station to the drones
+\item \textbf{Implement problem detection}. Drones use sensory information to collect and pass data, notifying the base station in the event of a problem
+\end{enumerate}
+These tasks are roughly estimated to take an equal amount of time, where separate tasks can be assigned to each group member for maximum efficiency. Certain tasks, such as communication and pathfinding can be developed in parallel. Delegation of tasks and group roles will be discussed in depth in later sections.
 	\section{Justification}
+	The benefits of carrying out a project involved in creating an efficient, risk-free solution to emergency situations is relatively self-explanatory. The project is justifiable in its ability to produce potentially life-saving results and improve the general quality of human life, by implementing a consumer approach to any of the common usages that drones can be applied to and more, through the use of sensor networks. Drone networks themselves are an area of research which is growing in popularity, so the project interacts well with the state-of-the-art, and could have considerable impact on future developments. A general use solution for the project would be easy to use and deploy, and incredibly extensible.
 	\section{Stakeholder Analysis}
+	As previously discussed, the implementation of a drone sensor network has implications for a wide variety of industries. This section will therefore give a formal outline of the prospective stakeholders in the project and the justification for them. Firstly, with respect to detection and response to forest fires, emergency services such as firefighters, ambulance services and search and rescue would benefit greatly, by providing the ability to pre-empt danger and respond to crises much more rapidly, as well as reducing the risk to human lives in combating fires. Given that drone sensor networks are a relatively new field of research, those parties interested in research and development of sensor networks would also benefit from the project, as the results may extend the field of research, and the project solution could be adapted for use in other areas. In the same way, commercial businesses such as real estate and delivery services in pursuit of more efficient business may also benefit from the project. Finally, considering the use of drones in military operations, there are possible ramifications for military usage of the project, which will be discussed in further detail in later sections.
 	\section{Feasibility Study}
+	While the merits of the project are justifiable, it should also be noted that the project implementation carries a considerable technical difficulty, involving adaptation of individual, consumer-level drones to programmable, autonomous drones which function as a sensor network capable of algorithm-based communications and pathfinding, which are to be simulated and then physically deployed. Therefore, it is important to analyse the feasibility of the project, given time, hardware and other constraints, which will be discussed in the following sections.
+		\subsection{Problem Scope}
+		It is important to consider the scope of the problem, with regards to how far the solution can be extended into the domain of, in this case, search and rescue. Given that drone sensor networks are a relatively new domain for research and development, there is no commonly used and accepted standard for consumer-level drone networks in the context of search and rescue. In other words, the solution to the problem is not an extension of a previously existing solution, or of a set of rules governing how the problem can and should be solved using drone sensor networks.
+As a result, the scope must be carefully defined such that an effective solution can be reached for the problem, without expanding too far into the problem domain. By implementing a drone sensor network which can be adopted into any general use case, which can be easily extended to take any required sensory information and applied to solve a problem, we can avoid overextending the project. At the same time, in order to show that the network can effectively handle user input tasking, we focus on taking one piece of sensor information, such as thermal, to demonstrate an accurate model for problem detection (as defined by the user), and response through well-established communications. 
+		\subsection{Project Scope}
+		Having defined the scope of the problem, it is also necessary to examine the scope of the project itself in terms of how far we extend into the domain of drone sensor networks. The implementation of any sensor network requires a lot of concise testing and a solid formation of protocols. There are many areas to consider with physical routing and communications, as well as physical deployment and use tasking. When creating the network simulator, we can tailor it to our specific requirements in order to minimise the amount of considerations for network protocols and possible problems, which will be discussed later, whilst accurately modelling real, physical deployment. 
+Considering the time constraints that are imposed on the project, it will also be necessary to adapt pre-existing algorithms to establish our network communications and physical routing, as opposed to creating our own algorithm. In terms of physical deployment, the project is limited to two drones, so it is not possible to implement a full-blown network to test the solution. Nonetheless, it is possible to show that the network is theoretically scalable and accurately demonstrates the ability for drones to communicate and use pathfinding effectively.
+		\subsection{Financial Analysis}
+		The basic requirements for a physical drone network are the drones themselves, the sensors which will be attached to the drones, as well as equipment for programming the drones and communications. All of these are provided for free by the Department, so there are no financial constraints for physical deployment. While it is possible to purchase more drones, the same result can be achieved, provided that we have at least two drones. Additionally, the project will not include the use of any bespoke software or libraries in the development of the simulator or communications; they will be open source, so there are no costs incurred in the development of the project.
+		\subsection{Market Analysis}
+		For the project to be used by third parties, there must be licensing associated with the final product. As the project is intended to be open source and not commercialised, we will be using the GNU General Public License v3.0, which stipulates that our project is open source, with the freedom to use or change the software, as well as distribute it and share changes. However, in the event that the project is used, the software creators are not accountable for any problems with the project software. As the project is not commercial, with no intention to monetise it, the use of this license allows us to appease any and all stakeholders whilst protecting ourselves from potential threats.
+		\subsection{Project Management}
+		There are many challenges associated with undertaking a project such as this, particularly with regards to administration, scheduling and the division of tasks. Therefore, it is crucial that the project is managed efficiently, and that progress is carefully monitored and assessed throughout the life-cycle of the project. The issues associated with project management and how they were handled throughout the project will be discussed during the evaluation stages of the project. However, there are several challenges that the project group will be presented with in the context of project management, which are summarised below:
+\begin{itemize}
+\item \textbf{Development methodology}. There must be consideration for a development methodology which accommodates the size of the group and the time each group member has available, as well as how to track the progress of the project
+\item \textbf{Deadlines and scheduling}. Meetings and deadlines must be scheduled such that the group is fully aware of what stage of the project must be completed and when. Interested parties such as the project supervisor must also be regularly informed of the progress of the project to allow for appropriate advisory actions where necessary
+\item \textbf{Group roles}. Each member of the group must have a clear and distinct role in the group, with one member taking the role of project manager, dedicated to handling each group member and their associated tasks, as well as managing the state of the project to ensure that it is completed effectively and within constraints
+\item \textbf{Managing project materials}. It is necessary to manage the project material to ensure consistency amongst each members’ work, as well as maintaining previous iterations of code to avoid problems such as losing previous functionality
+\end{itemize}
 	\section{Requirements Identification}
+	This section will contain a list of the functional and non-functional requirements identified at the beginning of the project which will be necessary to implement to ensure that the project software adequately represents a solution to the problem as defined in this chapter. A functional requirement refers to quantitative requirements which can be easily measured and tested to ensure correct functionality. Non-functional requirements are those which cannot be measured, as they are subjective, but are nonetheless important for a successful project outcome. 
+
+\newpage
+(**THIS SECTION PROBABLY NEEDS WORK**) 
 		\subsection{Functional Requirements}
+\begin{table}[h!]
+\centering
+%\caption{My caption}
+%\label{my-label}
+\begin{tabular}{|l|l|}
+\hline
+\#  & Description                                                                                                                                                                                               \\ \hline
+R1  & \begin{tabular}[c]{@{}l@{}}User must be able to run an executable which will set up the\\   simulation environment and communications module\end{tabular}                                                 \\ \hline
+R2  & \begin{tabular}[c]{@{}l@{}}A class must be instantiated for the nodes of the simulator (i.e.\\   drones and base station)  and a communications\\   module must be installed on each of them\end{tabular} \\ \hline
+R3  & \begin{tabular}[c]{@{}l@{}}The simulation must run, such that each node begins to operate and\\   ‘travel’ within the environment\end{tabular}                                                            \\ \hline
+R4  & \begin{tabular}[c]{@{}l@{}}Each node must be capable of sending, listening for and receiving\\   messages over Wi-Fi/radio\end{tabular}                                                                   \\ \hline
+R5  & \begin{tabular}[c]{@{}l@{}}The environment must incorporate and handle multithreading for each\\   node\end{tabular}                                                                                      \\ \hline
+R6  & \begin{tabular}[c]{@{}l@{}}The simulation must be able to model and be robust to interference\\   between message passing\end{tabular}                                                                    \\ \hline
+R7  & \begin{tabular}[c]{@{}l@{}}The user must be able to see output from each node as messages are\\   sent and received\end{tabular}                                                                          \\ \hline
+R8  & \begin{tabular}[c]{@{}l@{}}The user must be able to visualise the output of the simulation on a\\   graphical interface\end{tabular}                                                                      \\ \hline
+R9  & \begin{tabular}[c]{@{}l@{}}The base station node must be able to take user input which can be\\   broadcast to other nodes\end{tabular}                                                                   \\ \hline
+R10 & \begin{tabular}[c]{@{}l@{}}The simulation must be capable of communications from any\\   (preselected) algorithms\end{tabular}                                                                            \\ \hline
+R11 & \begin{tabular}[c]{@{}l@{}}The environment and its respective nodes should stop running when a\\   ‘KILL’ command (message) is received\end{tabular}                                                      \\ \hline
+R12 & \begin{tabular}[c]{@{}l@{}}Nodes must be capable of moving through the environment autonomously\\   using pathfinding algorithms\end{tabular}                                                             \\ \hline
+R13 & \begin{tabular}[c]{@{}l@{}}Nodes must be able to recognise useful sensory information, and\\   broadcast the information back to the base station\end{tabular}                                            \\ \hline
+R14 & \begin{tabular}[c]{@{}l@{}}The simulation code must be adaptable to the physical drones for real\\   deployment\end{tabular}                                                                              \\ \hline
+\end{tabular}
+\end{table}
+\newpage
 		\subsection{Non-functional Requirements}
+\begin{table}[h!]
+\centering
+%\caption{My caption}
+%\label{my-label}
+\begin{tabular}{|l|l|}
+\hline
+\# & Description                                                                                                            \\ \hline
+R1 & \begin{tabular}[c]{@{}l@{}}Connections between nodes must be stable and resistant to\\   interference\end{tabular}     \\ \hline
+R2 & Passing of messages must be within a reasonable timeframe                                                              \\ \hline
+R3 & \begin{tabular}[c]{@{}l@{}}The broadcasting of information from drones or user input must be\\   accurate\end{tabular} \\ \hline
+R4 & The user must be satisfied with the output from the environment                                                        \\ \hline
+R5 & The final code must be extensible for more specific use cases                                                          \\ \hline 
+\end{tabular}
+\end{table}
+
 	\section{Project Deliverables}
+	Throughout the course of the project, there are several deadlines that must be met for which the project will be required to deliver a product. At the beginning of the project, the project specification must be submitted, which introduces the project and its initial planning and methodology, which will be appended to the report for reference. At the end of Term 1, a poster presentation will be given by the project group to select supervisors and invigilators, and a live demo of the project software and the final report are delivered at the beginning of Term 3. The demo will display the proposed solution to the problem defined at the start of the project, and showcase the features of the working solution. Alongside the final report, the code for the project, including the simulation, communications routing, physical routing and deployment code will also be submitted.
 	\section{Changes From Original Specification}
+	In the original specification, it was stated that NS3, a set of network simulator libraries, would serve as the core implementation of the simulator, and that the code for physical deployment would then be built off of the simulator as a result. However, we have decided to instead build our own simulator, after discovering that NS3 is relatively bloated and difficult to use. The benefits to creating our own stimulator are that the code can then be directly translated onto the drones during deployment, as well as being directly tailored to the project domain. As a result, the functionality provided by NS3 must be manually generated, which may increase the complexity of the project. 
 
 \chapter{Literature Review}
 	\section{Existing Solutions}
@@ -170,5 +272,7 @@
 
 \chapter{Conclusion}
 
+\bibliographystyle{abbrvnat}
+\bibliography{biblio}
 
 \end{document}
