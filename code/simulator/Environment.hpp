@@ -18,7 +18,7 @@
 
 		public:
 			Environment(std::map<std::string, data_type>, std::function<std::string(std::string)>, double timestep);
-			Environment(std::map<std::string, data_type>, int timestep);
+			Environment(std::map<std::string, data_type>, double timestep);
 			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod*);
 			void addData(std::string type, data_type d);
 			void addDrone(Drone* m);
@@ -31,7 +31,7 @@
 			void run();
 
 		private:
-			double timeElapsed
+			double timeElapsed;
 			double timeStep;
 
 			BaseStation * baseStation;

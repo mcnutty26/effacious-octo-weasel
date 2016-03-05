@@ -33,7 +33,7 @@ void Environment::addData(std::string type, data_type d)
 }
 
 //should not be called by anything other than the main thread
-void Environment::addDrone(Messageable* m)
+void Environment::addDrone(Drone* m)
 {
 	drones.push_back(m);
 }
@@ -81,9 +81,9 @@ void Environment::run()
 	{
 		for(auto x: drones)
 		{
-			if(x.alive())
+			if(x->isAlive())
 			{
-				x.upkeep();
+				x->upkeep();
 			}
 		}
 
