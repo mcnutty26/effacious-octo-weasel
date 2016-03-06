@@ -58,12 +58,12 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 	lock_broadcast.clear();
 }
 
-bool allRunning(std::vector<std::thread> threads)
+bool allRunning(std::vector<std::thread>* threads)
 {
 	bool running = false;
-	for(auto x:threads)
+	for(auto x = threads->begin(); x != threads->end(); ++x)
 	{
-		running |= x.joinable();
+		running |= x->joinable();
 	}
 	return running;
 }
@@ -77,7 +77,7 @@ void Environment::run()
 		threads.emplace_back(&Drone::runCommMod, x);
 	}
 
-	while(allRunning(threads))
+	while(allRunning(&threads))
 	{
 		for(auto x: drones)
 		{
