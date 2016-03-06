@@ -9,6 +9,11 @@
 
 	class CommMod;
 
+	struct Coord
+	{
+		double x, y, z;
+	};
+
 	class Messageable
 	{
 		public:
@@ -23,6 +28,8 @@
 			double getY();
 			double getZ();
 
+			Coord getPosition();
+
 			double getTime();
 
 			//returns true if the message is consumed by the callback.
@@ -36,9 +43,8 @@
 		protected:
 			std::queue<Message*> inQueue;
 			CommMod* communicationsModule;
-			double xPos;
-			double yPos;
-			double zPos;
+
+			Coord position;
 	};
 
 #endif

@@ -4,24 +4,29 @@ Messageable::Messageable(CommMod* cm, double xp, double yp, double zp)
 {
 	communicationsModule = cm;
 
-	xPos = xp;
-	yPos = yp;
-	zPos = zp;
+	position.x = xp;
+	position.y = yp;
+	position.z = zp;
 }
 
 double Messageable::getX()
 {
-	return xPos;
+	return position.x;
 }
 
 double Messageable::getY()
 {
-	return yPos;
+	return position.y;
 }
 
 double Messageable::getZ()
 {
-	return zPos;
+	return position.z;
+}
+
+Coord Messageable::getPosition()
+{
+	return position;
 }
 
 double Messageable::getTime()
