@@ -18,7 +18,7 @@
 
 	class Drone: public Messageable {
 		public:
-			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, double sensorRadius, Environment* e);
+			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e);
 			bool isAlive();
 			void upkeep();
 
@@ -34,16 +34,7 @@
 			//in all cases, angles are measured as y0 being forward, x0 and z0 being level
 			//with the ground
 			double getMaxSpeed();
-
-			// The method responsible for continuing the correct job that the drone is doing
-			void continueJob();
-
-			int atLoc(Coord location);
-
-			// Called when the drone is to measure a new area. Splits the area given up
-			// into points that the drone needs to go to.
-			void newArea(double x1, double y1, double x2, double y2, double height);
-
+			
 			double sense(std::string type);
 
 		private:
@@ -55,12 +46,6 @@
 
 			Environment* env;
 			double moveDR, moveSpd;
-
-			double sensorRadius;
-
-			// The queue that contains the remaining points to be visited.
-			std::queue<Coord> remainingPoints;
-			
 	};
 
 #endif

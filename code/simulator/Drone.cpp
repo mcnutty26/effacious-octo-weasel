@@ -8,11 +8,10 @@
 
 #define PI 3.14159265
 
-Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, double sensorRadius, Environment* e)
+Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e)
 :Messageable(cm, iX, iY, iZ)
 {
 	this->maxSpeed = maxSpeed;
-	this->sensorRadius = sensorRadius;
 	env = e;
 }
 
@@ -64,67 +63,6 @@ void Drone::upkeep()
 			position.y += distance*cos((ang + 180)*radcon);
 			break;
 	}
-
-	if (!remainingPoints.empty())
-		continueJob();
-	else
-	{
-		// Wait for a new broadcast with information for a new area...
-	}
-
-}
-
-void Drone::continueJob()
-{
-	if (moveDR == 0)
-	{
-		Coord target = remainingPoints.front();
-		if (atLoc(target))
-		{
-			double reading = sense("Test");
-			std::cout << "Reading at (" << position.x << ", " << position.y << ", " << position.z << ") is " << reading << std::endl;
-			remainingPoints.pop();
-		}
-		else
-		{
-			if (position.x != target.x || position.y != target.y)
-			{
-				double dx = target.x - position.x;
-				double dy = target.y - position.y;
-
-				double dAngle = atan2(dy, dx) * 180 / PI;
-				dAngle -= ang;
-
-				double distance = sqrt((dx * dx) + (dy * dy));
-
-				turn(dAngle);
-				move(Direction::FORWARD, maxSpeed, distance);
-
-			}
-			else
-			{
-				double distance = 0.0;
-				if (position.z < target.z)
-				{
-					dir = Direction::UP;
-					distance = target.z - position.z;
-				}
-				else
-				{
-					dir = Direction::DOWN;
-					distance = position.z - target.z;
-				}
-				move(dir, maxSpeed, distance);
-			}
-		}
-	}
-}
-
-int Drone::atLoc(Coord location)
-{
-	// This will need to be changed to incorporate a 
-	// degree of error with the GPS
-	return (position.x == location.x && position.y == location.y && position.z == location.z);
 }
 
 void Drone::turn(double dAngle)
@@ -146,23 +84,4 @@ void Drone::move(Direction direction, double speed, double distance)
 double Drone::sense(std::string type)
 {
 	return env->getData(type, position.x, position.y, position.z);
-}
-
-// For now, there is no intelligence as to what order the points
-// are put into the queue.
-void Drone::newArea(double x1, double y1, double x2, double y2, double height)
-{
-	double x, y;
-	double sensorDiameter = sensorRadius * 2.0f;
-	for (x = x1; x < x2; x += sensorDiameter)
-	{
-		for (y = y1; y < y2; y += sensorDiameter)
-		{
-			Coord coord;
-			coord.x = x;
-			coord.y = y;
-			coord.z = height;
-			remainingPoints.push(coord);
-		}
-	}
 }
