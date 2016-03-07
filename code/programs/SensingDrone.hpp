@@ -8,9 +8,9 @@
 
 	typedef std::vector<std::vector<std::vector<double>>> data_type;
 
-	class AodvComms: public Drone {
+	class SensingDrone: public Drone {
 		public:
-			AodvComms(CommMod*, double, double, double, double, Environment*, int, int*);
+			SensingDrone(CommMod*, double, double, double, double, Environment*, int, int*);
 			bool message_callback(Message*);
 			void run();
 

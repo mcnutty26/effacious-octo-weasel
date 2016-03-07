@@ -1,7 +1,8 @@
 CXX		= g++
 LINKFLAGS	= -L ../simulator/build -I ../simulator -L ../communication/build
 BASICLINK	= -I ../communication/basic
-AODVLINK	= -I ../communication/aodv $(BASICLINK)
+BASICADDRLINK	= -I ../communication/basic_addressed $(BASICLINK)
+AODVLINK	= -I ../communication/aodv $(BASICADDRLINK)
 LIBFLAGS	= -loctodrone -loctodronecomms -lpthread
 CXXFLAGS	= -std=c++11 -Werror -Wextra
 
@@ -23,6 +24,7 @@ programs:
 	$(call colorecho,"Compiling drone routines...")
 	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(BASICLINK) -c -o build/BasicComms.o BasicComms.cpp
 	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(AODVLINK) -c -o build/AodvComms.o AodvComms.cpp
+	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(BASICADDRLINK) -c -o build/SensingDrone.o SensingDrone.cpp
 
 exes:
 	$(call colorecho,"Creating executables...")
