@@ -143,6 +143,7 @@ Aodv_rerr* Aodv::create_rerr(std::string dst_ip, int ttl){
 void Aodv::add_route(std::string ip, int dest_seq, int hop_count, std::string next_hop, int lifetime){
 	Aodv_route* route = new Aodv_route(dest_seq, hop_count, next_hop, lifetime);
 	route_table.insert(std::pair<std::string, Aodv_route*>(ip, route));
+	log("added " + ip + " nxt " + next_hop);
 }
 
 void Aodv::process_rreq(Aodv_rreq* message){
@@ -238,6 +239,7 @@ void Aodv::process_data(std::string message){
 	std::string content = Aodv::get_attribute(message);
 
 	log("rec'd a DATA packet from " + source + ", via " + next_hop);
+	log("dest " + destination + " nxt " + next_hop + " src " + source + " con " + content);
 
 	for (auto r:route_table){
 		log(r.first);
