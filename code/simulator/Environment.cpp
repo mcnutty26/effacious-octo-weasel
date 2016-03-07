@@ -1,5 +1,6 @@
 #include "Environment.hpp"
 #include "Drone.hpp"
+#include "BaseStation.hpp"
 
 #include <cmath>
 #include <thread>
@@ -17,6 +18,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, std::func
 {
 	timeStep = timestep;
 	data = sensor_data;
+	baseStation = NULL;
 };
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep)
@@ -24,6 +26,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, double ti
 	timeStep = timestep;
 	data = sensor_data;
 	noiseFun = &passStr;
+	baseStation = NULL;
 }
 
 //should not be called by anything other than the main thread
@@ -75,6 +78,12 @@ void Environment::run()
 	{
 		threads.emplace_back(&Drone::run, x);
 		threads.emplace_back(&Drone::runCommMod, x);
+	}
+
+	if (baseStation != NULL)
+	{
+		threads.emplace_back(&BaseStation::run, baseStation);
+		threads.emplace_back(&BaseStation::runCommMod, baseStation);
 	}
 
 	while(allRunning(&threads))

@@ -65,6 +65,21 @@ void Drone::upkeep()
 	}
 }
 
+double Drone::getMaxSpeed()
+{
+	return maxSpeed;
+}
+
+double Drone::getAngle()
+{
+	return ang;
+}
+
+bool Drone::hasFinishedMoving()
+{
+	return (moveDR == 0);
+}
+
 void Drone::turn(double dAngle)
 {
 	ang += dAngle;

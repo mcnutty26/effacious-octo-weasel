@@ -10,6 +10,7 @@ documents/report/*.toc
 code/simulator/build/*
 code/communication/aodv/build/*
 code/communication/basic/build/*
+code/communication/basic_addressed/build/*
 code/communication/build/*
 code/programs/build/*
 
