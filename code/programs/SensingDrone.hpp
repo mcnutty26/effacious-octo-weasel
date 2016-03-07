@@ -10,7 +10,7 @@
 
 	class SensingDrone: public Drone {
 		public:
-			SensingDrone(CommMod*, double, double, double, double, Environment*, int, int*);
+			SensingDrone(CommMod*, double, double, double, double, double, Environment*, int, int*);
 			bool message_callback(Message*);
 			void run();
 
@@ -27,6 +27,8 @@
 			int m_task;
 			int* m_flag;
 			void quit();
+
+			double sensorRadius;
 
 			// The queue that contains the remaining points to be visited.
 			std::queue<Coord> remainingPoints;

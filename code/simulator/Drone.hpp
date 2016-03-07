@@ -34,6 +34,10 @@
 			//in all cases, angles are measured as y0 being forward, x0 and z0 being level
 			//with the ground
 			double getMaxSpeed();
+
+			double getAngle();
+
+			bool hasFinishedMoving();
 			
 			double sense(std::string type);
 

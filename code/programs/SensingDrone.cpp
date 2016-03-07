@@ -4,6 +4,9 @@
 #include <Basic_message_addressed.hpp>
 #include <chrono>
 #include <thread>
+#include <cmath>
+
+#define PI 3.14159265
 
 SensingDrone::SensingDrone(CommMod* cm, double xp, double yp, double zp, double speed, double sensorRadius, Environment* env, int task, int* flag): Drone(cm, xp, yp, zp, speed, env){
 	this->sensorRadius = sensorRadius;
@@ -36,7 +39,7 @@ void SensingDrone::run(){
 
 void SensingDrone::continueJob()
 {
-	if (moveDR == 0)
+	if (hasFinishedMoving())
 	{
 		Coord target = remainingPoints.front();
 		if (atLoc(target))
@@ -53,7 +56,7 @@ void SensingDrone::continueJob()
 				double dy = target.y - position.y;
 
 				double dAngle = atan2(dy, dx) * 180 / PI;
-				dAngle -= ang;
+				dAngle -= getAngle();
 
 				double distance = sqrt((dx * dx) + (dy * dy));
 
@@ -64,17 +67,18 @@ void SensingDrone::continueJob()
 			else
 			{
 				double distance = 0.0;
+				Direction direction;
 				if (position.z < target.z)
 				{
-					dir = Direction::UP;
+					direction = Direction::UP;
 					distance = target.z - position.z;
 				}
 				else
 				{
-					dir = Direction::DOWN;
+					direction = Direction::DOWN;
 					distance = position.z - target.z;
 				}
-				move(dir, maxSpeed, distance);
+				move(direction, getMaxSpeed(), distance);
 			}
 		}
 	}
