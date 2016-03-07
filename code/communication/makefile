@@ -1,7 +1,7 @@
 CXX		= g++
 LINKFLAGS	= -L ../../simulator/build -I ../../simulator
 CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC
-OBJ_FILES	= aodv/build/*.o basic/build/*.o
+OBJ_FILES	= aodv/build/*.o basic/build/*.o basic_addressed/build/*.o
 libraries	= -loctodrone
 
 define colorecho
@@ -15,6 +15,7 @@ all: liboctodronecomms
 makeobjs:
 	cd aodv && $(MAKE) all
 	cd basic && $(MAKE) all
+	cd basic_addressed && $(MAKE) all
 
 liboctodronecomms: makeobjs
 	$(call colorecho,"Creating communications library...")

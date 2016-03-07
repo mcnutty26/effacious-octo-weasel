@@ -12,7 +12,7 @@ int main(int argv, char* argc[]){
 	//sensor_map.insert(std::pair<std::string, int>("blank", sensor_data));
 
 	//create the environment and comm module
-	Environment* env = new Environment(*sensor_map);
+	Environment* env = new Environment(*sensor_map, 1.0);
 	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
 
 	CommMod* comm_basic1 = new Basic(env, &stdout_lock);
@@ -21,8 +21,8 @@ int main(int argv, char* argc[]){
 	//create and add drones
 	Test* drone1 = new Test(comm_basic1, 0.0, 0.0, 0.0, 0.0, env, false);
 	Test* drone2 = new Test(comm_basic2, 1.0, 1.0, 0.0, 0.0, env, true);
-	env->addMessageable(drone1);
-	env->addMessageable(drone2);
+	env->addDrone(drone1);
+	env->addDrone(drone2);
 
 	//run the simulation
 	env->run();

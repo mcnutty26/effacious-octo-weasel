@@ -12,7 +12,7 @@ int main(int argv, char* argc[]){
 	//sensor_map.insert(std::pair<std::string, int>("blank", sensor_data));
 
 	//create the environment and comm modules
-	Environment* env = new Environment(*sensor_map);
+	Environment* env = new Environment(*sensor_map, 1.0);
 	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
 
 	bool debug_mode = true;
@@ -27,10 +27,10 @@ int main(int argv, char* argc[]){
 	AodvComms* drone2 = new AodvComms(comm_aodv2, 0.0, 7.0, 0.0, 0.0, env, -1, &flag);
 	AodvComms* drone3 = new AodvComms(comm_aodv3, 0.0, 14.0, 0.0, 0.0, env, -1, &flag);
 	AodvComms* drone4 = new AodvComms(comm_aodv4, 0.0, 21.0, 0.0, 0.0, env, 1, &flag);
-	env->addMessageable(drone1);
-	env->addMessageable(drone2);
-	env->addMessageable(drone3);
-	env->addMessageable(drone4);
+	env->addDrone(drone1);
+	env->addDrone(drone2);
+	env->addDrone(drone3);
+	env->addDrone(drone4);
 
 	//run the simulation
 	env->run();
