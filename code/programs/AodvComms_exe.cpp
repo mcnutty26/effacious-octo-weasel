@@ -12,7 +12,7 @@ int main(int argv, char* argc[]){
 	//sensor_map.insert(std::pair<std::string, int>("blank", sensor_data));
 
 	//create the environment and comm modules
-	Environment* env = new Environment(*sensor_map, 1.0);
+	Environment* env = new Environment(*sensor_map, 0.01);
 	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
 
 	bool debug_mode = true;

@@ -45,7 +45,7 @@
 
 			std::string get_attribute(std::string);
 			bool have_route(std::string);
-			void add_route(std::string, int, int, std::string, int);
+			void add_route(std::string, int, int, std::string);
 
 			Aodv_rreq* deserialize_rreq(std::string);
 			Aodv_rrep* deserialize_rrep(std::string);
