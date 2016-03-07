@@ -23,3 +23,6 @@ liboctodronecomms: makeobjs
 
 clean:
 	$(RM) build/*
+	cd aodv && $(MAKE) clean
+	cd basic && $(MAKE) clean
+	cd basic_addressed && $(MAKE) clean
