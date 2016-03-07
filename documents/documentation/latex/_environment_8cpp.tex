@@ -1,0 +1,42 @@
+\hypertarget{_environment_8cpp}{}\section{D\+:/\+My Documents/\+University Year 4/\+C\+S410 Group Project/effacious-\/octo-\/weasel/code/simulator/\+Environment.cpp File Reference}
+\label{_environment_8cpp}\index{D\+:/\+My Documents/\+University Year 4/\+C\+S410 Group Project/effacious-\/octo-\/weasel/code/simulator/\+Environment.\+cpp@{D\+:/\+My Documents/\+University Year 4/\+C\+S410 Group Project/effacious-\/octo-\/weasel/code/simulator/\+Environment.\+cpp}}
+{\ttfamily \#include \char`\"{}Environment.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Drone.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$thread$>$}\\*
+{\ttfamily \#include $<$atomic$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{_environment_8cpp_a6c5e365d6cad3b9d3875a7ca0fd59044}{pass\+Str} (std\+::string in)
+\item 
+bool \hyperlink{_environment_8cpp_aa2a4adff1cb204be0e9150e08fc7a63b}{all\+Running} (std\+::vector$<$ std\+::thread $>$ $\ast$threads)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic\+\_\+flag \hyperlink{_environment_8cpp_aa1fa83f8dfd775ddf48ee069e199d21e}{lock\+\_\+broadcast} = A\+T\+O\+M\+I\+C\+\_\+\+F\+L\+A\+G\+\_\+\+I\+N\+IT
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{Environment.\+cpp@{Environment.\+cpp}!all\+Running@{all\+Running}}
+\index{all\+Running@{all\+Running}!Environment.\+cpp@{Environment.\+cpp}}
+\subsubsection[{\texorpdfstring{all\+Running(std\+::vector$<$ std\+::thread $>$ $\ast$threads)}{allRunning(std::vector< std::thread > *threads)}}]{\setlength{\rightskip}{0pt plus 5cm}bool all\+Running (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ std\+::thread $>$ $\ast$}]{threads}
+\end{DoxyParamCaption}
+)}\hypertarget{_environment_8cpp_aa2a4adff1cb204be0e9150e08fc7a63b}{}\label{_environment_8cpp_aa2a4adff1cb204be0e9150e08fc7a63b}
+\index{Environment.\+cpp@{Environment.\+cpp}!pass\+Str@{pass\+Str}}
+\index{pass\+Str@{pass\+Str}!Environment.\+cpp@{Environment.\+cpp}}
+\subsubsection[{\texorpdfstring{pass\+Str(std\+::string in)}{passStr(std::string in)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string pass\+Str (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{in}
+\end{DoxyParamCaption}
+)}\hypertarget{_environment_8cpp_a6c5e365d6cad3b9d3875a7ca0fd59044}{}\label{_environment_8cpp_a6c5e365d6cad3b9d3875a7ca0fd59044}
+
+
+\subsection{Variable Documentation}
+\index{Environment.\+cpp@{Environment.\+cpp}!lock\+\_\+broadcast@{lock\+\_\+broadcast}}
+\index{lock\+\_\+broadcast@{lock\+\_\+broadcast}!Environment.\+cpp@{Environment.\+cpp}}
+\subsubsection[{\texorpdfstring{lock\+\_\+broadcast}{lock_broadcast}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::atomic\+\_\+flag lock\+\_\+broadcast = A\+T\+O\+M\+I\+C\+\_\+\+F\+L\+A\+G\+\_\+\+I\+N\+IT}\hypertarget{_environment_8cpp_aa1fa83f8dfd775ddf48ee069e199d21e}{}\label{_environment_8cpp_aa1fa83f8dfd775ddf48ee069e199d21e}

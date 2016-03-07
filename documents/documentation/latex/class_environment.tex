@@ -1,0 +1,161 @@
+\hypertarget{class_environment}{}\section{Environment Class Reference}
+\label{class_environment}\index{Environment@{Environment}}
+
+
+{\ttfamily \#include $<$Environment.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_environment_aaddf445dbf4217a68a373e183a2bfb0c}{Environment} (std\+::map$<$ std\+::string, \hyperlink{class_environment_a7ac989afdd3bde4ea860c985ed1f8479}{data\+\_\+type} $>$, std\+::function$<$ std\+::string(std\+::string)$>$, double timestep)
+\item 
+\hyperlink{class_environment_a098fcd6da9a033833095ec76f60aab0d}{Environment} (std\+::map$<$ std\+::string, \hyperlink{class_environment_a7ac989afdd3bde4ea860c985ed1f8479}{data\+\_\+type} $>$, double timestep)
+\item 
+void \hyperlink{class_environment_a8d5bb36197739b8fb8532755210865c4}{broadcast} (std\+::string message, double x\+Origin, double y\+Origin, double z\+Origin, double range, \hyperlink{class_comm_mod}{Comm\+Mod} $\ast$)
+\item 
+void \hyperlink{class_environment_abadae98bdccb015d49c6f94c97a8bf82}{add\+Data} (std\+::string type, \hyperlink{class_environment_a7ac989afdd3bde4ea860c985ed1f8479}{data\+\_\+type} d)
+\item 
+void \hyperlink{class_environment_a95654e6bc17cbd781453fdb256fa979b}{add\+Drone} (\hyperlink{class_drone}{Drone} $\ast$m)
+\item 
+void \hyperlink{class_environment_aa06fdaa6619d957c10d858c176f3f307}{set\+Base\+Station} (\hyperlink{class_base_station}{Base\+Station} $\ast$m)
+\item 
+double \hyperlink{class_environment_a0a2b32ecbd52779d17b3d9a483aa6d24}{get\+Data} (std\+::string type, double x, double y, double z)
+\item 
+double \hyperlink{class_environment_a03d9d2db949b5491e60e922d9a33769b}{get\+Time} ()
+\item 
+void \hyperlink{class_environment_a41a43b88702fff5df95e98d10e49f541}{run} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::vector$<$ std\+::vector$<$ std\+::vector$<$ double $>$ $>$ $>$ \hyperlink{class_environment_a7ac989afdd3bde4ea860c985ed1f8479}{data\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_environment_a94758a1936023963eafaa129bb84f89d}{time\+Elapsed}
+\item 
+double \hyperlink{class_environment_a0eac119e9f0130f836f04224612dfb16}{time\+Step}
+\item 
+\hyperlink{class_base_station}{Base\+Station} $\ast$ \hyperlink{class_environment_a01e059baab4daf8833a638fab15eab31}{base\+Station}
+\item 
+std\+::vector$<$ \hyperlink{class_drone}{Drone} $\ast$ $>$ \hyperlink{class_environment_a3119b68685b61fc60e0a76918fa83f0a}{drones}
+\item 
+std\+::map$<$ std\+::string, \hyperlink{class_environment_a7ac989afdd3bde4ea860c985ed1f8479}{data\+\_\+type} $>$ \hyperlink{class_environment_a8f4846d547c4891a4a2493157c8f76d6}{data}
+\item 
+std\+::function$<$ std\+::string(std\+::string)$>$ \hyperlink{class_environment_a95650888a9bfb308a650c049a95cb6cb}{noise\+Fun}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\index{Environment@{Environment}!data\+\_\+type@{data\+\_\+type}}
+\index{data\+\_\+type@{data\+\_\+type}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{data\+\_\+type}{data_type}}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::vector$<$std\+::vector$<$std\+::vector$<$double$>$ $>$ $>$ {\bf Environment\+::data\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_environment_a7ac989afdd3bde4ea860c985ed1f8479}{}\label{class_environment_a7ac989afdd3bde4ea860c985ed1f8479}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Environment@{Environment}!Environment@{Environment}}
+\index{Environment@{Environment}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{Environment(std\+::map$<$ std\+::string, data\+\_\+type $>$, std\+::function$<$ std\+::string(std\+::string)$>$, double timestep)}{Environment(std::map< std::string, data_type >, std::function< std::string(std::string)>, double timestep)}}]{\setlength{\rightskip}{0pt plus 5cm}Environment\+::\+Environment (
+\begin{DoxyParamCaption}
+\item[{std\+::map$<$ std\+::string, {\bf data\+\_\+type} $>$}]{sensor\+\_\+data, }
+\item[{std\+::function$<$ std\+::string(std\+::string)$>$}]{nfun, }
+\item[{double}]{timestep}
+\end{DoxyParamCaption}
+)}\hypertarget{class_environment_aaddf445dbf4217a68a373e183a2bfb0c}{}\label{class_environment_aaddf445dbf4217a68a373e183a2bfb0c}
+\index{Environment@{Environment}!Environment@{Environment}}
+\index{Environment@{Environment}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{Environment(std\+::map$<$ std\+::string, data\+\_\+type $>$, double timestep)}{Environment(std::map< std::string, data_type >, double timestep)}}]{\setlength{\rightskip}{0pt plus 5cm}Environment\+::\+Environment (
+\begin{DoxyParamCaption}
+\item[{std\+::map$<$ std\+::string, {\bf data\+\_\+type} $>$}]{sensor\+\_\+data, }
+\item[{double}]{timestep}
+\end{DoxyParamCaption}
+)}\hypertarget{class_environment_a098fcd6da9a033833095ec76f60aab0d}{}\label{class_environment_a098fcd6da9a033833095ec76f60aab0d}
+
+
+\subsection{Member Function Documentation}
+\index{Environment@{Environment}!add\+Data@{add\+Data}}
+\index{add\+Data@{add\+Data}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{add\+Data(std\+::string type, data\+\_\+type d)}{addData(std::string type, data_type d)}}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\+::add\+Data (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{type, }
+\item[{{\bf data\+\_\+type}}]{d}
+\end{DoxyParamCaption}
+)}\hypertarget{class_environment_abadae98bdccb015d49c6f94c97a8bf82}{}\label{class_environment_abadae98bdccb015d49c6f94c97a8bf82}
+\index{Environment@{Environment}!add\+Drone@{add\+Drone}}
+\index{add\+Drone@{add\+Drone}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{add\+Drone(\+Drone $\ast$m)}{addDrone(Drone *m)}}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\+::add\+Drone (
+\begin{DoxyParamCaption}
+\item[{{\bf Drone} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}\hypertarget{class_environment_a95654e6bc17cbd781453fdb256fa979b}{}\label{class_environment_a95654e6bc17cbd781453fdb256fa979b}
+\index{Environment@{Environment}!broadcast@{broadcast}}
+\index{broadcast@{broadcast}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{broadcast(std\+::string message, double x\+Origin, double y\+Origin, double z\+Origin, double range, Comm\+Mod $\ast$)}{broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod *)}}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\+::broadcast (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{message, }
+\item[{double}]{x\+Origin, }
+\item[{double}]{y\+Origin, }
+\item[{double}]{z\+Origin, }
+\item[{double}]{range, }
+\item[{{\bf Comm\+Mod} $\ast$}]{caller}
+\end{DoxyParamCaption}
+)}\hypertarget{class_environment_a8d5bb36197739b8fb8532755210865c4}{}\label{class_environment_a8d5bb36197739b8fb8532755210865c4}
+\index{Environment@{Environment}!get\+Data@{get\+Data}}
+\index{get\+Data@{get\+Data}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{get\+Data(std\+::string type, double x, double y, double z)}{getData(std::string type, double x, double y, double z)}}]{\setlength{\rightskip}{0pt plus 5cm}double Environment\+::get\+Data (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{type, }
+\item[{double}]{x, }
+\item[{double}]{y, }
+\item[{double}]{z}
+\end{DoxyParamCaption}
+)}\hypertarget{class_environment_a0a2b32ecbd52779d17b3d9a483aa6d24}{}\label{class_environment_a0a2b32ecbd52779d17b3d9a483aa6d24}
+\index{Environment@{Environment}!get\+Time@{get\+Time}}
+\index{get\+Time@{get\+Time}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{get\+Time()}{getTime()}}]{\setlength{\rightskip}{0pt plus 5cm}double Environment\+::get\+Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_environment_a03d9d2db949b5491e60e922d9a33769b}{}\label{class_environment_a03d9d2db949b5491e60e922d9a33769b}
+\index{Environment@{Environment}!run@{run}}
+\index{run@{run}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{run()}{run()}}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\+::run (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_environment_a41a43b88702fff5df95e98d10e49f541}{}\label{class_environment_a41a43b88702fff5df95e98d10e49f541}
+\index{Environment@{Environment}!set\+Base\+Station@{set\+Base\+Station}}
+\index{set\+Base\+Station@{set\+Base\+Station}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{set\+Base\+Station(\+Base\+Station $\ast$m)}{setBaseStation(BaseStation *m)}}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\+::set\+Base\+Station (
+\begin{DoxyParamCaption}
+\item[{{\bf Base\+Station} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}\hypertarget{class_environment_aa06fdaa6619d957c10d858c176f3f307}{}\label{class_environment_aa06fdaa6619d957c10d858c176f3f307}
+
+
+\subsection{Member Data Documentation}
+\index{Environment@{Environment}!base\+Station@{base\+Station}}
+\index{base\+Station@{base\+Station}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{base\+Station}{baseStation}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Station}$\ast$ Environment\+::base\+Station\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_environment_a01e059baab4daf8833a638fab15eab31}{}\label{class_environment_a01e059baab4daf8833a638fab15eab31}
+\index{Environment@{Environment}!data@{data}}
+\index{data@{data}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{data}{data}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$std\+::string, {\bf data\+\_\+type}$>$ Environment\+::data\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_environment_a8f4846d547c4891a4a2493157c8f76d6}{}\label{class_environment_a8f4846d547c4891a4a2493157c8f76d6}
+\index{Environment@{Environment}!drones@{drones}}
+\index{drones@{drones}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{drones}{drones}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Drone}$\ast$$>$ Environment\+::drones\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_environment_a3119b68685b61fc60e0a76918fa83f0a}{}\label{class_environment_a3119b68685b61fc60e0a76918fa83f0a}
+\index{Environment@{Environment}!noise\+Fun@{noise\+Fun}}
+\index{noise\+Fun@{noise\+Fun}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{noise\+Fun}{noiseFun}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::function$<$std\+::string(std\+::string)$>$ Environment\+::noise\+Fun\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_environment_a95650888a9bfb308a650c049a95cb6cb}{}\label{class_environment_a95650888a9bfb308a650c049a95cb6cb}
+\index{Environment@{Environment}!time\+Elapsed@{time\+Elapsed}}
+\index{time\+Elapsed@{time\+Elapsed}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{time\+Elapsed}{timeElapsed}}]{\setlength{\rightskip}{0pt plus 5cm}double Environment\+::time\+Elapsed\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_environment_a94758a1936023963eafaa129bb84f89d}{}\label{class_environment_a94758a1936023963eafaa129bb84f89d}
+\index{Environment@{Environment}!time\+Step@{time\+Step}}
+\index{time\+Step@{time\+Step}!Environment@{Environment}}
+\subsubsection[{\texorpdfstring{time\+Step}{timeStep}}]{\setlength{\rightskip}{0pt plus 5cm}double Environment\+::time\+Step\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_environment_a0eac119e9f0130f836f04224612dfb16}{}\label{class_environment_a0eac119e9f0130f836f04224612dfb16}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+My Documents/\+University Year 4/\+C\+S410 Group Project/effacious-\/octo-\/weasel/code/simulator/\hyperlink{_environment_8hpp}{Environment.\+hpp}\item 
+D\+:/\+My Documents/\+University Year 4/\+C\+S410 Group Project/effacious-\/octo-\/weasel/code/simulator/\hyperlink{_environment_8cpp}{Environment.\+cpp}\end{DoxyCompactItemize}

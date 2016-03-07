@@ -1,0 +1,127 @@
+\hypertarget{class_comm_mod}{}\section{Comm\+Mod Class Reference}
+\label{class_comm_mod}\index{Comm\+Mod@{Comm\+Mod}}
+
+
+{\ttfamily \#include $<$Comm\+Mod.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_comm_mod_a00ab1077257c3672f8036468aecbf234}{Comm\+Mod} (\hyperlink{class_environment}{Environment} $\ast$env)
+\item 
+void \hyperlink{class_comm_mod_ab2e096b71516134bc0cb9bae4a965ef7}{set\+\_\+messageable} (\hyperlink{class_messageable}{Messageable} $\ast$msg)
+\item 
+void \hyperlink{class_comm_mod_abcfe15ea4ed5b27d77d2613cc4e786a3}{broadcast} (std\+::string message, double x\+Pos, double y\+Pos, double z\+Pos, double range)
+\item 
+void \hyperlink{class_comm_mod_af3e34b66c07a5c1e35a806443d0bca8c}{broadcast} (\hyperlink{class_message}{Message} $\ast$message, double x\+Pos, double y\+Pos, double z\+Pos, double range)
+\item 
+void \hyperlink{class_comm_mod_a696711acc752f9c2c60865194de3287f}{push\+\_\+out\+\_\+message} (\hyperlink{class_message}{Message} $\ast$message)
+\item 
+void \hyperlink{class_comm_mod_a2acc6cb30eb7c9d55e3893da147db839}{push\+\_\+in\+\_\+message} (std\+::string message)
+\item 
+virtual void \hyperlink{class_comm_mod_a48b1d970ce600043bf2b610ae113e825}{comm\+\_\+function} ()=0
+\item 
+double \hyperlink{class_comm_mod_a7415ee1b2835f8cb0d650df6ed80622a}{get\+Time} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::queue$<$ \hyperlink{class_message}{Message} $\ast$ $>$ \hyperlink{class_comm_mod_abbd4cbdbb8c4b8680a20aea400e2eabc}{out\+Queue}
+\item 
+std\+::queue$<$ std\+::string $>$ \hyperlink{class_comm_mod_a4d31d6d1741edaaf0ec840ff8bb30047}{in\+Queue}
+\item 
+\hyperlink{class_environment}{Environment} $\ast$ \hyperlink{class_comm_mod_ae4953d3dd38bca7f71c309964636af91}{environment}
+\item 
+\hyperlink{class_messageable}{Messageable} $\ast$ \hyperlink{class_comm_mod_ae45eb57f9d550eb7c0dbb9311a71f72e}{messageable}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Comm\+Mod@{Comm\+Mod}!Comm\+Mod@{Comm\+Mod}}
+\index{Comm\+Mod@{Comm\+Mod}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{Comm\+Mod(\+Environment $\ast$env)}{CommMod(Environment *env)}}]{\setlength{\rightskip}{0pt plus 5cm}Comm\+Mod\+::\+Comm\+Mod (
+\begin{DoxyParamCaption}
+\item[{{\bf Environment} $\ast$}]{env}
+\end{DoxyParamCaption}
+)}\hypertarget{class_comm_mod_a00ab1077257c3672f8036468aecbf234}{}\label{class_comm_mod_a00ab1077257c3672f8036468aecbf234}
+
+
+\subsection{Member Function Documentation}
+\index{Comm\+Mod@{Comm\+Mod}!broadcast@{broadcast}}
+\index{broadcast@{broadcast}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{broadcast(std\+::string message, double x\+Pos, double y\+Pos, double z\+Pos, double range)}{broadcast(std::string message, double xPos, double yPos, double zPos, double range)}}]{\setlength{\rightskip}{0pt plus 5cm}void Comm\+Mod\+::broadcast (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{message, }
+\item[{double}]{x\+Pos, }
+\item[{double}]{y\+Pos, }
+\item[{double}]{z\+Pos, }
+\item[{double}]{range}
+\end{DoxyParamCaption}
+)}\hypertarget{class_comm_mod_abcfe15ea4ed5b27d77d2613cc4e786a3}{}\label{class_comm_mod_abcfe15ea4ed5b27d77d2613cc4e786a3}
+\index{Comm\+Mod@{Comm\+Mod}!broadcast@{broadcast}}
+\index{broadcast@{broadcast}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{broadcast(\+Message $\ast$message, double x\+Pos, double y\+Pos, double z\+Pos, double range)}{broadcast(Message *message, double xPos, double yPos, double zPos, double range)}}]{\setlength{\rightskip}{0pt plus 5cm}void Comm\+Mod\+::broadcast (
+\begin{DoxyParamCaption}
+\item[{{\bf Message} $\ast$}]{message, }
+\item[{double}]{x\+Pos, }
+\item[{double}]{y\+Pos, }
+\item[{double}]{z\+Pos, }
+\item[{double}]{range}
+\end{DoxyParamCaption}
+)}\hypertarget{class_comm_mod_af3e34b66c07a5c1e35a806443d0bca8c}{}\label{class_comm_mod_af3e34b66c07a5c1e35a806443d0bca8c}
+\index{Comm\+Mod@{Comm\+Mod}!comm\+\_\+function@{comm\+\_\+function}}
+\index{comm\+\_\+function@{comm\+\_\+function}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{comm\+\_\+function()=0}{comm_function()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Comm\+Mod\+::comm\+\_\+function (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_comm_mod_a48b1d970ce600043bf2b610ae113e825}{}\label{class_comm_mod_a48b1d970ce600043bf2b610ae113e825}
+\index{Comm\+Mod@{Comm\+Mod}!get\+Time@{get\+Time}}
+\index{get\+Time@{get\+Time}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{get\+Time()}{getTime()}}]{\setlength{\rightskip}{0pt plus 5cm}double Comm\+Mod\+::get\+Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_comm_mod_a7415ee1b2835f8cb0d650df6ed80622a}{}\label{class_comm_mod_a7415ee1b2835f8cb0d650df6ed80622a}
+\index{Comm\+Mod@{Comm\+Mod}!push\+\_\+in\+\_\+message@{push\+\_\+in\+\_\+message}}
+\index{push\+\_\+in\+\_\+message@{push\+\_\+in\+\_\+message}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{push\+\_\+in\+\_\+message(std\+::string message)}{push_in_message(std::string message)}}]{\setlength{\rightskip}{0pt plus 5cm}void Comm\+Mod\+::push\+\_\+in\+\_\+message (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{message}
+\end{DoxyParamCaption}
+)}\hypertarget{class_comm_mod_a2acc6cb30eb7c9d55e3893da147db839}{}\label{class_comm_mod_a2acc6cb30eb7c9d55e3893da147db839}
+\index{Comm\+Mod@{Comm\+Mod}!push\+\_\+out\+\_\+message@{push\+\_\+out\+\_\+message}}
+\index{push\+\_\+out\+\_\+message@{push\+\_\+out\+\_\+message}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{push\+\_\+out\+\_\+message(\+Message $\ast$message)}{push_out_message(Message *message)}}]{\setlength{\rightskip}{0pt plus 5cm}void Comm\+Mod\+::push\+\_\+out\+\_\+message (
+\begin{DoxyParamCaption}
+\item[{{\bf Message} $\ast$}]{message}
+\end{DoxyParamCaption}
+)}\hypertarget{class_comm_mod_a696711acc752f9c2c60865194de3287f}{}\label{class_comm_mod_a696711acc752f9c2c60865194de3287f}
+\index{Comm\+Mod@{Comm\+Mod}!set\+\_\+messageable@{set\+\_\+messageable}}
+\index{set\+\_\+messageable@{set\+\_\+messageable}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{set\+\_\+messageable(\+Messageable $\ast$msg)}{set_messageable(Messageable *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Comm\+Mod\+::set\+\_\+messageable (
+\begin{DoxyParamCaption}
+\item[{{\bf Messageable} $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{class_comm_mod_ab2e096b71516134bc0cb9bae4a965ef7}{}\label{class_comm_mod_ab2e096b71516134bc0cb9bae4a965ef7}
+
+
+\subsection{Member Data Documentation}
+\index{Comm\+Mod@{Comm\+Mod}!environment@{environment}}
+\index{environment@{environment}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{environment}{environment}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Environment}$\ast$ Comm\+Mod\+::environment\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_comm_mod_ae4953d3dd38bca7f71c309964636af91}{}\label{class_comm_mod_ae4953d3dd38bca7f71c309964636af91}
+\index{Comm\+Mod@{Comm\+Mod}!in\+Queue@{in\+Queue}}
+\index{in\+Queue@{in\+Queue}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{in\+Queue}{inQueue}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::queue$<$std\+::string$>$ Comm\+Mod\+::in\+Queue\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_comm_mod_a4d31d6d1741edaaf0ec840ff8bb30047}{}\label{class_comm_mod_a4d31d6d1741edaaf0ec840ff8bb30047}
+\index{Comm\+Mod@{Comm\+Mod}!messageable@{messageable}}
+\index{messageable@{messageable}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{messageable}{messageable}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Messageable}$\ast$ Comm\+Mod\+::messageable\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_comm_mod_ae45eb57f9d550eb7c0dbb9311a71f72e}{}\label{class_comm_mod_ae45eb57f9d550eb7c0dbb9311a71f72e}
+\index{Comm\+Mod@{Comm\+Mod}!out\+Queue@{out\+Queue}}
+\index{out\+Queue@{out\+Queue}!Comm\+Mod@{Comm\+Mod}}
+\subsubsection[{\texorpdfstring{out\+Queue}{outQueue}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::queue$<${\bf Message}$\ast$$>$ Comm\+Mod\+::out\+Queue\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_comm_mod_abbd4cbdbb8c4b8680a20aea400e2eabc}{}\label{class_comm_mod_abbd4cbdbb8c4b8680a20aea400e2eabc}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+My Documents/\+University Year 4/\+C\+S410 Group Project/effacious-\/octo-\/weasel/code/simulator/\hyperlink{_comm_mod_8hpp}{Comm\+Mod.\+hpp}\item 
+D\+:/\+My Documents/\+University Year 4/\+C\+S410 Group Project/effacious-\/octo-\/weasel/code/simulator/\hyperlink{_comm_mod_8cpp}{Comm\+Mod.\+cpp}\end{DoxyCompactItemize}
