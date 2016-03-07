@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['noisefun',['noiseFun',['../class_environment.html#a95650888a9bfb308a650c049a95cb6cb',1,'Environment']]]
+  ['newarea',['newArea',['../class_sensing_drone.html#ad46ca36b37a3e8139f6ad7f1c2f4bcfe',1,'SensingDrone']]]
 ];
