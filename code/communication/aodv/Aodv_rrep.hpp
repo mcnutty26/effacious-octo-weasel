@@ -6,16 +6,18 @@
 
 	class Aodv_rrep: public Aodv_message {
 		public:
-			Aodv_rrep(int, std::string, std::string, std::string, int, int, int);
+			Aodv_rrep(int, std::string, std::string, std::string, int, int, int, std::string);
 			int get_hop_count();
 			std::string get_source_ip();
 			std::string to_string();
 			int get_life_time();
 			std::string get_last_hop();
+			std::string get_next_hop();
 		private:
 			int m_hop_count;
 			std::string m_source_ip;
 			int m_life_time;
 			std::string m_last_hop;
+			std::string m_next_hop;
 	};
 #endif

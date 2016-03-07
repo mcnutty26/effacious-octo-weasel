@@ -20,13 +20,14 @@
 		private:
 			std::map<std::string, Aodv_route*> route_table;
 			std::string ip_address;
-			int HELLO_INTERVAL;
+			double HELLO_INTERVAL;
 			int SEQUENCE_NUMBER;
-			int ACTIVE_ROUTE_TIMEOUT;
-			int PATH_DISCOVERY_TIME;
+			double ACTIVE_ROUTE_TIMEOUT;
+			double PATH_DISCOVERY_TIME;
 			int BROADCAST_ID;
 			int RANGE;
 			int TTL;
+			double last_hello;
 
 			double xpos;
 			double ypos;
