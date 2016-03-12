@@ -15,6 +15,7 @@ bool AodvComms::message_callback(Message*){
 }
 
 void AodvComms::run(){
+	/*
 	switch(m_task){
 		case 0:
 			std::cout << "Sink waiting for message" << std::endl;
@@ -31,4 +32,5 @@ void AodvComms::run(){
 			}
 	}
 	send_message(new Basic_message("KILL"));
+	*/
 }

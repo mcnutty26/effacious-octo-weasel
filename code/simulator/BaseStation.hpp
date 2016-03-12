@@ -6,7 +6,7 @@
 
 	class BaseStation : public Messageable{
 		public:
-			BaseStation(CommMod* cm, double xp, double yp, double zp, double areaX1, double areaY1, double areaX2, double areaY2);
+			BaseStation(CommMod* cm, double xp, double yp, double zp);
 	};
 
 #endif

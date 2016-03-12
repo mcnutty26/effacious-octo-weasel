@@ -6,13 +6,14 @@
 
 	class Basic_message_addressed: public Basic_message {
 		public:
-			Basic_message_addressed(std::string, std::string);
-			//Basic_message_addressed(std::string, std::string, std::string);
+			Basic_message_addressed(std::string, std::string, std::string);
 			std::string to_string();
 			std::string get_message();
 			std::string get_destination();
+			std::string get_source();
 		private:
 			std::string message;
 			std::string destination;
+			std::string source;
 	};
 #endif

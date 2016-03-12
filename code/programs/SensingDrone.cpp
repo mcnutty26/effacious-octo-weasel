@@ -8,10 +8,16 @@
 
 #define PI 3.14159265
 
-SensingDrone::SensingDrone(CommMod* cm, double xp, double yp, double zp, double speed, double sensorRadius, Environment* env, int task, int* flag): Drone(cm, xp, yp, zp, speed, env){
+SensingDrone::SensingDrone(CommMod* cm, double xp, double yp, double zp, double speed, double sensorRadius, Environment* env, bool sink/*, int task, int* flag*/): Drone(cm, xp, yp, zp, speed, env){
 	this->sensorRadius = sensorRadius;
+	
+	sink_node = sink;
+
+	/*
 	m_task = task;
 	m_flag = flag;
+	*/
+	
 };
 
 bool SensingDrone::message_callback(Message*){
@@ -19,6 +25,42 @@ bool SensingDrone::message_callback(Message*){
 }
 
 void SensingDrone::run(){
+	if (sink_node){
+		std::cout << "Sink waiting for message" << std::endl;
+		std::cout << wait_for_message()->to_string() << std::endl;
+		send_message(new Basic_message("KILL"));
+	} else {
+		std::cout << "Source sending message" << std::endl;
+		send_message(new Basic_message("TEST MESSAGE PLEASE IGNORE"));
+		send_message(new Basic_message("KILL"));
+	}
+
+	// Wait for message from base station to begin
+	// Discover other IPs of drones and base station
+	baseStationIP = "10.0.0.255"; // Hardcoded for now
+	
+
+	while (isAlive())
+	{
+		if (!remainingPoints.empty())
+			continueJob();
+		else
+		{
+			Basic_message_addressed* message = dynamic_cast<Basic_message_addressed*>(wait_for_message());
+			// Will the message be lost if it is not from the basestation?
+			if (message->get_destination() == baseStationIP)
+			{
+				std::string str = message->get_message();
+				std::cout << "DRONE: Sensing on area:" << std::endl;
+				std::cout << str << std::endl;
+
+				// Needs actual values
+				newArea(1.0, 1.0, 5.0, 5.0, 1.0);
+			}
+		}
+	}
+
+	/*
 	switch(m_task){
 		case 0:
 			std::cout << "Sink waiting for message" << std::endl;
@@ -35,6 +77,7 @@ void SensingDrone::run(){
 			}
 	}
 	send_message(new Basic_message("KILL"));
+	*/
 }
 
 void SensingDrone::continueJob()
@@ -112,11 +155,5 @@ void SensingDrone::newArea(double x1, double y1, double x2, double y2, double he
 
 /*
 
-if (!remainingPoints.empty())
-continueJob();
-else
-{
-// Wait for a new broadcast with information for a new area...
-}
 
 */

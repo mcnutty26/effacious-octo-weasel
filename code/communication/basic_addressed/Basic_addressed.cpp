@@ -22,6 +22,8 @@ void Basic_addressed::comm_function(){
 
 			std::string dst_ip = Basic_addressed::get_attribute(message);
 			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+			std::string src_ip = Basic_addressed::get_attribute(message);
+			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 			std::string content = Basic_addressed::get_attribute(message);
 
 			if (dst_ip != ip_address){
@@ -29,7 +31,7 @@ void Basic_addressed::comm_function(){
 				break;
 			}
 
-			Message* to_push = new Basic_message_addressed(content, dst_ip);
+			Message* to_push = new Basic_message_addressed(content, dst_ip, src_ip);
 			messageable->push_message(to_push);
 			log("rec'd message");
 		}
@@ -43,7 +45,7 @@ void Basic_addressed::comm_function(){
 			message_string.erase(message_string.begin(), message_string.begin() + message_string.find_first_of(";") + 1);
 			std::string content = Basic_addressed::get_attribute(message_string);
 
-			Basic_message_addressed* addressed_message = new Basic_message_addressed(content, dst_ip);
+			Basic_message_addressed* addressed_message = new Basic_message_addressed(content, dst_ip, ip_address);
 			
 			if (content == "KILL"){
 			    log("exiting");

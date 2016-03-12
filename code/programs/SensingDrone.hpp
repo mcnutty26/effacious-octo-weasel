@@ -10,7 +10,7 @@
 
 	class SensingDrone: public Drone {
 		public:
-			SensingDrone(CommMod*, double, double, double, double, double, Environment*, int, int*);
+			SensingDrone(CommMod*, double, double, double, double, double, Environment*, bool /*, int, int* */);
 			bool message_callback(Message*);
 			void run();
 
@@ -32,5 +32,9 @@
 
 			// The queue that contains the remaining points to be visited.
 			std::queue<Coord> remainingPoints;
+
+			bool sink_node;
+
+			std::string baseStationIP;
 	};
 #endif
