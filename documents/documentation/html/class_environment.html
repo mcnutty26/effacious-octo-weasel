@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Game of Drones Sim: Environment Class Reference</title>
+<title>Effacious Octo Weasel: Environment Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,8 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Game of Drones Sim
+   <div id="projectname">Effacious Octo Weasel
+   &#160;<span id="projectnumber">0.1</span>
    </div>
+   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
   </td>
  </tr>
  </tbody>
@@ -84,8 +86,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-types">Private Types</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_environment-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Environment Class Reference</div>  </div>
@@ -96,13 +96,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaddf445dbf4217a68a373e183a2bfb0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#aaddf445dbf4217a68a373e183a2bfb0c">Environment</a> (std::map&lt; std::string, <a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">data_type</a> &gt;, std::function&lt; std::string(std::string)&gt;, double timestep)</td></tr>
+<tr class="memitem:aaddf445dbf4217a68a373e183a2bfb0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#aaddf445dbf4217a68a373e183a2bfb0c">Environment</a> (std::map&lt; std::string, data_type &gt;, std::function&lt; std::string(std::string)&gt;, double timestep)</td></tr>
 <tr class="separator:aaddf445dbf4217a68a373e183a2bfb0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a098fcd6da9a033833095ec76f60aab0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a098fcd6da9a033833095ec76f60aab0d">Environment</a> (std::map&lt; std::string, <a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">data_type</a> &gt;, double timestep)</td></tr>
+<tr class="memitem:a098fcd6da9a033833095ec76f60aab0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a098fcd6da9a033833095ec76f60aab0d">Environment</a> (std::map&lt; std::string, data_type &gt;, double timestep)</td></tr>
 <tr class="separator:a098fcd6da9a033833095ec76f60aab0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d5bb36197739b8fb8532755210865c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a8d5bb36197739b8fb8532755210865c4">broadcast</a> (std::string message, double xOrigin, double yOrigin, double zOrigin, double range, <a class="el" href="class_comm_mod.html">CommMod</a> *)</td></tr>
 <tr class="separator:a8d5bb36197739b8fb8532755210865c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abadae98bdccb015d49c6f94c97a8bf82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#abadae98bdccb015d49c6f94c97a8bf82">addData</a> (std::string type, <a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">data_type</a> d)</td></tr>
+<tr class="memitem:abadae98bdccb015d49c6f94c97a8bf82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#abadae98bdccb015d49c6f94c97a8bf82">addData</a> (std::string type, data_type d)</td></tr>
 <tr class="separator:abadae98bdccb015d49c6f94c97a8bf82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95654e6bc17cbd781453fdb256fa979b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a95654e6bc17cbd781453fdb256fa979b">addDrone</a> (<a class="el" href="class_drone.html">Drone</a> *m)</td></tr>
 <tr class="separator:a95654e6bc17cbd781453fdb256fa979b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,48 +114,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a03d9d2db949b5491e60e922d9a33769b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41a43b88702fff5df95e98d10e49f541"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a41a43b88702fff5df95e98d10e49f541">run</a> ()</td></tr>
 <tr class="separator:a41a43b88702fff5df95e98d10e49f541"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
-Private Types</h2></td></tr>
-<tr class="memitem:a7ac989afdd3bde4ea860c985ed1f8479"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; std::vector&lt; std::vector&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">data_type</a></td></tr>
-<tr class="separator:a7ac989afdd3bde4ea860c985ed1f8479"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a94758a1936023963eafaa129bb84f89d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a94758a1936023963eafaa129bb84f89d">timeElapsed</a></td></tr>
-<tr class="separator:a94758a1936023963eafaa129bb84f89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0eac119e9f0130f836f04224612dfb16"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a0eac119e9f0130f836f04224612dfb16">timeStep</a></td></tr>
-<tr class="separator:a0eac119e9f0130f836f04224612dfb16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01e059baab4daf8833a638fab15eab31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_base_station.html">BaseStation</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a01e059baab4daf8833a638fab15eab31">baseStation</a></td></tr>
-<tr class="separator:a01e059baab4daf8833a638fab15eab31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3119b68685b61fc60e0a76918fa83f0a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_drone.html">Drone</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a3119b68685b61fc60e0a76918fa83f0a">drones</a></td></tr>
-<tr class="separator:a3119b68685b61fc60e0a76918fa83f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f4846d547c4891a4a2493157c8f76d6"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">data_type</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a8f4846d547c4891a4a2493157c8f76d6">data</a></td></tr>
-<tr class="separator:a8f4846d547c4891a4a2493157c8f76d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95650888a9bfb308a650c049a95cb6cb"><td class="memItemLeft" align="right" valign="top">std::function&lt; std::string(std::string)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a95650888a9bfb308a650c049a95cb6cb">noiseFun</a></td></tr>
-<tr class="separator:a95650888a9bfb308a650c049a95cb6cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
-<a class="anchor" id="a7ac989afdd3bde4ea860c985ed1f8479"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef std::vector&lt;std::vector&lt;std::vector&lt;double&gt; &gt; &gt; <a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">Environment::data_type</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aaddf445dbf4217a68a373e183a2bfb0c"></a>
 <div class="memitem">
@@ -164,7 +123,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">Environment::Environment </td>
           <td>(</td>
-          <td class="paramtype">std::map&lt; std::string, <a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">data_type</a> &gt;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, data_type &gt;&#160;</td>
           <td class="paramname"><em>sensor_data</em>, </td>
         </tr>
         <tr>
@@ -196,7 +155,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">Environment::Environment </td>
           <td>(</td>
-          <td class="paramtype">std::map&lt; std::string, <a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">data_type</a> &gt;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, data_type &gt;&#160;</td>
           <td class="paramname"><em>sensor_data</em>, </td>
         </tr>
         <tr>
@@ -229,7 +188,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">data_type</a>&#160;</td>
+          <td class="paramtype">data_type&#160;</td>
           <td class="paramname"><em>d</em>&#160;</td>
         </tr>
         <tr>
@@ -392,130 +351,9 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a01e059baab4daf8833a638fab15eab31"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_base_station.html">BaseStation</a>* Environment::baseStation</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a8f4846d547c4891a4a2493157c8f76d6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::map&lt;std::string, <a class="el" href="class_environment.html#a7ac989afdd3bde4ea860c985ed1f8479">data_type</a>&gt; Environment::data</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3119b68685b61fc60e0a76918fa83f0a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="class_drone.html">Drone</a>*&gt; Environment::drones</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a95650888a9bfb308a650c049a95cb6cb"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::function&lt;std::string(std::string)&gt; Environment::noiseFun</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a94758a1936023963eafaa129bb84f89d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Environment::timeElapsed</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a0eac119e9f0130f836f04224612dfb16"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Environment::timeStep</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/My Documents/University Year 4/CS410 Group Project/effacious-octo-weasel/code/simulator/<a class="el" href="_environment_8hpp_source.html">Environment.hpp</a></li>
-<li>D:/My Documents/University Year 4/CS410 Group Project/effacious-octo-weasel/code/simulator/<a class="el" href="_environment_8cpp.html">Environment.cpp</a></li>
+<li>/home/will/Documents/effacious-octo-weasel/code/simulator/<a class="el" href="_environment_8hpp_source.html">Environment.hpp</a></li>
+<li>/home/will/Documents/effacious-octo-weasel/code/simulator/<a class="el" href="_environment_8cpp.html">Environment.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

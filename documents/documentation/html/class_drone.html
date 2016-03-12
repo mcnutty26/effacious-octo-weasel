@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Game of Drones Sim: Drone Class Reference</title>
+<title>Effacious Octo Weasel: Drone Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,8 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Game of Drones Sim
+   <div id="projectname">Effacious Octo Weasel
+   &#160;<span id="projectnumber">0.1</span>
    </div>
+   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
   </td>
  </tr>
  </tbody>
@@ -85,7 +87,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_drone-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Drone Class Reference</div>  </div>
@@ -99,13 +100,16 @@ Inheritance diagram for Drone:</div>
  <div class="center">
   <img src="class_drone.png" usemap="#Drone_map" alt=""/>
   <map id="Drone_map" name="Drone_map">
-<area href="class_messageable.html" alt="Messageable" shape="rect" coords="0,0,87,24"/>
+<area href="class_messageable.html" alt="Messageable" shape="rect" coords="102,0,194,24"/>
+<area href="class_aodv_comms.html" alt="AodvComms" shape="rect" coords="0,112,92,136"/>
+<area href="class_sensing_drone.html" alt="SensingDrone" shape="rect" coords="102,112,194,136"/>
+<area href="class_test.html" alt="Test" shape="rect" coords="204,112,296,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a671923cbf775d479aa11f469b82503f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a671923cbf775d479aa11f469b82503f3">Drone</a> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double iX, double iY, double iZ, double <a class="el" href="class_drone.html#a9dcad921c51f4e7455ef79c16261404c">maxSpeed</a>, <a class="el" href="class_environment.html">Environment</a> *e)</td></tr>
+<tr class="memitem:a671923cbf775d479aa11f469b82503f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a671923cbf775d479aa11f469b82503f3">Drone</a> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double iX, double iY, double iZ, double maxSpeed, <a class="el" href="class_environment.html">Environment</a> *e)</td></tr>
 <tr class="separator:a671923cbf775d479aa11f469b82503f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5181059ce456e7ccdf3366ee1f8156db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a5181059ce456e7ccdf3366ee1f8156db">isAlive</a> ()</td></tr>
 <tr class="separator:a5181059ce456e7ccdf3366ee1f8156db"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,25 +157,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a780e43c6486a26eb47a37295ea510269"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd485e52d2ac2d6d81038665495bb480"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#abd485e52d2ac2d6d81038665495bb480">sense</a> (std::string type)</td></tr>
 <tr class="separator:abd485e52d2ac2d6d81038665495bb480"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a58d0d1070b3339121051cb88c8edc5bf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a58d0d1070b3339121051cb88c8edc5bf">oTime</a></td></tr>
-<tr class="separator:a58d0d1070b3339121051cb88c8edc5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea356a33311281ec16bba90066af5142"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#aea356a33311281ec16bba90066af5142">alive</a> = true</td></tr>
-<tr class="separator:aea356a33311281ec16bba90066af5142"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9489e36ee8f7c1c4f9ea1374fa2deed8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_drone_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aa">Direction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a9489e36ee8f7c1c4f9ea1374fa2deed8">dir</a></td></tr>
-<tr class="separator:a9489e36ee8f7c1c4f9ea1374fa2deed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dcad921c51f4e7455ef79c16261404c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a9dcad921c51f4e7455ef79c16261404c">maxSpeed</a></td></tr>
-<tr class="separator:a9dcad921c51f4e7455ef79c16261404c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88b4a0066796c01715b4313bf13f1468"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a88b4a0066796c01715b4313bf13f1468">ang</a> = 0</td></tr>
-<tr class="separator:a88b4a0066796c01715b4313bf13f1468"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a283a1a6532801f59250478d20fa5392f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_environment.html">Environment</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a283a1a6532801f59250478d20fa5392f">env</a></td></tr>
-<tr class="separator:a283a1a6532801f59250478d20fa5392f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1320892a8f0d71d63a36e23079f7d56c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a1320892a8f0d71d63a36e23079f7d56c">moveDR</a></td></tr>
-<tr class="separator:a1320892a8f0d71d63a36e23079f7d56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97270a4291d82a57331669171bd80bc1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a97270a4291d82a57331669171bd80bc1">moveSpd</a></td></tr>
-<tr class="separator:a97270a4291d82a57331669171bd80bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -399,170 +384,9 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="aea356a33311281ec16bba90066af5142"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Drone::alive = true</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a88b4a0066796c01715b4313bf13f1468"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Drone::ang = 0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a9489e36ee8f7c1c4f9ea1374fa2deed8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_drone_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aa">Direction</a> Drone::dir</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a283a1a6532801f59250478d20fa5392f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_environment.html">Environment</a>* Drone::env</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a9dcad921c51f4e7455ef79c16261404c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Drone::maxSpeed</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1320892a8f0d71d63a36e23079f7d56c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Drone::moveDR</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a97270a4291d82a57331669171bd80bc1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Drone::moveSpd</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a58d0d1070b3339121051cb88c8edc5bf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Drone::oTime</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/My Documents/University Year 4/CS410 Group Project/effacious-octo-weasel/code/simulator/<a class="el" href="_drone_8hpp_source.html">Drone.hpp</a></li>
-<li>D:/My Documents/University Year 4/CS410 Group Project/effacious-octo-weasel/code/simulator/<a class="el" href="_drone_8cpp.html">Drone.cpp</a></li>
+<li>/home/will/Documents/effacious-octo-weasel/code/simulator/<a class="el" href="_drone_8hpp_source.html">Drone.hpp</a></li>
+<li>/home/will/Documents/effacious-octo-weasel/code/simulator/<a class="el" href="_drone_8cpp.html">Drone.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
