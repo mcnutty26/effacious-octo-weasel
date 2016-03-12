@@ -1,6 +1,7 @@
-#include "AodvComms.hpp"
+#include "SensingDrone.hpp"
+#include "SensingBaseStation.hpp"
 #include <Environment.hpp>
-#include <Aodv.hpp>
+#include <Basic_addressed.hpp>
 #include <CommMod.hpp>
 #include <map>
 #include <atomic>
@@ -11,26 +12,24 @@ int main(int argv, char* argc[]){
 	//data_type* sensor_data = new data_type();
 	//sensor_map.insert(std::pair<std::string, int>("blank", sensor_data));
 
-	//create the environment and comm modules
+	//create the environment and comm module
 	Environment* env = new Environment(*sensor_map, 1.0);
 	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
 
-	bool debug_mode = true;
-	CommMod* comm_aodv1 = new Aodv(env, "10.0.0.1", &stdout_lock, debug_mode);
-	CommMod* comm_aodv2 = new Aodv(env, "10.0.0.2", &stdout_lock, debug_mode);
-	CommMod* comm_aodv3 = new Aodv(env, "10.0.0.3", &stdout_lock, debug_mode);
-	CommMod* comm_aodv4 = new Aodv(env, "10.0.0.4", &stdout_lock, debug_mode);
+	CommMod* comm_basic1 = new Basic_addressed(env, &stdout_lock, "10.0.0.1");
+	CommMod* comm_basic2 = new Basic_addressed(env, &stdout_lock, "10.0.0.2");
+
+	CommMod* comm_basic_base = new Basic_addressed(env, &stdout_lock, "10.0.0.255");
+
+	//creat and add base station
+	SensingBaseStation* basestation = new SensingBaseStation(comm_basic_base, 0.0, 0.0, 0.0, 1.0, 10.0, 1.0, 10.0);
+	env->setBaseStation(basestation);
 
 	//create and add drones
-	int flag = 0;
-	AodvComms* drone1 = new SensingDrone(comm_aodv1, 0.0, 0.0, 0.0, 0.0, 0.5, env, 0, &flag);
-	AodvComms* drone2 = new SensingDrone(comm_aodv2, 0.0, 7.0, 0.0, 0.0, 0.5, env, -1, &flag);
-	AodvComms* drone3 = new SensingDrone(comm_aodv3, 0.0, 14.0, 0.0, 0.0, 0.5, env, -1, &flag);
-	AodvComms* drone4 = new SensingDrone(comm_aodv4, 0.0, 21.0, 0.0, 0.0, 0.5, env, 1, &flag);
+	SensingDrone* drone1 = new SensingDrone(comm_basic1, 1.0, 1.0, 0.0, 0.0, 0.5, env, false);
+	SensingDrone* drone2 = new SensingDrone(comm_basic2, 2.0, 2.0, 0.0, 0.0, 0.5, env, true);
 	env->addDrone(drone1);
 	env->addDrone(drone2);
-	env->addDrone(drone3);
-	env->addDrone(drone4);
 
 	//run the simulation
 	env->run();
