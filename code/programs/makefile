@@ -30,7 +30,7 @@ exes:
 	$(call colorecho,"Creating executables...")
 	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(BASICLINK) -I ../ -o build/basiccomms BasicComms_exe.cpp build/BasicComms.o
 	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(AODVLINK) -I ../ -o build/aodvcomms AodvComms_exe.cpp build/AodvComms.o
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(BASICADDRLINK) -I ../ -o build/sensingdrone SensingDrone_exe.cpp build/SensingDrone.o
+	#$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(BASICADDRLINK) -I ../ -o build/sensingdrone SensingDrone_exe.cpp build/SensingDrone.o
 
 complete: deps programs exes
 
