@@ -29,10 +29,6 @@
 			int TTL;
 			double last_hello;
 
-			double xpos;
-			double ypos;
-			double zpos;
-
 			Aodv_rreq* create_hello();
 			Aodv_rreq* create_rreq(std::string, std::string, int);
 			Aodv_rrep* create_rrep(std::string, std::string, int);
@@ -55,6 +51,7 @@
 			int state;
 			std::atomic_flag* lock;
 			void log(std::string);
+			void broadcast(std::string);
 			bool logging;
 	};
 #endif

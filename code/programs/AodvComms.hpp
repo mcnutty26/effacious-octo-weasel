@@ -5,17 +5,19 @@
 	#include <Drone.hpp>
 	#include <CommMod.hpp>
 	#include <Message.hpp>
+	#include <atomic>
 
 	typedef std::vector<std::vector<std::vector<double>>> data_type;
 
 	class AodvComms: public Drone {
 		public:
-			AodvComms(CommMod*, double, double, double, double, Environment*, int, int*);
+			AodvComms(CommMod*, double, double, double, double, Environment*, int, int*, std::atomic_flag*);
 			bool message_callback(Message*);
 			void run();
 		private:
 			int m_task;
 			int* m_flag;
-			void quit();
+			std::atomic_flag* m_lock;
+			Environment* m_env;
 	};
 #endif
