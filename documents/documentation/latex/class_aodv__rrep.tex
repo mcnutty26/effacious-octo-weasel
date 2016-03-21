@@ -1,9 +1,5 @@
 \hypertarget{class_aodv__rrep}{}\section{Aodv\+\_\+rrep Class Reference}
 \label{class_aodv__rrep}\index{Aodv\+\_\+rrep@{Aodv\+\_\+rrep}}
-
-
-{\ttfamily \#include $<$Aodv\+\_\+rrep.\+hpp$>$}
-
 Inheritance diagram for Aodv\+\_\+rrep\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -13,79 +9,48 @@ Inheritance diagram for Aodv\+\_\+rrep\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aodv__rrep_a414ec4ee8755f79763dddb9aa099ceda}{Aodv\+\_\+rrep} (int, std\+::string, std\+::string, std\+::string, int, int, int)
+\hyperlink{class_aodv__rrep_a3df34ecb2cda085a3ceaef7d36c59a21}{Aodv\+\_\+rrep} (int, std\+::string, std\+::string, std\+::string, int, int, int, std\+::string)\hypertarget{class_aodv__rrep_a3df34ecb2cda085a3ceaef7d36c59a21}{}\label{class_aodv__rrep_a3df34ecb2cda085a3ceaef7d36c59a21}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_aodv}{Aodv} route reply message. \end{DoxyCompactList}\item 
+int \hyperlink{class_aodv__rrep_a5e9e495a15cdff5c8996f6d809778074}{get\+\_\+hop\+\_\+count} ()\hypertarget{class_aodv__rrep_a5e9e495a15cdff5c8996f6d809778074}{}\label{class_aodv__rrep_a5e9e495a15cdff5c8996f6d809778074}
+
+\begin{DoxyCompactList}\small\item\em Getter method for the hop count of the message. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rrep_a5acc147ba171378fe0e27bdd4210925d}{get\+\_\+source\+\_\+ip} ()\hypertarget{class_aodv__rrep_a5acc147ba171378fe0e27bdd4210925d}{}\label{class_aodv__rrep_a5acc147ba171378fe0e27bdd4210925d}
+
+\begin{DoxyCompactList}\small\item\em Getter method for the IP address of the sending node. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rrep_a4cd8e202122b563276c4395ff2bcd32d}{to\+\_\+string} ()\hypertarget{class_aodv__rrep_a4cd8e202122b563276c4395ff2bcd32d}{}\label{class_aodv__rrep_a4cd8e202122b563276c4395ff2bcd32d}
+
+\begin{DoxyCompactList}\small\item\em Returns a string representation of the message. \end{DoxyCompactList}\item 
+int \hyperlink{class_aodv__rrep_a9c8244ec089fb98cd0db200ae04343bd}{get\+\_\+life\+\_\+time} ()\hypertarget{class_aodv__rrep_a9c8244ec089fb98cd0db200ae04343bd}{}\label{class_aodv__rrep_a9c8244ec089fb98cd0db200ae04343bd}
+
+\begin{DoxyCompactList}\small\item\em Getter method for the life time of the route. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rrep_acbce91f19fcf4379a0c67a12025ea345}{get\+\_\+last\+\_\+hop} ()\hypertarget{class_aodv__rrep_acbce91f19fcf4379a0c67a12025ea345}{}\label{class_aodv__rrep_acbce91f19fcf4379a0c67a12025ea345}
+
+\begin{DoxyCompactList}\small\item\em Getter method for te last hop on this route. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rrep_abe9f7f6a0836aa2979231adbefecf5a4}{get\+\_\+next\+\_\+hop} ()\hypertarget{class_aodv__rrep_abe9f7f6a0836aa2979231adbefecf5a4}{}\label{class_aodv__rrep_abe9f7f6a0836aa2979231adbefecf5a4}
+
+\begin{DoxyCompactList}\small\item\em Getter method for the next hop on this route. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
 \item 
-int \hyperlink{class_aodv__rrep_a5e9e495a15cdff5c8996f6d809778074}{get\+\_\+hop\+\_\+count} ()
-\item 
-std\+::string \hyperlink{class_aodv__rrep_a5acc147ba171378fe0e27bdd4210925d}{get\+\_\+source\+\_\+ip} ()
-\item 
-std\+::string \hyperlink{class_aodv__rrep_a4cd8e202122b563276c4395ff2bcd32d}{to\+\_\+string} ()
-\item 
-int \hyperlink{class_aodv__rrep_a9c8244ec089fb98cd0db200ae04343bd}{get\+\_\+life\+\_\+time} ()
-\item 
-std\+::string \hyperlink{class_aodv__rrep_acbce91f19fcf4379a0c67a12025ea345}{get\+\_\+last\+\_\+hop} ()
-\end{DoxyCompactItemize}
+int \hyperlink{class_aodv__rrep_a71250b0fbb32d6ee3a79bcd9001164d3}{m\+\_\+hop\+\_\+count}\hypertarget{class_aodv__rrep_a71250b0fbb32d6ee3a79bcd9001164d3}{}\label{class_aodv__rrep_a71250b0fbb32d6ee3a79bcd9001164d3}
 
+\begin{DoxyCompactList}\small\item\em Number of hops required to get from the source to the destination of the route. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rrep_af05cbf5eca6bc6b2debaef09d0456c9f}{m\+\_\+source\+\_\+ip}\hypertarget{class_aodv__rrep_af05cbf5eca6bc6b2debaef09d0456c9f}{}\label{class_aodv__rrep_af05cbf5eca6bc6b2debaef09d0456c9f}
 
-\subsection{Constructor \& Destructor Documentation}
-\index{Aodv\+\_\+rrep@{Aodv\+\_\+rrep}!Aodv\+\_\+rrep@{Aodv\+\_\+rrep}}
-\index{Aodv\+\_\+rrep@{Aodv\+\_\+rrep}!Aodv\+\_\+rrep@{Aodv\+\_\+rrep}}
-\subsubsection[{\texorpdfstring{Aodv\+\_\+rrep(int, std\+::string, std\+::string, std\+::string, int, int, int)}{Aodv_rrep(int, std::string, std::string, std::string, int, int, int)}}]{\setlength{\rightskip}{0pt plus 5cm}Aodv\+\_\+rrep\+::\+Aodv\+\_\+rrep (
-\begin{DoxyParamCaption}
-\item[{int}]{hop\+\_\+count, }
-\item[{std\+::string}]{source\+\_\+ip, }
-\item[{std\+::string}]{dest\+\_\+ip, }
-\item[{std\+::string}]{last\+\_\+hop, }
-\item[{int}]{dest\+\_\+seq, }
-\item[{int}]{life\+\_\+time, }
-\item[{int}]{ttl}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rrep_a414ec4ee8755f79763dddb9aa099ceda}{}\label{class_aodv__rrep_a414ec4ee8755f79763dddb9aa099ceda}
+\begin{DoxyCompactList}\small\item\em IP address of the node at which the route terminates. \end{DoxyCompactList}\item 
+int \hyperlink{class_aodv__rrep_afec28b9f25d96f19a48c354bf26e73e6}{m\+\_\+life\+\_\+time}\hypertarget{class_aodv__rrep_afec28b9f25d96f19a48c354bf26e73e6}{}\label{class_aodv__rrep_afec28b9f25d96f19a48c354bf26e73e6}
 
+\begin{DoxyCompactList}\small\item\em Time for which this route is valid. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rrep_a8778befb6440a1e19813e98943ab1373}{m\+\_\+last\+\_\+hop}\hypertarget{class_aodv__rrep_a8778befb6440a1e19813e98943ab1373}{}\label{class_aodv__rrep_a8778befb6440a1e19813e98943ab1373}
 
-\subsection{Member Function Documentation}
-\index{Aodv\+\_\+rrep@{Aodv\+\_\+rrep}!get\+\_\+hop\+\_\+count@{get\+\_\+hop\+\_\+count}}
-\index{get\+\_\+hop\+\_\+count@{get\+\_\+hop\+\_\+count}!Aodv\+\_\+rrep@{Aodv\+\_\+rrep}}
-\subsubsection[{\texorpdfstring{get\+\_\+hop\+\_\+count()}{get_hop_count()}}]{\setlength{\rightskip}{0pt plus 5cm}int Aodv\+\_\+rrep\+::get\+\_\+hop\+\_\+count (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rrep_a5e9e495a15cdff5c8996f6d809778074}{}\label{class_aodv__rrep_a5e9e495a15cdff5c8996f6d809778074}
-\index{Aodv\+\_\+rrep@{Aodv\+\_\+rrep}!get\+\_\+last\+\_\+hop@{get\+\_\+last\+\_\+hop}}
-\index{get\+\_\+last\+\_\+hop@{get\+\_\+last\+\_\+hop}!Aodv\+\_\+rrep@{Aodv\+\_\+rrep}}
-\subsubsection[{\texorpdfstring{get\+\_\+last\+\_\+hop()}{get_last_hop()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Aodv\+\_\+rrep\+::get\+\_\+last\+\_\+hop (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rrep_acbce91f19fcf4379a0c67a12025ea345}{}\label{class_aodv__rrep_acbce91f19fcf4379a0c67a12025ea345}
-\index{Aodv\+\_\+rrep@{Aodv\+\_\+rrep}!get\+\_\+life\+\_\+time@{get\+\_\+life\+\_\+time}}
-\index{get\+\_\+life\+\_\+time@{get\+\_\+life\+\_\+time}!Aodv\+\_\+rrep@{Aodv\+\_\+rrep}}
-\subsubsection[{\texorpdfstring{get\+\_\+life\+\_\+time()}{get_life_time()}}]{\setlength{\rightskip}{0pt plus 5cm}int Aodv\+\_\+rrep\+::get\+\_\+life\+\_\+time (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rrep_a9c8244ec089fb98cd0db200ae04343bd}{}\label{class_aodv__rrep_a9c8244ec089fb98cd0db200ae04343bd}
-\index{Aodv\+\_\+rrep@{Aodv\+\_\+rrep}!get\+\_\+source\+\_\+ip@{get\+\_\+source\+\_\+ip}}
-\index{get\+\_\+source\+\_\+ip@{get\+\_\+source\+\_\+ip}!Aodv\+\_\+rrep@{Aodv\+\_\+rrep}}
-\subsubsection[{\texorpdfstring{get\+\_\+source\+\_\+ip()}{get_source_ip()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Aodv\+\_\+rrep\+::get\+\_\+source\+\_\+ip (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rrep_a5acc147ba171378fe0e27bdd4210925d}{}\label{class_aodv__rrep_a5acc147ba171378fe0e27bdd4210925d}
-\index{Aodv\+\_\+rrep@{Aodv\+\_\+rrep}!to\+\_\+string@{to\+\_\+string}}
-\index{to\+\_\+string@{to\+\_\+string}!Aodv\+\_\+rrep@{Aodv\+\_\+rrep}}
-\subsubsection[{\texorpdfstring{to\+\_\+string()}{to_string()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Aodv\+\_\+rrep\+::to\+\_\+string (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_aodv__rrep_a4cd8e202122b563276c4395ff2bcd32d}{}\label{class_aodv__rrep_a4cd8e202122b563276c4395ff2bcd32d}
+\begin{DoxyCompactList}\small\item\em The last node which forwarded this reply. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rrep_af914388895516d1394b047486407e406}{m\+\_\+next\+\_\+hop}\hypertarget{class_aodv__rrep_af914388895516d1394b047486407e406}{}\label{class_aodv__rrep_af914388895516d1394b047486407e406}
 
-
-Implements \hyperlink{class_message_af65196e1bf4dfa1e44f59757612d3586}{Message}.
-
+\begin{DoxyCompactList}\small\item\em The next node to which this reply will be forwarded. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/communication/aodv/\hyperlink{_aodv__rrep_8hpp}{Aodv\+\_\+rrep.\+hpp}\item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/communication/aodv/\hyperlink{_aodv__rrep_8cpp}{Aodv\+\_\+rrep.\+cpp}\end{DoxyCompactItemize}
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/communication/aodv/Aodv\+\_\+rrep.\+hpp\item 
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/communication/aodv/Aodv\+\_\+rrep.\+cpp\end{DoxyCompactItemize}

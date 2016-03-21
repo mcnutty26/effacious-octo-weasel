@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Effacious Octo Weasel: /home/will/Documents/effacious-octo-weasel/code/communication/aodv/Aodv_route.hpp Source File</title>
+<title>Serenity: /home/will/Documents/effacious-octo-weasel/code/communication/aodv/Aodv_route.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,10 +31,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Effacious Octo Weasel
+   <div id="projectname">Serenity
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
+   <div id="projectbrief">Discrete event network simulator for drone networks</div>
   </td>
  </tr>
  </tbody>
@@ -63,9 +71,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_aodv__route_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,28 +102,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3648090fc410cd55971a425a1cb3e81d.html">effacious-octo-weasel</a></li><li class="navelem"><a class="el" href="dir_d0280efaebe90c599b53af3fcd2553ec.html">code</a></li><li class="navelem"><a class="el" href="dir_1c303802f388344a4e0ab15946fe4f0f.html">communication</a></li><li class="navelem"><a class="el" href="dir_4eda47cf0f93353306e446149756ae1a.html">aodv</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Aodv_route.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_aodv__route_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef EOW_AODV_ROUTE</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">    #define EOW_AODV_ROUTE</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">    #include &lt;string&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_aodv__route.html">    6</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_aodv__route.html">Aodv_route</a>{</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <span class="keyword">public</span>:</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;            <a class="code" href="class_aodv__route.html#a666f0dc139dddaf794a7d61ecc5c5817">Aodv_route</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>, std::string, <span class="keywordtype">int</span>);</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__route.html#a68a80d4a583d553ebaf032ff6533c7a6">get_seq</a>();</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__route.html#abc9740b17cdf00ca25d0f6b4679820c0">get_hop</a>();</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            std::string <a class="code" href="class_aodv__route.html#a323b2c66c323c9af9d991893be8d5857">get_next_hop</a>();</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__route.html#a6c06635874c9269443ea782586bbbc91">get_life</a>();</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">private</span>:</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordtype">int</span> dst_seq;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordtype">int</span> hop_count;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            std::string next_hop;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keywordtype">int</span> life_time;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    };</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_aodv__route_html_abc9740b17cdf00ca25d0f6b4679820c0"><div class="ttname"><a href="class_aodv__route.html#abc9740b17cdf00ca25d0f6b4679820c0">Aodv_route::get_hop</a></div><div class="ttdeci">int get_hop()</div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:14</div></div>
-<div class="ttc" id="class_aodv__route_html_a666f0dc139dddaf794a7d61ecc5c5817"><div class="ttname"><a href="class_aodv__route.html#a666f0dc139dddaf794a7d61ecc5c5817">Aodv_route::Aodv_route</a></div><div class="ttdeci">Aodv_route(int, int, std::string, int)</div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:3</div></div>
-<div class="ttc" id="class_aodv__route_html_a6c06635874c9269443ea782586bbbc91"><div class="ttname"><a href="class_aodv__route.html#a6c06635874c9269443ea782586bbbc91">Aodv_route::get_life</a></div><div class="ttdeci">int get_life()</div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:22</div></div>
-<div class="ttc" id="class_aodv__route_html_a68a80d4a583d553ebaf032ff6533c7a6"><div class="ttname"><a href="class_aodv__route.html#a68a80d4a583d553ebaf032ff6533c7a6">Aodv_route::get_seq</a></div><div class="ttdeci">int get_seq()</div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:10</div></div>
-<div class="ttc" id="class_aodv__route_html_a323b2c66c323c9af9d991893be8d5857"><div class="ttname"><a href="class_aodv__route.html#a323b2c66c323c9af9d991893be8d5857">Aodv_route::get_next_hop</a></div><div class="ttdeci">std::string get_next_hop()</div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:18</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef EOW_AODV_ROUTE</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">    #define EOW_AODV_ROUTE</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">    #include &lt;string&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_aodv__route.html">    6</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_aodv__route.html">Aodv_route</a>{</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <span class="keyword">public</span>:</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;            <a class="code" href="class_aodv__route.html#a666f0dc139dddaf794a7d61ecc5c5817">Aodv_route</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>, std::string, <span class="keywordtype">int</span>);</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__route.html#a68a80d4a583d553ebaf032ff6533c7a6">get_seq</a>();</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__route.html#abc9740b17cdf00ca25d0f6b4679820c0">get_hop</a>();</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            std::string <a class="code" href="class_aodv__route.html#a323b2c66c323c9af9d991893be8d5857">get_next_hop</a>();</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__route.html#a6c06635874c9269443ea782586bbbc91">get_life</a>();</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">private</span>:</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_aodv__route.html#a6181d78c70313a943c3875650f6b5034">   16</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__route.html#a6181d78c70313a943c3875650f6b5034">dst_seq</a>;</div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_aodv__route.html#a5091dac0edb94ffbce78b570c9476583">   18</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__route.html#a5091dac0edb94ffbce78b570c9476583">hop_count</a>;</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_aodv__route.html#abb6560ab9abb3445562173383963358f">   20</a></span>&#160;            std::string <a class="code" href="class_aodv__route.html#abb6560ab9abb3445562173383963358f">next_hop</a>;</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_aodv__route.html#a6d1c7cca7009b97d3950e29708b980d4">   22</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__route.html#a6d1c7cca7009b97d3950e29708b980d4">life_time</a>;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    };</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_aodv__route_html_abc9740b17cdf00ca25d0f6b4679820c0"><div class="ttname"><a href="class_aodv__route.html#abc9740b17cdf00ca25d0f6b4679820c0">Aodv_route::get_hop</a></div><div class="ttdeci">int get_hop()</div><div class="ttdoc">Getter method for the route hop count. </div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:19</div></div>
+<div class="ttc" id="class_aodv__route_html_a666f0dc139dddaf794a7d61ecc5c5817"><div class="ttname"><a href="class_aodv__route.html#a666f0dc139dddaf794a7d61ecc5c5817">Aodv_route::Aodv_route</a></div><div class="ttdeci">Aodv_route(int, int, std::string, int)</div><div class="ttdoc">Entry in ann AODV routing table. </div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:6</div></div>
+<div class="ttc" id="class_aodv__route_html_a6181d78c70313a943c3875650f6b5034"><div class="ttname"><a href="class_aodv__route.html#a6181d78c70313a943c3875650f6b5034">Aodv_route::dst_seq</a></div><div class="ttdeci">int dst_seq</div><div class="ttdoc">Sequence number of the route destination. </div><div class="ttdef"><b>Definition:</b> Aodv_route.hpp:16</div></div>
+<div class="ttc" id="class_aodv__route_html_a6c06635874c9269443ea782586bbbc91"><div class="ttname"><a href="class_aodv__route.html#a6c06635874c9269443ea782586bbbc91">Aodv_route::get_life</a></div><div class="ttdeci">int get_life()</div><div class="ttdoc">Getter method for the route life time. </div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:29</div></div>
+<div class="ttc" id="class_aodv__route_html_a5091dac0edb94ffbce78b570c9476583"><div class="ttname"><a href="class_aodv__route.html#a5091dac0edb94ffbce78b570c9476583">Aodv_route::hop_count</a></div><div class="ttdeci">int hop_count</div><div class="ttdoc">Number of hops required to get to the destination node. </div><div class="ttdef"><b>Definition:</b> Aodv_route.hpp:18</div></div>
+<div class="ttc" id="class_aodv__route_html_a68a80d4a583d553ebaf032ff6533c7a6"><div class="ttname"><a href="class_aodv__route.html#a68a80d4a583d553ebaf032ff6533c7a6">Aodv_route::get_seq</a></div><div class="ttdeci">int get_seq()</div><div class="ttdoc">Getter method for the sequence number of the route destination. </div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:14</div></div>
+<div class="ttc" id="class_aodv__route_html_abb6560ab9abb3445562173383963358f"><div class="ttname"><a href="class_aodv__route.html#abb6560ab9abb3445562173383963358f">Aodv_route::next_hop</a></div><div class="ttdeci">std::string next_hop</div><div class="ttdoc">Next hop on this route. </div><div class="ttdef"><b>Definition:</b> Aodv_route.hpp:20</div></div>
+<div class="ttc" id="class_aodv__route_html_a6d1c7cca7009b97d3950e29708b980d4"><div class="ttname"><a href="class_aodv__route.html#a6d1c7cca7009b97d3950e29708b980d4">Aodv_route::life_time</a></div><div class="ttdeci">int life_time</div><div class="ttdoc">Lifetime of this route. </div><div class="ttdef"><b>Definition:</b> Aodv_route.hpp:22</div></div>
+<div class="ttc" id="class_aodv__route_html_a323b2c66c323c9af9d991893be8d5857"><div class="ttname"><a href="class_aodv__route.html#a323b2c66c323c9af9d991893be8d5857">Aodv_route::get_next_hop</a></div><div class="ttdeci">std::string get_next_hop()</div><div class="ttdoc">Getter method for the next hop on this route. </div><div class="ttdef"><b>Definition:</b> Aodv_route.cpp:24</div></div>
 <div class="ttc" id="class_aodv__route_html"><div class="ttname"><a href="class_aodv__route.html">Aodv_route</a></div><div class="ttdef"><b>Definition:</b> Aodv_route.hpp:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f396504afdc959660871b003fa10164d.html">Documents</a></li><li class="navelem"><a class="el" href="dir_5ff2b33cc091083642953efddd646e35.html">effacious-octo-weasel</a></li><li class="navelem"><a class="el" href="dir_577c011ccc05a4190a0b9ce374a6a16b.html">code</a></li><li class="navelem"><a class="el" href="dir_66dfceda39a5228ea9c912caeb281228.html">communication</a></li><li class="navelem"><a class="el" href="dir_9b5027f7e1722fa8c7b9d0798e932968.html">aodv</a></li><li class="navelem"><b>Aodv_route.hpp</b></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

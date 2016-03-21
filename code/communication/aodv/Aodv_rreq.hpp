@@ -12,8 +12,11 @@
 			std::string to_string();
 			int get_source_seq();
 		private:
+			///The number of hops taken towards the destination
 			int hop_count;
+			///The IP address of the sending node
 			std::string source_ip;
+			///The sequence number of the sending node
 			int source_seq;
 	};
 #endif

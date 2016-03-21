@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Effacious Octo Weasel: Member List</title>
+<title>Serenity: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,10 +31,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Effacious Octo Weasel
+   <div id="projectname">Serenity
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
+   <div id="projectbrief">Discrete event network simulator for drone networks</div>
   </td>
  </tr>
  </tbody>
@@ -68,6 +76,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_environment.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,7 +105,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Environment Member List</div>  </div>
@@ -91,21 +113,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_environment.html">Environment</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_environment.html#abadae98bdccb015d49c6f94c97a8bf82">addData</a>(std::string type, data_type d)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_environment.html#a95654e6bc17cbd781453fdb256fa979b">addDrone</a>(Drone *m)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_environment.html#a8d5bb36197739b8fb8532755210865c4">broadcast</a>(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod *)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_environment.html#aaddf445dbf4217a68a373e183a2bfb0c">Environment</a>(std::map&lt; std::string, data_type &gt;, std::function&lt; std::string(std::string)&gt;, double timestep)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_environment.html#a098fcd6da9a033833095ec76f60aab0d">Environment</a>(std::map&lt; std::string, data_type &gt;, double timestep)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_environment.html#a0a2b32ecbd52779d17b3d9a483aa6d24">getData</a>(std::string type, double x, double y, double z)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_environment.html#a03d9d2db949b5491e60e922d9a33769b">getTime</a>()</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_environment.html#a41a43b88702fff5df95e98d10e49f541">run</a>()</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_environment.html#aa06fdaa6619d957c10d858c176f3f307">setBaseStation</a>(BaseStation *m)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>addData</b>(std::string type, data_type d) (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>addDrone</b>(Drone *m) (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>baseStation</b> (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>broadcast</b>(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod *) (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>data</b> (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>data_type</b> typedef (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>drones</b> (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Environment</b>(std::map&lt; std::string, data_type &gt;, std::function&lt; std::string(std::string)&gt;, double timestep) (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Environment</b>(std::map&lt; std::string, data_type &gt;, double timestep) (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getData</b>(std::string type, double x, double y, double z) (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getTime</b>() (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>noiseFun</b> (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>run</b>() (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setBaseStation</b>(BaseStation *m) (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>timeElapsed</b> (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>timeStep</b> (defined in <a class="el" href="class_environment.html">Environment</a>)</td><td class="entry"><a class="el" href="class_environment.html">Environment</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

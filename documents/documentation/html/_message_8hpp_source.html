@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Effacious Octo Weasel: /home/will/Documents/effacious-octo-weasel/code/simulator/Message.hpp Source File</title>
+<title>Serenity: /home/will/Documents/effacious-octo-weasel/code/simulator/Message.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,10 +31,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Effacious Octo Weasel
+   <div id="projectname">Serenity
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
+   <div id="projectbrief">Discrete event network simulator for drone networks</div>
   </td>
  </tr>
  </tbody>
@@ -63,9 +71,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_message_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,27 +102,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3648090fc410cd55971a425a1cb3e81d.html">effacious-octo-weasel</a></li><li class="navelem"><a class="el" href="dir_d0280efaebe90c599b53af3fcd2553ec.html">code</a></li><li class="navelem"><a class="el" href="dir_c1754ed5c7291a8abdd37ca7bd9a8fcf.html">simulator</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Message.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_message_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef EOW_MESSAGE_HPP</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">    #define EOW_MESSAGE_HPP</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">    #include &lt;ctime&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">    #include &lt;string&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_message.html">    7</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_message.html">Message</a></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    {</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keyword">public</span>:</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            <a class="code" href="class_message.html#aa222cbc5bf7865d5464a841740f45c11">Message</a>(std::string type);</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            time_t <a class="code" href="class_message.html#a5c9fecc6bf5fa404a04b89d7585a757c">get_current_time</a>();</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="keyword">virtual</span> std::string <a class="code" href="class_message.html#af65196e1bf4dfa1e44f59757612d3586">to_string</a>() = 0;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="comment">//virtual void from_string(std::string message) = 0;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            std::string <a class="code" href="class_message.html#ae3680358818bc391a3fb25bfc6fc57d6">get_type</a>();</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keyword">private</span>:</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            std::string type;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    };</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_message_html_af65196e1bf4dfa1e44f59757612d3586"><div class="ttname"><a href="class_message.html#af65196e1bf4dfa1e44f59757612d3586">Message::to_string</a></div><div class="ttdeci">virtual std::string to_string()=0</div></div>
-<div class="ttc" id="class_message_html_aa222cbc5bf7865d5464a841740f45c11"><div class="ttname"><a href="class_message.html#aa222cbc5bf7865d5464a841740f45c11">Message::Message</a></div><div class="ttdeci">Message(std::string type)</div><div class="ttdef"><b>Definition:</b> Message.cpp:3</div></div>
-<div class="ttc" id="class_message_html_a5c9fecc6bf5fa404a04b89d7585a757c"><div class="ttname"><a href="class_message.html#a5c9fecc6bf5fa404a04b89d7585a757c">Message::get_current_time</a></div><div class="ttdeci">time_t get_current_time()</div><div class="ttdef"><b>Definition:</b> Message.cpp:8</div></div>
-<div class="ttc" id="class_message_html_ae3680358818bc391a3fb25bfc6fc57d6"><div class="ttname"><a href="class_message.html#ae3680358818bc391a3fb25bfc6fc57d6">Message::get_type</a></div><div class="ttdeci">std::string get_type()</div><div class="ttdef"><b>Definition:</b> Message.cpp:13</div></div>
-<div class="ttc" id="class_message_html"><div class="ttname"><a href="class_message.html">Message</a></div><div class="ttdef"><b>Definition:</b> Message.hpp:7</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef EOW_MESSAGE_HPP</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">    #define EOW_MESSAGE_HPP</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">    #include &lt;ctime&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">    #include &lt;string&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_message.html">    7</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_message.html">Message</a></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    {</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keyword">public</span>:</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            <a class="code" href="class_message.html">Message</a>(std::string type);</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            time_t get_current_time();</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="keyword">virtual</span> std::string to_string() = 0;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="comment">//virtual void from_string(std::string message) = 0;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            std::string get_type();</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keyword">private</span>:</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            std::string type;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    };</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_message_html"><div class="ttname"><a href="class_message.html">Message</a></div><div class="ttdef"><b>Definition:</b> Message.hpp:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f396504afdc959660871b003fa10164d.html">Documents</a></li><li class="navelem"><a class="el" href="dir_5ff2b33cc091083642953efddd646e35.html">effacious-octo-weasel</a></li><li class="navelem"><a class="el" href="dir_577c011ccc05a4190a0b9ce374a6a16b.html">code</a></li><li class="navelem"><a class="el" href="dir_d32ae6e43b4fe1d1e2c75ab25a3ae484.html">simulator</a></li><li class="navelem"><b>Message.hpp</b></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

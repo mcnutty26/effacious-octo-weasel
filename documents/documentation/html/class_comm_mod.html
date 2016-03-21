@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Effacious Octo Weasel: CommMod Class Reference</title>
+<title>Serenity: CommMod Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,10 +31,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Effacious Octo Weasel
+   <div id="projectname">Serenity
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
+   <div id="projectbrief">Discrete event network simulator for drone networks</div>
   </td>
  </tr>
  </tbody>
@@ -68,6 +76,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_comm_mod.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,7 +105,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -92,8 +114,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">CommMod Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_comm_mod_8hpp_source.html">CommMod.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CommMod:</div>
 <div class="dyncontent">
@@ -108,319 +128,60 @@ Inheritance diagram for CommMod:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a00ab1077257c3672f8036468aecbf234"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a00ab1077257c3672f8036468aecbf234">CommMod</a> (<a class="el" href="class_environment.html">Environment</a> *env)</td></tr>
+<tr class="memitem:a00ab1077257c3672f8036468aecbf234"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00ab1077257c3672f8036468aecbf234"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CommMod</b> (<a class="el" href="class_environment.html">Environment</a> *env)</td></tr>
 <tr class="separator:a00ab1077257c3672f8036468aecbf234"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2e096b71516134bc0cb9bae4a965ef7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#ab2e096b71516134bc0cb9bae4a965ef7">set_messageable</a> (<a class="el" href="class_messageable.html">Messageable</a> *msg)</td></tr>
+<tr class="memitem:ab2e096b71516134bc0cb9bae4a965ef7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2e096b71516134bc0cb9bae4a965ef7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_messageable</b> (<a class="el" href="class_messageable.html">Messageable</a> *msg)</td></tr>
 <tr class="separator:ab2e096b71516134bc0cb9bae4a965ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcfe15ea4ed5b27d77d2613cc4e786a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#abcfe15ea4ed5b27d77d2613cc4e786a3">broadcast</a> (std::string message, double xPos, double yPos, double zPos, double range)</td></tr>
+<tr class="memitem:abcfe15ea4ed5b27d77d2613cc4e786a3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcfe15ea4ed5b27d77d2613cc4e786a3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>broadcast</b> (std::string message, double xPos, double yPos, double zPos, double range)</td></tr>
 <tr class="separator:abcfe15ea4ed5b27d77d2613cc4e786a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3e34b66c07a5c1e35a806443d0bca8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#af3e34b66c07a5c1e35a806443d0bca8c">broadcast</a> (<a class="el" href="class_message.html">Message</a> *message, double xPos, double yPos, double zPos, double range)</td></tr>
+<tr class="memitem:af3e34b66c07a5c1e35a806443d0bca8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3e34b66c07a5c1e35a806443d0bca8c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>broadcast</b> (<a class="el" href="class_message.html">Message</a> *message, double xPos, double yPos, double zPos, double range)</td></tr>
 <tr class="separator:af3e34b66c07a5c1e35a806443d0bca8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a696711acc752f9c2c60865194de3287f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a696711acc752f9c2c60865194de3287f">push_out_message</a> (<a class="el" href="class_message.html">Message</a> *message)</td></tr>
+<tr class="memitem:a696711acc752f9c2c60865194de3287f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a696711acc752f9c2c60865194de3287f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>push_out_message</b> (<a class="el" href="class_message.html">Message</a> *message)</td></tr>
 <tr class="separator:a696711acc752f9c2c60865194de3287f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2acc6cb30eb7c9d55e3893da147db839"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a2acc6cb30eb7c9d55e3893da147db839">push_in_message</a> (std::string message)</td></tr>
+<tr class="memitem:a2acc6cb30eb7c9d55e3893da147db839"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2acc6cb30eb7c9d55e3893da147db839"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>push_in_message</b> (std::string message)</td></tr>
 <tr class="separator:a2acc6cb30eb7c9d55e3893da147db839"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48b1d970ce600043bf2b610ae113e825"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a48b1d970ce600043bf2b610ae113e825">comm_function</a> ()=0</td></tr>
+<tr class="memitem:a48b1d970ce600043bf2b610ae113e825"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48b1d970ce600043bf2b610ae113e825"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>comm_function</b> ()=0</td></tr>
 <tr class="separator:a48b1d970ce600043bf2b610ae113e825"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7415ee1b2835f8cb0d650df6ed80622a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a7415ee1b2835f8cb0d650df6ed80622a">getTime</a> ()</td></tr>
+<tr class="memitem:a7415ee1b2835f8cb0d650df6ed80622a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7415ee1b2835f8cb0d650df6ed80622a"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td></tr>
 <tr class="separator:a7415ee1b2835f8cb0d650df6ed80622a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:abbd4cbdbb8c4b8680a20aea400e2eabc"><td class="memItemLeft" align="right" valign="top">std::queue&lt; <a class="el" href="class_message.html">Message</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#abbd4cbdbb8c4b8680a20aea400e2eabc">outQueue</a></td></tr>
+<tr class="memitem:abbd4cbdbb8c4b8680a20aea400e2eabc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbd4cbdbb8c4b8680a20aea400e2eabc"></a>
+std::queue&lt; <a class="el" href="class_message.html">Message</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>outQueue</b></td></tr>
 <tr class="separator:abbd4cbdbb8c4b8680a20aea400e2eabc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d31d6d1741edaaf0ec840ff8bb30047"><td class="memItemLeft" align="right" valign="top">std::queue&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a4d31d6d1741edaaf0ec840ff8bb30047">inQueue</a></td></tr>
+<tr class="memitem:a4d31d6d1741edaaf0ec840ff8bb30047"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d31d6d1741edaaf0ec840ff8bb30047"></a>
+std::queue&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>inQueue</b></td></tr>
 <tr class="separator:a4d31d6d1741edaaf0ec840ff8bb30047"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4953d3dd38bca7f71c309964636af91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_environment.html">Environment</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#ae4953d3dd38bca7f71c309964636af91">environment</a></td></tr>
+<tr class="memitem:ae4953d3dd38bca7f71c309964636af91"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4953d3dd38bca7f71c309964636af91"></a>
+<a class="el" href="class_environment.html">Environment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>environment</b></td></tr>
 <tr class="separator:ae4953d3dd38bca7f71c309964636af91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae45eb57f9d550eb7c0dbb9311a71f72e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_messageable.html">Messageable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#ae45eb57f9d550eb7c0dbb9311a71f72e">messageable</a></td></tr>
+<tr class="memitem:ae45eb57f9d550eb7c0dbb9311a71f72e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae45eb57f9d550eb7c0dbb9311a71f72e"></a>
+<a class="el" href="class_messageable.html">Messageable</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>messageable</b></td></tr>
 <tr class="separator:ae45eb57f9d550eb7c0dbb9311a71f72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a00ab1077257c3672f8036468aecbf234"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CommMod::CommMod </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_environment.html">Environment</a> *&#160;</td>
-          <td class="paramname"><em>env</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abcfe15ea4ed5b27d77d2613cc4e786a3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CommMod::broadcast </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>xPos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>yPos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>zPos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>range</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af3e34b66c07a5c1e35a806443d0bca8c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CommMod::broadcast </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_message.html">Message</a> *&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>xPos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>yPos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>zPos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>range</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a48b1d970ce600043bf2b610ae113e825"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void CommMod::comm_function </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="class_aodv.html#a747648e75a01803732affdccc8c03bef">Aodv</a>, <a class="el" href="class_basic.html#a736b2bb76e936ed7f5cb20b6c166b76a">Basic</a>, and <a class="el" href="class_basic__addressed.html#ac884eb8fca81e164c0f6c073b2d4df80">Basic_addressed</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7415ee1b2835f8cb0d650df6ed80622a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double CommMod::getTime </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2acc6cb30eb7c9d55e3893da147db839"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CommMod::push_in_message </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>message</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a696711acc752f9c2c60865194de3287f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CommMod::push_out_message </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_message.html">Message</a> *&#160;</td>
-          <td class="paramname"><em>message</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab2e096b71516134bc0cb9bae4a965ef7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CommMod::set_messageable </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_messageable.html">Messageable</a> *&#160;</td>
-          <td class="paramname"><em>msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="ae4953d3dd38bca7f71c309964636af91"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_environment.html">Environment</a>* CommMod::environment</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a4d31d6d1741edaaf0ec840ff8bb30047"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::queue&lt;std::string&gt; CommMod::inQueue</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae45eb57f9d550eb7c0dbb9311a71f72e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_messageable.html">Messageable</a>* CommMod::messageable</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="abbd4cbdbb8c4b8680a20aea400e2eabc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::queue&lt;<a class="el" href="class_message.html">Message</a>*&gt; CommMod::outQueue</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/will/Documents/effacious-octo-weasel/code/simulator/<a class="el" href="_comm_mod_8hpp_source.html">CommMod.hpp</a></li>
-<li>/home/will/Documents/effacious-octo-weasel/code/simulator/<a class="el" href="_comm_mod_8cpp.html">CommMod.cpp</a></li>
+<li>/home/will/Documents/effacious-octo-weasel/code/simulator/CommMod.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_comm_mod.html">CommMod</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

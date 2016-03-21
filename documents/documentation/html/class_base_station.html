@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Effacious Octo Weasel: BaseStation Class Reference</title>
+<title>Serenity: BaseStation Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,10 +31,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Effacious Octo Weasel
+   <div id="projectname">Serenity
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
+   <div id="projectbrief">Discrete event network simulator for drone networks</div>
   </td>
  </tr>
  </tbody>
@@ -68,6 +76,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_base_station.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,7 +105,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -91,135 +113,93 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">BaseStation Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_base_station_8hpp_source.html">BaseStation.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for BaseStation:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_base_station.png" usemap="#BaseStation_map" alt=""/>
   <map id="BaseStation_map" name="BaseStation_map">
-<area href="class_messageable.html" alt="Messageable" shape="rect" coords="0,0,87,24"/>
+<area href="class_messageable.html" alt="Messageable" shape="rect" coords="0,0,123,24"/>
+<area href="class_sensing_base_station.html" alt="SensingBaseStation" shape="rect" coords="0,112,123,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a21d3ef514b4ba58055a6d4bfd035ae68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_base_station.html#a21d3ef514b4ba58055a6d4bfd035ae68">BaseStation</a> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp, double areaX1, double areaY1, double areaX2, double areaY2)</td></tr>
-<tr class="separator:a21d3ef514b4ba58055a6d4bfd035ae68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa969be6d1673b8ad27229652ab608473"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa969be6d1673b8ad27229652ab608473"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BaseStation</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp)</td></tr>
+<tr class="separator:aa969be6d1673b8ad27229652ab608473"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_messageable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_messageable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_messageable.html">Messageable</a></td></tr>
-<tr class="memitem:a17da78cfa69fc760ece179365de9ef23 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a17da78cfa69fc760ece179365de9ef23">Messageable</a> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp)</td></tr>
+<tr class="memitem:a17da78cfa69fc760ece179365de9ef23 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17da78cfa69fc760ece179365de9ef23"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Messageable</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp)</td></tr>
 <tr class="separator:a17da78cfa69fc760ece179365de9ef23 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaadfd99f6f7a1ec8c8195232a48e3b15 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#aaadfd99f6f7a1ec8c8195232a48e3b15">send_message</a> (<a class="el" href="class_message.html">Message</a> *contents)</td></tr>
+<tr class="memitem:aaadfd99f6f7a1ec8c8195232a48e3b15 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaadfd99f6f7a1ec8c8195232a48e3b15"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>send_message</b> (<a class="el" href="class_message.html">Message</a> *contents)</td></tr>
 <tr class="separator:aaadfd99f6f7a1ec8c8195232a48e3b15 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acca6e0ec0f301179e9bf5596b5b7d9a7 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_message.html">Message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#acca6e0ec0f301179e9bf5596b5b7d9a7">wait_for_message</a> ()</td></tr>
+<tr class="memitem:acca6e0ec0f301179e9bf5596b5b7d9a7 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acca6e0ec0f301179e9bf5596b5b7d9a7"></a>
+<a class="el" href="class_message.html">Message</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>wait_for_message</b> ()</td></tr>
 <tr class="separator:acca6e0ec0f301179e9bf5596b5b7d9a7 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a778d44d8365ed5927bf237d331593809 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a778d44d8365ed5927bf237d331593809">push_message</a> (<a class="el" href="class_message.html">Message</a> *contents)</td></tr>
+<tr class="memitem:a778d44d8365ed5927bf237d331593809 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a778d44d8365ed5927bf237d331593809"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>push_message</b> (<a class="el" href="class_message.html">Message</a> *contents)</td></tr>
 <tr class="separator:a778d44d8365ed5927bf237d331593809 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e581d6cf3383931bb4749bbbe4d81ee inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a5e581d6cf3383931bb4749bbbe4d81ee">receive_message</a> (std::string contents)</td></tr>
+<tr class="memitem:a5e581d6cf3383931bb4749bbbe4d81ee inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e581d6cf3383931bb4749bbbe4d81ee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>receive_message</b> (std::string contents)</td></tr>
 <tr class="separator:a5e581d6cf3383931bb4749bbbe4d81ee inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a600102c71a3398e1ffe181c3e4e680a0 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a600102c71a3398e1ffe181c3e4e680a0">get_comm_mod</a> ()</td></tr>
+<tr class="memitem:a600102c71a3398e1ffe181c3e4e680a0 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a600102c71a3398e1ffe181c3e4e680a0"></a>
+<a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_comm_mod</b> ()</td></tr>
 <tr class="separator:a600102c71a3398e1ffe181c3e4e680a0 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95b2cc2dc0f0b5133cf490472b2b13bb inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a95b2cc2dc0f0b5133cf490472b2b13bb">getX</a> ()</td></tr>
+<tr class="memitem:a95b2cc2dc0f0b5133cf490472b2b13bb inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95b2cc2dc0f0b5133cf490472b2b13bb"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getX</b> ()</td></tr>
 <tr class="separator:a95b2cc2dc0f0b5133cf490472b2b13bb inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a202416adb2413f9b5bc33c64ec2bc12e inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a202416adb2413f9b5bc33c64ec2bc12e">getY</a> ()</td></tr>
+<tr class="memitem:a202416adb2413f9b5bc33c64ec2bc12e inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a202416adb2413f9b5bc33c64ec2bc12e"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getY</b> ()</td></tr>
 <tr class="separator:a202416adb2413f9b5bc33c64ec2bc12e inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7da3f0e2540087aa8933ec4cd99789ce inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a7da3f0e2540087aa8933ec4cd99789ce">getZ</a> ()</td></tr>
+<tr class="memitem:a7da3f0e2540087aa8933ec4cd99789ce inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7da3f0e2540087aa8933ec4cd99789ce"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getZ</b> ()</td></tr>
 <tr class="separator:a7da3f0e2540087aa8933ec4cd99789ce inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f990ea00748e817ef7a20dd9ab8e88c inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_coord.html">Coord</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a7f990ea00748e817ef7a20dd9ab8e88c">getPosition</a> ()</td></tr>
+<tr class="memitem:a7f990ea00748e817ef7a20dd9ab8e88c inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f990ea00748e817ef7a20dd9ab8e88c"></a>
+<a class="el" href="struct_coord.html">Coord</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> ()</td></tr>
 <tr class="separator:a7f990ea00748e817ef7a20dd9ab8e88c inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a695c9311c6ece88dd81ec325d24dc01e inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a695c9311c6ece88dd81ec325d24dc01e">getTime</a> ()</td></tr>
+<tr class="memitem:a695c9311c6ece88dd81ec325d24dc01e inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a695c9311c6ece88dd81ec325d24dc01e"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td></tr>
 <tr class="separator:a695c9311c6ece88dd81ec325d24dc01e inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adda0d24929a929b9d91c97da1fb91775 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#adda0d24929a929b9d91c97da1fb91775">message_callback</a> (<a class="el" href="class_message.html">Message</a> *message)=0</td></tr>
+<tr class="memitem:adda0d24929a929b9d91c97da1fb91775 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adda0d24929a929b9d91c97da1fb91775"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>message_callback</b> (<a class="el" href="class_message.html">Message</a> *message)=0</td></tr>
 <tr class="separator:adda0d24929a929b9d91c97da1fb91775 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82c2308b9fabe8e06664d17b3c018b75 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a82c2308b9fabe8e06664d17b3c018b75">run</a> ()=0</td></tr>
+<tr class="memitem:a82c2308b9fabe8e06664d17b3c018b75 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82c2308b9fabe8e06664d17b3c018b75"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()=0</td></tr>
 <tr class="separator:a82c2308b9fabe8e06664d17b3c018b75 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab39d542fbac3744a22161efbe0dc9ff7 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#ab39d542fbac3744a22161efbe0dc9ff7">runCommMod</a> ()</td></tr>
+<tr class="memitem:ab39d542fbac3744a22161efbe0dc9ff7 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab39d542fbac3744a22161efbe0dc9ff7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>runCommMod</b> ()</td></tr>
 <tr class="separator:ab39d542fbac3744a22161efbe0dc9ff7 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_messageable"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_messageable')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_messageable.html">Messageable</a></td></tr>
-<tr class="memitem:a77bee602af65ca6708c3d77080298376 inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top">std::queue&lt; <a class="el" href="class_message.html">Message</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a77bee602af65ca6708c3d77080298376">inQueue</a></td></tr>
+<tr class="memitem:a77bee602af65ca6708c3d77080298376 inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77bee602af65ca6708c3d77080298376"></a>
+std::queue&lt; <a class="el" href="class_message.html">Message</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>inQueue</b></td></tr>
 <tr class="separator:a77bee602af65ca6708c3d77080298376 inherit pro_attribs_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c8ed985c63492656ab9e6d502c8f98e inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a0c8ed985c63492656ab9e6d502c8f98e">communicationsModule</a></td></tr>
+<tr class="memitem:a0c8ed985c63492656ab9e6d502c8f98e inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c8ed985c63492656ab9e6d502c8f98e"></a>
+<a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>communicationsModule</b></td></tr>
 <tr class="separator:a0c8ed985c63492656ab9e6d502c8f98e inherit pro_attribs_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49ee36421becbc9f529f3d63d5e3169a inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_coord.html">Coord</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a49ee36421becbc9f529f3d63d5e3169a">position</a></td></tr>
+<tr class="memitem:a49ee36421becbc9f529f3d63d5e3169a inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49ee36421becbc9f529f3d63d5e3169a"></a>
+<a class="el" href="struct_coord.html">Coord</a>&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
 <tr class="separator:a49ee36421becbc9f529f3d63d5e3169a inherit pro_attribs_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a21d3ef514b4ba58055a6d4bfd035ae68"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BaseStation::BaseStation </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td>
-          <td class="paramname"><em>cm</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>xp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>yp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>zp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>areaX1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>areaY1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>areaX2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>areaY2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/will/Documents/effacious-octo-weasel/code/simulator/<a class="el" href="_base_station_8hpp_source.html">BaseStation.hpp</a></li>
-<li>/home/will/Documents/effacious-octo-weasel/code/simulator/<a class="el" href="_base_station_8cpp.html">BaseStation.cpp</a></li>
+<li>/home/will/Documents/effacious-octo-weasel/code/simulator/BaseStation.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_base_station.html">BaseStation</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

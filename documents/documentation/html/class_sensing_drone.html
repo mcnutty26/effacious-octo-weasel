@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Effacious Octo Weasel: SensingDrone Class Reference</title>
+<title>Serenity: SensingDrone Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,10 +31,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Effacious Octo Weasel
+   <div id="projectname">Serenity
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
+   <div id="projectbrief">Discrete event network simulator for drone networks</div>
   </td>
  </tr>
  </tbody>
@@ -68,6 +76,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_sensing_drone.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,17 +105,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_sensing_drone-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SensingDrone Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_sensing_drone_8hpp_source.html">SensingDrone.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for SensingDrone:</div>
 <div class="dyncontent">
@@ -106,272 +128,148 @@ Inheritance diagram for SensingDrone:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad79d34153985242e38f68dbe46754ed7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sensing_drone.html#ad79d34153985242e38f68dbe46754ed7">SensingDrone</a> (<a class="el" href="class_comm_mod.html">CommMod</a> *, double, double, double, double, <a class="el" href="class_environment.html">Environment</a> *, int, int *)</td></tr>
-<tr class="separator:ad79d34153985242e38f68dbe46754ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f4e2de60a0d37c6d6a39078df3458ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sensing_drone.html#a2f4e2de60a0d37c6d6a39078df3458ba">message_callback</a> (<a class="el" href="class_message.html">Message</a> *)</td></tr>
+<tr class="memitem:ad9733d7b33e8e6d1cbebf0d8a8830834"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9733d7b33e8e6d1cbebf0d8a8830834"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SensingDrone</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *, double, double, double, double, double, <a class="el" href="class_environment.html">Environment</a> *, bool)</td></tr>
+<tr class="separator:ad9733d7b33e8e6d1cbebf0d8a8830834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f4e2de60a0d37c6d6a39078df3458ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f4e2de60a0d37c6d6a39078df3458ba"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>message_callback</b> (<a class="el" href="class_message.html">Message</a> *)</td></tr>
 <tr class="separator:a2f4e2de60a0d37c6d6a39078df3458ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84dd9d47273b8c4c05853b15547be6a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sensing_drone.html#a84dd9d47273b8c4c05853b15547be6a2">run</a> ()</td></tr>
+<tr class="memitem:a84dd9d47273b8c4c05853b15547be6a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84dd9d47273b8c4c05853b15547be6a2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
 <tr class="separator:a84dd9d47273b8c4c05853b15547be6a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a357bfe8d14cba7c52f8817ebf3350102"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sensing_drone.html#a357bfe8d14cba7c52f8817ebf3350102">continueJob</a> ()</td></tr>
+<tr class="memitem:a357bfe8d14cba7c52f8817ebf3350102"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a357bfe8d14cba7c52f8817ebf3350102"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>continueJob</b> ()</td></tr>
 <tr class="separator:a357bfe8d14cba7c52f8817ebf3350102"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1d4713f47df84336a51c78b171a0d68"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sensing_drone.html#ae1d4713f47df84336a51c78b171a0d68">atLoc</a> (<a class="el" href="struct_coord.html">Coord</a> location)</td></tr>
+<tr class="memitem:ae1d4713f47df84336a51c78b171a0d68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1d4713f47df84336a51c78b171a0d68"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>atLoc</b> (<a class="el" href="struct_coord.html">Coord</a> location)</td></tr>
 <tr class="separator:ae1d4713f47df84336a51c78b171a0d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad46ca36b37a3e8139f6ad7f1c2f4bcfe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sensing_drone.html#ad46ca36b37a3e8139f6ad7f1c2f4bcfe">newArea</a> (double x1, double y1, double x2, double y2, double height)</td></tr>
+<tr class="memitem:ad46ca36b37a3e8139f6ad7f1c2f4bcfe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad46ca36b37a3e8139f6ad7f1c2f4bcfe"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>newArea</b> (double x1, double y1, double x2, double y2, double height)</td></tr>
 <tr class="separator:ad46ca36b37a3e8139f6ad7f1c2f4bcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_drone"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_drone')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_drone.html">Drone</a></td></tr>
-<tr class="memitem:a671923cbf775d479aa11f469b82503f3 inherit pub_methods_class_drone"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a671923cbf775d479aa11f469b82503f3">Drone</a> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double iX, double iY, double iZ, double maxSpeed, <a class="el" href="class_environment.html">Environment</a> *e)</td></tr>
+<tr class="memitem:a671923cbf775d479aa11f469b82503f3 inherit pub_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a671923cbf775d479aa11f469b82503f3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Drone</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double iX, double iY, double iZ, double maxSpeed, <a class="el" href="class_environment.html">Environment</a> *e)</td></tr>
 <tr class="separator:a671923cbf775d479aa11f469b82503f3 inherit pub_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5181059ce456e7ccdf3366ee1f8156db inherit pub_methods_class_drone"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a5181059ce456e7ccdf3366ee1f8156db">isAlive</a> ()</td></tr>
+<tr class="memitem:a5181059ce456e7ccdf3366ee1f8156db inherit pub_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5181059ce456e7ccdf3366ee1f8156db"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAlive</b> ()</td></tr>
 <tr class="separator:a5181059ce456e7ccdf3366ee1f8156db inherit pub_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a53691055a0561e5069ea1482ac893b inherit pub_methods_class_drone"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a4a53691055a0561e5069ea1482ac893b">upkeep</a> ()</td></tr>
+<tr class="memitem:a4a53691055a0561e5069ea1482ac893b inherit pub_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a53691055a0561e5069ea1482ac893b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>upkeep</b> ()</td></tr>
 <tr class="separator:a4a53691055a0561e5069ea1482ac893b inherit pub_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_messageable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_messageable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_messageable.html">Messageable</a></td></tr>
-<tr class="memitem:a17da78cfa69fc760ece179365de9ef23 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a17da78cfa69fc760ece179365de9ef23">Messageable</a> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp)</td></tr>
+<tr class="memitem:a17da78cfa69fc760ece179365de9ef23 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17da78cfa69fc760ece179365de9ef23"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Messageable</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp)</td></tr>
 <tr class="separator:a17da78cfa69fc760ece179365de9ef23 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaadfd99f6f7a1ec8c8195232a48e3b15 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#aaadfd99f6f7a1ec8c8195232a48e3b15">send_message</a> (<a class="el" href="class_message.html">Message</a> *contents)</td></tr>
+<tr class="memitem:aaadfd99f6f7a1ec8c8195232a48e3b15 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaadfd99f6f7a1ec8c8195232a48e3b15"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>send_message</b> (<a class="el" href="class_message.html">Message</a> *contents)</td></tr>
 <tr class="separator:aaadfd99f6f7a1ec8c8195232a48e3b15 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acca6e0ec0f301179e9bf5596b5b7d9a7 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_message.html">Message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#acca6e0ec0f301179e9bf5596b5b7d9a7">wait_for_message</a> ()</td></tr>
+<tr class="memitem:acca6e0ec0f301179e9bf5596b5b7d9a7 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acca6e0ec0f301179e9bf5596b5b7d9a7"></a>
+<a class="el" href="class_message.html">Message</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>wait_for_message</b> ()</td></tr>
 <tr class="separator:acca6e0ec0f301179e9bf5596b5b7d9a7 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a778d44d8365ed5927bf237d331593809 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a778d44d8365ed5927bf237d331593809">push_message</a> (<a class="el" href="class_message.html">Message</a> *contents)</td></tr>
+<tr class="memitem:a778d44d8365ed5927bf237d331593809 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a778d44d8365ed5927bf237d331593809"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>push_message</b> (<a class="el" href="class_message.html">Message</a> *contents)</td></tr>
 <tr class="separator:a778d44d8365ed5927bf237d331593809 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e581d6cf3383931bb4749bbbe4d81ee inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a5e581d6cf3383931bb4749bbbe4d81ee">receive_message</a> (std::string contents)</td></tr>
+<tr class="memitem:a5e581d6cf3383931bb4749bbbe4d81ee inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e581d6cf3383931bb4749bbbe4d81ee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>receive_message</b> (std::string contents)</td></tr>
 <tr class="separator:a5e581d6cf3383931bb4749bbbe4d81ee inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a600102c71a3398e1ffe181c3e4e680a0 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a600102c71a3398e1ffe181c3e4e680a0">get_comm_mod</a> ()</td></tr>
+<tr class="memitem:a600102c71a3398e1ffe181c3e4e680a0 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a600102c71a3398e1ffe181c3e4e680a0"></a>
+<a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_comm_mod</b> ()</td></tr>
 <tr class="separator:a600102c71a3398e1ffe181c3e4e680a0 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95b2cc2dc0f0b5133cf490472b2b13bb inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a95b2cc2dc0f0b5133cf490472b2b13bb">getX</a> ()</td></tr>
+<tr class="memitem:a95b2cc2dc0f0b5133cf490472b2b13bb inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95b2cc2dc0f0b5133cf490472b2b13bb"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getX</b> ()</td></tr>
 <tr class="separator:a95b2cc2dc0f0b5133cf490472b2b13bb inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a202416adb2413f9b5bc33c64ec2bc12e inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a202416adb2413f9b5bc33c64ec2bc12e">getY</a> ()</td></tr>
+<tr class="memitem:a202416adb2413f9b5bc33c64ec2bc12e inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a202416adb2413f9b5bc33c64ec2bc12e"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getY</b> ()</td></tr>
 <tr class="separator:a202416adb2413f9b5bc33c64ec2bc12e inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7da3f0e2540087aa8933ec4cd99789ce inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a7da3f0e2540087aa8933ec4cd99789ce">getZ</a> ()</td></tr>
+<tr class="memitem:a7da3f0e2540087aa8933ec4cd99789ce inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7da3f0e2540087aa8933ec4cd99789ce"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getZ</b> ()</td></tr>
 <tr class="separator:a7da3f0e2540087aa8933ec4cd99789ce inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f990ea00748e817ef7a20dd9ab8e88c inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_coord.html">Coord</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a7f990ea00748e817ef7a20dd9ab8e88c">getPosition</a> ()</td></tr>
+<tr class="memitem:a7f990ea00748e817ef7a20dd9ab8e88c inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f990ea00748e817ef7a20dd9ab8e88c"></a>
+<a class="el" href="struct_coord.html">Coord</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> ()</td></tr>
 <tr class="separator:a7f990ea00748e817ef7a20dd9ab8e88c inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a695c9311c6ece88dd81ec325d24dc01e inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a695c9311c6ece88dd81ec325d24dc01e">getTime</a> ()</td></tr>
+<tr class="memitem:a695c9311c6ece88dd81ec325d24dc01e inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a695c9311c6ece88dd81ec325d24dc01e"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td></tr>
 <tr class="separator:a695c9311c6ece88dd81ec325d24dc01e inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab39d542fbac3744a22161efbe0dc9ff7 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#ab39d542fbac3744a22161efbe0dc9ff7">runCommMod</a> ()</td></tr>
+<tr class="memitem:ab39d542fbac3744a22161efbe0dc9ff7 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab39d542fbac3744a22161efbe0dc9ff7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>runCommMod</b> ()</td></tr>
 <tr class="separator:ab39d542fbac3744a22161efbe0dc9ff7 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a4b9e64e52d8a0799b3b6ac50b582459d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b9e64e52d8a0799b3b6ac50b582459d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>quit</b> ()</td></tr>
+<tr class="separator:a4b9e64e52d8a0799b3b6ac50b582459d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0ab808e0f445408d687a6e8c7df99bfb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ab808e0f445408d687a6e8c7df99bfb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_task</b></td></tr>
+<tr class="separator:a0ab808e0f445408d687a6e8c7df99bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18d8f8a0c8c39619bf666a5b95c09d69"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18d8f8a0c8c39619bf666a5b95c09d69"></a>
+int *&#160;</td><td class="memItemRight" valign="bottom"><b>m_flag</b></td></tr>
+<tr class="separator:a18d8f8a0c8c39619bf666a5b95c09d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af436a148e5c253474f302d19bc7470c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af436a148e5c253474f302d19bc7470c2"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>sensorRadius</b></td></tr>
+<tr class="separator:af436a148e5c253474f302d19bc7470c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a801cbf77208053da935f1b6f1ac7bbe8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a801cbf77208053da935f1b6f1ac7bbe8"></a>
+std::queue&lt; <a class="el" href="struct_coord.html">Coord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>remainingPoints</b></td></tr>
+<tr class="separator:a801cbf77208053da935f1b6f1ac7bbe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0175b9aca8019b2476260b905618c959"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0175b9aca8019b2476260b905618c959"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>sink_node</b></td></tr>
+<tr class="separator:a0175b9aca8019b2476260b905618c959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8799a866212d7716111ac993ceb5c74b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8799a866212d7716111ac993ceb5c74b"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>baseStationIP</b></td></tr>
+<tr class="separator:a8799a866212d7716111ac993ceb5c74b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_class_drone"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_drone')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_drone.html">Drone</a></td></tr>
-<tr class="memitem:a87b644ed6c297252a0930b4a915a553e inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a87b644ed6c297252a0930b4a915a553e">kill</a> ()</td></tr>
+<tr class="memitem:a87b644ed6c297252a0930b4a915a553e inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87b644ed6c297252a0930b4a915a553e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>kill</b> ()</td></tr>
 <tr class="separator:a87b644ed6c297252a0930b4a915a553e inherit pro_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81c5a726112abba3d686e95baccd54be inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a81c5a726112abba3d686e95baccd54be">turn</a> (double dAngle)</td></tr>
+<tr class="memitem:a81c5a726112abba3d686e95baccd54be inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81c5a726112abba3d686e95baccd54be"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>turn</b> (double dAngle)</td></tr>
 <tr class="separator:a81c5a726112abba3d686e95baccd54be inherit pro_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7ebc3df04a42e9c49389ab2868d102d inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#ae7ebc3df04a42e9c49389ab2868d102d">move</a> (<a class="el" href="_drone_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aa">Direction</a> direction, double speed, double distance)</td></tr>
+<tr class="memitem:ae7ebc3df04a42e9c49389ab2868d102d inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae7ebc3df04a42e9c49389ab2868d102d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>move</b> (Direction direction, double speed, double distance)</td></tr>
 <tr class="separator:ae7ebc3df04a42e9c49389ab2868d102d inherit pro_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a780e43c6486a26eb47a37295ea510269 inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#a780e43c6486a26eb47a37295ea510269">getMaxSpeed</a> ()</td></tr>
+<tr class="memitem:a780e43c6486a26eb47a37295ea510269 inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a780e43c6486a26eb47a37295ea510269"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxSpeed</b> ()</td></tr>
 <tr class="separator:a780e43c6486a26eb47a37295ea510269 inherit pro_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd485e52d2ac2d6d81038665495bb480 inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drone.html#abd485e52d2ac2d6d81038665495bb480">sense</a> (std::string type)</td></tr>
+<tr class="memitem:a6a5dccb74616583e76ff52252a9727a7 inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a5dccb74616583e76ff52252a9727a7"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getAngle</b> ()</td></tr>
+<tr class="separator:a6a5dccb74616583e76ff52252a9727a7 inherit pro_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71ef7484d1ec8c314beec47d5e3046d1 inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71ef7484d1ec8c314beec47d5e3046d1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasFinishedMoving</b> ()</td></tr>
+<tr class="separator:a71ef7484d1ec8c314beec47d5e3046d1 inherit pro_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd485e52d2ac2d6d81038665495bb480 inherit pro_methods_class_drone"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd485e52d2ac2d6d81038665495bb480"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>sense</b> (std::string type)</td></tr>
 <tr class="separator:abd485e52d2ac2d6d81038665495bb480 inherit pro_methods_class_drone"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_messageable"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_messageable')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_messageable.html">Messageable</a></td></tr>
-<tr class="memitem:a77bee602af65ca6708c3d77080298376 inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top">std::queue&lt; <a class="el" href="class_message.html">Message</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a77bee602af65ca6708c3d77080298376">inQueue</a></td></tr>
+<tr class="memitem:a77bee602af65ca6708c3d77080298376 inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77bee602af65ca6708c3d77080298376"></a>
+std::queue&lt; <a class="el" href="class_message.html">Message</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>inQueue</b></td></tr>
 <tr class="separator:a77bee602af65ca6708c3d77080298376 inherit pro_attribs_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c8ed985c63492656ab9e6d502c8f98e inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a0c8ed985c63492656ab9e6d502c8f98e">communicationsModule</a></td></tr>
+<tr class="memitem:a0c8ed985c63492656ab9e6d502c8f98e inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c8ed985c63492656ab9e6d502c8f98e"></a>
+<a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>communicationsModule</b></td></tr>
 <tr class="separator:a0c8ed985c63492656ab9e6d502c8f98e inherit pro_attribs_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49ee36421becbc9f529f3d63d5e3169a inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_coord.html">Coord</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_messageable.html#a49ee36421becbc9f529f3d63d5e3169a">position</a></td></tr>
+<tr class="memitem:a49ee36421becbc9f529f3d63d5e3169a inherit pro_attribs_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49ee36421becbc9f529f3d63d5e3169a"></a>
+<a class="el" href="struct_coord.html">Coord</a>&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
 <tr class="separator:a49ee36421becbc9f529f3d63d5e3169a inherit pro_attribs_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ad79d34153985242e38f68dbe46754ed7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">SensingDrone::SensingDrone </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_comm_mod.html">CommMod</a> *&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_environment.html">Environment</a> *&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ae1d4713f47df84336a51c78b171a0d68"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int SensingDrone::atLoc </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_coord.html">Coord</a>&#160;</td>
-          <td class="paramname"><em>location</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a357bfe8d14cba7c52f8817ebf3350102"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SensingDrone::continueJob </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2f4e2de60a0d37c6d6a39078df3458ba"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SensingDrone::message_callback </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_message.html">Message</a> *&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="class_messageable.html#adda0d24929a929b9d91c97da1fb91775">Messageable</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad46ca36b37a3e8139f6ad7f1c2f4bcfe"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SensingDrone::newArea </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>x1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>y1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>x2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>y2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a84dd9d47273b8c4c05853b15547be6a2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SensingDrone::run </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="class_messageable.html#a82c2308b9fabe8e06664d17b3c018b75">Messageable</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/will/Documents/effacious-octo-weasel/code/programs/<a class="el" href="_sensing_drone_8hpp_source.html">SensingDrone.hpp</a></li>
-<li>/home/will/Documents/effacious-octo-weasel/code/programs/<a class="el" href="_sensing_drone_8cpp.html">SensingDrone.cpp</a></li>
+<li>/home/will/Documents/effacious-octo-weasel/code/programs/SensingDrone.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_sensing_drone.html">SensingDrone</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

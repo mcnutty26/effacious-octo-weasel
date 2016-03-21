@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Effacious Octo Weasel: /home/will/Documents/effacious-octo-weasel/code/programs/AodvComms.hpp Source File</title>
+<title>Serenity: /home/will/Documents/effacious-octo-weasel/code/programs/AodvComms.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,10 +31,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Effacious Octo Weasel
+   <div id="projectname">Serenity
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
+   <div id="projectbrief">Discrete event network simulator for drone networks</div>
   </td>
  </tr>
  </tbody>
@@ -63,9 +71,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_aodv_comms_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,34 +102,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3648090fc410cd55971a425a1cb3e81d.html">effacious-octo-weasel</a></li><li class="navelem"><a class="el" href="dir_d0280efaebe90c599b53af3fcd2553ec.html">code</a></li><li class="navelem"><a class="el" href="dir_5dd659377164f076dfecfb28760974a0.html">programs</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">AodvComms.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_aodv_comms_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef EOW_PROGRAMS_AODV</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">    #define EOW_PROGRAMS_AODV</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">    #include &lt;string&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">    #include &lt;<a class="code" href="_drone_8hpp.html">Drone.hpp</a>&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">    #include &lt;<a class="code" href="_comm_mod_8hpp.html">CommMod.hpp</a>&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">    #include &lt;<a class="code" href="_message_8hpp.html">Message.hpp</a>&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="_aodv_comms_8hpp.html#ab0c66be463007b0965a8286348af62bf">    9</a></span>&#160;    <span class="keyword">typedef</span> std::vector&lt;std::vector&lt;std::vector&lt;double&gt;&gt;&gt; <a class="code" href="_aodv_comms_8hpp.html#ab0c66be463007b0965a8286348af62bf">data_type</a>;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_aodv_comms.html">   11</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_aodv_comms.html">AodvComms</a>: <span class="keyword">public</span> <a class="code" href="class_drone.html">Drone</a> {</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">public</span>:</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <a class="code" href="class_aodv_comms.html#a641debef992095bb2dec3aab1c2b302c">AodvComms</a>(<a class="code" href="class_comm_mod.html">CommMod</a>*, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <a class="code" href="class_environment.html">Environment</a>*, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>*);</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="class_aodv_comms.html#a88415cb9bf1c1afaf390763e4b77876b">message_callback</a>(<a class="code" href="class_message.html">Message</a>*);</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_aodv_comms.html#adbb3acdf25009338e22315ac6aa63f16">run</a>();</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">private</span>:</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordtype">int</span> m_task;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keywordtype">int</span>* m_flag;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordtype">void</span> quit();</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    };</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="_message_8hpp_html"><div class="ttname"><a href="_message_8hpp.html">Message.hpp</a></div></div>
-<div class="ttc" id="class_aodv_comms_html_adbb3acdf25009338e22315ac6aa63f16"><div class="ttname"><a href="class_aodv_comms.html#adbb3acdf25009338e22315ac6aa63f16">AodvComms::run</a></div><div class="ttdeci">void run()</div><div class="ttdef"><b>Definition:</b> AodvComms.cpp:17</div></div>
-<div class="ttc" id="_drone_8hpp_html"><div class="ttname"><a href="_drone_8hpp.html">Drone.hpp</a></div></div>
-<div class="ttc" id="class_aodv_comms_html"><div class="ttname"><a href="class_aodv_comms.html">AodvComms</a></div><div class="ttdef"><b>Definition:</b> AodvComms.hpp:11</div></div>
-<div class="ttc" id="class_aodv_comms_html_a641debef992095bb2dec3aab1c2b302c"><div class="ttname"><a href="class_aodv_comms.html#a641debef992095bb2dec3aab1c2b302c">AodvComms::AodvComms</a></div><div class="ttdeci">AodvComms(CommMod *, double, double, double, double, Environment *, int, int *)</div><div class="ttdef"><b>Definition:</b> AodvComms.cpp:8</div></div>
-<div class="ttc" id="_aodv_comms_8hpp_html_ab0c66be463007b0965a8286348af62bf"><div class="ttname"><a href="_aodv_comms_8hpp.html#ab0c66be463007b0965a8286348af62bf">data_type</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; std::vector&lt; double &gt; &gt; &gt; data_type</div><div class="ttdef"><b>Definition:</b> AodvComms.hpp:9</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef EOW_PROGRAMS_AODV</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">    #define EOW_PROGRAMS_AODV</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">    #include &lt;string&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">    #include &lt;Drone.hpp&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">    #include &lt;CommMod.hpp&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">    #include &lt;Message.hpp&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">    #include &lt;atomic&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">typedef</span> std::vector&lt;std::vector&lt;std::vector&lt;double&gt;&gt;&gt; data_type;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_aodv_comms.html">   12</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_aodv_comms.html">AodvComms</a>: <span class="keyword">public</span> <a class="code" href="class_drone.html">Drone</a> {</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keyword">public</span>:</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="class_aodv_comms.html">AodvComms</a>(<a class="code" href="class_comm_mod.html">CommMod</a>*, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <a class="code" href="class_environment.html">Environment</a>*, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>*, std::atomic_flag*);</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordtype">bool</span> message_callback(<a class="code" href="class_message.html">Message</a>*);</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordtype">void</span> run();</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">private</span>:</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keywordtype">int</span> m_task;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordtype">int</span>* m_flag;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            std::atomic_flag* m_lock;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="class_environment.html">Environment</a>* m_env;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    };</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_aodv_comms_html"><div class="ttname"><a href="class_aodv_comms.html">AodvComms</a></div><div class="ttdef"><b>Definition:</b> AodvComms.hpp:12</div></div>
 <div class="ttc" id="class_environment_html"><div class="ttname"><a href="class_environment.html">Environment</a></div><div class="ttdef"><b>Definition:</b> Environment.hpp:15</div></div>
-<div class="ttc" id="_comm_mod_8hpp_html"><div class="ttname"><a href="_comm_mod_8hpp.html">CommMod.hpp</a></div></div>
 <div class="ttc" id="class_message_html"><div class="ttname"><a href="class_message.html">Message</a></div><div class="ttdef"><b>Definition:</b> Message.hpp:7</div></div>
 <div class="ttc" id="class_comm_mod_html"><div class="ttname"><a href="class_comm_mod.html">CommMod</a></div><div class="ttdef"><b>Definition:</b> CommMod.hpp:12</div></div>
-<div class="ttc" id="class_aodv_comms_html_a88415cb9bf1c1afaf390763e4b77876b"><div class="ttname"><a href="class_aodv_comms.html#a88415cb9bf1c1afaf390763e4b77876b">AodvComms::message_callback</a></div><div class="ttdeci">bool message_callback(Message *)</div><div class="ttdef"><b>Definition:</b> AodvComms.cpp:13</div></div>
 <div class="ttc" id="class_drone_html"><div class="ttname"><a href="class_drone.html">Drone</a></div><div class="ttdef"><b>Definition:</b> Drone.hpp:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f396504afdc959660871b003fa10164d.html">Documents</a></li><li class="navelem"><a class="el" href="dir_5ff2b33cc091083642953efddd646e35.html">effacious-octo-weasel</a></li><li class="navelem"><a class="el" href="dir_577c011ccc05a4190a0b9ce374a6a16b.html">code</a></li><li class="navelem"><a class="el" href="dir_a9b0319a7b8f2031d97c60ee3a936529.html">programs</a></li><li class="navelem"><b>AodvComms.hpp</b></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

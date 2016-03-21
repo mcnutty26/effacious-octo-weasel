@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Effacious Octo Weasel: Aodv_route Class Reference</title>
+<title>Serenity: Aodv_route Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,10 +31,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Effacious Octo Weasel
+   <div id="projectname">Serenity
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
+   <div id="projectbrief">Discrete event network simulator for drone networks</div>
   </td>
  </tr>
  </tbody>
@@ -68,6 +76,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_aodv__route.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,141 +105,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_aodv__route-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Aodv_route Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_aodv__route_8hpp_source.html">Aodv_route.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a666f0dc139dddaf794a7d61ecc5c5817"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a666f0dc139dddaf794a7d61ecc5c5817">Aodv_route</a> (int, int, std::string, int)</td></tr>
+<tr class="memitem:a666f0dc139dddaf794a7d61ecc5c5817"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a666f0dc139dddaf794a7d61ecc5c5817"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a666f0dc139dddaf794a7d61ecc5c5817">Aodv_route</a> (int, int, std::string, int)</td></tr>
+<tr class="memdesc:a666f0dc139dddaf794a7d61ecc5c5817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry in ann AODV routing table. <br /></td></tr>
 <tr class="separator:a666f0dc139dddaf794a7d61ecc5c5817"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68a80d4a583d553ebaf032ff6533c7a6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a68a80d4a583d553ebaf032ff6533c7a6">get_seq</a> ()</td></tr>
+<tr class="memitem:a68a80d4a583d553ebaf032ff6533c7a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68a80d4a583d553ebaf032ff6533c7a6"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a68a80d4a583d553ebaf032ff6533c7a6">get_seq</a> ()</td></tr>
+<tr class="memdesc:a68a80d4a583d553ebaf032ff6533c7a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method for the sequence number of the route destination. <br /></td></tr>
 <tr class="separator:a68a80d4a583d553ebaf032ff6533c7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc9740b17cdf00ca25d0f6b4679820c0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#abc9740b17cdf00ca25d0f6b4679820c0">get_hop</a> ()</td></tr>
+<tr class="memitem:abc9740b17cdf00ca25d0f6b4679820c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc9740b17cdf00ca25d0f6b4679820c0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#abc9740b17cdf00ca25d0f6b4679820c0">get_hop</a> ()</td></tr>
+<tr class="memdesc:abc9740b17cdf00ca25d0f6b4679820c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method for the route hop count. <br /></td></tr>
 <tr class="separator:abc9740b17cdf00ca25d0f6b4679820c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a323b2c66c323c9af9d991893be8d5857"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a323b2c66c323c9af9d991893be8d5857">get_next_hop</a> ()</td></tr>
+<tr class="memitem:a323b2c66c323c9af9d991893be8d5857"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a323b2c66c323c9af9d991893be8d5857"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a323b2c66c323c9af9d991893be8d5857">get_next_hop</a> ()</td></tr>
+<tr class="memdesc:a323b2c66c323c9af9d991893be8d5857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method for the next hop on this route. <br /></td></tr>
 <tr class="separator:a323b2c66c323c9af9d991893be8d5857"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c06635874c9269443ea782586bbbc91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a6c06635874c9269443ea782586bbbc91">get_life</a> ()</td></tr>
+<tr class="memitem:a6c06635874c9269443ea782586bbbc91"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c06635874c9269443ea782586bbbc91"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a6c06635874c9269443ea782586bbbc91">get_life</a> ()</td></tr>
+<tr class="memdesc:a6c06635874c9269443ea782586bbbc91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method for the route life time. <br /></td></tr>
 <tr class="separator:a6c06635874c9269443ea782586bbbc91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6181d78c70313a943c3875650f6b5034"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6181d78c70313a943c3875650f6b5034"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a6181d78c70313a943c3875650f6b5034">dst_seq</a></td></tr>
+<tr class="memdesc:a6181d78c70313a943c3875650f6b5034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sequence number of the route destination. <br /></td></tr>
+<tr class="separator:a6181d78c70313a943c3875650f6b5034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5091dac0edb94ffbce78b570c9476583"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5091dac0edb94ffbce78b570c9476583"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a5091dac0edb94ffbce78b570c9476583">hop_count</a></td></tr>
+<tr class="memdesc:a5091dac0edb94ffbce78b570c9476583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of hops required to get to the destination node. <br /></td></tr>
+<tr class="separator:a5091dac0edb94ffbce78b570c9476583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb6560ab9abb3445562173383963358f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb6560ab9abb3445562173383963358f"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#abb6560ab9abb3445562173383963358f">next_hop</a></td></tr>
+<tr class="memdesc:abb6560ab9abb3445562173383963358f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Next hop on this route. <br /></td></tr>
+<tr class="separator:abb6560ab9abb3445562173383963358f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d1c7cca7009b97d3950e29708b980d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d1c7cca7009b97d3950e29708b980d4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aodv__route.html#a6d1c7cca7009b97d3950e29708b980d4">life_time</a></td></tr>
+<tr class="memdesc:a6d1c7cca7009b97d3950e29708b980d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lifetime of this route. <br /></td></tr>
+<tr class="separator:a6d1c7cca7009b97d3950e29708b980d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a666f0dc139dddaf794a7d61ecc5c5817"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Aodv_route::Aodv_route </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>dest_seq</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>hop_cnt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>nxt_hop</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>life</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abc9740b17cdf00ca25d0f6b4679820c0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Aodv_route::get_hop </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a6c06635874c9269443ea782586bbbc91"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Aodv_route::get_life </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a323b2c66c323c9af9d991893be8d5857"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Aodv_route::get_next_hop </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a68a80d4a583d553ebaf032ff6533c7a6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Aodv_route::get_seq </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/will/Documents/effacious-octo-weasel/code/communication/aodv/<a class="el" href="_aodv__route_8hpp_source.html">Aodv_route.hpp</a></li>
-<li>/home/will/Documents/effacious-octo-weasel/code/communication/aodv/<a class="el" href="_aodv__route_8cpp.html">Aodv_route.cpp</a></li>
+<li>/home/will/Documents/effacious-octo-weasel/code/communication/aodv/Aodv_route.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_aodv__route.html">Aodv_route</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

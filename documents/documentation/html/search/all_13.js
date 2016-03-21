@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x',['x',['../struct_coord.html#a0172a22ee75843a96e3a84ebc25f3de7',1,'Coord']]]
+  ['wait_5ffor_5fmessage',['wait_for_message',['../class_messageable.html#acca6e0ec0f301179e9bf5596b5b7d9a7',1,'Messageable']]]
 ];

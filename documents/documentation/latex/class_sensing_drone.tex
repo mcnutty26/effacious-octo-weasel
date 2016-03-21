@@ -1,9 +1,5 @@
 \hypertarget{class_sensing_drone}{}\section{Sensing\+Drone Class Reference}
 \label{class_sensing_drone}\index{Sensing\+Drone@{Sensing\+Drone}}
-
-
-{\ttfamily \#include $<$Sensing\+Drone.\+hpp$>$}
-
 Inheritance diagram for Sensing\+Drone\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -13,89 +9,55 @@ Inheritance diagram for Sensing\+Drone\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_sensing_drone_ad79d34153985242e38f68dbe46754ed7}{Sensing\+Drone} (\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$, double, double, double, double, \hyperlink{class_environment}{Environment} $\ast$, int, int $\ast$)
+{\bfseries Sensing\+Drone} (\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$, double, double, double, double, double, \hyperlink{class_environment}{Environment} $\ast$, bool)\hypertarget{class_sensing_drone_ad9733d7b33e8e6d1cbebf0d8a8830834}{}\label{class_sensing_drone_ad9733d7b33e8e6d1cbebf0d8a8830834}
+
 \item 
-bool \hyperlink{class_sensing_drone_a2f4e2de60a0d37c6d6a39078df3458ba}{message\+\_\+callback} (\hyperlink{class_message}{Message} $\ast$)
+bool {\bfseries message\+\_\+callback} (\hyperlink{class_message}{Message} $\ast$)\hypertarget{class_sensing_drone_a2f4e2de60a0d37c6d6a39078df3458ba}{}\label{class_sensing_drone_a2f4e2de60a0d37c6d6a39078df3458ba}
+
 \item 
-void \hyperlink{class_sensing_drone_a84dd9d47273b8c4c05853b15547be6a2}{run} ()
+void {\bfseries run} ()\hypertarget{class_sensing_drone_a84dd9d47273b8c4c05853b15547be6a2}{}\label{class_sensing_drone_a84dd9d47273b8c4c05853b15547be6a2}
+
 \item 
-void \hyperlink{class_sensing_drone_a357bfe8d14cba7c52f8817ebf3350102}{continue\+Job} ()
+void {\bfseries continue\+Job} ()\hypertarget{class_sensing_drone_a357bfe8d14cba7c52f8817ebf3350102}{}\label{class_sensing_drone_a357bfe8d14cba7c52f8817ebf3350102}
+
 \item 
-int \hyperlink{class_sensing_drone_ae1d4713f47df84336a51c78b171a0d68}{at\+Loc} (\hyperlink{struct_coord}{Coord} location)
+int {\bfseries at\+Loc} (\hyperlink{struct_coord}{Coord} location)\hypertarget{class_sensing_drone_ae1d4713f47df84336a51c78b171a0d68}{}\label{class_sensing_drone_ae1d4713f47df84336a51c78b171a0d68}
+
 \item 
-void \hyperlink{class_sensing_drone_ad46ca36b37a3e8139f6ad7f1c2f4bcfe}{new\+Area} (double x1, double y1, double x2, double y2, double height)
+void {\bfseries new\+Area} (double x1, double y1, double x2, double y2, double height)\hypertarget{class_sensing_drone_ad46ca36b37a3e8139f6ad7f1c2f4bcfe}{}\label{class_sensing_drone_ad46ca36b37a3e8139f6ad7f1c2f4bcfe}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries quit} ()\hypertarget{class_sensing_drone_a4b9e64e52d8a0799b3b6ac50b582459d}{}\label{class_sensing_drone_a4b9e64e52d8a0799b3b6ac50b582459d}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries m\+\_\+task}\hypertarget{class_sensing_drone_a0ab808e0f445408d687a6e8c7df99bfb}{}\label{class_sensing_drone_a0ab808e0f445408d687a6e8c7df99bfb}
+
+\item 
+int $\ast$ {\bfseries m\+\_\+flag}\hypertarget{class_sensing_drone_a18d8f8a0c8c39619bf666a5b95c09d69}{}\label{class_sensing_drone_a18d8f8a0c8c39619bf666a5b95c09d69}
+
+\item 
+double {\bfseries sensor\+Radius}\hypertarget{class_sensing_drone_af436a148e5c253474f302d19bc7470c2}{}\label{class_sensing_drone_af436a148e5c253474f302d19bc7470c2}
+
+\item 
+std\+::queue$<$ \hyperlink{struct_coord}{Coord} $>$ {\bfseries remaining\+Points}\hypertarget{class_sensing_drone_a801cbf77208053da935f1b6f1ac7bbe8}{}\label{class_sensing_drone_a801cbf77208053da935f1b6f1ac7bbe8}
+
+\item 
+bool {\bfseries sink\+\_\+node}\hypertarget{class_sensing_drone_a0175b9aca8019b2476260b905618c959}{}\label{class_sensing_drone_a0175b9aca8019b2476260b905618c959}
+
+\item 
+std\+::string {\bfseries base\+Station\+IP}\hypertarget{class_sensing_drone_a8799a866212d7716111ac993ceb5c74b}{}\label{class_sensing_drone_a8799a866212d7716111ac993ceb5c74b}
+
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\index{Sensing\+Drone@{Sensing\+Drone}!Sensing\+Drone@{Sensing\+Drone}}
-\index{Sensing\+Drone@{Sensing\+Drone}!Sensing\+Drone@{Sensing\+Drone}}
-\subsubsection[{\texorpdfstring{Sensing\+Drone(\+Comm\+Mod $\ast$, double, double, double, double, Environment $\ast$, int, int $\ast$)}{SensingDrone(CommMod *, double, double, double, double, Environment *, int, int *)}}]{\setlength{\rightskip}{0pt plus 5cm}Sensing\+Drone\+::\+Sensing\+Drone (
-\begin{DoxyParamCaption}
-\item[{{\bf Comm\+Mod} $\ast$}]{, }
-\item[{double}]{, }
-\item[{double}]{, }
-\item[{double}]{, }
-\item[{double}]{, }
-\item[{{\bf Environment} $\ast$}]{, }
-\item[{int}]{, }
-\item[{int $\ast$}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_sensing_drone_ad79d34153985242e38f68dbe46754ed7}{}\label{class_sensing_drone_ad79d34153985242e38f68dbe46754ed7}
-
-
-\subsection{Member Function Documentation}
-\index{Sensing\+Drone@{Sensing\+Drone}!at\+Loc@{at\+Loc}}
-\index{at\+Loc@{at\+Loc}!Sensing\+Drone@{Sensing\+Drone}}
-\subsubsection[{\texorpdfstring{at\+Loc(\+Coord location)}{atLoc(Coord location)}}]{\setlength{\rightskip}{0pt plus 5cm}int Sensing\+Drone\+::at\+Loc (
-\begin{DoxyParamCaption}
-\item[{{\bf Coord}}]{location}
-\end{DoxyParamCaption}
-)}\hypertarget{class_sensing_drone_ae1d4713f47df84336a51c78b171a0d68}{}\label{class_sensing_drone_ae1d4713f47df84336a51c78b171a0d68}
-\index{Sensing\+Drone@{Sensing\+Drone}!continue\+Job@{continue\+Job}}
-\index{continue\+Job@{continue\+Job}!Sensing\+Drone@{Sensing\+Drone}}
-\subsubsection[{\texorpdfstring{continue\+Job()}{continueJob()}}]{\setlength{\rightskip}{0pt plus 5cm}void Sensing\+Drone\+::continue\+Job (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_sensing_drone_a357bfe8d14cba7c52f8817ebf3350102}{}\label{class_sensing_drone_a357bfe8d14cba7c52f8817ebf3350102}
-\index{Sensing\+Drone@{Sensing\+Drone}!message\+\_\+callback@{message\+\_\+callback}}
-\index{message\+\_\+callback@{message\+\_\+callback}!Sensing\+Drone@{Sensing\+Drone}}
-\subsubsection[{\texorpdfstring{message\+\_\+callback(\+Message $\ast$)}{message_callback(Message *)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Sensing\+Drone\+::message\+\_\+callback (
-\begin{DoxyParamCaption}
-\item[{{\bf Message} $\ast$}]{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_sensing_drone_a2f4e2de60a0d37c6d6a39078df3458ba}{}\label{class_sensing_drone_a2f4e2de60a0d37c6d6a39078df3458ba}
-
-
-Implements \hyperlink{class_messageable_adda0d24929a929b9d91c97da1fb91775}{Messageable}.
-
-\index{Sensing\+Drone@{Sensing\+Drone}!new\+Area@{new\+Area}}
-\index{new\+Area@{new\+Area}!Sensing\+Drone@{Sensing\+Drone}}
-\subsubsection[{\texorpdfstring{new\+Area(double x1, double y1, double x2, double y2, double height)}{newArea(double x1, double y1, double x2, double y2, double height)}}]{\setlength{\rightskip}{0pt plus 5cm}void Sensing\+Drone\+::new\+Area (
-\begin{DoxyParamCaption}
-\item[{double}]{x1, }
-\item[{double}]{y1, }
-\item[{double}]{x2, }
-\item[{double}]{y2, }
-\item[{double}]{height}
-\end{DoxyParamCaption}
-)}\hypertarget{class_sensing_drone_ad46ca36b37a3e8139f6ad7f1c2f4bcfe}{}\label{class_sensing_drone_ad46ca36b37a3e8139f6ad7f1c2f4bcfe}
-\index{Sensing\+Drone@{Sensing\+Drone}!run@{run}}
-\index{run@{run}!Sensing\+Drone@{Sensing\+Drone}}
-\subsubsection[{\texorpdfstring{run()}{run()}}]{\setlength{\rightskip}{0pt plus 5cm}void Sensing\+Drone\+::run (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_sensing_drone_a84dd9d47273b8c4c05853b15547be6a2}{}\label{class_sensing_drone_a84dd9d47273b8c4c05853b15547be6a2}
-
-
-Implements \hyperlink{class_messageable_a82c2308b9fabe8e06664d17b3c018b75}{Messageable}.
-
-
-
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/programs/\hyperlink{_sensing_drone_8hpp}{Sensing\+Drone.\+hpp}\item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/programs/\hyperlink{_sensing_drone_8cpp}{Sensing\+Drone.\+cpp}\end{DoxyCompactItemize}
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/programs/Sensing\+Drone.\+hpp\item 
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/programs/Sensing\+Drone.\+cpp\end{DoxyCompactItemize}

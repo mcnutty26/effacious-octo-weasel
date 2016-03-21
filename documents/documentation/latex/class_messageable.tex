@@ -1,185 +1,71 @@
 \hypertarget{class_messageable}{}\section{Messageable Class Reference}
 \label{class_messageable}\index{Messageable@{Messageable}}
-
-
-{\ttfamily \#include $<$Messageable.\+hpp$>$}
-
 Inheritance diagram for Messageable\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{class_messageable}
+\includegraphics[height=2.564885cm]{class_messageable}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_messageable_a17da78cfa69fc760ece179365de9ef23}{Messageable} (\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$cm, double xp, double yp, double zp)
+{\bfseries Messageable} (\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$cm, double xp, double yp, double zp)\hypertarget{class_messageable_a17da78cfa69fc760ece179365de9ef23}{}\label{class_messageable_a17da78cfa69fc760ece179365de9ef23}
+
 \item 
-void \hyperlink{class_messageable_aaadfd99f6f7a1ec8c8195232a48e3b15}{send\+\_\+message} (\hyperlink{class_message}{Message} $\ast$contents)
+void {\bfseries send\+\_\+message} (\hyperlink{class_message}{Message} $\ast$contents)\hypertarget{class_messageable_aaadfd99f6f7a1ec8c8195232a48e3b15}{}\label{class_messageable_aaadfd99f6f7a1ec8c8195232a48e3b15}
+
 \item 
-\hyperlink{class_message}{Message} $\ast$ \hyperlink{class_messageable_acca6e0ec0f301179e9bf5596b5b7d9a7}{wait\+\_\+for\+\_\+message} ()
+\hyperlink{class_message}{Message} $\ast$ {\bfseries wait\+\_\+for\+\_\+message} ()\hypertarget{class_messageable_acca6e0ec0f301179e9bf5596b5b7d9a7}{}\label{class_messageable_acca6e0ec0f301179e9bf5596b5b7d9a7}
+
 \item 
-void \hyperlink{class_messageable_a778d44d8365ed5927bf237d331593809}{push\+\_\+message} (\hyperlink{class_message}{Message} $\ast$contents)
+void {\bfseries push\+\_\+message} (\hyperlink{class_message}{Message} $\ast$contents)\hypertarget{class_messageable_a778d44d8365ed5927bf237d331593809}{}\label{class_messageable_a778d44d8365ed5927bf237d331593809}
+
 \item 
-void \hyperlink{class_messageable_a5e581d6cf3383931bb4749bbbe4d81ee}{receive\+\_\+message} (std\+::string contents)
+void {\bfseries receive\+\_\+message} (std\+::string contents)\hypertarget{class_messageable_a5e581d6cf3383931bb4749bbbe4d81ee}{}\label{class_messageable_a5e581d6cf3383931bb4749bbbe4d81ee}
+
 \item 
-\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$ \hyperlink{class_messageable_a600102c71a3398e1ffe181c3e4e680a0}{get\+\_\+comm\+\_\+mod} ()
+\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$ {\bfseries get\+\_\+comm\+\_\+mod} ()\hypertarget{class_messageable_a600102c71a3398e1ffe181c3e4e680a0}{}\label{class_messageable_a600102c71a3398e1ffe181c3e4e680a0}
+
 \item 
-double \hyperlink{class_messageable_a95b2cc2dc0f0b5133cf490472b2b13bb}{getX} ()
+double {\bfseries getX} ()\hypertarget{class_messageable_a95b2cc2dc0f0b5133cf490472b2b13bb}{}\label{class_messageable_a95b2cc2dc0f0b5133cf490472b2b13bb}
+
 \item 
-double \hyperlink{class_messageable_a202416adb2413f9b5bc33c64ec2bc12e}{getY} ()
+double {\bfseries getY} ()\hypertarget{class_messageable_a202416adb2413f9b5bc33c64ec2bc12e}{}\label{class_messageable_a202416adb2413f9b5bc33c64ec2bc12e}
+
 \item 
-double \hyperlink{class_messageable_a7da3f0e2540087aa8933ec4cd99789ce}{getZ} ()
+double {\bfseries getZ} ()\hypertarget{class_messageable_a7da3f0e2540087aa8933ec4cd99789ce}{}\label{class_messageable_a7da3f0e2540087aa8933ec4cd99789ce}
+
 \item 
-\hyperlink{struct_coord}{Coord} \hyperlink{class_messageable_a7f990ea00748e817ef7a20dd9ab8e88c}{get\+Position} ()
+\hyperlink{struct_coord}{Coord} {\bfseries get\+Position} ()\hypertarget{class_messageable_a7f990ea00748e817ef7a20dd9ab8e88c}{}\label{class_messageable_a7f990ea00748e817ef7a20dd9ab8e88c}
+
 \item 
-double \hyperlink{class_messageable_a695c9311c6ece88dd81ec325d24dc01e}{get\+Time} ()
+double {\bfseries get\+Time} ()\hypertarget{class_messageable_a695c9311c6ece88dd81ec325d24dc01e}{}\label{class_messageable_a695c9311c6ece88dd81ec325d24dc01e}
+
 \item 
-virtual bool \hyperlink{class_messageable_adda0d24929a929b9d91c97da1fb91775}{message\+\_\+callback} (\hyperlink{class_message}{Message} $\ast$message)=0
+virtual bool {\bfseries message\+\_\+callback} (\hyperlink{class_message}{Message} $\ast$message)=0\hypertarget{class_messageable_adda0d24929a929b9d91c97da1fb91775}{}\label{class_messageable_adda0d24929a929b9d91c97da1fb91775}
+
 \item 
-virtual void \hyperlink{class_messageable_a82c2308b9fabe8e06664d17b3c018b75}{run} ()=0
+virtual void {\bfseries run} ()=0\hypertarget{class_messageable_a82c2308b9fabe8e06664d17b3c018b75}{}\label{class_messageable_a82c2308b9fabe8e06664d17b3c018b75}
+
 \item 
-void \hyperlink{class_messageable_ab39d542fbac3744a22161efbe0dc9ff7}{run\+Comm\+Mod} ()
+void {\bfseries run\+Comm\+Mod} ()\hypertarget{class_messageable_ab39d542fbac3744a22161efbe0dc9ff7}{}\label{class_messageable_ab39d542fbac3744a22161efbe0dc9ff7}
+
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::queue$<$ \hyperlink{class_message}{Message} $\ast$ $>$ \hyperlink{class_messageable_a77bee602af65ca6708c3d77080298376}{in\+Queue}
+std\+::queue$<$ \hyperlink{class_message}{Message} $\ast$ $>$ {\bfseries in\+Queue}\hypertarget{class_messageable_a77bee602af65ca6708c3d77080298376}{}\label{class_messageable_a77bee602af65ca6708c3d77080298376}
+
 \item 
-\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$ \hyperlink{class_messageable_a0c8ed985c63492656ab9e6d502c8f98e}{communications\+Module}
+\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$ {\bfseries communications\+Module}\hypertarget{class_messageable_a0c8ed985c63492656ab9e6d502c8f98e}{}\label{class_messageable_a0c8ed985c63492656ab9e6d502c8f98e}
+
 \item 
-\hyperlink{struct_coord}{Coord} \hyperlink{class_messageable_a49ee36421becbc9f529f3d63d5e3169a}{position}
+\hyperlink{struct_coord}{Coord} {\bfseries position}\hypertarget{class_messageable_a49ee36421becbc9f529f3d63d5e3169a}{}\label{class_messageable_a49ee36421becbc9f529f3d63d5e3169a}
+
 \end{DoxyCompactItemize}
-
-
-\subsection{Constructor \& Destructor Documentation}
-\index{Messageable@{Messageable}!Messageable@{Messageable}}
-\index{Messageable@{Messageable}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{Messageable(\+Comm\+Mod $\ast$cm, double xp, double yp, double zp)}{Messageable(CommMod *cm, double xp, double yp, double zp)}}]{\setlength{\rightskip}{0pt plus 5cm}Messageable\+::\+Messageable (
-\begin{DoxyParamCaption}
-\item[{{\bf Comm\+Mod} $\ast$}]{cm, }
-\item[{double}]{xp, }
-\item[{double}]{yp, }
-\item[{double}]{zp}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_a17da78cfa69fc760ece179365de9ef23}{}\label{class_messageable_a17da78cfa69fc760ece179365de9ef23}
-
-
-\subsection{Member Function Documentation}
-\index{Messageable@{Messageable}!get\+\_\+comm\+\_\+mod@{get\+\_\+comm\+\_\+mod}}
-\index{get\+\_\+comm\+\_\+mod@{get\+\_\+comm\+\_\+mod}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{get\+\_\+comm\+\_\+mod()}{get_comm_mod()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Comm\+Mod} $\ast$ Messageable\+::get\+\_\+comm\+\_\+mod (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_a600102c71a3398e1ffe181c3e4e680a0}{}\label{class_messageable_a600102c71a3398e1ffe181c3e4e680a0}
-\index{Messageable@{Messageable}!get\+Position@{get\+Position}}
-\index{get\+Position@{get\+Position}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{get\+Position()}{getPosition()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Coord} Messageable\+::get\+Position (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_a7f990ea00748e817ef7a20dd9ab8e88c}{}\label{class_messageable_a7f990ea00748e817ef7a20dd9ab8e88c}
-\index{Messageable@{Messageable}!get\+Time@{get\+Time}}
-\index{get\+Time@{get\+Time}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{get\+Time()}{getTime()}}]{\setlength{\rightskip}{0pt plus 5cm}double Messageable\+::get\+Time (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_a695c9311c6ece88dd81ec325d24dc01e}{}\label{class_messageable_a695c9311c6ece88dd81ec325d24dc01e}
-\index{Messageable@{Messageable}!getX@{getX}}
-\index{getX@{getX}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{get\+X()}{getX()}}]{\setlength{\rightskip}{0pt plus 5cm}double Messageable\+::getX (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_a95b2cc2dc0f0b5133cf490472b2b13bb}{}\label{class_messageable_a95b2cc2dc0f0b5133cf490472b2b13bb}
-\index{Messageable@{Messageable}!getY@{getY}}
-\index{getY@{getY}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{get\+Y()}{getY()}}]{\setlength{\rightskip}{0pt plus 5cm}double Messageable\+::getY (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_a202416adb2413f9b5bc33c64ec2bc12e}{}\label{class_messageable_a202416adb2413f9b5bc33c64ec2bc12e}
-\index{Messageable@{Messageable}!getZ@{getZ}}
-\index{getZ@{getZ}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{get\+Z()}{getZ()}}]{\setlength{\rightskip}{0pt plus 5cm}double Messageable\+::getZ (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_a7da3f0e2540087aa8933ec4cd99789ce}{}\label{class_messageable_a7da3f0e2540087aa8933ec4cd99789ce}
-\index{Messageable@{Messageable}!message\+\_\+callback@{message\+\_\+callback}}
-\index{message\+\_\+callback@{message\+\_\+callback}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{message\+\_\+callback(\+Message $\ast$message)=0}{message_callback(Message *message)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Messageable\+::message\+\_\+callback (
-\begin{DoxyParamCaption}
-\item[{{\bf Message} $\ast$}]{message}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_messageable_adda0d24929a929b9d91c97da1fb91775}{}\label{class_messageable_adda0d24929a929b9d91c97da1fb91775}
-
-
-Implemented in \hyperlink{class_aodv_comms_a88415cb9bf1c1afaf390763e4b77876b}{Aodv\+Comms}, \hyperlink{class_test_a74465f79ce672229db021c71f3b4eda4}{Test}, and \hyperlink{class_sensing_drone_a2f4e2de60a0d37c6d6a39078df3458ba}{Sensing\+Drone}.
-
-\index{Messageable@{Messageable}!push\+\_\+message@{push\+\_\+message}}
-\index{push\+\_\+message@{push\+\_\+message}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{push\+\_\+message(\+Message $\ast$contents)}{push_message(Message *contents)}}]{\setlength{\rightskip}{0pt plus 5cm}void Messageable\+::push\+\_\+message (
-\begin{DoxyParamCaption}
-\item[{{\bf Message} $\ast$}]{contents}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_a778d44d8365ed5927bf237d331593809}{}\label{class_messageable_a778d44d8365ed5927bf237d331593809}
-\index{Messageable@{Messageable}!receive\+\_\+message@{receive\+\_\+message}}
-\index{receive\+\_\+message@{receive\+\_\+message}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{receive\+\_\+message(std\+::string contents)}{receive_message(std::string contents)}}]{\setlength{\rightskip}{0pt plus 5cm}void Messageable\+::receive\+\_\+message (
-\begin{DoxyParamCaption}
-\item[{std\+::string}]{contents}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_a5e581d6cf3383931bb4749bbbe4d81ee}{}\label{class_messageable_a5e581d6cf3383931bb4749bbbe4d81ee}
-\index{Messageable@{Messageable}!run@{run}}
-\index{run@{run}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{run()=0}{run()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Messageable\+::run (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_messageable_a82c2308b9fabe8e06664d17b3c018b75}{}\label{class_messageable_a82c2308b9fabe8e06664d17b3c018b75}
-
-
-Implemented in \hyperlink{class_aodv_comms_adbb3acdf25009338e22315ac6aa63f16}{Aodv\+Comms}, \hyperlink{class_test_abb64a8b970de8b2422b9f56cd8719ca4}{Test}, and \hyperlink{class_sensing_drone_a84dd9d47273b8c4c05853b15547be6a2}{Sensing\+Drone}.
-
-\index{Messageable@{Messageable}!run\+Comm\+Mod@{run\+Comm\+Mod}}
-\index{run\+Comm\+Mod@{run\+Comm\+Mod}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{run\+Comm\+Mod()}{runCommMod()}}]{\setlength{\rightskip}{0pt plus 5cm}void Messageable\+::run\+Comm\+Mod (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_ab39d542fbac3744a22161efbe0dc9ff7}{}\label{class_messageable_ab39d542fbac3744a22161efbe0dc9ff7}
-\index{Messageable@{Messageable}!send\+\_\+message@{send\+\_\+message}}
-\index{send\+\_\+message@{send\+\_\+message}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{send\+\_\+message(\+Message $\ast$contents)}{send_message(Message *contents)}}]{\setlength{\rightskip}{0pt plus 5cm}void Messageable\+::send\+\_\+message (
-\begin{DoxyParamCaption}
-\item[{{\bf Message} $\ast$}]{contents}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_aaadfd99f6f7a1ec8c8195232a48e3b15}{}\label{class_messageable_aaadfd99f6f7a1ec8c8195232a48e3b15}
-\index{Messageable@{Messageable}!wait\+\_\+for\+\_\+message@{wait\+\_\+for\+\_\+message}}
-\index{wait\+\_\+for\+\_\+message@{wait\+\_\+for\+\_\+message}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{wait\+\_\+for\+\_\+message()}{wait_for_message()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} $\ast$ Messageable\+::wait\+\_\+for\+\_\+message (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_messageable_acca6e0ec0f301179e9bf5596b5b7d9a7}{}\label{class_messageable_acca6e0ec0f301179e9bf5596b5b7d9a7}
-
-
-\subsection{Member Data Documentation}
-\index{Messageable@{Messageable}!communications\+Module@{communications\+Module}}
-\index{communications\+Module@{communications\+Module}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{communications\+Module}{communicationsModule}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Comm\+Mod}$\ast$ Messageable\+::communications\+Module\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_messageable_a0c8ed985c63492656ab9e6d502c8f98e}{}\label{class_messageable_a0c8ed985c63492656ab9e6d502c8f98e}
-\index{Messageable@{Messageable}!in\+Queue@{in\+Queue}}
-\index{in\+Queue@{in\+Queue}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{in\+Queue}{inQueue}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::queue$<${\bf Message}$\ast$$>$ Messageable\+::in\+Queue\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_messageable_a77bee602af65ca6708c3d77080298376}{}\label{class_messageable_a77bee602af65ca6708c3d77080298376}
-\index{Messageable@{Messageable}!position@{position}}
-\index{position@{position}!Messageable@{Messageable}}
-\subsubsection[{\texorpdfstring{position}{position}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Coord} Messageable\+::position\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_messageable_a49ee36421becbc9f529f3d63d5e3169a}{}\label{class_messageable_a49ee36421becbc9f529f3d63d5e3169a}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/simulator/\hyperlink{_messageable_8hpp}{Messageable.\+hpp}\item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/simulator/\hyperlink{_messageable_8cpp}{Messageable.\+cpp}\end{DoxyCompactItemize}
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/simulator/Messageable.\+hpp\item 
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/simulator/Messageable.\+cpp\end{DoxyCompactItemize}

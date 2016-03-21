@@ -1,9 +1,5 @@
 \hypertarget{class_aodv__rreq}{}\section{Aodv\+\_\+rreq Class Reference}
 \label{class_aodv__rreq}\index{Aodv\+\_\+rreq@{Aodv\+\_\+rreq}}
-
-
-{\ttfamily \#include $<$Aodv\+\_\+rreq.\+hpp$>$}
-
 Inheritance diagram for Aodv\+\_\+rreq\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -13,79 +9,36 @@ Inheritance diagram for Aodv\+\_\+rreq\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aodv__rreq_a5deab97c844beb8a02f1d71df4fae9f3}{Aodv\+\_\+rreq} (int hop, int id, std\+::string src\+\_\+ip, std\+::string dst\+\_\+ip, int src\+\_\+seq, int dst\+\_\+seq, int ttl)
+\hyperlink{class_aodv__rreq_adf5effed008a795ee9914a8cb8f1c59c}{Aodv\+\_\+rreq} (int hop, std\+::string src\+\_\+ip, std\+::string dst\+\_\+ip, int src\+\_\+seq, int dst\+\_\+seq, int \hyperlink{class_aodv__message_a4d7215436d8efb6bcced6ae6a2dc6f33}{ttl})\hypertarget{class_aodv__rreq_adf5effed008a795ee9914a8cb8f1c59c}{}\label{class_aodv__rreq_adf5effed008a795ee9914a8cb8f1c59c}
+
+\begin{DoxyCompactList}\small\item\em A\+O\+DV route request message. \end{DoxyCompactList}\item 
+int \hyperlink{class_aodv__rreq_a7e9a7869c46962f9ff93dad0b2c1053d}{get\+\_\+hop\+\_\+count} ()\hypertarget{class_aodv__rreq_a7e9a7869c46962f9ff93dad0b2c1053d}{}\label{class_aodv__rreq_a7e9a7869c46962f9ff93dad0b2c1053d}
+
+\begin{DoxyCompactList}\small\item\em Getter method for the hop count of the message. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rreq_a779f266d0ee485860f59d72f82685453}{get\+\_\+source\+\_\+ip} ()\hypertarget{class_aodv__rreq_a779f266d0ee485860f59d72f82685453}{}\label{class_aodv__rreq_a779f266d0ee485860f59d72f82685453}
+
+\begin{DoxyCompactList}\small\item\em Getter method for the IP address of the sending node. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rreq_ad743336a946da8d6a8eb300651973d5e}{to\+\_\+string} ()\hypertarget{class_aodv__rreq_ad743336a946da8d6a8eb300651973d5e}{}\label{class_aodv__rreq_ad743336a946da8d6a8eb300651973d5e}
+
+\begin{DoxyCompactList}\small\item\em Returns a string representation of the message. \end{DoxyCompactList}\item 
+int \hyperlink{class_aodv__rreq_a005ff0f29aea44171b1fedca685553c4}{get\+\_\+source\+\_\+seq} ()\hypertarget{class_aodv__rreq_a005ff0f29aea44171b1fedca685553c4}{}\label{class_aodv__rreq_a005ff0f29aea44171b1fedca685553c4}
+
+\begin{DoxyCompactList}\small\item\em Getter method for the sequence number of the sending node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
 \item 
-int \hyperlink{class_aodv__rreq_a7e9a7869c46962f9ff93dad0b2c1053d}{get\+\_\+hop\+\_\+count} ()
-\item 
-int \hyperlink{class_aodv__rreq_a0cf5bb3bcd3be60618f1786a63c446e5}{get\+\_\+rreq\+\_\+id} ()
-\item 
-std\+::string \hyperlink{class_aodv__rreq_a779f266d0ee485860f59d72f82685453}{get\+\_\+source\+\_\+ip} ()
-\item 
-std\+::string \hyperlink{class_aodv__rreq_ad743336a946da8d6a8eb300651973d5e}{to\+\_\+string} ()
-\item 
-int \hyperlink{class_aodv__rreq_a005ff0f29aea44171b1fedca685553c4}{get\+\_\+source\+\_\+seq} ()
-\end{DoxyCompactItemize}
+int \hyperlink{class_aodv__rreq_af28bf51b5018f33b1b8b421547c95888}{hop\+\_\+count}\hypertarget{class_aodv__rreq_af28bf51b5018f33b1b8b421547c95888}{}\label{class_aodv__rreq_af28bf51b5018f33b1b8b421547c95888}
 
+\begin{DoxyCompactList}\small\item\em The number of hops taken towards the destination. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_aodv__rreq_ab0b8343c439224569fc90a41f214a9d1}{source\+\_\+ip}\hypertarget{class_aodv__rreq_ab0b8343c439224569fc90a41f214a9d1}{}\label{class_aodv__rreq_ab0b8343c439224569fc90a41f214a9d1}
 
-\subsection{Constructor \& Destructor Documentation}
-\index{Aodv\+\_\+rreq@{Aodv\+\_\+rreq}!Aodv\+\_\+rreq@{Aodv\+\_\+rreq}}
-\index{Aodv\+\_\+rreq@{Aodv\+\_\+rreq}!Aodv\+\_\+rreq@{Aodv\+\_\+rreq}}
-\subsubsection[{\texorpdfstring{Aodv\+\_\+rreq(int hop, int id, std\+::string src\+\_\+ip, std\+::string dst\+\_\+ip, int src\+\_\+seq, int dst\+\_\+seq, int ttl)}{Aodv_rreq(int hop, int id, std::string src_ip, std::string dst_ip, int src_seq, int dst_seq, int ttl)}}]{\setlength{\rightskip}{0pt plus 5cm}Aodv\+\_\+rreq\+::\+Aodv\+\_\+rreq (
-\begin{DoxyParamCaption}
-\item[{int}]{hop, }
-\item[{int}]{id, }
-\item[{std\+::string}]{src\+\_\+ip, }
-\item[{std\+::string}]{dst\+\_\+ip, }
-\item[{int}]{src\+\_\+seq, }
-\item[{int}]{dst\+\_\+seq, }
-\item[{int}]{ttl}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rreq_a5deab97c844beb8a02f1d71df4fae9f3}{}\label{class_aodv__rreq_a5deab97c844beb8a02f1d71df4fae9f3}
+\begin{DoxyCompactList}\small\item\em The IP address of the sending node. \end{DoxyCompactList}\item 
+int \hyperlink{class_aodv__rreq_aea83a870e2c223b5d0a0eb29bf5f6011}{source\+\_\+seq}\hypertarget{class_aodv__rreq_aea83a870e2c223b5d0a0eb29bf5f6011}{}\label{class_aodv__rreq_aea83a870e2c223b5d0a0eb29bf5f6011}
 
-
-\subsection{Member Function Documentation}
-\index{Aodv\+\_\+rreq@{Aodv\+\_\+rreq}!get\+\_\+hop\+\_\+count@{get\+\_\+hop\+\_\+count}}
-\index{get\+\_\+hop\+\_\+count@{get\+\_\+hop\+\_\+count}!Aodv\+\_\+rreq@{Aodv\+\_\+rreq}}
-\subsubsection[{\texorpdfstring{get\+\_\+hop\+\_\+count()}{get_hop_count()}}]{\setlength{\rightskip}{0pt plus 5cm}int Aodv\+\_\+rreq\+::get\+\_\+hop\+\_\+count (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rreq_a7e9a7869c46962f9ff93dad0b2c1053d}{}\label{class_aodv__rreq_a7e9a7869c46962f9ff93dad0b2c1053d}
-\index{Aodv\+\_\+rreq@{Aodv\+\_\+rreq}!get\+\_\+rreq\+\_\+id@{get\+\_\+rreq\+\_\+id}}
-\index{get\+\_\+rreq\+\_\+id@{get\+\_\+rreq\+\_\+id}!Aodv\+\_\+rreq@{Aodv\+\_\+rreq}}
-\subsubsection[{\texorpdfstring{get\+\_\+rreq\+\_\+id()}{get_rreq_id()}}]{\setlength{\rightskip}{0pt plus 5cm}int Aodv\+\_\+rreq\+::get\+\_\+rreq\+\_\+id (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rreq_a0cf5bb3bcd3be60618f1786a63c446e5}{}\label{class_aodv__rreq_a0cf5bb3bcd3be60618f1786a63c446e5}
-\index{Aodv\+\_\+rreq@{Aodv\+\_\+rreq}!get\+\_\+source\+\_\+ip@{get\+\_\+source\+\_\+ip}}
-\index{get\+\_\+source\+\_\+ip@{get\+\_\+source\+\_\+ip}!Aodv\+\_\+rreq@{Aodv\+\_\+rreq}}
-\subsubsection[{\texorpdfstring{get\+\_\+source\+\_\+ip()}{get_source_ip()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Aodv\+\_\+rreq\+::get\+\_\+source\+\_\+ip (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rreq_a779f266d0ee485860f59d72f82685453}{}\label{class_aodv__rreq_a779f266d0ee485860f59d72f82685453}
-\index{Aodv\+\_\+rreq@{Aodv\+\_\+rreq}!get\+\_\+source\+\_\+seq@{get\+\_\+source\+\_\+seq}}
-\index{get\+\_\+source\+\_\+seq@{get\+\_\+source\+\_\+seq}!Aodv\+\_\+rreq@{Aodv\+\_\+rreq}}
-\subsubsection[{\texorpdfstring{get\+\_\+source\+\_\+seq()}{get_source_seq()}}]{\setlength{\rightskip}{0pt plus 5cm}int Aodv\+\_\+rreq\+::get\+\_\+source\+\_\+seq (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_aodv__rreq_a005ff0f29aea44171b1fedca685553c4}{}\label{class_aodv__rreq_a005ff0f29aea44171b1fedca685553c4}
-\index{Aodv\+\_\+rreq@{Aodv\+\_\+rreq}!to\+\_\+string@{to\+\_\+string}}
-\index{to\+\_\+string@{to\+\_\+string}!Aodv\+\_\+rreq@{Aodv\+\_\+rreq}}
-\subsubsection[{\texorpdfstring{to\+\_\+string()}{to_string()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Aodv\+\_\+rreq\+::to\+\_\+string (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_aodv__rreq_ad743336a946da8d6a8eb300651973d5e}{}\label{class_aodv__rreq_ad743336a946da8d6a8eb300651973d5e}
-
-
-Implements \hyperlink{class_message_af65196e1bf4dfa1e44f59757612d3586}{Message}.
-
+\begin{DoxyCompactList}\small\item\em The sequence number of the sending node. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/communication/aodv/\hyperlink{_aodv__rreq_8hpp}{Aodv\+\_\+rreq.\+hpp}\item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/communication/aodv/\hyperlink{_aodv__rreq_8cpp}{Aodv\+\_\+rreq.\+cpp}\end{DoxyCompactItemize}
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/communication/aodv/Aodv\+\_\+rreq.\+hpp\item 
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/communication/aodv/Aodv\+\_\+rreq.\+cpp\end{DoxyCompactItemize}

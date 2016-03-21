@@ -14,10 +14,15 @@
 			std::string get_last_hop();
 			std::string get_next_hop();
 		private:
+			///Number of hops required to get from the source to the destination of the route
 			int m_hop_count;
+			///IP address of the node at which the route terminates
 			std::string m_source_ip;
+			///Time for which this route is valid
 			int m_life_time;
+			///The last node which forwarded this reply
 			std::string m_last_hop;
+			///The next node to which this reply will be forwarded
 			std::string m_next_hop;
 	};
 #endif

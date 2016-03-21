@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Effacious Octo Weasel: /home/will/Documents/effacious-octo-weasel/code/communication/aodv/Aodv_message.hpp Source File</title>
+<title>Serenity: /home/will/Documents/effacious-octo-weasel/code/communication/aodv/Aodv_message.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,10 +31,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Effacious Octo Weasel
+   <div id="projectname">Serenity
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">Discrete Event Network Simulator for Drones</div>
+   <div id="projectbrief">Discrete event network simulator for drone networks</div>
   </td>
  </tr>
  </tbody>
@@ -63,9 +71,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_aodv__message_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,30 +102,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3648090fc410cd55971a425a1cb3e81d.html">effacious-octo-weasel</a></li><li class="navelem"><a class="el" href="dir_d0280efaebe90c599b53af3fcd2553ec.html">code</a></li><li class="navelem"><a class="el" href="dir_1c303802f388344a4e0ab15946fe4f0f.html">communication</a></li><li class="navelem"><a class="el" href="dir_4eda47cf0f93353306e446149756ae1a.html">aodv</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Aodv_message.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_aodv__message_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef EOW_AODV_MESSAGE</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">    #define EOW_AODV_MESSAGE</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">    #include &lt;string&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">    #include &lt;<a class="code" href="_message_8hpp.html">Message.hpp</a>&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_aodv__message.html">    7</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_aodv__message.html">Aodv_message</a>: <span class="keyword">public</span> <a class="code" href="class_message.html">Message</a>{</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keyword">public</span>:</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            <a class="code" href="class_aodv__message.html#a0a2b1d41e31790c8c7ee6b1f4696d111">Aodv_message</a>(std::string, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            std::string <a class="code" href="class_aodv__message.html#ae3237227c6cfe4ef060954b9ee8583ba">get_dest_ip</a>();</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            std::string <a class="code" href="class_aodv__message.html#ad781f3f00c64bc2f1f9767d2a1154af3">serialize</a>();</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__message.html#a492730e2bac77ae381c5a3b50f6fe7c5">get_dest_seq</a>();</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__message.html#aebdbe5f76bb29cb30d2bb5d739644485">get_ttl</a>();</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">private</span>:</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            std::string dest_ip;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordtype">int</span> dest_seq;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordtype">int</span> ttl;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    };</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_aodv__message_html_a492730e2bac77ae381c5a3b50f6fe7c5"><div class="ttname"><a href="class_aodv__message.html#a492730e2bac77ae381c5a3b50f6fe7c5">Aodv_message::get_dest_seq</a></div><div class="ttdeci">int get_dest_seq()</div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:17</div></div>
-<div class="ttc" id="_message_8hpp_html"><div class="ttname"><a href="_message_8hpp.html">Message.hpp</a></div></div>
-<div class="ttc" id="class_aodv__message_html_a0a2b1d41e31790c8c7ee6b1f4696d111"><div class="ttname"><a href="class_aodv__message.html#a0a2b1d41e31790c8c7ee6b1f4696d111">Aodv_message::Aodv_message</a></div><div class="ttdeci">Aodv_message(std::string, int, int)</div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:3</div></div>
-<div class="ttc" id="class_aodv__message_html_aebdbe5f76bb29cb30d2bb5d739644485"><div class="ttname"><a href="class_aodv__message.html#aebdbe5f76bb29cb30d2bb5d739644485">Aodv_message::get_ttl</a></div><div class="ttdeci">int get_ttl()</div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:13</div></div>
-<div class="ttc" id="class_aodv__message_html_ae3237227c6cfe4ef060954b9ee8583ba"><div class="ttname"><a href="class_aodv__message.html#ae3237227c6cfe4ef060954b9ee8583ba">Aodv_message::get_dest_ip</a></div><div class="ttdeci">std::string get_dest_ip()</div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:9</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef EOW_AODV_MESSAGE</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">    #define EOW_AODV_MESSAGE</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">    #include &lt;string&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">    #include &lt;Message.hpp&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_aodv__message.html">    7</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_aodv__message.html">Aodv_message</a>: <span class="keyword">public</span> <a class="code" href="class_message.html">Message</a>{</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keyword">public</span>:</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            <a class="code" href="class_aodv__message.html#a0a2b1d41e31790c8c7ee6b1f4696d111">Aodv_message</a>(std::string, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            std::string <a class="code" href="class_aodv__message.html#ae3237227c6cfe4ef060954b9ee8583ba">get_dest_ip</a>();</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            std::string <a class="code" href="class_aodv__message.html#ad781f3f00c64bc2f1f9767d2a1154af3">serialize</a>();</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__message.html#a492730e2bac77ae381c5a3b50f6fe7c5">get_dest_seq</a>();</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__message.html#aebdbe5f76bb29cb30d2bb5d739644485">get_ttl</a>();</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">private</span>:</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_aodv__message.html#ac4c12719a45b7666c33d67e26aaad80a">   16</a></span>&#160;            std::string <a class="code" href="class_aodv__message.html#ac4c12719a45b7666c33d67e26aaad80a">dest_ip</a>;</div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_aodv__message.html#a86e0b282323ed454934908d4966c5887">   18</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__message.html#a86e0b282323ed454934908d4966c5887">dest_seq</a>;</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_aodv__message.html#a4d7215436d8efb6bcced6ae6a2dc6f33">   20</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_aodv__message.html#a4d7215436d8efb6bcced6ae6a2dc6f33">ttl</a>;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    };</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_aodv__message_html_a492730e2bac77ae381c5a3b50f6fe7c5"><div class="ttname"><a href="class_aodv__message.html#a492730e2bac77ae381c5a3b50f6fe7c5">Aodv_message::get_dest_seq</a></div><div class="ttdeci">int get_dest_seq()</div><div class="ttdoc">Getter method for the sequence number of the destination node. </div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:22</div></div>
+<div class="ttc" id="class_aodv__message_html_ac4c12719a45b7666c33d67e26aaad80a"><div class="ttname"><a href="class_aodv__message.html#ac4c12719a45b7666c33d67e26aaad80a">Aodv_message::dest_ip</a></div><div class="ttdeci">std::string dest_ip</div><div class="ttdoc">The IP address of the detination node. </div><div class="ttdef"><b>Definition:</b> Aodv_message.hpp:16</div></div>
+<div class="ttc" id="class_aodv__message_html_a0a2b1d41e31790c8c7ee6b1f4696d111"><div class="ttname"><a href="class_aodv__message.html#a0a2b1d41e31790c8c7ee6b1f4696d111">Aodv_message::Aodv_message</a></div><div class="ttdeci">Aodv_message(std::string, int, int)</div><div class="ttdoc">Base class for all AODV message types. </div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:5</div></div>
+<div class="ttc" id="class_aodv__message_html_aebdbe5f76bb29cb30d2bb5d739644485"><div class="ttname"><a href="class_aodv__message.html#aebdbe5f76bb29cb30d2bb5d739644485">Aodv_message::get_ttl</a></div><div class="ttdeci">int get_ttl()</div><div class="ttdoc">Getter method for the time to live. </div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:17</div></div>
+<div class="ttc" id="class_aodv__message_html_a4d7215436d8efb6bcced6ae6a2dc6f33"><div class="ttname"><a href="class_aodv__message.html#a4d7215436d8efb6bcced6ae6a2dc6f33">Aodv_message::ttl</a></div><div class="ttdeci">int ttl</div><div class="ttdoc">The time to live of the message. </div><div class="ttdef"><b>Definition:</b> Aodv_message.hpp:20</div></div>
+<div class="ttc" id="class_aodv__message_html_ae3237227c6cfe4ef060954b9ee8583ba"><div class="ttname"><a href="class_aodv__message.html#ae3237227c6cfe4ef060954b9ee8583ba">Aodv_message::get_dest_ip</a></div><div class="ttdeci">std::string get_dest_ip()</div><div class="ttdoc">Getter method for the IP address of the destination node. </div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:12</div></div>
+<div class="ttc" id="class_aodv__message_html_a86e0b282323ed454934908d4966c5887"><div class="ttname"><a href="class_aodv__message.html#a86e0b282323ed454934908d4966c5887">Aodv_message::dest_seq</a></div><div class="ttdeci">int dest_seq</div><div class="ttdoc">The sequence number of the destination node. </div><div class="ttdef"><b>Definition:</b> Aodv_message.hpp:18</div></div>
 <div class="ttc" id="class_message_html"><div class="ttname"><a href="class_message.html">Message</a></div><div class="ttdef"><b>Definition:</b> Message.hpp:7</div></div>
-<div class="ttc" id="class_aodv__message_html_ad781f3f00c64bc2f1f9767d2a1154af3"><div class="ttname"><a href="class_aodv__message.html#ad781f3f00c64bc2f1f9767d2a1154af3">Aodv_message::serialize</a></div><div class="ttdeci">std::string serialize()</div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:21</div></div>
+<div class="ttc" id="class_aodv__message_html_ad781f3f00c64bc2f1f9767d2a1154af3"><div class="ttname"><a href="class_aodv__message.html#ad781f3f00c64bc2f1f9767d2a1154af3">Aodv_message::serialize</a></div><div class="ttdeci">std::string serialize()</div><div class="ttdoc">Returns a string representation of the message. </div><div class="ttdef"><b>Definition:</b> Aodv_message.cpp:27</div></div>
 <div class="ttc" id="class_aodv__message_html"><div class="ttname"><a href="class_aodv__message.html">Aodv_message</a></div><div class="ttdef"><b>Definition:</b> Aodv_message.hpp:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f396504afdc959660871b003fa10164d.html">Documents</a></li><li class="navelem"><a class="el" href="dir_5ff2b33cc091083642953efddd646e35.html">effacious-octo-weasel</a></li><li class="navelem"><a class="el" href="dir_577c011ccc05a4190a0b9ce374a6a16b.html">code</a></li><li class="navelem"><a class="el" href="dir_66dfceda39a5228ea9c912caeb281228.html">communication</a></li><li class="navelem"><a class="el" href="dir_9b5027f7e1722fa8c7b9d0798e932968.html">aodv</a></li><li class="navelem"><b>Aodv_message.hpp</b></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

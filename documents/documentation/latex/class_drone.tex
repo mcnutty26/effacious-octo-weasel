@@ -1,9 +1,5 @@
 \hypertarget{class_drone}{}\section{Drone Class Reference}
 \label{class_drone}\index{Drone@{Drone}}
-
-
-{\ttfamily \#include $<$Drone.\+hpp$>$}
-
 Inheritance diagram for Drone\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -13,98 +9,70 @@ Inheritance diagram for Drone\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_drone_a671923cbf775d479aa11f469b82503f3}{Drone} (\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$cm, double iX, double iY, double iZ, double max\+Speed, \hyperlink{class_environment}{Environment} $\ast$e)
+{\bfseries Drone} (\hyperlink{class_comm_mod}{Comm\+Mod} $\ast$cm, double iX, double iY, double iZ, double max\+Speed, \hyperlink{class_environment}{Environment} $\ast$e)\hypertarget{class_drone_a671923cbf775d479aa11f469b82503f3}{}\label{class_drone_a671923cbf775d479aa11f469b82503f3}
+
 \item 
-bool \hyperlink{class_drone_a5181059ce456e7ccdf3366ee1f8156db}{is\+Alive} ()
+bool {\bfseries is\+Alive} ()\hypertarget{class_drone_a5181059ce456e7ccdf3366ee1f8156db}{}\label{class_drone_a5181059ce456e7ccdf3366ee1f8156db}
+
 \item 
-void \hyperlink{class_drone_a4a53691055a0561e5069ea1482ac893b}{upkeep} ()
+void {\bfseries upkeep} ()\hypertarget{class_drone_a4a53691055a0561e5069ea1482ac893b}{}\label{class_drone_a4a53691055a0561e5069ea1482ac893b}
+
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{class_drone_a87b644ed6c297252a0930b4a915a553e}{kill} ()
+void {\bfseries kill} ()\hypertarget{class_drone_a87b644ed6c297252a0930b4a915a553e}{}\label{class_drone_a87b644ed6c297252a0930b4a915a553e}
+
 \item 
-void \hyperlink{class_drone_a81c5a726112abba3d686e95baccd54be}{turn} (double d\+Angle)
+void {\bfseries turn} (double d\+Angle)\hypertarget{class_drone_a81c5a726112abba3d686e95baccd54be}{}\label{class_drone_a81c5a726112abba3d686e95baccd54be}
+
 \item 
-void \hyperlink{class_drone_ae7ebc3df04a42e9c49389ab2868d102d}{move} (\hyperlink{_drone_8hpp_a224b9163917ac32fc95a60d8c1eec3aa}{Direction} direction, double speed, double distance)
+void {\bfseries move} (Direction direction, double speed, double distance)\hypertarget{class_drone_ae7ebc3df04a42e9c49389ab2868d102d}{}\label{class_drone_ae7ebc3df04a42e9c49389ab2868d102d}
+
 \item 
-double \hyperlink{class_drone_a780e43c6486a26eb47a37295ea510269}{get\+Max\+Speed} ()
+double {\bfseries get\+Max\+Speed} ()\hypertarget{class_drone_a780e43c6486a26eb47a37295ea510269}{}\label{class_drone_a780e43c6486a26eb47a37295ea510269}
+
 \item 
-double \hyperlink{class_drone_abd485e52d2ac2d6d81038665495bb480}{sense} (std\+::string type)
+double {\bfseries get\+Angle} ()\hypertarget{class_drone_a6a5dccb74616583e76ff52252a9727a7}{}\label{class_drone_a6a5dccb74616583e76ff52252a9727a7}
+
+\item 
+bool {\bfseries has\+Finished\+Moving} ()\hypertarget{class_drone_a71ef7484d1ec8c314beec47d5e3046d1}{}\label{class_drone_a71ef7484d1ec8c314beec47d5e3046d1}
+
+\item 
+double {\bfseries sense} (std\+::string type)\hypertarget{class_drone_abd485e52d2ac2d6d81038665495bb480}{}\label{class_drone_abd485e52d2ac2d6d81038665495bb480}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double {\bfseries o\+Time}\hypertarget{class_drone_a58d0d1070b3339121051cb88c8edc5bf}{}\label{class_drone_a58d0d1070b3339121051cb88c8edc5bf}
+
+\item 
+bool {\bfseries alive} = true\hypertarget{class_drone_aea356a33311281ec16bba90066af5142}{}\label{class_drone_aea356a33311281ec16bba90066af5142}
+
+\item 
+Direction {\bfseries dir}\hypertarget{class_drone_a9489e36ee8f7c1c4f9ea1374fa2deed8}{}\label{class_drone_a9489e36ee8f7c1c4f9ea1374fa2deed8}
+
+\item 
+double {\bfseries max\+Speed}\hypertarget{class_drone_a9dcad921c51f4e7455ef79c16261404c}{}\label{class_drone_a9dcad921c51f4e7455ef79c16261404c}
+
+\item 
+double {\bfseries ang} = 0\hypertarget{class_drone_a88b4a0066796c01715b4313bf13f1468}{}\label{class_drone_a88b4a0066796c01715b4313bf13f1468}
+
+\item 
+\hyperlink{class_environment}{Environment} $\ast$ {\bfseries env}\hypertarget{class_drone_a283a1a6532801f59250478d20fa5392f}{}\label{class_drone_a283a1a6532801f59250478d20fa5392f}
+
+\item 
+double {\bfseries move\+DR}\hypertarget{class_drone_a1320892a8f0d71d63a36e23079f7d56c}{}\label{class_drone_a1320892a8f0d71d63a36e23079f7d56c}
+
+\item 
+double {\bfseries move\+Spd}\hypertarget{class_drone_a97270a4291d82a57331669171bd80bc1}{}\label{class_drone_a97270a4291d82a57331669171bd80bc1}
+
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\index{Drone@{Drone}!Drone@{Drone}}
-\index{Drone@{Drone}!Drone@{Drone}}
-\subsubsection[{\texorpdfstring{Drone(\+Comm\+Mod $\ast$cm, double i\+X, double i\+Y, double i\+Z, double max\+Speed, Environment $\ast$e)}{Drone(CommMod *cm, double iX, double iY, double iZ, double maxSpeed, Environment *e)}}]{\setlength{\rightskip}{0pt plus 5cm}Drone\+::\+Drone (
-\begin{DoxyParamCaption}
-\item[{{\bf Comm\+Mod} $\ast$}]{cm, }
-\item[{double}]{iX, }
-\item[{double}]{iY, }
-\item[{double}]{iZ, }
-\item[{double}]{max\+Speed, }
-\item[{{\bf Environment} $\ast$}]{e}
-\end{DoxyParamCaption}
-)}\hypertarget{class_drone_a671923cbf775d479aa11f469b82503f3}{}\label{class_drone_a671923cbf775d479aa11f469b82503f3}
-
-
-\subsection{Member Function Documentation}
-\index{Drone@{Drone}!get\+Max\+Speed@{get\+Max\+Speed}}
-\index{get\+Max\+Speed@{get\+Max\+Speed}!Drone@{Drone}}
-\subsubsection[{\texorpdfstring{get\+Max\+Speed()}{getMaxSpeed()}}]{\setlength{\rightskip}{0pt plus 5cm}double Drone\+::get\+Max\+Speed (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_drone_a780e43c6486a26eb47a37295ea510269}{}\label{class_drone_a780e43c6486a26eb47a37295ea510269}
-\index{Drone@{Drone}!is\+Alive@{is\+Alive}}
-\index{is\+Alive@{is\+Alive}!Drone@{Drone}}
-\subsubsection[{\texorpdfstring{is\+Alive()}{isAlive()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Drone\+::is\+Alive (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_drone_a5181059ce456e7ccdf3366ee1f8156db}{}\label{class_drone_a5181059ce456e7ccdf3366ee1f8156db}
-\index{Drone@{Drone}!kill@{kill}}
-\index{kill@{kill}!Drone@{Drone}}
-\subsubsection[{\texorpdfstring{kill()}{kill()}}]{\setlength{\rightskip}{0pt plus 5cm}void Drone\+::kill (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_drone_a87b644ed6c297252a0930b4a915a553e}{}\label{class_drone_a87b644ed6c297252a0930b4a915a553e}
-\index{Drone@{Drone}!move@{move}}
-\index{move@{move}!Drone@{Drone}}
-\subsubsection[{\texorpdfstring{move(\+Direction direction, double speed, double distance)}{move(Direction direction, double speed, double distance)}}]{\setlength{\rightskip}{0pt plus 5cm}void Drone\+::move (
-\begin{DoxyParamCaption}
-\item[{{\bf Direction}}]{direction, }
-\item[{double}]{speed, }
-\item[{double}]{distance}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_drone_ae7ebc3df04a42e9c49389ab2868d102d}{}\label{class_drone_ae7ebc3df04a42e9c49389ab2868d102d}
-\index{Drone@{Drone}!sense@{sense}}
-\index{sense@{sense}!Drone@{Drone}}
-\subsubsection[{\texorpdfstring{sense(std\+::string type)}{sense(std::string type)}}]{\setlength{\rightskip}{0pt plus 5cm}double Drone\+::sense (
-\begin{DoxyParamCaption}
-\item[{std\+::string}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_drone_abd485e52d2ac2d6d81038665495bb480}{}\label{class_drone_abd485e52d2ac2d6d81038665495bb480}
-\index{Drone@{Drone}!turn@{turn}}
-\index{turn@{turn}!Drone@{Drone}}
-\subsubsection[{\texorpdfstring{turn(double d\+Angle)}{turn(double dAngle)}}]{\setlength{\rightskip}{0pt plus 5cm}void Drone\+::turn (
-\begin{DoxyParamCaption}
-\item[{double}]{d\+Angle}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_drone_a81c5a726112abba3d686e95baccd54be}{}\label{class_drone_a81c5a726112abba3d686e95baccd54be}
-\index{Drone@{Drone}!upkeep@{upkeep}}
-\index{upkeep@{upkeep}!Drone@{Drone}}
-\subsubsection[{\texorpdfstring{upkeep()}{upkeep()}}]{\setlength{\rightskip}{0pt plus 5cm}void Drone\+::upkeep (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{class_drone_a4a53691055a0561e5069ea1482ac893b}{}\label{class_drone_a4a53691055a0561e5069ea1482ac893b}
-
-
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/simulator/\hyperlink{_drone_8hpp}{Drone.\+hpp}\item 
-/home/will/\+Documents/effacious-\/octo-\/weasel/code/simulator/\hyperlink{_drone_8cpp}{Drone.\+cpp}\end{DoxyCompactItemize}
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/simulator/Drone.\+hpp\item 
+/home/will/\+Documents/effacious-\/octo-\/weasel/code/simulator/Drone.\+cpp\end{DoxyCompactItemize}
