@@ -1,12 +1,11 @@
 CXX		= g++
 LINKFLAGS	=
 CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -pthread -fPIC -g
-objects		= Messageable Message CommMod  BaseStation Environment Drone
+objects		= Messageable Message CommMod  BaseStation Environment Drone IpAllocator
 libraries	= -lglfw3 -lglew32 -lgdi32 -lopengl32
-headers		= Messageable.hpp CommMod.hpp Message.hpp BaseStation.hpp Drone.hpp
-exe		=
+headers		= Messageable.hpp CommMod.hpp Message.hpp BaseStation.hpp Drone.hpp IpAllocator.hpp
 
-OBJ_FILES = BaseStation.o CommMod.o Drone.o Environment.o Message.o Messageable.o
+OBJ_FILES = BaseStation.o CommMod.o Drone.o Environment.o Message.o Messageable.o IpAllocator.o
 OBJ_SET = header_obj $(OBJ_FILES)
 
 define colorecho

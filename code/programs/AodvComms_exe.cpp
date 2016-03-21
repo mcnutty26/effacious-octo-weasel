@@ -2,6 +2,7 @@
 #include <Environment.hpp>
 #include <Aodv.hpp>
 #include <CommMod.hpp>
+#include <IpAllocator.hpp>
 #include <map>
 #include <atomic>
 
@@ -15,12 +16,15 @@ int main(int argv, char* argc[]){
 	Environment* env = new Environment(*sensor_map, 0.001);
 	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
 
+	//Create IP address helper
+	IpAllocator allocator = IpAllocator(10, 0, 0, 1);
+
 	bool debug_mode = true;
-	CommMod* comm_aodv1 = new Aodv(env, "10.0.0.1", &stdout_lock, debug_mode);
-	CommMod* comm_aodv2 = new Aodv(env, "10.0.0.2", &stdout_lock, debug_mode);
-	CommMod* comm_aodv3 = new Aodv(env, "10.0.0.3", &stdout_lock, debug_mode);
-	CommMod* comm_aodv4 = new Aodv(env, "10.0.0.4", &stdout_lock, debug_mode);
-	CommMod* comm_aodv5 = new Aodv(env, "10.0.0.5", &stdout_lock, debug_mode);
+	CommMod* comm_aodv1 = new Aodv(env, allocator.next(), &stdout_lock, debug_mode);
+	CommMod* comm_aodv2 = new Aodv(env, allocator.next(), &stdout_lock, debug_mode);
+	CommMod* comm_aodv3 = new Aodv(env, allocator.next(), &stdout_lock, debug_mode);
+	CommMod* comm_aodv4 = new Aodv(env, allocator.next(), &stdout_lock, debug_mode);
+	CommMod* comm_aodv5 = new Aodv(env, allocator.next(), &stdout_lock, debug_mode);
 
 	//create and add drones
 	int flag = 0;

@@ -3,7 +3,6 @@
 #include "Aodv.hpp"
 #include <iostream>
 #include <sstream>
-//#include "../basic/Basic_message.hpp"
 #include "../basic_addressed/Basic_message_addressed.hpp"
 #include <chrono>
 #include <thread>
@@ -280,7 +279,7 @@ void Aodv::process_data(std::string message){
 	if (destination == ip_address){
 		log("The data packet is for this node");
 		state = 0;
-		messageable->push_message(new Basic_message_addressed(content, source));
+		messageable->push_message(new Basic_message_addressed(content, destination, source));
 	} else if (next_hop == ip_address){
 		log("Forwarding data packet to " + destination + " via " + route_table[destination]->get_next_hop());
 		std::string data_message = "DATA;" 
@@ -348,30 +347,32 @@ void Aodv::comm_function(){
 			}
 
 			//get the message from the messageable if we are not currently processing a message
-			std::string address = Aodv::get_attribute(message);
+			std::string destination = Aodv::get_attribute(message);
+			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
+			std::string source = Aodv::get_attribute(message);
 			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 			std::string content = Aodv::get_attribute(message);
 			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 			outQueue.pop();
 
-			log("Starting AODV for message to " + address);
+			log("Starting AODV for message to " + destination);
 
 			//update internal state
 			state = 1;
 
-			if (have_route(address)){
+			if (have_route(destination)){
 				state = 0;
 				std::string data_message = "DATA;" 
-					+ address
-					+ ";" + route_table[address]->get_next_hop()
+					+ destination
+					+ ";" + route_table[destination]->get_next_hop()
 					+ ";" + ip_address 
 					+ ";" + content;
 				broadcast(data_message);
-				log("data packet sent with exitsing info via " + route_table[address]->get_next_hop());
+				log("data packet sent with exitsing info via " + route_table[destination]->get_next_hop());
 			} else {
 				current_message.first = content;
-				current_message.second = address;
-				Aodv_rreq* route_request = create_rreq(address, ip_address, TTL);
+				current_message.second = destination;
+				Aodv_rreq* route_request = create_rreq(destination, ip_address, TTL);
 				state = 1;
 				log("Sent out a route request");
 				broadcast(route_request->to_string());

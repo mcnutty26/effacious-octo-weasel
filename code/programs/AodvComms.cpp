@@ -36,7 +36,7 @@ void AodvComms::run(){
 			while(m_lock->test_and_set()){}
 			std::cout << "Source sending message" << std::endl;
 			m_lock->clear();
-			send_message(new Basic_message_addressed("TEST MESSAGE PLEASE IGNORE", "10.0.0.1"));
+			send_message(new Basic_message_addressed("TEST MESSAGE PLEASE IGNORE", "10.0.0.1", ""));
 			break;
 		case -1:
 			while (*m_flag != 1){
@@ -45,7 +45,4 @@ void AodvComms::run(){
 			break;
 	}
 	send_message(new Basic_message("KILL"));
-	while(m_lock->test_and_set()){}
-	std::cout << "Program with task " << m_task << " exiting" << std::endl;
-	m_lock->clear();
 }
