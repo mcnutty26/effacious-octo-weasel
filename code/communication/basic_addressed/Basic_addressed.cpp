@@ -11,7 +11,6 @@
 
 Basic_addressed::Basic_addressed(Environment* env, std::atomic_flag* flag, std::string ip): CommMod(env){
     RANGE = 1000000.0f;
-    environment = env;
     lock = flag;
     ip_address = ip;
 }
