@@ -20,10 +20,15 @@ bool AodvComms::message_callback(Message*){
 void AodvComms::run(){
 	switch(m_task){
 		case 0:
-			//while(m_lock->test_and_set()){}
+			while(m_lock->test_and_set()){}
 			std::cout << "Sink waiting for message" << std::endl;
-			std::cout << wait_for_message()->to_string() << std::endl;
-			//m_lock->clear();
+			m_lock->clear();
+			{
+				std::string incoming = wait_for_message()->to_string();
+				while(m_lock->test_and_set()){}
+				std::cout << incoming << std::endl;
+				m_lock->clear();
+			}
 			*m_flag = 1;
 			break;
 		case 1:
@@ -37,6 +42,10 @@ void AodvComms::run(){
 			while (*m_flag != 1){
 				std::this_thread::sleep_for(std::chrono::milliseconds(100));
 			}
+			break;
 	}
 	send_message(new Basic_message("KILL"));
+	while(m_lock->test_and_set()){}
+	std::cout << "Program with task " << m_task << " exiting" << std::endl;
+	m_lock->clear();
 }

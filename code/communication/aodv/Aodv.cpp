@@ -22,17 +22,11 @@ Aodv::Aodv(Environment* env, std::string ip, std::atomic_flag* flag, bool debug)
 	TTL = 5;
 	lock = flag;
 	logging = debug;
-	log("init complete");
-
-	//state can take on the following values:
-	//0 -> no current activity
-	//1 -> sending message: waiting for route information
-	//2 -> middle node on multi hop route (forwarded RREQ, waiting for RREP)
+	log("init complete on thread ");
 }
 
 std::string Aodv::get_attribute(std::string message){
 	std::string attribute;
-	
 	std::stringstream attr;
 	attr.str(message);
 	std::getline(attr, attribute, ';');
@@ -163,7 +157,7 @@ void Aodv::process_rreq(Aodv_rreq* message){
 	} else if (state == 0){
 		state = 2;
 		if (have_route(message->get_dest_ip())){
-			Aodv_rrep* route_data = create_rrep(message->get_source_ip(), ip_address, TTL);
+			Aodv_rrep* route_data = create_rrep(message->get_source_ip(), message->get_dest_ip(), TTL);
 			log("Answering  multihop route request from " + message->get_source_ip());
 			broadcast(route_data->to_string());
 		} else if (message->get_source_ip() != current_message.second){
@@ -195,7 +189,7 @@ void Aodv::process_rrep(Aodv_rrep* message){
 		//we were waiting for a route
 		state = 0;
 		std::string data_message = "DATA;" 
-			+ current_message.second;
+			+ current_message.second
 			+ ";" + route_table[current_message.second]->get_next_hop()
 			+ ";" + ip_address 
 			+ ";" + current_message.first;
@@ -205,6 +199,8 @@ void Aodv::process_rrep(Aodv_rrep* message){
 	} else if (state == 2 && current_message.second == message->get_dest_ip()){
 		//we previously forwarded a multihop route request
 		Aodv_rrep* route_info = create_rrep(message->get_source_ip(), message->get_dest_ip(), message->get_ttl() - 1);
+		log("Sending reply for previously forwarded mumtihop route request to " + message->get_dest_ip());
+		state = 0;
 		broadcast(route_info->to_string());
 	}
 }
@@ -225,7 +221,7 @@ void Aodv::process_data(std::string message){
 		log("The data packet is for this node");
 		state = 0;
 		messageable->push_message(new Basic_message_addressed(content, source));
-	} else {
+	} else if (next_hop == ip_address){
 		log("Forwarding data packet");
 		std::string data_message = "DATA;" 
 			+ destination
@@ -243,8 +239,6 @@ void Aodv::process_rerr(Aodv_rerr* message){
 
 void Aodv::comm_function(){
 	while (true){
-		
-
 		if (last_hello + HELLO_INTERVAL < environment->getTime()){
 			log("sending hello");
 			Aodv_rreq* hello = create_hello();
@@ -274,19 +268,20 @@ void Aodv::comm_function(){
 			}
 		}
 		while (!outQueue.empty() && state == 0){
-			//get the message from the messageable if we are not currently processing a message
 			std::string message = outQueue.front()->to_string();
+
+			//exit if our messageable sent us a kill packet
+			if (message == "KILL"){
+				log("exiting");
+				return;
+			}
+
+			//get the message from the messageable if we are not currently processing a message
 			std::string address = Aodv::get_attribute(message);
 			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 			std::string content = Aodv::get_attribute(message);
 			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 			outQueue.pop();
-
-			//exit if our messageable sent us a kill packet
-			if (content == "KILL"){
-				log("exiting");
-				return;
-			}
 
 			log("Starting AODV for message to " + address);
 
@@ -301,7 +296,7 @@ void Aodv::comm_function(){
 					+ ";" + ip_address 
 					+ ";" + content;
 				broadcast(data_message);
-				log("data packet sent with exitsing info via " + route_table[current_message.second]->get_next_hop());
+				log("data packet sent with exitsing info via " + route_table[address]->get_next_hop());
 			} else {
 				current_message.first = content;
 				current_message.second = address;

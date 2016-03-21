@@ -1,6 +1,6 @@
 CXX		= g++
 LINKFLAGS	=
-CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -pthread -fPIC
+CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -pthread -fPIC -g
 objects		= Messageable Message CommMod  BaseStation Environment Drone
 libraries	= -lglfw3 -lglew32 -lgdi32 -lopengl32
 headers		= Messageable.hpp CommMod.hpp Message.hpp BaseStation.hpp Drone.hpp
