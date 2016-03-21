@@ -20,17 +20,14 @@
 		private:
 			std::map<std::string, Aodv_route*> route_table;
 			std::string ip_address;
-			int HELLO_INTERVAL;
+			double HELLO_INTERVAL;
 			int SEQUENCE_NUMBER;
-			int ACTIVE_ROUTE_TIMEOUT;
-			int PATH_DISCOVERY_TIME;
+			double ACTIVE_ROUTE_TIMEOUT;
+			double PATH_DISCOVERY_TIME;
 			int BROADCAST_ID;
 			int RANGE;
 			int TTL;
-
-			double xpos;
-			double ypos;
-			double zpos;
+			double last_hello;
 
 			Aodv_rreq* create_hello();
 			Aodv_rreq* create_rreq(std::string, std::string, int);
@@ -44,7 +41,7 @@
 
 			std::string get_attribute(std::string);
 			bool have_route(std::string);
-			void add_route(std::string, int, int, std::string, int);
+			void add_route(std::string, int, int, std::string);
 
 			Aodv_rreq* deserialize_rreq(std::string);
 			Aodv_rrep* deserialize_rrep(std::string);
@@ -54,6 +51,7 @@
 			int state;
 			std::atomic_flag* lock;
 			void log(std::string);
+			void broadcast(std::string);
 			bool logging;
 	};
 #endif

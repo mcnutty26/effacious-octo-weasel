@@ -4,7 +4,7 @@ BASICLINK	= -I ../communication/basic
 BASICADDRLINK	= -I ../communication/basic_addressed $(BASICLINK)
 AODVLINK	= -I ../communication/aodv $(BASICADDRLINK)
 LIBFLAGS	= -loctodrone -loctodronecomms -lpthread
-CXXFLAGS	= -std=c++11 -Werror -Wextra
+CXXFLAGS	= -std=c++11 -Werror -Wextra -g
 
 define colorecho
       @tput setaf 32
