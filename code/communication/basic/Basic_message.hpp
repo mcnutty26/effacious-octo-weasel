@@ -9,6 +9,7 @@
 			Basic_message(std::string);
 			std::string to_string();
 		private:
+			///The contents of the message
 			std::string message;
 	};
 #endif

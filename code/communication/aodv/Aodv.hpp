@@ -49,7 +49,7 @@ along with TBC.  If not, see <http://www.gnu.org/licenses/>.
 			double PATH_DISCOVERY_TIME;
 			///AODV broadcast ID used to prevent loops and ensure fresh information
 			int BROADCAST_ID;
-			///The amount of power used to boradcast messages
+			///The amount of power used to broadcast messages
 			int RANGE;
 			///Default time to live for messages, dependent on network size
 			int TTL;

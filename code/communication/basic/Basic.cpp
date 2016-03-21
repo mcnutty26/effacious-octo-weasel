@@ -1,3 +1,5 @@
+///Basic messaging protocol for testing where nodes receive all messages sent if they are within range
+
 #include "Basic.hpp"
 #include <Message.hpp>
 #include <queue>
@@ -8,10 +10,14 @@
 
 Basic::Basic(Environment* env, std::atomic_flag* flag): CommMod(env){
     RANGE = 1000000.0f;
-    environment = env;
     lock = flag;
 }
 
+///The main communications loop which handles incomming and outgoing messages
+/**
+ * Every loop we send any messages that are waiting to be sent
+ * Then we deliver any messages that we have received
+ */
 void Basic::comm_function(){
 	while(true){
 		while (!inQueue.empty()){
@@ -41,6 +47,10 @@ void Basic::comm_function(){
 	}
 }
 
+///Helper function to log internal information
+/**
+ * Makes use of the stdout lock we were passed on creation to make sure that only one thread is printing at any one time
+ */
 void Basic::log(std::string log_message){
 	while (lock->test_and_set()){}
 	std::cout << "basic: " << log_message << std::endl;

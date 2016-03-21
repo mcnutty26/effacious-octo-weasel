@@ -12,10 +12,12 @@
 		protected:
 			void comm_function();
 		private:
+			///The amount of power used to boradcast messages
 			double RANGE;
-			Environment* environment;
+			///An atomic lock to regulate access to stdout
 			std::atomic_flag* lock;
 			void log(std::string);
+			///The IP address of the communication module
 			std::string ip_address;
 			std::string get_attribute(std::string);
 	};

@@ -12,8 +12,9 @@
 		protected:
 			void comm_function();
 		private:
+			///The amount of power used to broadcast messages
 			double RANGE;
-			Environment* environment;
+			///An atomic lock to regulate access to stdout
 			std::atomic_flag* lock;
 			void log(std::string);
 	};

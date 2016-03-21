@@ -1,3 +1,5 @@
+///Basic messaging protocol with addressing for testing, where nodes receive all messages sent if they are within range and addressed to them
+
 #include "Basic_addressed.hpp"
 #include <Message.hpp>
 #include <queue>
@@ -14,6 +16,12 @@ Basic_addressed::Basic_addressed(Environment* env, std::atomic_flag* flag, std::
     ip_address = ip;
 }
 
+///The main communications loop which handles incomming and outgoing messages
+/**
+ * Every loop any incomming messages are deserialized and delivered if they match our IP address
+ * Next, any outgoing messages are sent
+ * Note that received messages not addressed to this IP address will be dropped
+ */
 void Basic_addressed::comm_function(){
 	while(true){
 		while (!inQueue.empty()){
