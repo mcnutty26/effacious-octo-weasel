@@ -25,6 +25,10 @@ Aodv::Aodv(Environment* env, std::string ip, std::atomic_flag* flag, bool debug)
 	log("init complete on thread ");
 }
 
+///Attribute extraction for AODV messages
+/**
+ * Takes in a message string and returns the first field of that message (semicolon delimited)
+ */
 std::string Aodv::get_attribute(std::string message){
 	std::string attribute;
 	std::stringstream attr;
@@ -33,6 +37,10 @@ std::string Aodv::get_attribute(std::string message){
 	return attribute;
 }
 
+///Deserialization for route requests
+/**
+ * Takes a raw message string of a route reuest message and returns an AODV object representing that message
+ */
 Aodv_rreq* Aodv::deserialize_rreq(std::string message){
 	std::string dst_ip = Aodv::get_attribute(message);
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
@@ -52,6 +60,10 @@ Aodv_rreq* Aodv::deserialize_rreq(std::string message){
 	return result;
 }
 
+///Deserialization for route replies
+/**
+ * Takes a raw message string of a route reply message and returns an AODV object representing that message
+ */
 Aodv_rrep* Aodv::deserialize_rrep(std::string message){
 	std::string dst_ip = Aodv::get_attribute(message);
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
@@ -75,6 +87,10 @@ Aodv_rrep* Aodv::deserialize_rrep(std::string message){
 	return result;
 }
 
+///Deserialization for route errors
+/**
+ * Takes a raw message string of a route error message and returns an AODV object representing that message
+ */
 Aodv_rerr* Aodv::deserialize_rerr(std::string message){
 	std::string dst_ip = Aodv::get_attribute(message);
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
@@ -87,10 +103,18 @@ Aodv_rerr* Aodv::deserialize_rerr(std::string message){
 	return result;
 }
 
+//Helper method for creating hello messages
+/**
+ * Creates a special route request for a route to this node, with TTL 1
+ */
 Aodv_rreq* Aodv::create_hello(){
 	return Aodv::create_rreq(ip_address, ip_address, 1);
 }
 
+///Helper method for creating route requests
+/**
+ * Abstracts away the destination sequence number lookup for convienence
+ */
 Aodv_rreq* Aodv::create_rreq(std::string dst_ip, std::string src_ip, int ttl){
 	int hop = 0;
 	int dst_seq = 0;
@@ -102,6 +126,10 @@ Aodv_rreq* Aodv::create_rreq(std::string dst_ip, std::string src_ip, int ttl){
 	return to_send;
 }
 
+///Checks if a route to the destination is known
+/**
+ * Determines if a route to the destination is known, and if that route is fresh
+ */
 bool Aodv::have_route(std::string ip){
 	if (route_table.find(ip) != route_table.end()){// && route_table[ip]->get_life() + ACTIVE_ROUTE_TIMEOUT < environment->getTime()){
 		return true;
@@ -110,6 +138,10 @@ bool Aodv::have_route(std::string ip){
 	}
 }
 
+//Helper method for creating route replies
+/**
+ * Abstracts away next hop lookup for convienence
+ */
 Aodv_rrep* Aodv::create_rrep(std::string dst_ip, std::string src_ip, int ttl){
 	int hop = 0;
 	int dst_seq = route_table[dst_ip]->get_seq();
@@ -120,6 +152,10 @@ Aodv_rrep* Aodv::create_rrep(std::string dst_ip, std::string src_ip, int ttl){
 	return to_send;
 }
 
+///Helper method for creating route errors
+/**
+ * Abstracts away the destination sequence number lookup for convienence
+ */
 Aodv_rerr* Aodv::create_rerr(std::string dst_ip, int ttl){
 	int dst_seq = 0;
 	if (have_route(dst_ip)){
@@ -130,12 +166,22 @@ Aodv_rerr* Aodv::create_rerr(std::string dst_ip, int ttl){
 	return to_send;
 }
 
+///Creates a route in the routing table
+/**
+ * Adds in the standard route timeout and ensures that all variables are set to prevent memory issues later
+ */
 void Aodv::add_route(std::string ip, int dest_seq, int hop_count, std::string next_hop){
 	Aodv_route* route = new Aodv_route(dest_seq, hop_count, next_hop, ACTIVE_ROUTE_TIMEOUT);
 	route_table.insert(std::pair<std::string, Aodv_route*>(ip, route));
 	log("ADDED " + ip + " VIA " + next_hop);
 }
 
+///Handle an RREQ that was received
+/**
+ * First we check if the message was a hello message, and if so we always respond to it
+ * If the message was a normal request, then we either answer it (if we have the info) or forward it if we do not
+ * Note that non-hello RREQs will be dropped if we are currently trying to send a message
+ */
 void Aodv::process_rreq(Aodv_rreq* message){
 	log("rec'd a RREQ packet from " + message->get_source_ip() + " for " + message->get_dest_ip());
 
@@ -155,13 +201,13 @@ void Aodv::process_rreq(Aodv_rreq* message){
 		broadcast(route_data->to_string());
 		log("Replied to hello message from " + message->get_source_ip());
 	} else if (state == 0){
-		state = 2;
 		if (have_route(message->get_dest_ip())){
 			Aodv_rrep* route_data = create_rrep(message->get_source_ip(), message->get_dest_ip(), TTL);
 			log("Answering  multihop route request from " + message->get_source_ip());
 			broadcast(route_data->to_string());
-		} else if (message->get_source_ip() != current_message.second){
-			Aodv_rreq* route_data = create_rreq(message->get_dest_ip(), ip_address, message->get_ttl() - 1);
+		} else if (message->get_source_ip() != current_message.second && message->get_ttl() > 0){
+			state = 2;
+			Aodv_rreq* route_data = create_rreq(message->get_dest_ip(), message->get_source_ip(), message->get_ttl() - 1);
 			current_message.second = message->get_source_ip();
 			log("Forwarding multihop route request from " + message->get_source_ip() + " to " + message->get_dest_ip());
 			broadcast(route_data->to_string());
@@ -169,6 +215,13 @@ void Aodv::process_rreq(Aodv_rreq* message){
 	}
 }
 
+///Handle an RREP that was received
+/**
+ * First we check if the message contains new information about other nodes, and if so we always update our routing table
+ * If the message was a response to a request we initiated, then we should send our data packet.
+ * If the message was a response to a request we forwarded for another node, then we should pass it on
+ * Note that nodes will only act as a middle hop for one message at a time (other reponses will be dropped)
+ */
 void Aodv::process_rrep(Aodv_rrep* message){
 	log("rec'd a RREP packet from " + message->get_source_ip() + " / " + message->get_last_hop());
 
@@ -194,17 +247,23 @@ void Aodv::process_rrep(Aodv_rrep* message){
 			+ ";" + ip_address 
 			+ ";" + current_message.first;
 		broadcast(data_message);
-		log("Data packet sent via " + route_table[current_message.second]->get_next_hop());
+		log("Data packet sent to " + current_message.second + " via " + route_table[current_message.second]->get_next_hop());
 		
-	} else if (state == 2 && current_message.second == message->get_dest_ip()){
+	} else if (state == 2 && current_message.second == message->get_dest_ip() && message->get_ttl() > 0){
 		//we previously forwarded a multihop route request
-		Aodv_rrep* route_info = create_rrep(message->get_source_ip(), message->get_dest_ip(), message->get_ttl() - 1);
+		Aodv_rrep* route_info = create_rrep(message->get_dest_ip(), message->get_source_ip(), message->get_ttl() - 1);
 		log("Sending reply for previously forwarded mumtihop route request to " + message->get_dest_ip());
 		state = 0;
 		broadcast(route_info->to_string());
 	}
 }
 
+///Handle an data packet that was received
+/**
+ * First we check if the message was for us, and if so we deliver the contents to our messageable
+ * If the message is destined for another node and we are specified as the next hop, then we forward that packet to the next hop according to our own routing table
+ * Note that messages destined for other nodes that we are not specified as a next hop for will be dropped
+ */
 void Aodv::process_data(std::string message){
 	std::string destination = Aodv::get_attribute(message);
 	message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
@@ -215,14 +274,13 @@ void Aodv::process_data(std::string message){
 	std::string content = Aodv::get_attribute(message);
 
 	log("rec'd a DATA packet from " + source + ", via " + next_hop);
-	log("dest " + destination + " nxt " + next_hop + " src " + source + " con " + content);
 
 	if (destination == ip_address){
 		log("The data packet is for this node");
 		state = 0;
 		messageable->push_message(new Basic_message_addressed(content, source));
 	} else if (next_hop == ip_address){
-		log("Forwarding data packet");
+		log("Forwarding data packet to " + destination + " via " + route_table[destination]->get_next_hop());
 		std::string data_message = "DATA;" 
 			+ destination
 			+ ";" + route_table[destination]->get_next_hop()
@@ -232,11 +290,22 @@ void Aodv::process_data(std::string message){
 	}
 }
 
+///Handle an RERR that was received
+/**
+ * This functionality os not yet implemented
+ */
 void Aodv::process_rerr(Aodv_rerr* message){
 	log("rec'd a RERR packet");
 	(void)message;
 }
 
+///The main communications loop which handles incomming and outgoing messages
+/**
+ * Every loop we check to see if we should send a hello, based on the hello interval
+ * Next, any incomming messages are deserialized and handled appropriately
+ * If our messageable told us to shut down, the communications module exits
+ * Next, any outgoing messages are either immediately sent (if we have a route to the destination already) or a route request is distributed (if we do not have a route)
+ */
 void Aodv::comm_function(){
 	while (true){
 		if (last_hello + HELLO_INTERVAL < environment->getTime()){
@@ -310,6 +379,11 @@ void Aodv::comm_function(){
 	}
 }
 
+///Helper function to log internal information
+/**
+ * Makes use of the stdout lock we were passed on creation to make sure that only one thread is printing at any one time
+ * Also prints the ip of the communications module and the current environment time to help with debugging
+ */
 void Aodv::log(std::string log_message){
 	if (logging){
 		while(lock->test_and_set()){}
@@ -321,6 +395,11 @@ void Aodv::log(std::string log_message){
 	}
 }
 
+///Helper function to broadcast a message through the environment
+/**
+ * Broadcast requires the coordinates of the broadcasting unit which can be unwieldy to do every time
+ * This process is simplified by wrapping it in a helper function
+ */
 void Aodv::broadcast(std::string message){
 	//Update our position
 	double xpos = messageable->getX();
