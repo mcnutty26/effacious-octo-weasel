@@ -1,6 +1,17 @@
 #include "Drone.hpp"
 #include <cmath>
 #include "Messageable.hpp"
+#include <iostream>
+
+#include <sys/socket.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+#include <unistd.h>
 
 #define PI 3.14159265
 
@@ -9,6 +20,7 @@ Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Envi
 {
 	this->maxSpeed = maxSpeed;
 	env = e;
+	execute("TAKEOFF", 0.0);
 }
 
 bool Drone::isAlive()
@@ -19,7 +31,7 @@ bool Drone::isAlive()
 void Drone::kill()
 {
 	alive = false;
-	system("node ../../parrot/js/parrot.js LAND");
+	execute("LAND", 0.0);
 }
 
 void Drone::upkeep()
@@ -38,22 +50,22 @@ void Drone::upkeep()
 	switch(dir)
 	{
 		case Direction::UP:
-			system("node ../../parrot/js/parrot.js UP 0.5");
+			execute("UP", 0.5);
 			break;
 		case Direction::DOWN:
-			system("node ../../parrot/js/parrot.js DOWN 0.5");
+			execute("DOWN", 0.5);
 			break;
 		case Direction::LEFT:
-			system("node ../../parrot/js/parrot.js LEFT 0.5");
+			execute("LEFT", 0.5);
 			break;
 		case Direction::RIGHT:
-			system("node ../../parrot/js/parrot.js RIGHT 0.5");
+			execute("RIGHT", 0.5);
 			break;
 		case Direction::FORWARD:
-			system("node ../../parrot/js/parrot.js FRONT 0.5");
+			execute("FRONT", 0.5);
 			break;
 		case Direction::BACK:
-			system("node ../../parrot/js/parrot.js BACK 0.5");
+			execute("BACK", 0.5);
 			break;
 	}
 }
@@ -92,4 +104,38 @@ void Drone::move(Direction direction, double speed, double distance)
 double Drone::sense(std::string type)
 {
 	return env->getData(type, position.x, position.y, position.z);
+}
+
+void Drone::execute(std::string command, double arg){
+	#define SOCK_PATH "./parrot.sock"
+	int s, t, len;
+	struct sockaddr_un remote;
+
+	char str[100];
+	strcat(str, command);
+	strcat(str, ";");
+	strcat(str, arg);
+
+	if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
+		std::cout << "Error getting address of socket ./parrot.sock" << std::endl;
+		exit(1);
+	}
+
+	printf("Trying to connect...\n");
+
+	remote.sun_family = AF_UNIX;
+	strcpy(remote.sun_path, SOCK_PATH);
+	len = strlen(remote.sun_path) + sizeof(remote.sun_family);
+	if (connect(s, (struct sockaddr *)&remote, len) == -1) {
+		std::cout << "Error connecting to socket ./parrot.sock" << std::endl;
+		exit(1);
+	}
+
+	printf("Connected.\n");
+	if (send(s, "TAKEOFF", strlen(str), 0) == -1) {
+		std::cout << "Error sending via socket ./parrot.sock" << std::endl;
+		exit(1);
+	}
+
+	close(s);
 }

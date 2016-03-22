@@ -50,6 +50,7 @@
 
 			Environment* env;
 			double moveDR, moveSpd;
+			void execute(std::string, double);
 	};
 
 #endif

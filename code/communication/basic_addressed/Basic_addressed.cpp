@@ -42,7 +42,7 @@ void Basic_addressed::comm_function(){
 			messageable->push_message(to_push);
 			log("rec'd message");
 		}
-	
+
 		while (!outQueue.empty()){
 			Message* message = outQueue.front();
 			outQueue.pop();

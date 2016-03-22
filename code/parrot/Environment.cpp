@@ -5,6 +5,7 @@
 #include <cmath>
 #include <thread>
 #include <atomic>
+#include <iostream>
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 
@@ -50,14 +51,7 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 {
 	std::string nMessage = noiseFun(message);
 	while(lock_broadcast.test_and_set()){}
-	for(auto m:drones)
-	{
-		//if messageable is within range
-		if(pow(m->getX() - xOrigin,2) + pow(m->getY() - yOrigin, 2) + pow(m->getZ() - zOrigin, 2) < range && m->get_comm_mod() != caller)
-		{
-			m->receive_message(nMessage);
-		}
-	}
+
 	lock_broadcast.clear();
 }
 
@@ -85,6 +79,9 @@ void Environment::run()
 		threads.emplace_back(&BaseStation::run, baseStation);
 		threads.emplace_back(&BaseStation::runCommMod, baseStation);
 	}
+
+	//start the node server
+	system("node ../../parrot/js/parrot.js");
 
 	while(allRunning(&threads))
 	{
