@@ -81,7 +81,7 @@ void Environment::run()
 	}
 
 	//start the node server
-	system("node ../../parrot/js/parrot.js");
+	//system("node ../../parrot/js/parrot.js");
 
 	while(allRunning(&threads))
 	{

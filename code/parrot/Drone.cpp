@@ -107,17 +107,17 @@ double Drone::sense(std::string type)
 }
 
 void Drone::execute(std::string command, double arg){
-	#define SOCK_PATH "./parrot.sock"
+	#define SOCK_PATH "../../parrot/js/parrot.sock"
 	int s, t, len;
 	struct sockaddr_un remote;
 
 	char str[100];
-	strcat(str, command);
+	strcat(str, command.c_str());
 	strcat(str, ";");
-	strcat(str, arg);
+	strcat(str, std::to_string(arg).c_str());
 
 	if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
-		std::cout << "Error getting address of socket ./parrot.sock" << std::endl;
+		std::cout << "Error getting address of socket " << SOCK_PATH << std::endl;
 		exit(1);
 	}
 
@@ -127,15 +127,16 @@ void Drone::execute(std::string command, double arg){
 	strcpy(remote.sun_path, SOCK_PATH);
 	len = strlen(remote.sun_path) + sizeof(remote.sun_family);
 	if (connect(s, (struct sockaddr *)&remote, len) == -1) {
-		std::cout << "Error connecting to socket ./parrot.sock" << std::endl;
+		std::cout << "Error connecting to socket " << SOCK_PATH << std::endl;
 		exit(1);
 	}
 
 	printf("Connected.\n");
-	if (send(s, "TAKEOFF", strlen(str), 0) == -1) {
-		std::cout << "Error sending via socket ./parrot.sock" << std::endl;
+	if (send(s, str, strlen(str), 0) == -1) {
+		std::cout << "Error sending via socket" << SOCK_PATH << std::endl;
 		exit(1);
 	}
+	printf("Sent %s\n", str);
 
 	close(s);
 }

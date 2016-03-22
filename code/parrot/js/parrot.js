@@ -1,30 +1,20 @@
 var net = require('net');
 var fs = require('fs');
-var parrot = require('./parrot');
-var socketPath = './parrotsock';
+var socketPath = './parrot.sock';
 
 var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 
 fs.stat(socketPath, function(err) {
-    if (!err) fs.unlinkSync(socketPath);
-    var unixServer = net.createServer(function(localSerialConnection) {
-        localSerialConnection.on('data', function(data) {
-            // data is a buffer from the socket
-        });
-        // write to socket with localSerialConnection.write()
-    });
-	
-	
-	unixServer.listen(socketPath);
-	
-	var connect = net.createConnection(socketPath);
-	
-	connect.on('data', function(data) {
-		console.log(data)
-		//execute(data)
-		
+	if (!err) fs.unlinkSync(socketPath);
+	var unixServer = net.createServer(function(localSerialConnection) {
+		localSerialConnection.on('data', function(data) {
+			console.log(data);
+			//TODO some processing to split <command>:<value> into two components
+			//TODO call the execute function with these components
+		});
 	});
+	unixServer.listen(socketPath);
 });
 
 function execute(command, speed) {
@@ -52,7 +42,6 @@ function execute(command, speed) {
 				break;
 			case "land":
 				client.land();
-				console.log('we landin capn');
 				break;
 			case "clockwise":
 				client.clockwise(speed);
