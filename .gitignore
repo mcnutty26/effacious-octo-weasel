@@ -8,6 +8,7 @@ documents/report/*.lot
 documents/report/*.gz
 documents/report/*.toc
 code/simulator/build/*
+code/parrot/build/*
 code/programs/build/parrot.sock
 code/communication/aodv/build/*
 code/communication/basic/build/*
