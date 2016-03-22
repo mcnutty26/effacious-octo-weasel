@@ -33,6 +33,7 @@ switch(myArgs[0]) {
         client.back(speed)
         break;
 	case "takeoff":
+		console.log("DUBUG");
         client.takeoff();
         break;
 	case "land":
@@ -56,4 +57,4 @@ switch(myArgs[0]) {
 });
 */
 
-process.exit()
+//process.exit()
