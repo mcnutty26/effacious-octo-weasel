@@ -1,11 +1,22 @@
 var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 
-/*process.argv.forEach(function (val, index, array) {
-	if (index==3) {
-		speed = val;
-	}
-});*/ 
+var net = require('net');
+var fs = require('fs');
+var socketPath = './parrotsock';
+
+fs.stat(socketPath, function(err) {
+    if (!err) fs.unlinkSync(socketPath);
+    var unixServer = net.createServer(function(localSerialConnection) {
+        localSerialConnection.on('data', function(data) {
+            // data is a buffer from the socket
+        });
+        // write to socket with localSerialConnection.write()
+    });
+
+unixServer.listen(socketPath);
+});
+
 
 var myArgs = process.argv.slice(2)
 
@@ -36,7 +47,8 @@ switch(myArgs[0]) {
         client.takeoff();
         break;
 	case "land":
-        client.land(speed)
+        client.land()
+		console.log('we landin capn');
         break;
 	case "clockwise":
         client.clockwise(speed)
