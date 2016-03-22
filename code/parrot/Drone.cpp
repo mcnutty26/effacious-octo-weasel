@@ -1,10 +1,6 @@
 #include "Drone.hpp"
-
 #include <cmath>
 #include "Messageable.hpp"
-
-// TODO: remove
-#include <iostream>
 
 #define PI 3.14159265
 
@@ -23,44 +19,41 @@ bool Drone::isAlive()
 void Drone::kill()
 {
 	alive = false;
+	system("node ../../parrot/js/parrot.js LAND");
 }
 
 void Drone::upkeep()
 {
 	double time = getTime();
-	double dTime = time - oTime;
+	//double dTime = time - oTime;
 	oTime = time;
 	if(moveDR <= 0)
 	{
 		moveDR = 0;
 		return;
 	}
-	double radcon = PI/180;
-	double distance = moveDR < moveSpd*dTime? moveDR:moveSpd*dTime;
+	//double radcon = PI/180;
+	//double distance = moveDR < moveSpd*dTime? moveDR:moveSpd*dTime;
 
 	switch(dir)
 	{
 		case Direction::UP:
-			position.z += distance;
+			system("node ../../parrot/js/parrot.js UP 0.5");
 			break;
 		case Direction::DOWN:
-			position.z -= distance;
+			system("node ../../parrot/js/parrot.js DOWN 0.5");
 			break;
 		case Direction::LEFT:
-			position.x += distance*sin((ang - 90)*radcon);
-			position.y += distance*cos((ang - 90)*radcon);
+			system("node ../../parrot/js/parrot.js LEFT 0.5");
 			break;
 		case Direction::RIGHT:
-			position.x += distance*sin((ang + 90)*radcon);
-			position.y += distance*cos((ang + 90)*radcon);
+			system("node ../../parrot/js/parrot.js RIGHT 0.5");
 			break;
 		case Direction::FORWARD:
-			position.x += distance*sin((ang)*radcon);
-			position.y += distance*cos((ang)*radcon);
+			system("node ../../parrot/js/parrot.js FRONT 0.5");
 			break;
 		case Direction::BACK:
-			position.x += distance*sin((ang + 180)*radcon);
-			position.y += distance*cos((ang + 180)*radcon);
+			system("node ../../parrot/js/parrot.js BACK 0.5");
 			break;
 	}
 }

@@ -95,9 +95,6 @@ void Environment::run()
 				x->upkeep();
 			}
 		}
-
-		timeElapsed += timeStep;
-
 	}
 
 	for(std::vector<std::thread>::size_type i = 0; i < threads.size(); ++i)
@@ -108,7 +105,7 @@ void Environment::run()
 
 double Environment::getTime()
 {
-	return timeElapsed;
+	return time(nullptr);
 }
 
 double Environment::getData(std::string type, double x, double y, double z)

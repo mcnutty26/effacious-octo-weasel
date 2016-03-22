@@ -17,13 +17,13 @@ endef
 all: libdrone
 
 header_obj:
-	$(call colorecho,"Compiling simulator objects...")
+	$(call colorecho,"Compiling parrot objects...")
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o build/$@
 
 libdrone: $(OBJ_SET)
-	$(call colorecho,"Creating simulator library...")
+	$(call colorecho,"Creating parrot library...")
 	$(CXX) -shared -fPIC -o build/liboctodroneparrot.so $(addprefix build/, $(OBJ_FILES))
 
 clean:
