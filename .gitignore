@@ -13,4 +13,5 @@ code/communication/basic/build/*
 code/communication/basic_addressed/build/*
 code/communication/build/*
 code/programs/build/*
-
+documents/documentation/latex/*
+!documents/documentation/latex/refman.pdf
