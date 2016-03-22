@@ -1,3 +1,5 @@
+///Modified implementation of Drone for the Parrot AR 2 drone
+
 #include "Drone.hpp"
 #include <cmath>
 #include "Messageable.hpp"
@@ -106,23 +108,26 @@ double Drone::sense(std::string type)
 	return env->getData(type, position.x, position.y, position.z);
 }
 
+///Takes a command and sends it to the node server which is connected to the drone
 void Drone::execute(std::string command, double arg){
-	#define SOCK_PATH "../../parrot/js/parrot.sock"
+	//set up connection variables
+	#define SOCK_PATH "parrot.sock"
 	int s, t, len;
 	struct sockaddr_un remote;
-
 	char str[100];
+
+	//prepare the request as a c string
 	strcat(str, command.c_str());
 	strcat(str, ";");
 	strcat(str, std::to_string(arg).c_str());
 
+	//get a handle for the socket
 	if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 		std::cout << "Error getting address of socket " << SOCK_PATH << std::endl;
 		exit(1);
 	}
 
-	printf("Trying to connect...\n");
-
+	//connect to the socket
 	remote.sun_family = AF_UNIX;
 	strcpy(remote.sun_path, SOCK_PATH);
 	len = strlen(remote.sun_path) + sizeof(remote.sun_family);
@@ -131,12 +136,12 @@ void Drone::execute(std::string command, double arg){
 		exit(1);
 	}
 
-	printf("Connected.\n");
+	//send the request
 	if (send(s, str, strlen(str), 0) == -1) {
 		std::cout << "Error sending via socket" << SOCK_PATH << std::endl;
 		exit(1);
 	}
-	printf("Sent %s\n", str);
 
+	//close the connection
 	close(s);
 }

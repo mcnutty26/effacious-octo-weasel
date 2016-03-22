@@ -5,6 +5,12 @@ var socketPath = './parrot.sock';
 var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 
+process.on('uncaughtException', function (er) {
+	console.log('Unhandled exception');
+	console.log(er.stack);
+	process.exit(1);
+});
+
 fs.stat(socketPath, function(err) {
 	if (!err) fs.unlinkSync(socketPath);
 	var unixServer = net.createServer(function(localSerialConnection) {
@@ -16,6 +22,8 @@ fs.stat(socketPath, function(err) {
 	});
 	unixServer.listen(socketPath);
 });
+
+console.log("EOW node server started and listening on socket " + socketPath);
 
 function execute(command, speed) {
 	switch(command) {

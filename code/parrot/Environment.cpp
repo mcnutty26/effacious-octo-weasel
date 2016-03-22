@@ -1,17 +1,33 @@
+///Modified implementation of Environment for the Parrot AR 2 drone
+
 #include "Environment.hpp"
 #include "Drone.hpp"
 #include "BaseStation.hpp"
 
 #include <cmath>
 #include <thread>
+#include <chrono>
 #include <atomic>
 #include <iostream>
+#include <stdlib.h>
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
+FILE* node_server;
 
 std::string passStr(std::string in)
 {
 	return in;
+}
+
+///Starts the node server which connects to the drone
+void startNode(){
+	//start the node server
+	node_server = popen("node ../../parrot/js/parrot.js", "w");
+	if (!node_server){
+		std::cout << "Error starting node server" << std::endl;
+		exit(1);
+	}
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep)
@@ -20,6 +36,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, std::func
 	timeStep = timestep;
 	data = sensor_data;
 	baseStation = NULL;
+	startNode();
 };
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep)
@@ -28,6 +45,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, double ti
 	data = sensor_data;
 	noiseFun = &passStr;
 	baseStation = NULL;
+	startNode();
 }
 
 //should not be called by anything other than the main thread
@@ -80,9 +98,6 @@ void Environment::run()
 		threads.emplace_back(&BaseStation::runCommMod, baseStation);
 	}
 
-	//start the node server
-	//system("node ../../parrot/js/parrot.js");
-
 	while(allRunning(&threads))
 	{
 		for(auto x: drones)
@@ -97,6 +112,12 @@ void Environment::run()
 	for(std::vector<std::thread>::size_type i = 0; i < threads.size(); ++i)
 	{
 		threads[i].join();
+	}
+
+	//shut down the node server
+	if (pclose(node_server) != 0){
+		std::cout << "Error shutting down node server" << std::endl;
+		exit(1);
 	}
 }
 
