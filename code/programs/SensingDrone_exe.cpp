@@ -3,6 +3,7 @@
 #include <Environment.hpp>
 #include <Basic_addressed.hpp>
 #include <CommMod.hpp>
+//#include <IpAllocator.hpp>
 #include <map>
 #include <atomic>
 
@@ -16,13 +17,17 @@ int main(int argv, char* argc[]){
 	Environment* env = new Environment(*sensor_map, 1.0);
 	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
 
+	// Create IP address helper
+	//IpAllocator allocator = IpAllocator(10, 0, 0, 1);
+
+
 	CommMod* comm_basic1 = new Basic_addressed(env, &stdout_lock, "10.0.0.1");
 	CommMod* comm_basic2 = new Basic_addressed(env, &stdout_lock, "10.0.0.2");
 
 	CommMod* comm_basic_base = new Basic_addressed(env, &stdout_lock, "10.0.0.255");
 
 	//creat and add base station
-	SensingBaseStation* basestation = new SensingBaseStation(comm_basic_base, 0.0, 0.0, 0.0, 1.0, 10.0, 1.0, 10.0);
+	SensingBaseStation* basestation = new SensingBaseStation(comm_basic_base, 0.0, 0.0, 0.0, 1.0, 1.0, 10.0, 10.0);
 	env->setBaseStation(basestation);
 
 	//create and add drones

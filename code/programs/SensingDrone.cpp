@@ -25,6 +25,7 @@ bool SensingDrone::message_callback(Message*){
 }
 
 void SensingDrone::run(){
+	/*
 	if (sink_node){
 		std::cout << "Sink waiting for message" << std::endl;
 		std::cout << wait_for_message()->to_string() << std::endl;
@@ -34,6 +35,7 @@ void SensingDrone::run(){
 		send_message(new Basic_message("TEST MESSAGE PLEASE IGNORE"));
 		send_message(new Basic_message("KILL"));
 	}
+	*/
 
 	// Wait for message from base station to begin
 	// Discover other IPs of drones and base station
@@ -47,16 +49,17 @@ void SensingDrone::run(){
 		else
 		{
 			Basic_message_addressed* message = dynamic_cast<Basic_message_addressed*>(wait_for_message());
-			// Will the message be lost if it is not from the basestation?
-			if (message->get_destination() == baseStationIP)
+			// Will the message be lost if it is not from the basestation?			
+			if (message->get_source() == baseStationIP)
 			{
 				std::string str = message->get_message();
-				std::cout << "DRONE: Sensing on area:" << std::endl;
+				std::cout << "DRONE: Sensing on area:";
 				std::cout << str << std::endl;
 
 				// Needs actual values
-				newArea(1.0, 1.0, 5.0, 5.0, 1.0);
+				//newArea(1.0, 1.0, 5.0, 5.0, 1.0);
 			}
+			
 		}
 	}
 
