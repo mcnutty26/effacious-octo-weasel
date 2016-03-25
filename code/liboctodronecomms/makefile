@@ -1,5 +1,5 @@
 CXX		= g++
-LINKFLAGS	= -L ../liboctodrone/lib -I ../liboctodrone/include
+LINKFLAGS	= -L ../liboctodrone/lib -I ../liboctodrone/include -I include
 CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g
 LIBFLAGS	= -loctodrone
 
@@ -29,17 +29,12 @@ basic_addressed:
 	$(call colorecho,"Creating Basic_addressed communication objects...")
 	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic_addressed/Basic_addressed.cpp -o build/Basic_message.o
 	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic_addressed/Basic_addressed_message.cpp -o build/Basic_addressed_message.o
-	cp src/basic_addressed/*.hpp include/
 
 lib: aodv basic basic_addressed
 	$(call colorecho,"Creating communications library...")
-	cp src/aodv/*.hpp include/
-	cp src/basic/*.hpp include/
-	cp src/basic_addressed/*.hpp include/
 	$(CXX) -shared -fPIC -o lib/liboctodronecomms.so build/*.o
 
 clean:
 	$(call colorecho,"Cleaning communications library...")
 	$(RM) build/* 
 	$(RM) lib/*
-	$(RM) include/*

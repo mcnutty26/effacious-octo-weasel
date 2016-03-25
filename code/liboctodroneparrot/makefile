@@ -1,5 +1,5 @@
 CXX		= g++
-CXXFLAGS	= -std=c++11 -Wall -Wextra -fPIC -g
+CXXFLAGS	= -std=c++11 -Wall -Wextra -fPIC -g -I include
 
 define colorecho
       @tput setaf 32
@@ -21,11 +21,9 @@ parrot:
 
 lib: parrot
 	$(call colorecho,"Creating parrot library...")
-	cp src/*.hpp include/
 	$(CXX) -shared -fPIC -o lib/liboctodroneparrot.so build/*.o
 
 clean:
 	$(call colorecho,"Cleaning parrot library...")
 	$(RM) build/* 
 	$(RM) lib/*
-	$(RM) include/*

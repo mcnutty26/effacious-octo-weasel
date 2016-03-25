@@ -1,12 +1,13 @@
-CXX		= g++
-LINKFLAGS	= -L ../simulator/build -I ../simulator -L ../communication/build
-PARROTLINKFLAGS	= -L ../parrot/build -I ../parrot -L ../communication/build
-BASICLINK	= -I ../communication/basic
-BASICADDRLINK	= -I ../communication/basic_addressed $(BASICLINK)
-AODVLINK	= -I ../communication/aodv $(BASICADDRLINK)
-LIBFLAGS	= -loctodrone -loctodronecomms -lpthread
-PARROTLIBFLAGS	= -loctodroneparrot -loctodronecomms -lpthread
-CXXFLAGS	= -std=c++11 -Werror -Wextra -g
+CXX			= g++
+CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g
+
+SIMLINK		= -L ../liboctodrone/lib -I ../liboctodrone/include
+PARLINK		= -L ../liboctodroneparrot/lib -I ../liboctodroneparrot/include
+COMLINK		= -l ../liboctodronecomms/lib -I ../liboctodronecomms/include
+
+SIMFLAGS	= -loctodrone
+PARFLAGS	= -loctodroneparrot
+COMFLAGS	= -loctodronecomms
 
 define colorecho
       @tput setaf 32
@@ -14,35 +15,29 @@ define colorecho
       @tput sgr0
 endef
 
-all: complete
+all: BasicTest BasicAddrTest AodvTest ParrotTest Sensing
 
-deps:
-	cd ../simulator && $(MAKE)
-	cp ../simulator/build/liboctodrone.so build/
-	cd ../parrot && $(MAKE)
-	cp ../parrot/build/liboctodroneparrot.so build/
-	cd ../communication && $(MAKE)
-	cp ../communication/build/liboctodronecomms.so build/
+BasicTest:
+	cp src/BasicTest/*.hpp include/
+	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) $(SIMFLAGS) $(COMFLAGS) -c -o build/BasicTest.o src/BasicTest/BasicTest.cpp
 
-programs: 
-	$(call colorecho,"Compiling drone routines...")
-	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(BASICLINK) -c -o build/BasicComms.o BasicComms.cpp
-	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(AODVLINK) -c -o build/AodvComms.o AodvComms.cpp
-	#$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(BASICADDRLINK) -c -o build/SensingDrone.o SensingDrone.cpp
-	#$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(BASICADDRLINK) -c -o build/SensingBaseStation.o SensingBaseStation.cpp
-	$(CXX) $(CXXFLAGS) $(LIBFLAGS) $(LINKFLAGS) $(BASICLINK) -c -o build/ParrotTest.o ParrotTest.cpp
+BasicAddrTest:
+	cp src/BasicAddrTest/*.hpp include/
+	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) $(SIMFLAGS) $(COMFLAGS) -c -o build/AddrBasicTest.o src/BasicAddrTest/BasicAddrTest.cpp
 
-exes:
-	$(call colorecho,"Creating executables...")
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(BASICLINK) -I ../ -o build/basiccomms BasicComms_exe.cpp build/BasicComms.o
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(AODVLINK) -I ../ -o build/aodvcomms AodvComms_exe.cpp build/AodvComms.o
-	#$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(LIBFLAGS) $(BASICADDRLINK) -I ../ -o build/sensingdrone SensingDrone_exe.cpp build/SensingDrone.o
-	$(CXX) $(CXXFLAGS) $(PARROTLINKFLAGS) $(PARROTLIBFLAGS) $(BASICLINK) -I ../ -o build/parrottest ParrotTest_exe.cpp build/ParrotTest.o
+AodvTest:
+	cp src/AodvTest/*.hpp include/
+	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) $(SIMFLAGS) $(COMFLAGS) -c -o build/AodvTest.o src/AodvTest/AodvTest.cpp
 
-complete: deps programs exes
+ParrotTest:
+	cp src/ParrotTest/*.hpp include/
+	$(CXX) $(CXXFLAGS) $(PARLINK) $(COMLINK) $(PARFLAGS) $(COMFLAGS) -c -o build/ParrotTest.o src/ParrotTest/ParrotTest.cpp
+
+Sensing:
+	cp src/Sensing/*.hpp include/
+	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) $(SIMFLAGS) $(COMFLAGS) -c -o build/SensingDrone.o src/Sensing/SensingDrone.cpp
+	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) $(SIMFLAGS) $(COMFLAGS) -c -o build/SensingBaseStation.o src/Sensing/SensingBaseStation.cpp
 
 clean:
 	$(RM) build/*
-	cd ../simulator && $(MAKE) clean
-	cd ../parrot && $(MAKE) clean
-	cd ../communication && $(MAKE) clean
+	$(RM) include/*

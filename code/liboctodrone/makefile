@@ -1,5 +1,5 @@
 CXX		= g++
-CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g
+CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g -I include
 
 define colorecho
       @tput setaf 32
@@ -21,11 +21,9 @@ simulator:
 
 lib: simulator
 	$(call colorecho,"Creating simulator library...")
-	cp src/*.hpp include/
 	$(CXX) -shared -fPIC -o lib/liboctodrone.so build/*.o
 
 clean:
 	$(call colorecho,"Cleaning simulator library...")
 	$(RM) build/* 
 	$(RM) lib/*
-	$(RM) include/*
