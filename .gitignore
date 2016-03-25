@@ -20,5 +20,11 @@ code/octodroneparrot/build/*
 code/octodroneparrot/lib/*
 code/octodroneparrot/include/*
 
+code/programs/build/*
+code/programs/include/*
+
+code/simulations/build/*
+code/simulations/bin/*
+
 documents/documentation/latex/*
 !documents/documentation/latex/refman.pdf
