@@ -33,7 +33,7 @@ void Basic_addressed::comm_function(){
 			message.erase(message.begin(), message.begin() + message.find_first_of(";") + 1);
 			std::string content = Basic_addressed::get_attribute(message);
 
-			if (dst_ip != ip_address){
+			if (dst_ip != ip_address && dst_ip != "255.255.255.255"){
 				log("dropped message");
 				break;
 			}
@@ -49,12 +49,12 @@ void Basic_addressed::comm_function(){
 			
 			std::string message_string = message->to_string();
 			std::string dst_ip = Basic_addressed::get_attribute(message_string);
-			message_string.erase(message_string.begin(), message_string.begin() + message_string.find_first_of(";") + 1);
-			std::string content = Basic_addressed::get_attribute(message_string);
+			message_string.erase(message_string.begin(), message_string.begin() + message_string.find_last_of(";") + 1);
+			//std::string content = Basic_addressed::get_attribute(message_string);
 
-			Basic_addressed_message* addressed_message = new Basic_addressed_message(content, dst_ip, ip_address);
+			Basic_addressed_message* addressed_message = new Basic_addressed_message(message_string, dst_ip, ip_address);
 			
-			if (content == "KILL"){
+			if (message->to_string() == "KILL"){
 			    log("exiting");
 			    return;
 			}
@@ -62,6 +62,7 @@ void Basic_addressed::comm_function(){
 			double xpos = messageable->getX();
 			double ypos = messageable->getY();;
 			double zpos = messageable->getZ();
+			//environment->broadcast(message->to_string(), xpos, ypos, zpos, RANGE, this); 
 			environment->broadcast(addressed_message->to_string(), xpos, ypos, zpos, RANGE, this); 
 			log("broadcast message");
 		}

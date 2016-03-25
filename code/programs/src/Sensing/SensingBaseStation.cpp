@@ -8,7 +8,7 @@
 SensingBaseStation::SensingBaseStation(CommMod* cm, double xp, double yp, double zp, double areaX1, double areaY1, double areaX2, double areaY2) : BaseStation(cm, xp, yp, zp) {
 	this->areaX1 = areaX1;
 	this->areaX2 = areaX2;
-	this->areaY1 = araeY1;
+	this->areaY1 = areaY1;
 	this->areaY2 = areaY2;
 }
 
@@ -16,8 +16,8 @@ void SensingBaseStation::run() {
 
 	// Wait for a certain amount of time to discover number of drones
 	// Drone IPs are hardcoded in for now
-	droneIPs.insert("10.0.0.1");
-	droneIPs.insert("10.0.0.2");
+	droneIPs.push_back("10.0.0.1");
+	droneIPs.push_back("10.0.0.2");
 	int numDrones = 2;
 
 
@@ -43,4 +43,8 @@ void SensingBaseStation::run() {
 	}
 
 	std::cout << "Basestation thread ended" << std::endl;
+}
+
+bool SensingBaseStation::message_callback(Message* message) {
+	return false;
 }
