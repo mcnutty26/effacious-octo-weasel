@@ -7,6 +7,7 @@ documents/report/*.log
 documents/report/*.lot
 documents/report/*.gz
 documents/report/*.toc
+documents/report/*.out
 
 code/octodrone/build/*
 code/octodrone/lib/*
