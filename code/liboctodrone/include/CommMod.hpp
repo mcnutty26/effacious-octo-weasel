@@ -18,17 +18,22 @@
 			void broadcast(Message* message, double xPos, double yPos, double zPos, double range);
 			void push_out_message(Message* message);
 			void push_in_message(std::string message);
+
+			///Main loop which must be defined by communications implementations
 			virtual void comm_function() = 0;
 
 			double getTime();
 		protected:
-			//the queue of outbound (sent) messages
+			///the queue of messages to be sent
 			std::queue<Message*> outQueue;
 			
-			//the queue of inbound (recieved) messages
+			///the queue of received messages waiting for collection by the messageable
 			std::queue<std::string> inQueue;
 
+			///Reference to the simulation environment
 			Environment* environment;
+
+			///Reference to the associated messageable
 			Messageable* messageable;
 	};
 

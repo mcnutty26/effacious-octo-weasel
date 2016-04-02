@@ -1,0 +1,32 @@
+\section{Overview}
+
+\section{Structure}
+	\subsection{Structure of an Individual Module}
+		\subsection{Access to Other Simulation Elements}
+		
+The architecture of the simulator requires that communications modules are able to interact with the simulator environment (to dispatch messages), as well as with the messageable with which they are associated. Since it is impossible to have all of this information available when the communications module is instantiated (creating a messageable requires a reference to a communications module as well), it is necessary to set the messageable associated with a communications object at a later time (but before the simulation is started). Thus, the procedure for bootstrapping a simulations is broadly as follows:
+
+\begin{enumerate}
+	\item Load the sensor data
+	\item Create a simulation environment referencing the sensor data
+	\item Create a communications module referencing the environment
+	\item Create a messageable referencing the environment and the communications module
+	\item Add a reference to the messageable to the communications module
+\end{enumerate}
+
+How these references are used is covered in sections \ref{int-sim} and \ref{int-pro}.
+		
+	\subsection{Structure of a Collection of Modules}
+	
+In order to facilitate easy distribution and use, collections of communication implementations are combined into libraries. Given the small size of a communications modules source code (often tens of kilobytes) it might be tempting to statically link them to simulation executables. The problem with this approach, however, is that it precludes the very thing that prompted the creation of communications modules in the first place - modularity. As such, communications code is packaged into a shared library which simulator executables are then linked against dynamically at compile time. This reduces the size of produced executables and makes updating communications code possible without requiring simulations to be recompiled.
+
+\section{Integration with Other Components}
+	\subsection{Integration with the Simulator}
+		\label{int-sim}
+	\subsection{Integration with a Program}
+		\label{int-pro}
+
+\section{Provided Implementations}
+	\subsection{Basic Messaging}
+	\subsection{Addressed Basic Messaging}
+	\subsection{Ad hoc On-Demand Distance Vector Routing}
