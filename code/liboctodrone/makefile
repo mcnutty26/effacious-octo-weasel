@@ -1,6 +1,5 @@
 CXX		= g++
 CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g -I include
-LDFLAGS	= -lpthread
 
 define colorecho
       @tput setaf 32
@@ -40,7 +39,7 @@ IpAllocatior.o: IpAllocatior.cpp IpAllocatior.hpp
 
 lib: simulator
 	$(call colorecho,"Creating simulator library...")
-	$(CXX) -shared -fPIC -o lib/liboctodrone.so build/*.o $(LDFLAGS)
+	$(CXX) -shared -fPIC -o lib/liboctodrone.so build/*.o
 
 clean:
 	$(call colorecho,"Cleaning simulator library...")
