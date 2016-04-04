@@ -10,6 +10,7 @@ endef
 
 vpath %.cpp	src
 vpath %.hpp	include
+vpath %.o   build
 
 all: lib
 
