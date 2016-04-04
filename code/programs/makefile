@@ -1,12 +1,13 @@
 CXX			= g++
 CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g
 
-SIMLINK		= -L ../liboctodrone/lib -I ../liboctodrone/include
-PARLINK		= -L ../liboctodroneparrot/lib -I ../liboctodroneparrot/include
-COMLINK		= -L ../liboctodronecomms/lib -I ../liboctodronecomms/include
+COMLINK		= -I ../liboctodronecomms/include
+SIMLINK		= -I ../liboctodrone/include $(COMLINK)
+PARLINK		= -I ../liboctodroneparrot/include $(COMLINK)
 
-LDSIM		= -loctodrone -loctodronecomms
-LDPAR		= -loctodroneparrot -loctodronecomms
+vpath %.cpp	src
+vpath %.hpp	include
+vpath %.o	build
 
 define colorecho
       @tput setaf 32
@@ -14,23 +15,23 @@ define colorecho
       @tput sgr0
 endef
 
-all: BasicTest BasicAddrTest AodvTest ParrotTest Sensing
+all: BasicTest.o BasicAddrTest.o AodvTest.o ParrotTest.o SensingDrone.o SensingBaseStation.o
 
-BasicTest:
-	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) -I include -c -o build/BasicTest.o src/BasicTest/BasicTest.cpp $(LDSIM)
+BasicTest.o: BasicTest.cpp BasicTest.hpp
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/BasicTest.o src/BasicTest/BasicTest.cpp
 
 BasicAddrTest:
-	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) -I include -c -o build/AddrBasicTest.o src/BasicAddrTest/BasicAddrTest.cpp $(LDSIM)
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/AddrBasicTest.o src/BasicAddrTest/BasicAddrTest.cpp
 
 AodvTest:
-	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) -I include -c -o build/AodvTest.o src/AodvTest/AodvTest.cpp $(LDSIM)
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/AodvTest.o src/AodvTest/AodvTest.cpp
 
 ParrotTest:
-	$(CXX) $(CXXFLAGS) $(PARLINK) $(COMLINK) -I include -c -o build/ParrotTest.o src/ParrotTest/ParrotTest.cpp $(LDPAR)
+	$(CXX) $(CXXFLAGS) $(PARLINK) -I include -c -o build/ParrotTest.o src/ParrotTest/ParrotTest.cpp
 
 Sensing:
-	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) -I include -c -o build/SensingDrone.o src/Sensing/SensingDrone.cpp $(LDSIM)
-	$(CXX) $(CXXFLAGS) $(SIMLINK) $(COMLINK) -I include -c -o build/SensingBaseStation.o src/Sensing/SensingBaseStation.cpp $(LDSIM)
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/SensingDrone.o src/Sensing/SensingDrone.cpp
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/SensingBaseStation.o src/Sensing/SensingBaseStation.cpp
 
 clean:
 	$(RM) build/*
