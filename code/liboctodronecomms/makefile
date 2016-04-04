@@ -55,7 +55,7 @@ Basic_addressed_message.o: Basic_addressed_message.cpp Basic_addressed_message.h
 
 lib: aodv basic basic_addressed
 	$(call colorecho,"Creating communications library...")
-	$(CXX) -shared -fPIC -o lib/liboctodronecomms.so build/*.o $(LDFLAGS) 
+	$(CXX) -shared -fPIC -o lib/liboctodronecomms.so build/*.o 
 
 clean:
 	$(call colorecho,"Cleaning communications library...")

@@ -2,9 +2,6 @@
 #include <iostream>
 #include <Basic_addressed_message.hpp>
 
-
-
-
 SensingBaseStation::SensingBaseStation(CommMod* cm, double xp, double yp, double zp, double areaX1, double areaY1, double areaX2, double areaY2) : BaseStation(cm, xp, yp, zp) {
 	this->areaX1 = areaX1;
 	this->areaX2 = areaX2;
@@ -38,13 +35,14 @@ void SensingBaseStation::run() {
 	// broadcast messages to each drone so that they know which area they should be measuring
 	for (int i = 0; i < numDrones; i++)
 	{
-		std::string message = std::string("NEWAREA=") + x1s[i] + "," + y1s[i] + "," + x2s[i] + "," + y2s[i];
-		send_message(new Basic_addressed_message(message, dronesIP.at(i)));
+		std::string message = std::string("NEWAREA=") + std::to_string(x1s[i]) + "," + std::to_string(y1s[i]) + "," + std::to_string(x2s[i]) + "," + std::to_string(y2s[i]);
+		send_message(new Basic_addressed_message(message, droneIPs.at(i), ""));
 	}
 
 	std::cout << "Basestation thread ended" << std::endl;
 }
 
 bool SensingBaseStation::message_callback(Message* message) {
+	(void) message;
 	return false;
 }

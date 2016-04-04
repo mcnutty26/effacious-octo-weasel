@@ -1,4 +1,4 @@
-CXX			= g++
+CXX		= g++
 CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g
 
 COMLINK		= -I ../liboctodronecomms/include
@@ -18,20 +18,22 @@ endef
 all: BasicTest.o BasicAddrTest.o AodvTest.o ParrotTest.o SensingDrone.o SensingBaseStation.o
 
 BasicTest.o: BasicTest.cpp BasicTest.hpp
-	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/BasicTest.o src/BasicTest/BasicTest.cpp
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/BasicTest.o src/BasicTest.cpp
 
-BasicAddrTest:
-	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/AddrBasicTest.o src/BasicAddrTest/BasicAddrTest.cpp
+BasicAddrTest.o: BasicAddrTest.cpp BasicAddrTest.hpp
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/BasicAddrTest.o src/BasicAddrTest.cpp
 
-AodvTest:
-	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/AodvTest.o src/AodvTest/AodvTest.cpp
+AodvTest.o: AodvTest.cpp AodvTest.hpp
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/AodvTest.o src/AodvTest.cpp
 
-ParrotTest:
-	$(CXX) $(CXXFLAGS) $(PARLINK) -I include -c -o build/ParrotTest.o src/ParrotTest/ParrotTest.cpp
+ParrotTest.o: ParrotTest.cpp ParrotTest.hpp
+	$(CXX) $(CXXFLAGS) $(PARLINK) -I include -c -o build/ParrotTest.o src/ParrotTest.cpp
 
-Sensing:
-	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/SensingDrone.o src/Sensing/SensingDrone.cpp
-	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/SensingBaseStation.o src/Sensing/SensingBaseStation.cpp
+SensingDrone.o: SensingDrone.cpp SensingDrone.hpp
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/SensingDrone.o src/SensingDrone.cpp
+
+SensingBaseStation.o: SensingBaseStation.cpp SensingBaseStation.hpp
+	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/SensingBaseStation.o src/SensingBaseStation.cpp
 
 clean:
 	$(RM) build/*
