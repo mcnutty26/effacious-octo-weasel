@@ -16,18 +16,28 @@ var hierarchy =
         [ "Aodv_rreq", "class_aodv__rreq.html", null ]
       ] ],
       [ "Basic_message", "class_basic__message.html", [
-        [ "Basic_message_addressed", "class_basic__message__addressed.html", null ]
+        [ "Basic_addressed_message", "class_basic__addressed__message.html", null ]
       ] ]
     ] ],
     [ "Messageable", "class_messageable.html", [
       [ "BaseStation", "class_base_station.html", [
+        [ "SensingBaseStation", "class_sensing_base_station.html", null ],
         [ "SensingBaseStation", "class_sensing_base_station.html", null ]
       ] ],
+      [ "BaseStation", "class_base_station.html", null ],
       [ "Drone", "class_drone.html", [
         [ "AodvComms", "class_aodv_comms.html", null ],
+        [ "AodvTest", "class_aodv_test.html", null ],
+        [ "AodvTest", "class_aodv_test.html", null ],
+        [ "BasicAddrTest", "class_basic_addr_test.html", null ],
+        [ "BasicAddrTest", "class_basic_addr_test.html", null ],
+        [ "BasicTest", "class_basic_test.html", null ],
+        [ "BasicTest", "class_basic_test.html", null ],
+        [ "ParrotTest", "class_parrot_test.html", null ],
+        [ "ParrotTest", "class_parrot_test.html", null ],
         [ "SensingDrone", "class_sensing_drone.html", null ],
-        [ "Test", "class_test.html", null ],
-        [ "Test", "class_test.html", null ]
-      ] ]
+        [ "SensingDrone", "class_sensing_drone.html", null ]
+      ] ],
+      [ "Drone", "class_drone.html", null ]
     ] ]
 ];

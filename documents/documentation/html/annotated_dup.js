@@ -7,11 +7,14 @@ var annotated_dup =
     [ "Aodv_rrep", "class_aodv__rrep.html", "class_aodv__rrep" ],
     [ "Aodv_rreq", "class_aodv__rreq.html", "class_aodv__rreq" ],
     [ "AodvComms", "class_aodv_comms.html", "class_aodv_comms" ],
+    [ "AodvTest", "class_aodv_test.html", "class_aodv_test" ],
     [ "BaseStation", "class_base_station.html", "class_base_station" ],
     [ "Basic", "class_basic.html", "class_basic" ],
     [ "Basic_addressed", "class_basic__addressed.html", "class_basic__addressed" ],
+    [ "Basic_addressed_message", "class_basic__addressed__message.html", "class_basic__addressed__message" ],
     [ "Basic_message", "class_basic__message.html", "class_basic__message" ],
-    [ "Basic_message_addressed", "class_basic__message__addressed.html", "class_basic__message__addressed" ],
+    [ "BasicAddrTest", "class_basic_addr_test.html", "class_basic_addr_test" ],
+    [ "BasicTest", "class_basic_test.html", "class_basic_test" ],
     [ "CommMod", "class_comm_mod.html", "class_comm_mod" ],
     [ "Coord", "struct_coord.html", "struct_coord" ],
     [ "Drone", "class_drone.html", "class_drone" ],
@@ -19,7 +22,7 @@ var annotated_dup =
     [ "IpAllocator", "class_ip_allocator.html", "class_ip_allocator" ],
     [ "Message", "class_message.html", "class_message" ],
     [ "Messageable", "class_messageable.html", "class_messageable" ],
+    [ "ParrotTest", "class_parrot_test.html", "class_parrot_test" ],
     [ "SensingBaseStation", "class_sensing_base_station.html", "class_sensing_base_station" ],
-    [ "SensingDrone", "class_sensing_drone.html", "class_sensing_drone" ],
-    [ "Test", "class_test.html", "class_test" ]
+    [ "SensingDrone", "class_sensing_drone.html", "class_sensing_drone" ]
 ];

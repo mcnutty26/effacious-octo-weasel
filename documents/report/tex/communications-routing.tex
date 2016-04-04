@@ -15,6 +15,14 @@ The architecture of the simulator requires that communications modules are able 
 \end{enumerate}
 
 How these references are used is covered in sections \ref{int-sim} and \ref{int-pro}.
+
+		\subsubsection{Sending and Receiving Messages}
+		
+When a communications module wishes to transmit a message to other units it invokes the broadcast method exposed by the simulation environment. Messages that originate from the communication modules messageable collect in a queue, which must be checked at regular intervals. When there is a message that the environment determines should be delivered to the communications module, it is deposited in a similar queue. When the module has a message it needs to pass to its messageable, it stores it in a third queue.
+
+In addition to asynchronous messaging, the project design also called for synchronous message passing. This is achieved by having a callback function in the messagable which can be invoked upon receipt of an urgent communication. It is left to the communication implementation to decide which messages are important to interrupt the normal operation of the messageable for.
+		
+		\subsubsection{Intermediate Processing}
 		
 	\subsection{Structure of a Collection of Modules}
 	
@@ -27,6 +35,33 @@ In order to facilitate easy distribution and use, collections of communication i
 		\label{int-pro}
 
 \section{Provided Implementations}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{../documentation/latex/class_comm_mod}	
+\caption{Inheritance diagram for the \textit{CommMod} class}
+\end{figure}
+
 	\subsection{Basic Messaging}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{../documentation/latex/class_basic}	
+\caption{Inheritance diagram for the \textit{Basic} class}
+\end{figure}
+	
 	\subsection{Addressed Basic Messaging}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.2]{../documentation/latex/class_basic__addressed}	
+\caption{Inheritance diagram for the \textit{Basic\_addressed} class}
+\end{figure}	
+	
 	\subsection{Ad hoc On-Demand Distance Vector Routing}
+
+\begin{figure}
+\centering	
+\includegraphics[scale=0.2]{../documentation/latex/class_aodv}	
+\caption{Inheritance diagram for the \textit{Aodv} class}
+\end{figure}

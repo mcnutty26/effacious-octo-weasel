@@ -1,6 +1,7 @@
 #include "AodvTest.hpp"
 #include <iostream>
 #include <Basic_addressed_message.hpp>
+#include <Basic_message.hpp>
 #include <chrono>
 #include <thread>
 #include <atomic>

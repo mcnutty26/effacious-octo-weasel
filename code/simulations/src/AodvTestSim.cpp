@@ -1,4 +1,4 @@
-#include "AodvComms.hpp"
+#include "AodvTest.hpp"
 #include <Environment.hpp>
 #include <Aodv.hpp>
 #include <CommMod.hpp>
@@ -28,11 +28,11 @@ int main(int argv, char* argc[]){
 
 	//create and add drones
 	int flag = 0;
-	AodvComms* drone1 = new AodvComms(comm_aodv1, 0.0, 0.0, 0.0, 0.0, env, 0, &flag, &stdout_lock);
-	AodvComms* drone2 = new AodvComms(comm_aodv2, 0.0, 7.0, 0.0, 0.0, env, -1, &flag, &stdout_lock);
-	AodvComms* drone3 = new AodvComms(comm_aodv3, 0.0, 14.0, 0.0, 0.0, env, -1, &flag, &stdout_lock);
-	AodvComms* drone4 = new AodvComms(comm_aodv4, 0.0, 21.0, 0.0, 0.0, env, -1, &flag, &stdout_lock);
-	AodvComms* drone5 = new AodvComms(comm_aodv5, 0.0, 28.0, 0.0, 0.0, env, 1, &flag, &stdout_lock);
+	AodvTest* drone1 = new AodvTest(comm_aodv1, 0.0, 0.0, 0.0, 0.0, env, 0, &flag, &stdout_lock);
+	AodvTest* drone2 = new AodvTest(comm_aodv2, 0.0, 7.0, 0.0, 0.0, env, -1, &flag, &stdout_lock);
+	AodvTest* drone3 = new AodvTest(comm_aodv3, 0.0, 14.0, 0.0, 0.0, env, -1, &flag, &stdout_lock);
+	AodvTest* drone4 = new AodvTest(comm_aodv4, 0.0, 21.0, 0.0, 0.0, env, -1, &flag, &stdout_lock);
+	AodvTest* drone5 = new AodvTest(comm_aodv5, 0.0, 28.0, 0.0, 0.0, env, 1, &flag, &stdout_lock);
 	env->addDrone(drone1);
 	env->addDrone(drone2);
 	env->addDrone(drone3);

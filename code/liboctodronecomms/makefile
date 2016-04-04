@@ -13,22 +13,22 @@ all: lib
 
 aodv:
 	$(call colorecho,"Creating Aodv communication objects...")
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv.cpp -o build/Aodv.o
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_message.cpp -o build/Aodv_message.o
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_route.cpp -o build/Aodv_route.o
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_rreq.cpp -o build/Aodv_rreq.o
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_rrep.cpp -o build/Aodv_rrep.o
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_rerr.cpp -o build/Aodv_rerr.o
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv.cpp -o build/Aodv.o $(LIBFLAGS)
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_message.cpp -o build/Aodv_message.o $(LIBFLAGS)
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_route.cpp -o build/Aodv_route.o $(LIBFLAGS)
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_rreq.cpp -o build/Aodv_rreq.o $(LIBFLAGS)
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_rrep.cpp -o build/Aodv_rrep.o $(LIBFLAGS)
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/aodv/Aodv_rerr.cpp -o build/Aodv_rerr.o $(LIBFLAGS)
 
 basic:
 	$(call colorecho,"Creating Basic communication objects...")
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic/Basic.cpp -o build/Basic.o
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic/Basic_message.cpp -o build/Basic_message.o
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic/Basic.cpp -o build/Basic.o $(LIBFLAGS)
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic/Basic_message.cpp -o build/Basic_message.o $(LIBFLAGS)
 
 basic_addressed:
 	$(call colorecho,"Creating Basic_addressed communication objects...")
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic_addressed/Basic_addressed.cpp -o build/Basic_message.o
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic_addressed/Basic_addressed_message.cpp -o build/Basic_addressed_message.o
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic_addressed/Basic_addressed.cpp -o build/Basic_message.o $(LIBFLAGS)
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(libraries) -c src/basic_addressed/Basic_addressed_message.cpp -o build/Basic_addressed_message.o $(LIBFLAGS)
 
 lib: aodv basic basic_addressed
 	$(call colorecho,"Creating communications library...")

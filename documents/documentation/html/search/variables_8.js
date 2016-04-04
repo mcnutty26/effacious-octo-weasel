@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['path_5fdiscovery_5ftime',['PATH_DISCOVERY_TIME',['../class_aodv.html#a2111bf2e8bae4baf6000795fb1fd472b',1,'Aodv']]]
+  ['next_5fhop',['next_hop',['../class_aodv__route.html#abb6560ab9abb3445562173383963358f',1,'Aodv_route']]]
 ];
