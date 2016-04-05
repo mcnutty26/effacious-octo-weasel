@@ -9,17 +9,17 @@ documents/report/*.gz
 documents/report/*.toc
 documents/report/*.out
 
-code/octodrone/build/*
-code/octodrone/lib/*
-code/octodrone/include/*
+code/liboctodrone/build/*
+code/liboctodrone/lib/*
+code/liboctodrone/include/*
 
-code/octodronecomms/build/*
-code/octodronecomms/lib/*
-code/octodronecomms/include/*
+code/liboctodronecomms/build/*
+code/liboctodronecomms/lib/*
+code/liboctodronecomms/include/*
 
-code/octodroneparrot/build/*
-code/octodroneparrot/lib/*
-code/octodroneparrot/include/*
+code/liboctodroneparrot/build/*
+code/liboctodroneparrot/lib/*
+code/liboctodroneparrot/include/*
 
 code/programs/build/*
 code/programs/include/*

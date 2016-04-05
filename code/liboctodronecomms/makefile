@@ -1,6 +1,6 @@
 CXX		= g++
-LDFLAGS	= -L ../liboctodrone/lib -I ../liboctodrone/include -I include -loctodrone
-CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g
+LDFLAGS		= -I ../liboctodrone/include -I include
+CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -g
 
 define colorecho
       @tput setaf 32
@@ -55,7 +55,7 @@ Basic_addressed_message.o: Basic_addressed_message.cpp Basic_addressed_message.h
 
 lib: aodv basic basic_addressed
 	$(call colorecho,"Creating communications library...")
-	$(CXX) -shared -fPIC -o lib/liboctodronecomms.so build/*.o 
+	ar rvs lib/liboctodronecomms.a build/*.o 
 
 clean:
 	$(call colorecho,"Cleaning communications library...")

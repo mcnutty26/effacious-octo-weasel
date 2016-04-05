@@ -1,5 +1,5 @@
 CXX		= g++
-CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g
+CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -g
 
 COMLINK		= -I ../liboctodronecomms/include
 SIMLINK		= -I ../liboctodrone/include $(COMLINK)

@@ -1,4 +1,4 @@
-#include "BasicComms.hpp"
+#include "BasicTest.hpp"
 #include <Environment.hpp>
 #include <Basic.hpp>
 #include <CommMod.hpp>
@@ -19,8 +19,8 @@ int main(int argv, char* argc[]){
 	CommMod* comm_basic2 = new Basic(env, &stdout_lock);
 
 	//create and add drones
-	Test* drone1 = new Test(comm_basic1, 0.0, 0.0, 0.0, 0.0, env, false);
-	Test* drone2 = new Test(comm_basic2, 1.0, 1.0, 0.0, 0.0, env, true);
+	BasicTest* drone1 = new BasicTest(comm_basic1, 0.0, 0.0, 0.0, 0.0, env, false);
+	BasicTest* drone2 = new BasicTest(comm_basic2, 1.0, 1.0, 0.0, 0.0, env, true);
 	env->addDrone(drone1);
 	env->addDrone(drone2);
 

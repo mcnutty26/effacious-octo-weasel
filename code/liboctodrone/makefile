@@ -1,5 +1,5 @@
 CXX		= g++
-CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -fPIC -g -I include
+CXXFLAGS	= -std=c++11 -Werror -Wall -Wextra -g -I include
 
 define colorecho
       @tput setaf 32
@@ -13,7 +13,7 @@ vpath %.o   build
 
 all: lib
 
-simulator: BaseStation.o CommMod.o Drone.o Environment.o Message.o IpAllocator.o
+simulator: BaseStation.o CommMod.o Drone.o Environment.o Message.o IpAllocator.o Messageable.o
 	$(call colorecho,"Compiling simulator objects...")
 
 BaseStation.o: BaseStation.cpp BaseStation.hpp
@@ -34,12 +34,12 @@ Message.o: Message.cpp Message.hpp
 Messageable.o: Messageable.cpp Messageable.hpp
 	$(CXX) $(CXXFLAGS) -c src/Messageable.cpp 	-o build/Messageable.o 	
 
-IpAllocatior.o: IpAllocatior.cpp IpAllocatior.hpp 
+IpAllocator.o: IpAllocator.cpp IpAllocator.hpp 
 	$(CXX) $(CXXFLAGS) -c src/IpAllocator.cpp 	-o build/IpAllocator.o 	
 
 lib: simulator
 	$(call colorecho,"Creating simulator library...")
-	$(CXX) -shared -fPIC -o lib/liboctodrone.so build/*.o
+	ar rvs lib/liboctodrone.a build/*.o
 
 clean:
 	$(call colorecho,"Cleaning simulator library...")
