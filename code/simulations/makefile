@@ -45,3 +45,4 @@ sensing: SensingSim.o
 
 clean:
 	$(RM) build/*
+	$(RM) bin/*

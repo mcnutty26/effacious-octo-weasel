@@ -11,18 +11,14 @@ documents/report/*.out
 
 code/liboctodrone/build/*
 code/liboctodrone/lib/*
-code/liboctodrone/include/*
 
 code/liboctodronecomms/build/*
 code/liboctodronecomms/lib/*
-code/liboctodronecomms/include/*
 
 code/liboctodroneparrot/build/*
 code/liboctodroneparrot/lib/*
-code/liboctodroneparrot/include/*
 
 code/programs/build/*
-code/programs/include/*
 
 code/simulations/build/*
 code/simulations/bin/*
