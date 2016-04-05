@@ -2,6 +2,8 @@
 
 cd liboctodrone
 make clean all
+cd ../liboctodroneparrot
+make clean all
 cd ../liboctodronecomms
 make clean all
 cd ../programs
