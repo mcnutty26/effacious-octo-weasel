@@ -22,7 +22,7 @@ std::string passStr(std::string in)
 ///Starts the node server which connects to the drone
 void startNode(){
 	//start the node server
-	node_server = popen("node ../../parrot/js/parrot.js", "w");
+	node_server = popen("node ../liboctodroneparrot/src/js/parrot.js", "w");
 	if (!node_server){
 		std::cout << "Error starting node server" << std::endl;
 		exit(1);

@@ -1,3 +1,5 @@
+
+
 var net = require('net');
 var fs = require('fs');
 var socketPath = './parrot.sock';
@@ -6,7 +8,7 @@ var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 
 process.on('uncaughtException', function (er) {
-	console.log('Unhandled exception');
+	console.log('Error - unhandled exception');
 	console.log(er.stack);
 	process.exit(1);
 });
@@ -15,18 +17,19 @@ fs.stat(socketPath, function(err) {
 	if (!err) fs.unlinkSync(socketPath);
 	var unixServer = net.createServer(function(localSerialConnection) {
 		localSerialConnection.on('data', function(data) {
-			console.log(data);
-			//TODO some processing to split <command>:<value> into two components
-			//TODO call the execute function with these components
+			console.log("Received data on socket connection");
+			command = data.toString().split(";");
+			execute(command[0], command[1]);
 		});
 	});
 	unixServer.listen(socketPath);
 });
 
-console.log("EOW node server started and listening on socket " + socketPath);
+console.log("octoDrone node server started and listening on socket " + socketPath);
 
 function execute(command, speed) {
-	switch(command) {
+	console.log("Running (" + command + ", " + speed + ")");
+	switch(command.toLowerCase()) {
 			case "up":
 				client.up(speed);
 				break;
