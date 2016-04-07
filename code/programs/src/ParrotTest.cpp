@@ -17,6 +17,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ParrotTest.hpp"
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 ParrotTest::ParrotTest(CommMod* cm, double xp, double yp, double zp, double speed, Environment* env): Drone(cm, xp, yp, zp, speed, env){
 };
@@ -27,6 +29,7 @@ bool ParrotTest::message_callback(Message*){
 
 void ParrotTest::run(){
 	move(Direction::FORWARD, 10.0, 10.0);
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	kill();
 }
 

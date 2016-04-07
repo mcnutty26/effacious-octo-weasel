@@ -26,10 +26,20 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <chrono>
 #include <atomic>
 #include <iostream>
+
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h> 
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
+int run_comms = 1;
 FILE* node_server;
+std::thread commRecv;
 
 std::string passStr(std::string in)
 {
@@ -47,6 +57,48 @@ void startNode(){
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
+///Listens for communications from other drones
+void commServer(int* flag){
+	while(flag){
+		int sockfd, newsockfd, portno;
+		socklen_t clilen;
+		char buffer[256];
+		struct sockaddr_in serv_addr, cli_addr;
+		int n;
+		sockfd = socket(AF_INET, SOCK_STREAM, 0);
+		if (sockfd < 0) {
+			std::cout << "ERROR opening socket" << std::endl;
+		}
+		bzero((char *) &serv_addr, sizeof(serv_addr));
+		portno = 8080;
+		serv_addr.sin_family = AF_INET;
+		serv_addr.sin_addr.s_addr = INADDR_ANY;
+		serv_addr.sin_port = htons(portno);
+		if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
+			std::cout << "ERROR on binding" << std::endl;
+		}
+		std::cout << "Listening on comms socket on port 8080" << std::endl;
+		listen(sockfd,5);
+		clilen = sizeof(cli_addr);
+		newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
+		if (newsockfd < 0) {
+			std::cout << "ERROR on accept" << std::endl;
+		}
+		bzero(buffer,256);
+		n = read(newsockfd,buffer,255);
+		if (n < 0) {
+			std::cout << "ERROR reading from socket" << std::endl;
+		}
+		printf("Here is the message: %s\n",buffer);
+		n = write(newsockfd,"I got your message",18);
+		if (n < 0) {
+			std::cout << "ERROR writing to socket" << std::endl;
+		}
+		close(newsockfd);
+		close(sockfd);
+	}
+}
+
 Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep)
 :noiseFun(nfun)
 {
@@ -54,6 +106,8 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, std::func
 	data = sensor_data;
 	baseStation = NULL;
 	startNode();
+	commRecv = std::thread(&commServer, &run_comms);
+	commRecv.join();
 };
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep)
@@ -63,6 +117,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, double ti
 	noiseFun = &passStr;
 	baseStation = NULL;
 	startNode();
+	commRecv = std::thread(&commServer, &run_comms);
 }
 
 //should not be called by anything other than the main thread

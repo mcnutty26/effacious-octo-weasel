@@ -100,10 +100,13 @@ bool Drone::hasFinishedMoving()
 void Drone::turn(double dAngle)
 {
 	ang += dAngle;
-	if(ang > 360)
-	{
+	while (ang > 360){
 		ang -= 360;
 	}
+	while (ang < 0){
+		ang += 360;
+	}
+
 }
 
 void Drone::move(Direction direction, double speed, double distance)

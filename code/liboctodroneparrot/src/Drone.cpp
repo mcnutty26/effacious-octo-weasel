@@ -33,6 +33,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <unistd.h>
 
 #define PI 3.14159265
+double target_time = 0;
+bool was_moving;
 
 Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e)
 :Messageable(cm, iX, iY, iZ)
@@ -55,38 +57,55 @@ void Drone::kill()
 
 void Drone::upkeep()
 {
-	double time = getTime();
-	//double dTime = time - oTime;
-	oTime = time;
-	if(moveDR <= 0)
-	{
-		moveDR = 0;
-		return;
+	if (hasFinishedMoving() && was_moving){
+		execute("STOP", 0.0);
 	}
-	//double radcon = PI/180;
-	//double distance = moveDR < moveSpd*dTime? moveDR:moveSpd*dTime;
+	was_moving = hasFinishedMoving();
+}
 
-	switch(dir)
+void Drone::move(Direction direction, double speed, double distance)
+{
+	double radcon = PI/180;
+
+	double normalised_speed = speed;
+	if (normalised_speed > 1){
+		normalised_speed = 1;
+	} else if (normalised_speed < 0){
+		normalised_speed = 0;
+	}
+
+	switch(direction)
 	{
 		case Direction::UP:
-			execute("UP", 0.5);
+			execute("UP", normalised_speed);
+			position.z += distance;
 			break;
 		case Direction::DOWN:
-			execute("DOWN", 0.5);
+			execute("DOWN", normalised_speed);
+			position.z -= distance;
 			break;
 		case Direction::LEFT:
-			execute("LEFT", 0.5);
+			execute("LEFT", normalised_speed);
+			position.x += distance*sin((ang - 90)*radcon);
+			position.y += distance*cos((ang - 90)*radcon);
 			break;
 		case Direction::RIGHT:
-			execute("RIGHT", 0.5);
+			execute("RIGHT", normalised_speed);
+			position.x += distance*sin((ang + 90)*radcon);
+			position.y += distance*cos((ang + 90)*radcon);
 			break;
 		case Direction::FORWARD:
-			execute("FRONT", 0.5);
+			execute("FRONT", normalised_speed);
+			position.x += distance*sin((ang)*radcon);
+			position.y += distance*cos((ang)*radcon);
 			break;
 		case Direction::BACK:
-			execute("BACK", 0.5);
+			execute("BACK", normalised_speed);
+			position.x += distance*sin((ang + 180)*radcon);
+			position.y += distance*cos((ang + 180)*radcon);
 			break;
 	}
+	target_time = getTime() + (1000*distance);
 }
 
 double Drone::getMaxSpeed()
@@ -101,23 +120,29 @@ double Drone::getAngle()
 
 bool Drone::hasFinishedMoving()
 {
-	return (moveDR == 0);
+	return getTime() > target_time;
 }
 
 void Drone::turn(double dAngle)
 {
-	ang += dAngle;
-	if(ang > 360)
-	{
-		ang -= 360;
+	//get the value within acceptable bounds
+	double to_turn = dAngle;
+	while (to_turn >= 360){
+		to_turn -= 360;
 	}
-}
+	while (to_turn <= -360){
+		to_turn += 360;
+	}
 
-void Drone::move(Direction direction, double speed, double distance)
-{
-	dir = direction;
-	moveDR = distance;
-	moveSpd = speed;
+	//is the turn left or right?
+	if (to_turn > 0){
+		execute("CLOCKWISE", 0.5);
+	} else {
+		execute("COUNTERCLOCKWISE", 0.5);
+	}
+
+	ang += to_turn;
+	target_time += getTime() + abs(to_turn)/360;
 }
 
 double Drone::sense(std::string type)
@@ -129,7 +154,7 @@ double Drone::sense(std::string type)
 void Drone::execute(std::string command, double arg){
 	//set up connection variables
 	#define SOCK_PATH "parrot.sock"
-	int s, t, len;
+	int s, len;
 	struct sockaddr_un remote;
 	char str[100];
 
