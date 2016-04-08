@@ -40,6 +40,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 int run_comms = 1;
 FILE* node_server;
+std::thread commServ;
 
 std::string passStr(std::string in)
 {
@@ -112,7 +113,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, std::func
 	data = sensor_data;
 	baseStation = NULL;
 	startNode();
-	std::thread(&commServer, &run_comms, this).join();
+	commServ = std::thread(commServer, &run_comms, this);
 };
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep)
@@ -122,7 +123,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, double ti
 	noiseFun = &passStr;
 	baseStation = NULL;
 	startNode();
-	std::thread(&commServer, &run_comms, this).join();
+	commServ = std::thread(commServer, &run_comms, this);
 }
 
 //should not be called by anything other than the main thread
@@ -226,6 +227,7 @@ void Environment::run()
 	}
 
 	//shut down the comms server
+	commServ.join();
 	run_comms = 0;
 
 	//shut down the node server

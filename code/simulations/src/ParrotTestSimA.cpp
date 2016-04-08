@@ -21,6 +21,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <CommMod.hpp>
 #include <map>
 #include <atomic>
+#include <iostream>
 
 int main(int argv, char* argc[]){
 	//create the sensor map and optionally add in some data

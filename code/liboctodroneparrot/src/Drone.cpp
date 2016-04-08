@@ -60,7 +60,7 @@ void Drone::upkeep()
 	if (hasFinishedMoving() && was_moving){
 		execute("STOP", 0.0);
 	}
-	was_moving = hasFinishedMoving();
+	was_moving = (hasFinishedMoving() ? false : true);
 }
 
 void Drone::move(Direction direction, double speed, double distance)
