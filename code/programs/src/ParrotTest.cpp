@@ -19,8 +19,10 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <Basic_message.hpp>
 
-ParrotTest::ParrotTest(CommMod* cm, double xp, double yp, double zp, double speed, Environment* env): Drone(cm, xp, yp, zp, speed, env){
+ParrotTest::ParrotTest(CommMod* cm, double xp, double yp, double zp, double speed, Environment* env, bool sink_node): Drone(cm, xp, yp, zp, speed, env){
+	m_sink_node = sink_node;
 };
 
 bool ParrotTest::message_callback(Message*){
@@ -28,8 +30,17 @@ bool ParrotTest::message_callback(Message*){
 }
 
 void ParrotTest::run(){
-	move(Direction::FORWARD, 10.0, 10.0);
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	if (m_sink_node){
+		std::cout << "Sink waiting for message" << std::endl;
+		if (wait_for_message()->to_string() == "TEST"){
+			std::cout << "Received message" << std::endl;
+			move(Direction::FORWARD, 10.0, 0.5);
+		}
+	} else {
+		std::cout << "Source sending message" << std::endl;
+		send_message(new Basic_message("TEST"));
+	}
+	send_message(new Basic_message("KILL"));
 	kill();
 }
 

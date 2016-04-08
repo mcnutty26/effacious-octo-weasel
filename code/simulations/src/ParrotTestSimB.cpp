@@ -33,7 +33,7 @@ int main(int argv, char* argc[]){
 	CommMod* comm_basic = new Basic(env, &stdout_lock);
 
 	//create and add drones
-	ParrotTest* drone = new ParrotTest(comm_basic, 0.0, 0.0, 0.0, 0.0, env);
+	ParrotTest* drone = new ParrotTest(comm_basic, 0.0, 0.0, 0.0, 0.0, env, false);
 	env->addDrone(drone);
 
 	//run the simulation

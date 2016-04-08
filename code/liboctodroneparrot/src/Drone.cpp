@@ -165,7 +165,7 @@ void Drone::execute(std::string command, double arg){
 
 	//get a handle for the socket
 	if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
-		std::cout << "Error getting address of socket " << SOCK_PATH << std::endl;
+		std::cout << "error@nodeServer: getting address of socket " << SOCK_PATH << std::endl;
 		exit(1);
 	}
 
@@ -174,13 +174,13 @@ void Drone::execute(std::string command, double arg){
 	strcpy(remote.sun_path, SOCK_PATH);
 	len = strlen(remote.sun_path) + sizeof(remote.sun_family);
 	if (connect(s, (struct sockaddr *)&remote, len) == -1) {
-		std::cout << "Error connecting to socket " << SOCK_PATH << std::endl;
+		std::cout << "error@nodeServer: connecting to socket " << SOCK_PATH << std::endl;
 		exit(1);
 	}
 
 	//send the request
 	if (send(s, str, strlen(str), 0) == -1) {
-		std::cout << "Error sending via socket" << SOCK_PATH << std::endl;
+		std::cout << "error@nodeServer: sending via socket" << SOCK_PATH << std::endl;
 		exit(1);
 	}
 

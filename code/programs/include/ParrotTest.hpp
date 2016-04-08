@@ -27,8 +27,10 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 	class ParrotTest: public Drone {
 		public:
-			ParrotTest(CommMod*, double, double, double, double, Environment*);
+			ParrotTest(CommMod*, double, double, double, double, Environment*, bool);
 			bool message_callback(Message*);
 			void run();
+		private:
+			bool m_sink_node;
 	};
 #endif

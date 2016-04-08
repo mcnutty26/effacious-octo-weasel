@@ -23,7 +23,7 @@ var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 
 process.on('uncaughtException', function (er) {
-	console.log('Error - unhandled exception');
+	console.log('error@nodeServer: unhandled exception');
 	console.log(er.stack);
 	process.exit(1);
 });
@@ -32,18 +32,17 @@ fs.stat(socketPath, function(err) {
 	if (!err) fs.unlinkSync(socketPath);
 	var unixServer = net.createServer(function(localSerialConnection) {
 		localSerialConnection.on('data', function(data) {
-			console.log("Received data on socket connection");
 			command = data.toString().split(";");
+			console.log("message@nodeServer: (" + command + ", " + speed + ")");
 			execute(command[0], command[1]);
 		});
 	});
 	unixServer.listen(socketPath);
 });
 
-console.log("octoDrone node server started and listening on socket " + socketPath);
+console.log("init@nodeServer: listening on socket " + socketPath);
 
 function execute(command, speed) {
-	console.log("Running (" + command + ", " + speed + ")");
 	switch(command.toLowerCase()) {
 			case "up":
 				client.up(speed);
@@ -79,7 +78,7 @@ function execute(command, speed) {
 				client.stop();
 				break;
 			default:
-				console.log('Error - command not recognised');
+				console.log('error@nodeServer: command not recognised');
 		}
 };
 
