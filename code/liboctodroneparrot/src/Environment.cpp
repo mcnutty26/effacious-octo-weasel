@@ -36,6 +36,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <netinet/in.h>
 #include <netdb.h>
 #include <arpa/inet.h>
+#include <errno.h>
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 int run_comms = 1;
@@ -66,11 +67,10 @@ Drone* Environment::getDrone(){
 void commServer(int* flag, Environment* env){
 	while(flag){
 		int sockfd, newsockfd, portno;
-		socklen_t clilen;
 		char buffer[256];
 		struct sockaddr_in serv_addr, cli_addr;
 		int n;
-		sockfd = socket(AF_INET, SOCK_STREAM, 0);
+		sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 		if (sockfd < 0) {
 			std::cout << "error@commServer: opening socket" << std::endl;
 			exit(1);
@@ -85,17 +85,10 @@ void commServer(int* flag, Environment* env){
 			exit(1);
 		}
 		std::cout << "init@commServer: listening on port 8080" << std::endl;
-		listen(sockfd,5);
-		clilen = sizeof(cli_addr);
-		newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
-		if (newsockfd < 0) {
-			std::cout << "error@commServer: accept connection" << std::endl;
-			exit(1);
-		}
 		bzero(buffer,256);
-		n = read(newsockfd,buffer,255);
+		n = recvfrom(sockfd, buffer, 255, 0, (struct sockaddr *)&cli_addr, (socklen_t *)sizeof(cli_addr));
 		if (n < 0) {
-			std::cout << "error@commServer: reading from socket" << std::endl;
+			std::cout << "error@commServer: reading from socket (" << strerror(errno) << ")" << std::endl;
 			exit(1);
 		}
 		printf("message@commServer: %s\n",buffer);
@@ -142,7 +135,6 @@ void Environment::setBaseStation(BaseStation* b){
     baseStation = b;
 }
 
-//thread safe (I hope) may be a little slow though... meh, it'll be fine (again... I hope)
 void Environment::broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod* caller)
 {
 	std::string nMessage = noiseFun(message);
@@ -155,7 +147,7 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 	char buffer[256];
 
 	portno = 8080;
-	sockfd = socket(AF_INET, SOCK_STREAM, 0);
+	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 	if (sockfd < 0){
 		std::cout << "error@commServer: opening socket (client)" << std::endl;
 		exit(1);
@@ -170,18 +162,15 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 	serv_addr.sin_family = AF_INET;
 	bcopy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
 	serv_addr.sin_port = htons(portno);
-	if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0){
-		std::cout << "error@commServer: connecting (client)" << std::endl;
-	}
 	bzero(buffer,256);
 	fgets(buffer,255,stdin);
-	n = write(sockfd,message.c_str(),strlen(buffer));
+	n = sendto(sockfd,message.c_str(),strlen(buffer), 0, (struct sockaddr *)&serv_addr, (socklen_t)sizeof(serv_addr));
 	if (n < 0){
 		std::cout << "error@commServer: writing to socket (client)" << std::endl;
 		exit(1);
 	}
 	close(sockfd);
-
+	std::cout << "message@commServer: sent " << message << " (client)" << std::endl;
 	lock_broadcast.clear();
 }
 
