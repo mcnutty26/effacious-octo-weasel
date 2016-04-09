@@ -169,7 +169,7 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 		exit(1);
 	}
 
-	serv_addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+	inet_pton(AF_INET, "10.0.0.255", &serv_addr.sin_addr.s_addr);
 	bzero((char *) &serv_addr, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_port = htons(portno);

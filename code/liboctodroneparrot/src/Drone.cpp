@@ -162,6 +162,7 @@ void Drone::execute(std::string command, double arg){
 	strcat(str, command.c_str());
 	strcat(str, ";");
 	strcat(str, std::to_string(arg).c_str());
+	printf("send@nodeServer: %s\n", str);
 
 	//get a handle for the socket
 	if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
