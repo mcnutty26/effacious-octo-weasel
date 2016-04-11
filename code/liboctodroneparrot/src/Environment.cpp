@@ -38,9 +38,12 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <arpa/inet.h>
 #include <errno.h>
 
+#define MULTICAST_ADDR "239.0.0.1"
+#define MULTICAST_PORT 8080
+
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 int run_comms = 1;
-int drop_packet = 0;
+bool drop_packet = false;
 FILE* node_server;
 std::thread commServ;
 
@@ -65,51 +68,61 @@ Drone* Environment::getDrone(){
 }
 
 ///Listens for communications from other drones
-void commServer(int* flag, int* drop_packet, Environment* env, std::string if_addr){
+void commServer(int* flag, bool* drop_packet, Environment* env, std::string if_addr){
 
+	//set up variables
 	struct ip_mreq mreq;
 	struct sockaddr_in addr;
-	int sock, cnt;
-	char msg[256];
+	int sock;
+	char message_buffer[256];
 	socklen_t addrlen;
 
-   sock = socket(AF_INET, SOCK_DGRAM, 0);
-   if (sock < 0) {
-     perror("socket");
-     exit(1);
-   }
-   bzero((char *)&addr, sizeof(addr));
-   addr.sin_family = AF_INET;
-   addr.sin_addr.s_addr = htonl(INADDR_ANY);
-   addr.sin_port = htons(8080);
-   addrlen = (socklen_t)sizeof(addr);
+	//create a socket
+	sock = socket(AF_INET, SOCK_DGRAM, 0);
+	if (sock < 0) {
+		std::cout << "error@commServer: opening socket (" << strerror(errno) << ")" << std::endl;
+		exit(1);
+	}
 
- 	if (bind(sock, (struct sockaddr *) &addr, addrlen) < 0) {        
-         perror("bind");
-	 exit(1);
-      }    
-      mreq.imr_multiaddr.s_addr = inet_addr("239.0.0.1");         
-	printf("SENDING ON2 %s\n", if_addr.c_str());
-	  inet_pton(AF_INET, if_addr.c_str(), &mreq.imr_interface.s_addr);
-      if (setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP,
-		     &mreq, sizeof(mreq)) < 0) {
-	 perror("setsockopt mreq");
-	 exit(1);
-      }
+	//set binding options
+	bzero((char *)&addr, sizeof(addr));
+	addr.sin_family = AF_INET;
+	addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	addr.sin_port = htons(MULTICAST_PORT);
+	addrlen = (socklen_t)sizeof(addr);
 
-      while (1) {
- 	 cnt = recvfrom(sock, msg, sizeof(msg), 0, 
-			(struct sockaddr *) &addr, &addrlen);
-	 if (cnt < 0) {
-	    perror("recvfrom");
-	    exit(1);
-	 } else if (cnt == 0) {
- 	    break;
-	 }
-	 printf("%s: message = \"%s\"\n", inet_ntoa(addr.sin_addr), msg);
-        }
+	//bind the socket
+	if (bind(sock, (struct sockaddr *) &addr, addrlen) < 0) {        
+		std::cout << "error@commServer: binding (" << strerror(errno) << ")" << std::endl;
+		exit(1);
+	}
 
-	//std::cout << "send@commServer: " << message << std::endl;
+	//configure multicast
+	mreq.imr_multiaddr.s_addr = inet_addr(MULTICAST_ADDR);
+	inet_pton(AF_INET, if_addr.c_str(), &mreq.imr_interface.s_addr);
+	if (setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq)) < 0) {
+		std::cout << "error@commServer: configuring multicast (" << strerror(errno) << ")" << std::endl;
+		exit(1);
+	}
+
+	std::cout << "init@commServer: listening on " << if_addr << std::endl;
+
+	//start receive loop
+	while (1) {
+	if (recvfrom(sock, message_buffer, sizeof(message_buffer), 0, (struct sockaddr *) &addr, &addrlen) < 0){
+			std::cout << "error@commServer: reading from socket (" << strerror(errno) << ")" << std::endl;
+			exit(1);
+		} 
+	 	printf("message@commServer: %s from %s\n", message_buffer, inet_ntoa(addr.sin_addr));
+		std::string message  = message_buffer;
+		if (drop_packet == false){
+			env->getDrone()->receive_message(message);
+		} else {
+			std::cout << "message@commServer: dropped" << std::endl;
+			drop_packet = false;
+		}
+		bzero(message_buffer, 256);
+	}
 }
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep, std::string address)
@@ -119,7 +132,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, std::func
 	data = sensor_data;
 	baseStation = NULL;
 	startNode();
-	commServ = std::thread(commServer, &run_comms, &drop_packet, this, address);
+	commServ = std::thread(commServer, &run_comms, &drop_packet, this, if_addr);
 	if_addr = address;
 };
 
@@ -130,8 +143,8 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, double ti
 	noiseFun = &passStr;
 	baseStation = NULL;
 	startNode();
-	commServ = std::thread(commServer, &run_comms, &drop_packet, this, address);
 	if_addr = address;
+	commServ = std::thread(commServer, &run_comms, &drop_packet, this, if_addr);
 }
 
 //should not be called by anything other than the main thread
@@ -155,37 +168,39 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 	std::string nMessage = noiseFun(message);
 	while(lock_broadcast.test_and_set()){}
 
+	//set up variables
 	struct sockaddr_in addr;
+	struct in_addr interface_addr;
 	socklen_t addrlen;
-	int cnt, sock;
+	int sock;
    
+	//create a socket
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
 	if (sock < 0){
 		std::cout << "error@commServer: opening socket (" << strerror(errno) << ")" << std::endl;
-	exit(1);
-   }
-   bzero((char *)&addr, sizeof(addr));
-      addr.sin_family = AF_INET;
-	     addr.sin_addr.s_addr = inet_addr("239.0.0.1");
-		    addr.sin_port = htons(8080);
-
-	addrlen = (socklen_t)sizeof(addr);
-//      addr.sin_addr.s_addr = inet_addr(EXAMPLE_GROUP);
-
-	struct in_addr interface_addr;
-	printf("SENDING ON %s\n", if_addr.c_str());
-	inet_pton(AF_INET, if_addr.c_str(), &interface_addr);
-	if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_IF, &interface_addr, sizeof(interface_addr)) < 0){
-		std::cout << "set if " << strerror(errno) << std::endl;
 		exit(1);
 	}
 
-	 printf("sending: %s\n", message.c_str());
-	 cnt = sendto(sock, message.c_str(), strlen(message.c_str()), 0, (struct sockaddr *) &addr, addrlen);
-	 if (cnt < 0) {
-		 std::cout << "sendto " << strerror(errno) << std::endl;
-	    exit(1);
-	 }
+	//set address and port
+	bzero((char *)&addr, sizeof(addr));
+	addr.sin_family = AF_INET;
+	addr.sin_addr.s_addr = inet_addr(MULTICAST_ADDR);
+	addr.sin_port = htons(MULTICAST_PORT);
+	addrlen = (socklen_t)sizeof(addr);
+
+	//configure multicast
+	inet_pton(AF_INET, if_addr.c_str(), &interface_addr);
+	if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_IF, &interface_addr, sizeof(interface_addr)) < 0){
+		std::cout << "error@commServer: set interface address" << strerror(errno) << std::endl;
+		exit(1);
+	}
+
+	std::cout << "message@commServer: sending " << message << " from interface with address " << if_addr << std::endl;
+
+	 if (sendto(sock, message.c_str(), strlen(message.c_str()), 0, (struct sockaddr *) &addr, addrlen) < 0){
+		std::cout << "sendto " << strerror(errno) << std::endl;
+		exit(1);
+	}
 
 	lock_broadcast.clear();
 }
