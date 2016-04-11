@@ -156,13 +156,9 @@ void Drone::execute(std::string command, double arg){
 	#define SOCK_PATH "parrot.sock"
 	int s, len;
 	struct sockaddr_un remote;
-	char str[100];
 
-	//prepare the request as a c string
-	strcat(str, command.c_str());
-	strcat(str, ";");
-	strcat(str, std::to_string(arg).c_str());
-	printf("send@nodeServer: %s\n", str);
+	std::string message = command + ";" + std::to_string(arg);
+	printf("send@nodeServer: %s\n", message.c_str());
 
 	//get a handle for the socket
 	if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
@@ -180,7 +176,7 @@ void Drone::execute(std::string command, double arg){
 	}
 
 	//send the request
-	if (send(s, str, strlen(str), 0) == -1) {
+	if (send(s, message.c_str(), strlen(message.c_str()), 0) == -1) {
 		std::cout << "error@nodeServer: sending via socket" << SOCK_PATH << std::endl;
 		exit(1);
 	}

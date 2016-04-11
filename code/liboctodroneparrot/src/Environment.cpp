@@ -65,9 +65,7 @@ Drone* Environment::getDrone(){
 }
 
 ///Listens for communications from other drones
-void commServer(int* flag, int* drop_packet, Environment* env){
-	#define EXAMPLE_PORT 8080
-#define EXAMPLE_GROUP "239.0.0.1"
+void commServer(int* flag, int* drop_packet, Environment* env, std::string if_addr){
 
 	struct ip_mreq mreq;
 	struct sockaddr_in addr;
@@ -75,7 +73,6 @@ void commServer(int* flag, int* drop_packet, Environment* env){
 	char msg[256];
 	socklen_t addrlen;
 
-/* set up socket */
    sock = socket(AF_INET, SOCK_DGRAM, 0);
    if (sock < 0) {
      perror("socket");
@@ -84,20 +81,22 @@ void commServer(int* flag, int* drop_packet, Environment* env){
    bzero((char *)&addr, sizeof(addr));
    addr.sin_family = AF_INET;
    addr.sin_addr.s_addr = htonl(INADDR_ANY);
-   addr.sin_port = htons(EXAMPLE_PORT);
+   addr.sin_port = htons(8080);
    addrlen = (socklen_t)sizeof(addr);
 
  	if (bind(sock, (struct sockaddr *) &addr, addrlen) < 0) {        
          perror("bind");
 	 exit(1);
       }    
-      mreq.imr_multiaddr.s_addr = inet_addr(EXAMPLE_GROUP);         
-      mreq.imr_interface.s_addr = htonl(INADDR_ANY);         
+      mreq.imr_multiaddr.s_addr = inet_addr("239.0.0.1");         
+	printf("SENDING ON2 %s\n", if_addr.c_str());
+	  inet_pton(AF_INET, if_addr.c_str(), &mreq.imr_interface.s_addr);
       if (setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP,
 		     &mreq, sizeof(mreq)) < 0) {
 	 perror("setsockopt mreq");
 	 exit(1);
-      }         
+      }
+
       while (1) {
  	 cnt = recvfrom(sock, msg, sizeof(msg), 0, 
 			(struct sockaddr *) &addr, &addrlen);
@@ -113,24 +112,26 @@ void commServer(int* flag, int* drop_packet, Environment* env){
 	//std::cout << "send@commServer: " << message << std::endl;
 }
 
-Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep)
+Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep, std::string address)
 :noiseFun(nfun)
 {
 	timeStep = timestep;
 	data = sensor_data;
 	baseStation = NULL;
 	startNode();
-	commServ = std::thread(commServer, &run_comms, &drop_packet, this);
+	commServ = std::thread(commServer, &run_comms, &drop_packet, this, address);
+	if_addr = address;
 };
 
-Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep)
+Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep, std::string address)
 {
 	timeStep = timestep;
 	data = sensor_data;
 	noiseFun = &passStr;
 	baseStation = NULL;
 	startNode();
-	commServ = std::thread(commServer, &run_comms, &drop_packet, this);
+	commServ = std::thread(commServer, &run_comms, &drop_packet, this, address);
+	if_addr = address;
 }
 
 //should not be called by anything other than the main thread
@@ -159,17 +160,26 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 	int cnt, sock;
    
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
-   if (sock < 0) {
-     perror("socket");
-     exit(1);
+	if (sock < 0){
+		std::cout << "error@commServer: opening socket (" << strerror(errno) << ")" << std::endl;
+	exit(1);
    }
    bzero((char *)&addr, sizeof(addr));
       addr.sin_family = AF_INET;
-	     addr.sin_addr.s_addr = inet_addr(EXAMPLE_GROUP);
-		    addr.sin_port = htons(EXAMPLE_PORT);
+	     addr.sin_addr.s_addr = inet_addr("239.0.0.1");
+		    addr.sin_port = htons(8080);
 
 	addrlen = (socklen_t)sizeof(addr);
-      addr.sin_addr.s_addr = inet_addr(EXAMPLE_GROUP);
+//      addr.sin_addr.s_addr = inet_addr(EXAMPLE_GROUP);
+
+	struct in_addr interface_addr;
+	printf("SENDING ON %s\n", if_addr.c_str());
+	inet_pton(AF_INET, if_addr.c_str(), &interface_addr);
+	if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_IF, &interface_addr, sizeof(interface_addr)) < 0){
+		std::cout << "set if " << strerror(errno) << std::endl;
+		exit(1);
+	}
+
 	 printf("sending: %s\n", message.c_str());
 	 cnt = sendto(sock, message.c_str(), strlen(message.c_str()), 0, (struct sockaddr *) &addr, addrlen);
 	 if (cnt < 0) {

@@ -34,8 +34,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 		typedef std::vector<std::vector<std::vector<double>>> data_type;
 
 		public:
-			Environment(std::map<std::string, data_type>, std::function<std::string(std::string)>, double timestep);
-			Environment(std::map<std::string, data_type>, double timestep);
+			Environment(std::map<std::string, data_type>, std::function<std::string(std::string)>, double timestep, std::string);
+			Environment(std::map<std::string, data_type>, double timestep, std::string);
 			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod*);
 			void addData(std::string type, data_type d);
 			void addDrone(Drone* m);
@@ -50,6 +50,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 		private:
 			double timeElapsed;
 			double timeStep;
+			std::string if_addr;
 
 			BaseStation * baseStation;
 			std::vector<Drone*> drones;
