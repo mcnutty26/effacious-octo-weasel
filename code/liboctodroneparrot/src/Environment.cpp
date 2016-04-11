@@ -115,15 +115,15 @@ void commServer(bool* flag, bool* drop_packet, Environment* env, std::string if_
 		} 
 	 	printf("message@commServer: %s from %s\n", message_buffer, inet_ntoa(addr.sin_addr));
 		std::string message  = message_buffer;
-		if (drop_packet == false){
+		if (*drop_packet == false){
 			env->getDrone()->receive_message(message);
 		} else {
 			std::cout << "message@commServer: dropped" << std::endl;
-			drop_packet = false;
+			*drop_packet = false;
 		}
 		bzero(message_buffer, 256);
 
-		if (flag == false){
+		if (*flag == false){
 			std::cout << "exit@commServer: shutting down" << std::endl;
 			break;
 		}
@@ -202,6 +202,7 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 
 	std::cout << "message@commServer: sending " << message << " from interface with address " << if_addr << std::endl;
 
+	drop_packet = true;
 	 if (sendto(sock, message.c_str(), strlen(message.c_str()), 0, (struct sockaddr *) &addr, addrlen) < 0){
 		std::cout << "sendto " << strerror(errno) << std::endl;
 		exit(1);
