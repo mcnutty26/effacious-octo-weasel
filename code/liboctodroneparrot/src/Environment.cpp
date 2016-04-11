@@ -42,7 +42,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #define MULTICAST_PORT 8080
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
-int run_comms = 1;
+bool run_comms = true;
 bool drop_packet = false;
 FILE* node_server;
 std::thread commServ;
@@ -68,7 +68,7 @@ Drone* Environment::getDrone(){
 }
 
 ///Listens for communications from other drones
-void commServer(int* flag, bool* drop_packet, Environment* env, std::string if_addr){
+void commServer(bool* flag, bool* drop_packet, Environment* env, std::string if_addr){
 
 	//set up variables
 	struct ip_mreq mreq;
@@ -122,6 +122,11 @@ void commServer(int* flag, bool* drop_packet, Environment* env, std::string if_a
 			drop_packet = false;
 		}
 		bzero(message_buffer, 256);
+
+		if (flag == false){
+			std::cout << "exit@commServer: shutting down" << std::endl;
+			break;
+		}
 	}
 }
 
@@ -247,14 +252,15 @@ void Environment::run()
 	}
 
 	//shut down the comms server
-	commServ.join();
 	run_comms = 0;
+	commServ.join();
 
 	//shut down the node server
 	if (pclose(node_server) != 0){
 		std::cout << "error@nodeServer: shutting down" << std::endl;
 		exit(1);
 	}
+	std::cout << "exit@nodeServer: shutting down" << std::endl;
 }
 
 double Environment::getTime()

@@ -29,12 +29,13 @@ bool BasicTest::message_callback(Message*){
 
 void BasicTest::run(){
 	if (sink_node){
-		std::cout << "Sink waiting for message" << std::endl;
+		std::cout << "BasicTest: sink waiting for message" << std::endl;
 		std::cout << wait_for_message()->to_string() << std::endl;
 	} else {
-		std::cout << "Source sending message" << std::endl;
+		std::cout << "BasicTest: source sending message" << std::endl;
 		send_message(new Basic_message("TEST MESSAGE PLEASE IGNORE"));
 	}
 	send_message(new Basic_message("KILL"));
+	std::cout << "BasicTest: exiting" << std::endl;
 }
 
