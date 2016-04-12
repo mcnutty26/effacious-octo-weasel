@@ -36,8 +36,12 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			void push_out_message(Message* message);
 			void push_in_message(std::string message);
 
+			//to avoid weirdness
+			void comm_function_wrapper();
 			///Main loop which must be defined by communications implementations
 			virtual void comm_function() = 0;
+
+			bool getAlive();
 
 			double getTime();
 		protected:
@@ -52,6 +56,9 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 			///Reference to the associated messageable
 			Messageable* messageable;
+
+		private:
+			bool alive;
 	};
 
 #endif

@@ -36,6 +36,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 	class Drone: public Messageable {
 		public:
 			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e);
+			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e, bool vis);
 			bool isAlive();
 			void upkeep();
 

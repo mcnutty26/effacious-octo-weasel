@@ -24,6 +24,18 @@ CommMod::CommMod(Environment* env)
 	environment = env;
 }
 
+bool CommMod::getAlive()
+{
+	return alive;
+}
+
+void CommMod::comm_function_wrapper()
+{
+	alive = true;
+	comm_function();
+	alive = false;
+}
+
 ///Passes a message to the environment for transmission
 void CommMod::broadcast(Message* message, double xPos, double yPos, double zPos, double range)
 {

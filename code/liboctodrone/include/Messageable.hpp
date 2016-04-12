@@ -53,6 +53,11 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			//false otherwise.
 			virtual bool message_callback(Message* message) = 0;
 
+			bool getAlive();
+
+			//to avoid weirdness
+			void run_wrapper();
+
 			//should terminate when the task is finished.
 			virtual void run() = 0;
 
@@ -62,6 +67,9 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			CommMod* communicationsModule;
 
 			Coord position;
+
+		private:
+			bool alive;
 	};
 
 #endif

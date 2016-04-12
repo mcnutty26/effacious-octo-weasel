@@ -24,6 +24,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 	class BaseStation : public Messageable{
 		public:
 			BaseStation(CommMod* cm, double xp, double yp, double zp);
+			BaseStation(CommMod* cm, double xp, double yp, double zp, bool vs);
 	};
 
 #endif

@@ -16,10 +16,17 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "BaseStation.hpp"
+#include "Visualisation.hpp"
 
-// TODO: remove
-#include <iostream>
+BaseStation::BaseStation(CommMod* cm, double xp, double yp, double zp)
+:Messageable(cm, xp, yp, zp)
+{}
 
-BaseStation::BaseStation(CommMod* cm, double xp, double yp, double zp): Messageable(cm, xp, yp, zp){
-
+BaseStation::BaseStation(CommMod* cm, double xp, double yp, double zp, bool vs)
+:Messageable(cm, xp, yp, zp, vs)
+{
+	if(vs)
+	{
+		pushBstation(xp, yp);
+	}
 }

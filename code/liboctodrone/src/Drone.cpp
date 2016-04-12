@@ -20,6 +20,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include "Messageable.hpp"
 
+#include "Visualisation.hpp"
+
 // TODO: remove
 #include <iostream>
 
@@ -27,6 +29,13 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e)
 :Messageable(cm, iX, iY, iZ)
+{
+	this->maxSpeed = maxSpeed;
+	env = e;
+}
+
+Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e, bool vis)
+:Messageable(cm, iX, iY, iZ, vis)
 {
 	this->maxSpeed = maxSpeed;
 	env = e;
@@ -42,7 +51,7 @@ void Drone::kill()
 	alive = false;
 }
 
-void Drone::upkeep()
+void Drone::upkeep(bool visualise)
 {
 	double time = getTime();
 	double dTime = time - oTime;
@@ -79,6 +88,11 @@ void Drone::upkeep()
 			position.x += distance*sin((ang + 180)*radcon);
 			position.y += distance*cos((ang + 180)*radcon);
 			break;
+	}
+
+	if(visualise)
+	{
+		pushDrone(position.x, position.y);
 	}
 }
 
