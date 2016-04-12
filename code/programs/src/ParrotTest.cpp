@@ -34,7 +34,10 @@ void ParrotTest::run(){
 		std::cout << "ParrotTest: sink waiting for message" << std::endl;
 		if (wait_for_message()->to_string() == "TEST"){
 			std::cout << "ParrotTest: received message" << std::endl;
-			move(Direction::FORWARD, 10.0, 0.5);
+			move(Direction::FORWARD, 0.5, 1);
+			while(!hasFinishedMoving()){}
+			turn(180);
+			while(!hasFinishedMoving()){}
 		}
 	} else {
 		std::cout << "ParrotTest: source sending message" << std::endl;

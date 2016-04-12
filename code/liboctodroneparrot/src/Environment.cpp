@@ -63,6 +63,7 @@ void startNode(){
 	std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 }
 
+///Returns the only drone in the sharded environment
 Drone* Environment::getDrone(){
 	return drones[0];
 }
@@ -77,7 +78,7 @@ void commServer(bool* flag, bool* drop_packet, Environment* env, std::string if_
 	char message_buffer[256];
 	socklen_t addrlen;
 
-	//create a socket
+	//get a file descriptor for a socket
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
 	if (sock < 0) {
 		std::cout << "error@commServer: opening socket (" << strerror(errno) << ")" << std::endl;
@@ -91,13 +92,13 @@ void commServer(bool* flag, bool* drop_packet, Environment* env, std::string if_
 	addr.sin_port = htons(MULTICAST_PORT);
 	addrlen = (socklen_t)sizeof(addr);
 
-	//bind the socket
+	//bind the socket to a port
 	if (bind(sock, (struct sockaddr *) &addr, addrlen) < 0) {        
 		std::cout << "error@commServer: binding (" << strerror(errno) << ")" << std::endl;
 		exit(1);
 	}
 
-	//configure multicast
+	//configure multicast and select a network interface
 	mreq.imr_multiaddr.s_addr = inet_addr(MULTICAST_ADDR);
 	inet_pton(AF_INET, if_addr.c_str(), &mreq.imr_interface.s_addr);
 	if (setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq)) < 0) {
@@ -105,14 +106,16 @@ void commServer(bool* flag, bool* drop_packet, Environment* env, std::string if_
 		exit(1);
 	}
 
-	std::cout << "init@commServer: listening on " << if_addr << std::endl;
-
 	//start receive loop
+	std::cout << "init@commServer: listening on " << if_addr << std::endl;
 	while (1) {
-	if (recvfrom(sock, message_buffer, sizeof(message_buffer), 0, (struct sockaddr *) &addr, &addrlen) < 0){
+		//block until we receive a message on the multicast address
+		if (recvfrom(sock, message_buffer, sizeof(message_buffer), 0, (struct sockaddr *) &addr, &addrlen) < 0){
 			std::cout << "error@commServer: reading from socket (" << strerror(errno) << ")" << std::endl;
 			exit(1);
-		} 
+		}
+
+		//deliver the message to the drone if it was not sent by the drone
 	 	printf("message@commServer: %s from %s\n", message_buffer, inet_ntoa(addr.sin_addr));
 		std::string message  = message_buffer;
 		if (*drop_packet == false){
@@ -123,6 +126,7 @@ void commServer(bool* flag, bool* drop_packet, Environment* env, std::string if_
 		}
 		bzero(message_buffer, 256);
 
+		//check to see if the program is still running
 		if (*flag == false){
 			std::cout << "exit@commServer: shutting down" << std::endl;
 			break;
@@ -133,7 +137,6 @@ void commServer(bool* flag, bool* drop_packet, Environment* env, std::string if_
 Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep, std::string address)
 :noiseFun(nfun)
 {
-	timeStep = timestep;
 	data = sensor_data;
 	baseStation = NULL;
 	startNode();
@@ -143,7 +146,6 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, std::func
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep, std::string address)
 {
-	timeStep = timestep;
 	data = sensor_data;
 	noiseFun = &passStr;
 	baseStation = NULL;
@@ -179,29 +181,29 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 	socklen_t addrlen;
 	int sock;
    
-	//create a socket
+	//get a file descriptor for a socket
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
 	if (sock < 0){
 		std::cout << "error@commServer: opening socket (" << strerror(errno) << ")" << std::endl;
 		exit(1);
 	}
 
-	//set address and port
+	//set multicast address and port to send to
 	bzero((char *)&addr, sizeof(addr));
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = inet_addr(MULTICAST_ADDR);
 	addr.sin_port = htons(MULTICAST_PORT);
 	addrlen = (socklen_t)sizeof(addr);
 
-	//configure multicast
+	//configure multicast and choose a network interface
 	inet_pton(AF_INET, if_addr.c_str(), &interface_addr);
 	if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_IF, &interface_addr, sizeof(interface_addr)) < 0){
 		std::cout << "error@commServer: set interface address" << strerror(errno) << std::endl;
 		exit(1);
 	}
 
+	//send the message, and set a flag so that the packet gets dropped when this unit receives it
 	std::cout << "message@commServer: sending " << message << " from interface with address " << if_addr << std::endl;
-
 	drop_packet = true;
 	 if (sendto(sock, message.c_str(), strlen(message.c_str()), 0, (struct sockaddr *) &addr, addrlen) < 0){
 		std::cout << "sendto " << strerror(errno) << std::endl;
@@ -264,6 +266,7 @@ void Environment::run()
 	std::cout << "exit@nodeServer: shutting down" << std::endl;
 }
 
+///Modified to use real time
 double Environment::getTime()
 {
 	return time(nullptr);

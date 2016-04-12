@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-///Modified implementation of Drone for the Parrot AR 2 drone
+///Modified implementation of the Drone class for the Parrot AR 2 drone
 
 #include "Drone.hpp"
 #include <cmath>
@@ -36,6 +36,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 double target_time = 0;
 bool was_moving;
 
+///Modified to start flight when the program runs
 Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e)
 :Messageable(cm, iX, iY, iZ)
 {
@@ -49,12 +50,14 @@ bool Drone::isAlive()
 	return alive;
 }
 
+///Modified to end flight when the program terminates
 void Drone::kill()
 {
 	alive = false;
 	execute("LAND", 0.0);
 }
 
+///Modified to make the drone hover when it has finished a movement instruction
 void Drone::upkeep()
 {
 	if (hasFinishedMoving() && was_moving){
@@ -63,10 +66,12 @@ void Drone::upkeep()
 	was_moving = (hasFinishedMoving() ? false : true);
 }
 
+///Modified to calculate duration based on real time and to send instructions to nodeServer
 void Drone::move(Direction direction, double speed, double distance)
 {
 	double radcon = PI/180;
 
+	//normalise the input speed into something the node server can understand
 	double normalised_speed = speed;
 	if (normalised_speed > 1){
 		normalised_speed = 1;
@@ -74,6 +79,7 @@ void Drone::move(Direction direction, double speed, double distance)
 		normalised_speed = 0;
 	}
 
+	//send instructions to the node server and update our local position estimate
 	switch(direction)
 	{
 		case Direction::UP:
@@ -105,7 +111,8 @@ void Drone::move(Direction direction, double speed, double distance)
 			position.y += distance*cos((ang + 180)*radcon);
 			break;
 	}
-	target_time = getTime() + (1000*distance);
+	target_time = getTime() + (distance / normalised_speed);
+	std::cout << "move@nodeServer: duration " << target_time-getTime() << " seconds" << std::endl;
 }
 
 double Drone::getMaxSpeed()
@@ -118,14 +125,16 @@ double Drone::getAngle()
 	return ang;
 }
 
+///Modified to evaluate estimated move finishing times
 bool Drone::hasFinishedMoving()
 {
 	return getTime() > target_time;
 }
 
+///Modified to create estimates based on real time and to send instructions to nodeServer
 void Drone::turn(double dAngle)
 {
-	//get the value within acceptable bounds
+	//normalise the turn to within a single rotation
 	double to_turn = dAngle;
 	while (to_turn >= 360){
 		to_turn -= 360;
@@ -134,15 +143,22 @@ void Drone::turn(double dAngle)
 		to_turn += 360;
 	}
 
-	//is the turn left or right?
+	//determine if the turn is clockwise or anticlockwise and set the drone moving
 	if (to_turn > 0){
 		execute("CLOCKWISE", 0.5);
 	} else {
 		execute("COUNTERCLOCKWISE", 0.5);
 	}
 
+	//update our internal representation of angle
 	ang += to_turn;
-	target_time += getTime() + abs(to_turn)/360;
+
+	//set an estimated completion time at which we should stop moving
+	if (to_turn < 1){
+		to_turn = 1;
+	}
+	target_time = getTime() + abs(to_turn)/360;
+	std::cout << "move@nodeServer: duration " << target_time-getTime() << " seconds" << std::endl;
 }
 
 double Drone::sense(std::string type)
@@ -150,17 +166,19 @@ double Drone::sense(std::string type)
 	return env->getData(type, position.x, position.y, position.z);
 }
 
-///Takes a command and sends it to the node server which is connected to the drone
+///Takes a command and sends it to the nodeServer which is connected to the drone
 void Drone::execute(std::string command, double arg){
+	
 	//set up connection variables
 	#define SOCK_PATH "parrot.sock"
 	int s, len;
 	struct sockaddr_un remote;
 
+	//create the message to send
 	std::string message = command + ";" + std::to_string(arg);
 	printf("send@nodeServer: %s\n", message.c_str());
 
-	//get a handle for the socket
+	//get a file descriptor for the socket
 	if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 		std::cout << "error@nodeServer: getting address of socket " << SOCK_PATH << std::endl;
 		exit(1);

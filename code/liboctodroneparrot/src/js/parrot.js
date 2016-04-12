@@ -71,7 +71,7 @@ function execute(command, speed) {
 			case "clockwise":
 				client.clockwise(speed);
 				break;
-			case "counterClockwise":
+			case "counterclockwise":
 				client.counterClockwise(speed);
 				break;
 			case "stop":
