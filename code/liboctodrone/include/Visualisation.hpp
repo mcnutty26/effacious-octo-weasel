@@ -1,5 +1,5 @@
-#ifndef LIB_OCTO_DRONE_HPP
-	#define LIB_OCTO_DRONE_HPP
+#ifndef LIB_OCTO_DRONE_VIS_HPP
+	#define LIB_OCTO_DRONE_VIS_HPP
 
 	#include <vector>
 
@@ -23,7 +23,6 @@
 			IMG image;
 	};
 
-	std::vector<Element> elements;
 
 	void pushDrone(int x, int y);
 	void pushBcast(int x, int y, int range);

@@ -2,6 +2,8 @@
 
 #include <atomic>
 
+std::vector<Element> elements;
+
 std::atomic_flag lock_vis = ATOMIC_FLAG_INIT;
 
 bool running;
