@@ -101,7 +101,7 @@ bool allRunning(std::vector<Drone*>* drones)
 
 	for(auto x = drones->begin(); x != drones->end(); ++x)
 	{
-		running |= x->getAlive();
+		running |= (*x)->getAlive();
 	}
 	return running;
 }
@@ -125,7 +125,7 @@ void Environment::run()
 	{
 		for(auto x: drones)
 		{
-			if(x->isAlive())
+			if(x->getAlive())
 			{
 				x->upkeep(visualise);
 			}
