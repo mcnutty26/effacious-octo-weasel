@@ -28,17 +28,15 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #define PI 3.14159265
 
 Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e)
+:Drone(cm, iX, iY, iZ, maxSpeed, false)
+{}
+
+Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e, bool vis)
 :Messageable(cm, iX, iY, iZ)
 {
 	this->maxSpeed = maxSpeed;
 	env = e;
-}
-
-Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e, bool vis)
-:Messageable(cm, iX, iY, iZ, vis)
-{
-	this->maxSpeed = maxSpeed;
-	env = e;
+	visualise = vis;
 }
 
 bool Drone::isAlive()

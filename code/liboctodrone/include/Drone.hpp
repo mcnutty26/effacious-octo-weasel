@@ -68,7 +68,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 			Environment* env;
 			double moveDR, moveSpd;
-			void execute(std::string, double);
+			bool visualise;
 	};
 
 #endif
