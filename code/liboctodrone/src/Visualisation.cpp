@@ -29,7 +29,7 @@ void Element::draw()
 			break;
 		case IMG::STATION:
 			break;
-		case IMG::BCASE:
+		case IMG::BCAST:
 			break;
 	}
 

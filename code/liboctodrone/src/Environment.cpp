@@ -125,7 +125,7 @@ void Environment::run()
 	{
 		for(auto x: drones)
 		{
-			if(x->getAlive())
+			if(x->isAlive())
 			{
 				x->upkeep(visualise);
 			}
