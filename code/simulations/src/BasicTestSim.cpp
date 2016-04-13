@@ -19,6 +19,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <Environment.hpp>
 #include <Basic.hpp>
 #include <CommMod.hpp>
+#include <Dummy.hpp>
 #include <map>
 #include <atomic>
 
