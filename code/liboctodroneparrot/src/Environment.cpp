@@ -134,7 +134,7 @@ void commServer(bool* flag, bool* drop_packet, Environment* env, std::string if_
 	}
 }
 
-Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep, std::string address)
+Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, std::string address)
 :noiseFun(nfun)
 {
 	data = sensor_data;
@@ -144,7 +144,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, std::func
 	if_addr = address;
 };
 
-Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep, std::string address)
+Environment::Environment(std::map<std::string, data_type> sensor_data, std::string address)
 {
 	data = sensor_data;
 	noiseFun = &passStr;

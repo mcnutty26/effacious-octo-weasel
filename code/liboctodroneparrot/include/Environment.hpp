@@ -31,11 +31,11 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 	class Environment
 	{
-		typedef std::vector<std::vector<std::vector<double>>> data_type;
 
 		public:
-			Environment(std::map<std::string, data_type>, std::function<std::string(std::string)>, double timestep, std::string);
-			Environment(std::map<std::string, data_type>, double timestep, std::string);
+		typedef std::vector<std::vector<std::vector<double>>> data_type;
+			Environment(std::map<std::string, data_type>, std::function<std::string(std::string)>, std::string);
+			Environment(std::map<std::string, data_type>, std::string);
 			void broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod*);
 			void addData(std::string type, data_type d);
 			void addDrone(Drone* m);
