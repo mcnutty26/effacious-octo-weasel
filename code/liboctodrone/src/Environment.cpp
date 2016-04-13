@@ -23,6 +23,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include <thread>
 #include <atomic>
+#include <iostream>
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 
@@ -108,6 +109,11 @@ bool allRunning(std::vector<Drone*>* drones)
 
 void Environment::run()
 {
+	if (baseStation == nullptr){
+		std::cout << "error@environment: no base station" << std::endl;
+		exit(1);
+	}
+
 	std::vector<std::thread> threads;
 	for(auto x: drones)
 	{

@@ -16,10 +16,11 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "BasicTest.hpp"
+#include "Dummy_program.hpp"
 #include <Environment.hpp>
 #include <Basic.hpp>
 #include <CommMod.hpp>
-#include <Dummy.hpp>
+#include <Dummy_comm.hpp>
 #include <map>
 #include <atomic>
 
@@ -35,12 +36,15 @@ int main(int argv, char* argc[]){
 
 	CommMod* comm_basic1 = new Basic(env, &stdout_lock);
 	CommMod* comm_basic2 = new Basic(env, &stdout_lock);
+	CommMod* comm_dummy = new Dummy_comm(env);
 
 	//create and add drones
 	BasicTest* drone1 = new BasicTest(comm_basic1, 0.0, 0.0, 0.0, 0.0, env, false);
 	BasicTest* drone2 = new BasicTest(comm_basic2, 1.0, 1.0, 0.0, 0.0, env, true);
+	Dummy_program* base = new Dummy_program(comm_dummy, 0.0, 0.0, 0.0);
 	env->addDrone(drone1);
 	env->addDrone(drone2);
+	env->setBaseStation(base);
 
 	//run the simulation
 	env->run();

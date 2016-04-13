@@ -15,19 +15,16 @@ You should have received a copy of the GNU General Public License
 along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef EOW_PROGRAMS_DUMMY
-	#define EOW_PROGRAMS_DUMMY
+#ifndef EOW_COMM_DUMMY
+	#define EOW_COMM_DUMMY
 
-	#include <BaseStation.hpp>
+	#include <Environment.hpp>
 	#include <CommMod.hpp>
-	#include <Message.hpp>
 
-	typedef std::vector<std::vector<std::vector<double>>> data_type;
-
-	class Dummy: public BaseStation {
+	class Dummy_comm: public CommMod {
 		public:
-			Dummy(CommMod*, double, double, double);
-			bool message_callback(Message*);
-			void run();
+			Dummy_comm(Environment*);
+		protected:
+			void comm_function();
 	};
 #endif
