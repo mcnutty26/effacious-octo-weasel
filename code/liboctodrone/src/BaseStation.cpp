@@ -23,7 +23,7 @@ BaseStation::BaseStation(CommMod* cm, double xp, double yp, double zp)
 {}
 
 BaseStation::BaseStation(CommMod* cm, double xp, double yp, double zp, bool vs)
-:Messageable(cm, xp, yp, zp, vs)
+:Messageable(cm, xp, yp, zp)
 {
 	if(vs)
 	{
