@@ -101,7 +101,7 @@ bool allRunning(std::vector<Drone*>* drones)
 
 	for(auto x = drones->begin(); x != drones->end(); ++x)
 	{
-		running |= x->getAlive();
+		running |= (*x)->getAlive();
 	}
 	return running;
 }
