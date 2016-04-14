@@ -25,6 +25,9 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <atomic>
 
 int main(int argv, char* argc[]){
+	(void)argv;
+	(void)argc;
+
 	//create the sensor map and optionally add in some data
 	std::map<std::string, data_type>* sensor_map = new std::map<std::string, data_type>;
 	//data_type* sensor_data = new data_type();

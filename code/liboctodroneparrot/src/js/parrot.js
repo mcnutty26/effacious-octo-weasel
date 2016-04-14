@@ -32,6 +32,10 @@ fs.stat(socketPath, function(err) {
 	if (!err) fs.unlinkSync(socketPath);
 	var unixServer = net.createServer(function(localSerialConnection) {
 		localSerialConnection.on('data', function(data) {
+			if (data.toString() == "KILL"){
+				console.log("exit@nodeServer: shutting down");
+				process.exit(0);
+			}
 			command = data.toString().split(";");
 			console.log("message@nodeServer: (" + command[0] + ", " + command[1] + ")");
 			execute(command[0], parseFloat(command[1]));

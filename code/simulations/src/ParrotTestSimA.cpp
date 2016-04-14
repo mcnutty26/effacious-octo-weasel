@@ -16,26 +16,34 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "ParrotTest.hpp"
+#include "Dummy_program.hpp"
 #include <Environment.hpp>
 #include <Basic.hpp>
+#include <Dummy_comm.hpp>
 #include <CommMod.hpp>
 #include <map>
 #include <atomic>
 #include <iostream>
 
 int main(int argv, char* argc[]){
+	(void)argv;
+	(void)argc;
+
 	//create the sensor map and optionally add in some data
 	std::map<std::string, data_type>* sensor_map = new std::map<std::string, data_type>;
 
 	//create the environment and comm module
-	Environment* env = new Environment(*sensor_map, "10.0.0.1");
+	Environment* env = new Environment(*sensor_map, "10.0.0.2");
 	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
 
 	CommMod* comm_basic = new Basic(env, &stdout_lock);
+	CommMod* comm_dummy = new Dummy_comm(env);
 
 	//create and add drones
 	ParrotTest* drone = new ParrotTest(comm_basic, 0.0, 0.0, 0.0, 0.0, env, true);
+	Dummy_program* base = new Dummy_program(comm_dummy, 0.0, 0.0, 0.0);
 	env->addDrone(drone);
+	env->setBaseStation(base);
 
 	//run the simulation
 	env->run();

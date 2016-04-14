@@ -1,5 +1,5 @@
 CXX		= g++
-CXXFLAGS	= -std=c++11 -Wall -Wextra -I include
+CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror -I include
 
 define colorecho
       @tput setaf 32

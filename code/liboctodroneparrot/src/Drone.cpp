@@ -21,6 +21,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include "Messageable.hpp"
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 #include <sys/socket.h>
 #include <string.h>
@@ -45,6 +47,15 @@ Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Envi
 	execute("TAKEOFF", 0.0);
 }
 
+Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e, bool vis)
+:Messageable(cm, iX, iY, iZ)
+{
+	this->maxSpeed = maxSpeed;
+	env = e;
+	execute("TAKEOFF", 0.0);
+	(void)vis;
+}
+
 bool Drone::isAlive()
 {
 	return alive;
@@ -55,11 +66,14 @@ void Drone::kill()
 {
 	alive = false;
 	execute("LAND", 0.0);
+	execute("KILL");
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 ///Modified to make the drone hover when it has finished a movement instruction
-void Drone::upkeep()
+void Drone::upkeep(bool vis)
 {
+	(void)vis;
 	if (hasFinishedMoving() && was_moving){
 		execute("STOP", 0.0);
 	}
@@ -168,15 +182,21 @@ double Drone::sense(std::string type)
 
 ///Takes a command and sends it to the nodeServer which is connected to the drone
 void Drone::execute(std::string command, double arg){
-	
+	//create the message to send
+	std::string message = command + ";" + std::to_string(arg);
+	execute(message);
+}
+
+void Drone::execute(std::string message){
+
+	if (message != "KILL"){
+		printf("send@nodeServer: %s\n", message.c_str());
+	}
+
 	//set up connection variables
 	#define SOCK_PATH "parrot.sock"
 	int s, len;
 	struct sockaddr_un remote;
-
-	//create the message to send
-	std::string message = command + ";" + std::to_string(arg);
-	printf("send@nodeServer: %s\n", message.c_str());
 
 	//get a file descriptor for the socket
 	if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {

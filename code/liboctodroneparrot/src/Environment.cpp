@@ -44,7 +44,6 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 bool run_comms = true;
 bool drop_packet = false;
-FILE* node_server;
 std::thread commServ;
 
 std::string passStr(std::string in)
@@ -55,8 +54,7 @@ std::string passStr(std::string in)
 ///Starts the node server which connects to the drone
 void startNode(){
 	//start the node server
-	node_server = popen("node ../liboctodroneparrot/src/js/parrot.js", "w");
-	if (!node_server){
+	if (system("node ../liboctodroneparrot/src/js/parrot.js &") < 0){
 		std::cout << "error@nodeServer: starting process" << std::endl;
 		exit(1);
 	}
@@ -116,11 +114,13 @@ void commServer(bool* flag, bool* drop_packet, Environment* env, std::string if_
 		}
 
 		//deliver the message to the drone if it was not sent by the drone
-	 	printf("message@commServer: %s from %s\n", message_buffer, inet_ntoa(addr.sin_addr));
 		std::string message  = message_buffer;
+		if (message != "KILL"){
+		 	printf("message@commServer: %s from %s\n", message_buffer, inet_ntoa(addr.sin_addr));
+		}
 		if (*drop_packet == false){
 			env->getDrone()->receive_message(message);
-		} else {
+		} else if (message != "KILL"){
 			std::cout << "message@commServer: dropped" << std::endl;
 			*drop_packet = false;
 		}
@@ -172,6 +172,12 @@ void Environment::setBaseStation(BaseStation* b){
 
 void Environment::broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod* caller)
 {
+	(void)xOrigin;
+	(void)yOrigin;
+	(void)zOrigin;
+	(void)range;
+	(void)caller;
+
 	std::string nMessage = noiseFun(message);
 	while(lock_broadcast.test_and_set()){}
 
@@ -203,48 +209,55 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 	}
 
 	//send the message, and set a flag so that the packet gets dropped when this unit receives it
-	std::cout << "message@commServer: sending " << message << " from interface with address " << if_addr << std::endl;
+	if (message != "KILL"){
+		std::cout << "message@commServer: sending " << message << " from interface with address " << if_addr << std::endl;
+	}
 	drop_packet = true;
 	 if (sendto(sock, message.c_str(), strlen(message.c_str()), 0, (struct sockaddr *) &addr, addrlen) < 0){
-		std::cout << "sendto " << strerror(errno) << std::endl;
+		std::cout << "error@commServer: sending (" << strerror(errno) << ")" << std::endl;
 		exit(1);
 	}
 
 	lock_broadcast.clear();
 }
 
-bool allRunning(std::vector<std::thread>* threads)
+bool allRunning(std::vector<Drone*>* drones)
 {
 	bool running = false;
-	for(auto x = threads->begin(); x != threads->end(); ++x)
+	for(auto x = drones->begin(); x != drones->end(); ++x)
 	{
-		running |= x->joinable();
+		running |= (*x)->getAlive();
 	}
 	return running;
 }
 
 void Environment::run()
 {
+	if (baseStation == nullptr){
+		std::cout << "error@environment: no base station" << std::endl;
+		exit(1);
+	}
+
 	std::vector<std::thread> threads;
 	for(auto x: drones)
 	{
-		threads.emplace_back(&Drone::run, x);
+		threads.emplace_back(&Drone::run_wrapper, x);
 		threads.emplace_back(&Drone::runCommMod, x);
 	}
 
 	if (baseStation != NULL)
 	{
-		threads.emplace_back(&BaseStation::run, baseStation);
+		threads.emplace_back(&BaseStation::run_wrapper, baseStation);
 		threads.emplace_back(&BaseStation::runCommMod, baseStation);
 	}
 
-	while(allRunning(&threads))
+	while(allRunning(&drones) || baseStation->getAlive())
 	{
 		for(auto x: drones)
 		{
 			if(x->isAlive())
 			{
-				x->upkeep();
+				x->upkeep(false);
 			}
 		}
 	}
@@ -256,14 +269,8 @@ void Environment::run()
 
 	//shut down the comms server
 	run_comms = 0;
+	broadcast("KILL", 0.0, 0.0, 0.0, 0.0, NULL);
 	commServ.join();
-
-	//shut down the node server
-	if (pclose(node_server) != 0){
-		std::cout << "error@nodeServer: shutting down" << std::endl;
-		exit(1);
-	}
-	std::cout << "exit@nodeServer: shutting down" << std::endl;
 }
 
 ///Modified to use real time
