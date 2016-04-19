@@ -14,7 +14,7 @@ vpath %.o	build
 
 all: lib
 
-aodv: Aodv.o Aodv_message.o Aodv_route.o Aodv_rreq.o Aodv_rrep.o Aodv_rerr.o
+aodv: Aodv.o Aodv_message.o Aodv_route.o Aodv_rreq.o Aodv_rrep.o Aodv_rerr.o Dummy_comm.o
 	$(call colorecho,"Creating Aodv communication objects...")
 
 Aodv.o: Aodv.cpp Aodv.hpp
@@ -52,6 +52,9 @@ Basic_addressed.o: Basic_addressed.cpp Basic_addressed.hpp
 
 Basic_addressed_message.o: Basic_addressed_message.cpp Basic_addressed_message.hpp
 	$(CXX) $(CXXFLAGS) -c src/Basic_addressed_message.cpp -I include -I ../liboctodrone/include -o build/Basic_addressed_message.o
+
+Dummy_comm.o: Dummy_comm.cpp Dummy_comm.hpp
+	$(CXX) $(CXXFLAGS) -c src/Dummy_comm.cpp -I include -I ../liboctodrone/include -o build/Dummy_comm.o
 
 lib: aodv basic basic_addressed
 	$(call colorecho,"Creating communications library...")

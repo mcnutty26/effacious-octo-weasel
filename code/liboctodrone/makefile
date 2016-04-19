@@ -13,7 +13,7 @@ vpath %.o build
 
 all: lib
 
-simulator: BaseStation.o CommMod.o Drone.o Environment.o Message.o IpAllocator.o Messageable.o
+simulator: BaseStation.o CommMod.o Drone.o Environment.o Message.o IpAllocator.o Messageable.o Visualisation.o
 	$(call colorecho,"Compiling simulator objects...")
 
 BaseStation.o: BaseStation.cpp BaseStation.hpp
@@ -36,6 +36,9 @@ Messageable.o: Messageable.cpp Messageable.hpp
 
 IpAllocator.o: IpAllocator.cpp IpAllocator.hpp 
 	$(CXX) $(CXXFLAGS) -c src/IpAllocator.cpp -o build/IpAllocator.o 	
+
+Visualisation.o: Visualisation.cpp Visualisation.hpp 
+	$(CXX) $(CXXFLAGS) -c src/Visualisation.cpp -o build/Visualisation.o 	
 
 lib: simulator
 	$(call colorecho,"Creating simulator library...")

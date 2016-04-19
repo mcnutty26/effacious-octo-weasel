@@ -20,7 +20,13 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include "Messageable.hpp"
 
+<<<<<<< HEAD
 // TODO Remove
+=======
+#include "Visualisation.hpp"
+
+// TODO: remove
+>>>>>>> c709ecd1c06db94ec8836860e455e8db131eed2c
 #include <iostream>
 
 #define PI 3.14159265
@@ -30,6 +36,15 @@ Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Envi
 {
 	this->maxSpeed = maxSpeed;
 	env = e;
+	visualise = false;
+}
+
+Drone::Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e, bool vis)
+:Messageable(cm, iX, iY, iZ)
+{
+	this->maxSpeed = maxSpeed;
+	env = e;
+	visualise = vis;
 }
 
 bool Drone::isAlive()
@@ -42,7 +57,7 @@ void Drone::kill()
 	alive = false;
 }
 
-void Drone::upkeep()
+void Drone::upkeep(bool visualise)
 {
 	double time = getTime();
 	double dTime = time - oTime;
@@ -82,9 +97,10 @@ void Drone::upkeep()
 			break;
 	}
 
-	// TODO Remove
-	//std::cout << "Drone is at: (" << position.x << ", " << position.y << ", " << position.z << ") at time " << time << "(" << moveDR << " left to go)" << std::endl;
-	//std::cout << "(" << position.x << "," << position.y << "," << position.z << ") ";
+	if(visualise)
+	{
+		pushDrone(position.x, position.y);
+	}
 }
 
 double Drone::getMaxSpeed()

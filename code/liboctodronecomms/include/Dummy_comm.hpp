@@ -15,8 +15,16 @@ You should have received a copy of the GNU General Public License
 along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "BaseStation.hpp"
+#ifndef EOW_COMM_DUMMY
+	#define EOW_COMM_DUMMY
 
-BaseStation::BaseStation(CommMod* cm, double xp, double yp, double zp)
-:Messageable(cm, xp, yp, zp)
-{}
+	#include <Environment.hpp>
+	#include <CommMod.hpp>
+
+	class Dummy_comm: public CommMod {
+		public:
+			Dummy_comm(Environment*);
+		protected:
+			void comm_function();
+	};
+#endif

@@ -16,14 +16,19 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "AodvTest.hpp"
+#include "Dummy_program.hpp"
 #include <Environment.hpp>
 #include <Aodv.hpp>
+#include <Dummy_comm.hpp>
 #include <CommMod.hpp>
 #include <IpAllocator.hpp>
 #include <map>
 #include <atomic>
 
 int main(int argv, char* argc[]){
+	(void)argv;
+	(void)argc;
+
 	//create the sensor map and optionally add in some data
 	std::map<std::string, data_type>* sensor_map = new std::map<std::string, data_type>;
 	//data_type* sensor_data = new data_type();
@@ -42,6 +47,7 @@ int main(int argv, char* argc[]){
 	CommMod* comm_aodv3 = new Aodv(env, allocator.next(), &stdout_lock, debug_mode);
 	CommMod* comm_aodv4 = new Aodv(env, allocator.next(), &stdout_lock, debug_mode);
 	CommMod* comm_aodv5 = new Aodv(env, allocator.next(), &stdout_lock, debug_mode);
+	CommMod* dummy = new Dummy_comm(env);
 
 	//create and add drones
 	int flag = 0;
@@ -50,11 +56,13 @@ int main(int argv, char* argc[]){
 	AodvTest* drone3 = new AodvTest(comm_aodv3, 0.0, 14.0, 0.0, 0.0, env, -1, &flag, &stdout_lock);
 	AodvTest* drone4 = new AodvTest(comm_aodv4, 0.0, 21.0, 0.0, 0.0, env, -1, &flag, &stdout_lock);
 	AodvTest* drone5 = new AodvTest(comm_aodv5, 0.0, 28.0, 0.0, 0.0, env, 1, &flag, &stdout_lock);
+	Dummy_program* base = new Dummy_program(dummy, 0.0, 0.0, 0.0);
 	env->addDrone(drone1);
 	env->addDrone(drone2);
 	env->addDrone(drone3);
 	env->addDrone(drone4);
 	env->addDrone(drone5);
+	env->setBaseStation(base);
 
 	//run the simulation
 	env->run();

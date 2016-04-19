@@ -77,10 +77,22 @@ void Messageable::push_message(Message* contents)
 	}
 }
 
+bool Messageable::getAlive()
+{
+	return alive | communicationsModule->getAlive();
+}
+
+void Messageable::run_wrapper()
+{
+	alive = true;
+	run();
+	alive = false;
+}
+
 void Messageable::runCommMod()
 {
 	communicationsModule->set_messageable(this);
-	communicationsModule->comm_function();
+	communicationsModule->comm_function_wrapper();
 }
 
 CommMod* Messageable::get_comm_mod(){

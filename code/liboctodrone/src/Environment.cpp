@@ -18,10 +18,12 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include "Environment.hpp"
 #include "Drone.hpp"
 #include "BaseStation.hpp"
+#include "Visualisation.hpp"
 
 #include <cmath>
 #include <thread>
 #include <atomic>
+#include <iostream>
 
 std::atomic_flag lock_broadcast = ATOMIC_FLAG_INIT;
 
@@ -30,21 +32,31 @@ std::string passStr(std::string in)
 	return in;
 }
 
-Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep)
+Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep, bool visualise)
 :noiseFun(nfun)
 {
 	timeStep = timestep;
 	data = sensor_data;
 	baseStation = NULL;
-};
+	this->visualise = visualise;
+}
 
-Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep)
+Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep)
+:Environment(sensor_data, nfun, timestep, false)
+{}
+
+Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep, bool visualise)
 {
 	timeStep = timestep;
 	data = sensor_data;
 	noiseFun = &passStr;
 	baseStation = NULL;
+	this->visualise = visualise;
 }
+
+Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep)
+:Environment(sensor_data, timestep, false)
+{}
 
 //should not be called by anything other than the main thread
 void Environment::addData(std::string type, data_type d)
@@ -58,6 +70,7 @@ void Environment::addDrone(Drone* m)
 	drones.push_back(m);
 }
 
+//should not be called by anything other than the main thread
 void Environment::setBaseStation(BaseStation* b){
     baseStation = b;
 }
@@ -65,6 +78,11 @@ void Environment::setBaseStation(BaseStation* b){
 //thread safe (I hope) may be a little slow though... meh, it'll be fine (again... I hope)
 void Environment::broadcast(std::string message, double xOrigin, double yOrigin, double zOrigin, double range, CommMod* caller)
 {
+	if(visualise)
+	{
+		pushBcast((int) xOrigin, (int) yOrigin, range);
+	}
+
 	std::string nMessage = noiseFun(message);
 	while(lock_broadcast.test_and_set()){}
 	for(auto m:drones)
@@ -84,43 +102,48 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 	lock_broadcast.clear();
 }
 
-bool allRunning(std::vector<std::thread>* threads)
+bool allRunning(std::vector<Drone*>* drones)
 {
 	bool running = false;
-	for(auto x = threads->begin(); x != threads->end(); ++x)
+
+	for(auto x = drones->begin(); x != drones->end(); ++x)
 	{
-		running |= x->joinable();
+		running |= (*x)->getAlive();
 	}
 	return running;
 }
 
 void Environment::run()
 {
+	if (baseStation == nullptr){
+		std::cout << "error@environment: no base station" << std::endl;
+		exit(1);
+	}
+
 	std::vector<std::thread> threads;
 	for(auto x: drones)
 	{
-		threads.emplace_back(&Drone::run, x);
+		threads.emplace_back(&Drone::run_wrapper, x);
 		threads.emplace_back(&Drone::runCommMod, x);
 	}
 
 	if (baseStation != NULL)
 	{
-		threads.emplace_back(&BaseStation::run, baseStation);
+		threads.emplace_back(&BaseStation::run_wrapper, baseStation);
 		threads.emplace_back(&BaseStation::runCommMod, baseStation);
 	}
 
-	while(allRunning(&threads))
+	while(allRunning(&drones) || baseStation->getAlive())
 	{
 		for(auto x: drones)
 		{
 			if(x->isAlive())
 			{
-				x->upkeep();
+				x->upkeep(visualise);
 			}
 		}
 
 		timeElapsed += timeStep;
-
 	}
 
 	for(std::vector<std::thread>::size_type i = 0; i < threads.size(); ++i)

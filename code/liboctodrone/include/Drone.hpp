@@ -36,8 +36,9 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 	class Drone: public Messageable {
 		public:
 			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e);
+			Drone(CommMod* cm, double iX, double iY, double iZ, double maxSpeed, Environment* e, bool vis);
 			bool isAlive();
-			void upkeep();
+			void upkeep(bool);
 
 		protected:
 			void kill();
@@ -69,7 +70,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 			Environment* env;
 			double moveDR, moveSpd;
-			void execute(std::string, double);
+			bool visualise;
 	};
 
 #endif

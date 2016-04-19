@@ -31,16 +31,20 @@ bool ParrotTest::message_callback(Message*){
 
 void ParrotTest::run(){
 	if (m_sink_node){
-		std::cout << "Sink waiting for message" << std::endl;
+		std::cout << "ParrotTest: sink waiting for message" << std::endl;
 		if (wait_for_message()->to_string() == "TEST"){
-			std::cout << "Received message" << std::endl;
-			move(Direction::FORWARD, 10.0, 0.5);
+			std::cout << "ParrotTest: received message" << std::endl;
+			move(Direction::FORWARD, 0.5, 1);
+			while(!hasFinishedMoving()){}
+			turn(180);
+			while(!hasFinishedMoving()){}
 		}
 	} else {
-		std::cout << "Source sending message" << std::endl;
+		std::cout << "ParrotTest: source sending message" << std::endl;
 		send_message(new Basic_message("TEST"));
 	}
 	send_message(new Basic_message("KILL"));
+	std::cout << "ParrotTest: exiting" << std::endl;
 	kill();
 }
 
