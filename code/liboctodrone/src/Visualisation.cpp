@@ -11,6 +11,8 @@
 #include <atomic>
 #include <cmath>
 
+#include <GL/gl.h>
+
 std::vector<Element> elements;
 
 std::atomic_flag lock_vis = ATOMIC_FLAG_INIT;
