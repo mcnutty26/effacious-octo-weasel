@@ -143,6 +143,7 @@ void Environment::run()
 			}
 		}
 
+		step();
 		timeElapsed += timeStep;
 	}
 

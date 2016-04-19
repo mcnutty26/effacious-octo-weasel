@@ -1,6 +1,15 @@
 #include "Visualisation.hpp"
 
+//increase this if the broadcasts are too jagged for your liking, decrease it if
+//everything lags
+#define CIRCLE_STEPS 10
+
+//don't change this... except to make it more accurate, if you want... but seriously
+//bad things will happen
+#define PI 3.14159265
+
 #include <atomic>
+#include <cmath>
 
 std::vector<Element> elements;
 
@@ -28,10 +37,28 @@ void Element::draw()
 	switch(image)
 	{
 		case IMG::DRONE:
+			glBegin(GL_TRIANGLES);
+				glVertex2f(x-5, y-5);
+				glVertex2f(x, y + 5);
+				glVertex2f(x + 5, y - 5);
+			glEnd();
 			break;
 		case IMG::STATION:
+			glBegin(GL_QUADS);
+				glVertex2f(x - 5, y - 5);
+				glVertex2f(x + 5, y - 5);
+				glVertex2f(x + 5, y + 5);
+				glVertex2f(x - 5, y + 5);
+			glEnd();
 			break;
 		case IMG::BCAST:
+			glBegin(GL_LINE_LOOP);
+				double step = 2*PI/CIRCLE_STEPS
+				for(i = 0; i < CIRCLE_STEPS; i++)
+				{
+					glVertex2f(size*cos(step*i) + x, size*sin(step*i) + y);
+				}
+			glEnd();
 			break;
 	}
 
@@ -78,7 +105,7 @@ void pushDrone(int x, int y)
 
 void pushBcast(int x, int y, int range)
 {
-	elements.emplace_back(IMG::BCAST, x, y, range, 2);
+	elements.emplace_back(IMG::BCAST, x, y, range, 5);
 }
 
 void pushBstation(int x, int y)
