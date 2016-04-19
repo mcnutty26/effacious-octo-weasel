@@ -20,7 +20,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include "Messageable.hpp"
 
-// TODO: remove
+// TODO Remove
 #include <iostream>
 
 #define PI 3.14159265
@@ -54,6 +54,7 @@ void Drone::upkeep()
 	}
 	double radcon = PI/180;
 	double distance = moveDR < moveSpd*dTime? moveDR:moveSpd*dTime;
+	moveDR -= distance;
 
 	switch(dir)
 	{
@@ -80,11 +81,20 @@ void Drone::upkeep()
 			position.y += distance*cos((ang + 180)*radcon);
 			break;
 	}
+
+	// TODO Remove
+	//std::cout << "Drone is at: (" << position.x << ", " << position.y << ", " << position.z << ") at time " << time << "(" << moveDR << " left to go)" << std::endl;
+	//std::cout << "(" << position.x << "," << position.y << "," << position.z << ") ";
 }
 
 double Drone::getMaxSpeed()
 {
 	return maxSpeed;
+}
+
+double Drone::getSpeed()
+{
+	return moveSpd;
 }
 
 double Drone::getAngle()
@@ -118,5 +128,6 @@ void Drone::move(Direction direction, double speed, double distance)
 
 double Drone::sense(std::string type)
 {
+	//std::cout << "Retrieving data at: (" << position.x << ", " << position.y << ", " << position.z << ")" << std::endl;
 	return env->getData(type, position.x, position.y, position.z);
 }

@@ -75,6 +75,12 @@ void Environment::broadcast(std::string message, double xOrigin, double yOrigin,
 			m->receive_message(nMessage);
 		}
 	}
+	// For the basestation
+	if(pow(baseStation->getX() - xOrigin,2) + pow(baseStation->getY() - yOrigin, 2) + pow(baseStation->getZ() - zOrigin, 2) < range && baseStation->get_comm_mod() != caller)
+	{
+		baseStation->receive_message(nMessage);
+	}
+
 	lock_broadcast.clear();
 }
 

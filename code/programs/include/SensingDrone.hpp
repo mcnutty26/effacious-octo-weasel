@@ -31,8 +31,13 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			bool message_callback(Message*);
 			void run();
 
+
+		private:
 			// The method responsible for continuing the correct job that the drone is doing
 			void continueJob();
+
+			void interpretMessage(Message* message);
+			void sendDataPoint(double, double, double, double);
 
 			int atLoc(Coord location);
 
@@ -40,12 +45,18 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			// into points that the drone needs to go to.
 			void newArea(double x1, double y1, double x2, double y2, double height);
 
-		private:
 			int m_task;
 			int* m_flag;
 			void quit();
 
 			double sensorRadius;
+			// The drone with the lower routing priority will 
+			// be forced to wait when a possible collision is detected
+			int routingPriority;
+
+			double lastTime;
+			double waitTimer;
+			bool waiting;
 
 			// The queue that contains the remaining points to be visited.
 			std::queue<Coord> remainingPoints;
@@ -53,5 +64,6 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			bool sink_node;
 
 			std::string baseStationIP;
+			std::vector<std::string> droneIPs;
 	};
 #endif

@@ -52,6 +52,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			//with the ground
 			double getMaxSpeed();
 
+			double getSpeed();
+
 			double getAngle();
 
 			bool hasFinishedMoving();

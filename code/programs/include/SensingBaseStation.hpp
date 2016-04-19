@@ -35,6 +35,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 			std::vector<std::string> droneIPs;
 
+			void interpretMessage(Message* message);
+
 			double areaX1;
 			double areaX2;
 			double areaY1;
