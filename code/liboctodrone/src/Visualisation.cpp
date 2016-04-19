@@ -11,13 +11,46 @@
 #include <atomic>
 #include <cmath>
 
-#include <GL/gl.h>
+#include "GL/glew.h"
+#include "GLFW/glfw3.h"
 
 std::vector<Element> elements;
 
 std::atomic_flag lock_vis = ATOMIC_FLAG_INIT;
 
+GLFWwindow* window;
+
 bool running;
+
+void createWindow()
+{
+	if(!glfwInit())
+	{
+		std::cout << "error@visualisation, GLFW failed to initialise" << std::endl;
+		glfwTerminate();
+		exit(1);
+	}
+
+	window = glfwCreateWindow(720, 450, "OctoDrone Visualisation", nullptr, nullptr);
+	
+	if(!window)
+	{
+		glfwTerminate();
+		std::cout << "error@visualisation, window failed to be created" << std::endl;
+		exit(1);
+	}
+
+	glfwMakeContextCurrent(window);
+	
+	GLenum err = glewInit();
+	if(err != GLEW_OK)
+	{
+		std::cout << "error@visualisation, GLEW failed to initialise" << std::endl;
+		glfwDestroyWindow(window);
+		glfwTerminate();
+		exit(1);
+	}
+}
 
 Element::Element(IMG img, int x, int y, int size, int steps)
 {
@@ -86,12 +119,17 @@ void visLoop()
 	running = true;
 	while(running)
 	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		while(lock_vis.test_and_set()){}
 		for(auto i = elements.begin(); i != elements.end(); ++i)
 		{
 			i->draw();
 		}
 		lock_vis.clear();
+
+		glfwSwapBuffers(window);
+		glfwPollEvents();
 	}
 }
 

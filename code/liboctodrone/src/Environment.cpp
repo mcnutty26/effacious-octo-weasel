@@ -39,10 +39,14 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, std::func
 	data = sensor_data;
 	baseStation = NULL;
 	this->visualise = visualise;
+	if(visualise)
+	{
+		createWindow();
+	}
 }
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep)
-:Environment(sensor_data, nfun, timestep, false)
+:Environment(sensor_data, nfun, timestep, false, 0, nullptr)
 {}
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep, bool visualise)
@@ -52,10 +56,14 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, double ti
 	noiseFun = &passStr;
 	baseStation = NULL;
 	this->visualise = visualise;
+	if(visualise)
+	{
+		createWindow();
+	}
 }
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep)
-:Environment(sensor_data, timestep, false)
+:Environment(sensor_data, timestep, false, 0, nullptr)
 {}
 
 //should not be called by anything other than the main thread
@@ -133,6 +141,11 @@ void Environment::run()
 		threads.emplace_back(&BaseStation::runCommMod, baseStation);
 	}
 
+	if(vis)
+	{
+		threads.emplace_back(visLoop);
+	}
+
 	while(allRunning(&drones) || baseStation->getAlive())
 	{
 		for(auto x: drones)
@@ -145,6 +158,11 @@ void Environment::run()
 
 		step();
 		timeElapsed += timeStep;
+	}
+
+	if(visualise)
+	{
+		visKill();
 	}
 
 	for(std::vector<std::thread>::size_type i = 0; i < threads.size(); ++i)
