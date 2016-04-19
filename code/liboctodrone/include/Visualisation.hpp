@@ -30,5 +30,6 @@
 	void step();
 	void visLoop();
 	void visKill();
+	void createWindow();
 
 #endif
