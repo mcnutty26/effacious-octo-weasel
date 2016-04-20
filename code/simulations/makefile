@@ -1,6 +1,6 @@
 CXX		= g++
 CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror -g
-SLDFLAGS	= -loctodronecomms -loctodrone -lpthread
+SLDFLAGS	= -loctodronecomms -loctodrone -lpthread -lGL -lglfw3 -lGLEW
 PLDFLAGS	= -loctodronecomms -loctodroneparrot -lpthread
 
 COMLINK		= -L ../liboctodronecomms/lib -I ../liboctodronecomms/include
