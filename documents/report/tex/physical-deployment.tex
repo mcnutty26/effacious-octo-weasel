@@ -1,8 +1,49 @@
 \section{Objectives}
-\section{Equipment and Feasability}
-	\subsection{Arduino}
-	\subsection{RaspberryPi}
-	\subsection{Something else}
+The main objective of this part of the project was to enable the running of octoDrone simulations on real hardware. While at first it may seem odd that we are attempting to move from a simulated programs to real ones when the overall goal of octoDrone is to allow for the simulation of real programs on virtual hardware. In a sense this a decision that logically follows the move from real to simulated - once I have built a program within the simulator framework and proved that it operates as I expect, it is infuriating to then have to implement this using a different set of frameworks on real hardware. It necessitates rewriting the same software in a way which effectively prohibits simulated benchmarks insomuch as there is no guarantee that simulated programs would exhibit the same performance characteristics as their real world counterparts given that they may be written on top of different libraries and possibly even in different languages. To this end it makes sense that one should want to run the same program in the simulator as in a real deployment.
+
+There were a number of options that were explored in terms of the actual components that were used for our example deployment, similarly with the ways in which we adapted the simulator software to make the process as seamless as possible. The overall goal was to obtain a minimal working example, given that how well the hardware we could acquire would interact with what we had made was an unknown quantity. It is important to distinguish our efforts to make the simulator operate on real hardware units and the actual deployment we carried out. The former is a part of the product that is octoDrone, and was done to a high, professional standard. The latter was implemented using the components which were available to us through the department and, as such, does not represent what would be expected of a deployment carried out in industry. With that said, it is a testament to the flexibility of the simulator that it is possible to coerce it to run on distributed hardware components that it was never intended to support.
+
+\section{Equipment and Feasibility}
+The first decision to make with regards to the example deployment was to determine the type of hardware we would be targeting. There were two drones made available by the Department of Computer Science for our use - a pair of Parrot AR 2.0 Power Edition units.
+
+\begin{aside}
+\textbf{Parrot AR 2.0 specifications\cite{parrotspecs}}
+\begin{itemize}
+\item 1GHz 32 bit ARM Cortex A8 processor with 800MHz video DSP TMS320DMC64x
+\item Linux kernel version 2.6.32
+\item 1Gbit DDR2 RAM at 200MHz
+\item Wi-Fi b,g,n
+\item 3 axis gyroscope, accelerometer, and magnetometer
+\item Ultrasound sensors for ground altitude measurement
+\item 4 brushless inrunner motors. 14.5W 28,500 RPM
+\item 30fps horizontal HD Camera (720p)
+\item 60 fps vertical QVGA camera for ground speed measurement
+\item Total weight 380g with outdoor hull, 420g with indoor hull
+\end{itemize}
+\end{aside}
+
+\subsection{Micro-controllers}
+The noteable thing missing from the above specifications is the ability to program the quadcopter with custom code. In a commercial or industrial deployment of this type, one would expect to use drones that are capable of being programmed themselves. Unfortunately these models are rather expensive, and as such we had to find a way to make the drones autonomous without being able to change the software running on them. The obvious solution was to use a micro-controller to pilot the drone because it would be easy to run our own custom software and communicate with the drone via its WiFi network. Below is a short summary of the investigation we did into the two major micro-controllers aimed at the consumer market (and thus within budget).
+
+\subsubsection{Arduino}
+
+\subsubsection{Raspberry Pi}
+
+\subsection{Inter-node Communication}
+In addition to communicating with the drone they were paired with, nodes would need to communicate with each other in order to pass messages and communicate with the base station. There were a number of options here which varied from true to life to more synthetic conditions.
+
+\subsubsection{Radio}
+In a real scenario, all communication done between nodes would be done using uni or bi-directional radio links. This allows for the use of software and protocols aimed at mobile sensor networks to facilitate the saving of power. It is obviously beneficial to create an environment which is as close as possible to real conditions, but we felt that this was less applicable for our example deployment. When we considered radio in the context of octoDrone, the abstraction of the physical and data link layers for communications meant that programs would not be able to tap into the extra power afforded by using it. In addition to this, many commercially available radio modules are designed to be used with the Arduino, which we had elected not to use.
+
+\subsubsection{WiFi}
+The second option we investigated was IEEE 802.11. The advantages over radio links were clear - it was easier to set up and use in in terms of program code, with many common protocols working automatically thanks to support and drivers for the linux kernel. In addition to this, there are many easily available USB adapters that work out of the box with the Raspberry Pi and Raspbian (a spin off of the Debian Linux distribution). This comes at the cost of the ability to make as many decisions at the lower OSI levels, but on balance this would make the process of developing and testing the deployment much easier. We concluded at this point that WiFi was preferred as a communication method over radio.
+
+\subsubsection{Ethernet}
+
+\subsection{Sensor Data}
+\subsubsection{Installing Physical Sensors}
+\subsubsection{Emulating Real Data}
+
 \section{Adapting the Simulator Code}
 \section{Results}
 \section{Review Against Original Objectives}

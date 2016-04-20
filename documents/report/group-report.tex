@@ -12,6 +12,7 @@
 \usepackage[hmarginratio=1:1]{geometry}
 \usepackage{multicol}
 \usepackage{tikz}
+\usepackage{mdframed}
 
 \hypersetup{colorlinks=true,linkcolor=blue}
 \bibliographystyle{plain}
@@ -21,6 +22,13 @@
 \titleformat{\chapter}{\large\bf\centering}{CHAPTER \MakeUppercase{\thechapter}.}{1em}{}
 \titleformat{\section}{\normalfont\bf}{{\thesection}}{1em}{}
 \titleformat{\subsection}{\normalfont\bf}{{\thesubsection}}{1em}{}
+
+\newenvironment{aside}
+  {\begin{mdframed}[style=0,%
+      leftline=false,rightline=false,leftmargin=2em,rightmargin=2em,%
+          innerleftmargin=0pt,innerrightmargin=0pt,linewidth=0.75pt,%
+      skipabove=7pt,skipbelow=7pt]\small}
+  {\end{mdframed}}
 
 \begin{document}
 
