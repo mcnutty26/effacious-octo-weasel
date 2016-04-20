@@ -5,7 +5,7 @@ PLDFLAGS	= -loctodronecomms -loctodroneparrot -lpthread
 
 COMLINK		= -L ../liboctodronecomms/lib -I ../liboctodronecomms/include
 PRGLINK		= ../programs/build/*.o -I ../programs/include
-SIMLINK		= $(PRGLINK) $(COMLINK) -L ../liboctodrone/lib -I ../liboctodrone/include
+SIMLINK		= $(PRGLINK) $(COMLINK) -L ../liboctodrone/lib -I ../liboctodrone/include -L ./lib
 PARLINK		= $(PRGLINK) $(COMLINK) -L ../liboctodroneparrot/lib/ -I ../liboctodroneparrot/include
 
 define colorecho
