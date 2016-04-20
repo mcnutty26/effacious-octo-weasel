@@ -46,7 +46,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, std::func
 }
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, std::function <std::string(std::string)> nfun, double timestep)
-:Environment(sensor_data, nfun, timestep, false, 0, nullptr)
+:Environment(sensor_data, nfun, timestep, false)
 {}
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep, bool visualise)
@@ -63,7 +63,7 @@ Environment::Environment(std::map<std::string, data_type> sensor_data, double ti
 }
 
 Environment::Environment(std::map<std::string, data_type> sensor_data, double timestep)
-:Environment(sensor_data, timestep, false, 0, nullptr)
+:Environment(sensor_data, timestep, false)
 {}
 
 //should not be called by anything other than the main thread
@@ -141,7 +141,7 @@ void Environment::run()
 		threads.emplace_back(&BaseStation::runCommMod, baseStation);
 	}
 
-	if(vis)
+	if(visualise)
 	{
 		threads.emplace_back(visLoop);
 	}
