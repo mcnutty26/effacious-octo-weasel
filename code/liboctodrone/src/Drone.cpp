@@ -20,13 +20,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include "Messageable.hpp"
 
-<<<<<<< HEAD
-// TODO Remove
-=======
 #include "Visualisation.hpp"
-
-// TODO: remove
->>>>>>> c709ecd1c06db94ec8836860e455e8db131eed2c
 #include <iostream>
 
 #define PI 3.14159265
