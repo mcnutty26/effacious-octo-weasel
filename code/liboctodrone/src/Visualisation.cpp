@@ -10,6 +10,7 @@
 
 #include <atomic>
 #include <cmath>
+#include <iostream>
 
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
@@ -88,8 +89,8 @@ void Element::draw()
 			break;
 		case IMG::BCAST:
 			glBegin(GL_LINE_LOOP);
-				double step = 2*PI/CIRCLE_STEPS
-				for(i = 0; i < CIRCLE_STEPS; i++)
+				double step = 2*PI/CIRCLE_STEPS;
+				for(int i = 0; i < CIRCLE_STEPS; i++)
 				{
 					glVertex2f(size*cos(step*i) + x, size*sin(step*i) + y);
 				}
