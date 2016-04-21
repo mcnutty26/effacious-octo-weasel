@@ -207,6 +207,23 @@ Because the receiving of messages was driven by the sending of messages in the o
 \subsection{Movement}
 As there are no native C or C++ bindings (or indeed, any bindings) for the Parrot AR 2, making the quadcopters move involves using the node js package \textit{ardrone}. The \textit{ardrone} package handles connecting to a drone on the same network as the device it is run on (parrot drones use a default IP address, making them easy to find), as well as sending packets to the drone which it can understand. We created a javascript server application that could be run alongside the distributed simulator that would take commands and use the package to transmit them to the drone to be carried out. This server was passed messages by the environment through a UNIX socket in the filesystem of the host device.
 
-As mentioned above, there was an issue with how movement would be translated from the {speed, distance} format for used by the simulator and the {speed, time} format used by the drones. The first attempt at solving this problem assumed that the application would have easy access to GPS coordinates from the paired drone, and used this to perform location checks in the same way as for simulated runs. It was later learned that there was only one GPS unit available for the two quadcopters obtained, and extracting information from it at runtime was non-trivial. The fallback plan developed involved 
+As mentioned above, there was an issue with how movement would be translated from the {speed, distance} format for used by the simulator and the {speed, time} format used by the drones. The first attempt at solving this problem assumed that the application would have easy access to GPS coordinates from the paired drone, and used this to perform location checks in the same way as for simulated runs. It was later learned that there was only one GPS unit available for the two quadcopters obtained, and extracting information from it at runtime was non-trivial. The fallback plan developed involved estimating the time taken for a drone to travel a given distance based on the normalised speed which the \textit{ardrone} library requires. This had to be based on experimental evidence and was not consistent (see notes about drone movement in section \ref{movement}).
+
+\begin{aside}
+\label{movement}
+Quadcopters move by inclining themselves relative to the horizon. This is achieved by having two rotors spinning clockwise, and two rotors spinning anticlockwise. Moving forward entails having one of the rotors which is spinning in a certain direction (say clockwise) move faster and the the opposing rotor of the same direction move slower. This has the effect of tilting the drone on the Y axis (see figure \ref{pitch}). With the drone thus inclined, the air displaced by the rotors now causes it to move forward. The same technique can be used in reverse to move the drone backwards, and applied to the rotors spinning in the opposite direction (in this case anticlockwise) to bank the drone left or right on the X axis.
+
+This method of movement results in a period of acceleration at the start of movement as the drone inclines to its target tilt. This means that it takes a few seconds to reach a stable speed, unlike with a ground based robot where the period of acceleration is much shorter. Tilting at too steep an angle will cause the drone to flip (or cut out if there is a hardware tilt-meter and firmware support). Stopping follows a similar transition period as the motor speeds are brought back in sync.
+
+Finally, a drone is turned on the Z axis by increasing the rotation speed of a pair of rotors operating in the same direction and altitude is controlled by increasing or decreasing the rotational speed of all motors in unison.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{pitch}
+\caption{Pitch, yaw, and roll in the context of a quadcopter\cite{Hansen2014}}
+\label{pitch}
+\end{figure}
+\end{aside}
+
 \section{Results}
 \section{Review Against Original Objectives}
