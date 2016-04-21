@@ -48,8 +48,165 @@ We also came across the problem of how we would deal with nodes sensing the envi
 The best way of testing how a real life deployment would perform would be to get real life sensor data from mobile units as a program is running. There were, however, a number of problems with this approach - because it required a processing unit to be mounted on the quadcopter to read the sensor data, choosing it ruled out Ethernet as a communication option. Another problem was that real data values are harder to reason about in terms of software correctness. Especially for a trial deployment such as this one, not being able to repeat experiments (even on the same day) and expect the same results was a real problem. The final issue with this method was that the temperature sensors provided to us by the department came only with a datasheet. A large amount of time would have had to be spent in order to get the sensors soldered correctly and interfacing with the Pi. Even then, anecdotal experience with these devices has shown that they can be finicky and inconsistent, especially given that they were almost certainly not originally intended to work with a Raspberry Pi.
 
 \subsubsection{Synthetic Data}
-The alternative to the above was to use the same synthetic data which we had used in the simulated versions of our programs. This had the benefit of keeping part of the experiment simple while we measured the effects of other variables on the performance of octoDrone (such as wind speed).
+The alternative to the above was to use the same synthetic data which we had used in the simulated versions of our programs. This had the benefit of keeping some part of the experiment simple while we measured the effects of other variables on the performance of octoDrone (such as wind speed). As the project matures it will make sense to switch to the use of real data at some future juncture, but that is outside the scope of the project in its current state. What this decision did allow us to do was to test a number of edge cases on the real quadcopters which would have only become apparent otherwise after hundreds of hours of testing. This approach of fixing some aspects of the deployment whilst experimenting with others has undoubtedly saved many hours of testing and debugging over the past few months.
 
 \section{Adapting the Simulator Code}
+With the equipment selection locked in (Parrot AR 2, Raspberry Pi model A, Ethernet connectivity and no sensors), we set about adapting the simulator to run distributed across a number of hosts. A large amount of thought had been put into the design of the simulator from the beginning to make this possible, but actually making it a reality was a difficult task. Certain pieces of information could be safely used in a distributed application, such as the locations of individual nodes. Nodes cannot access the locations of other nodes in the simulation anyway, and there is no need to check positions for collisions as this can safely be delegated to physics.
+
+Other properties generate problems when run as part of a distributed application - the environment iterates over the list of messageables when broadcasting messages. We therefore needed to find a way to disseminate packets without knowing the other nodes present in the network (supplying each node with a list of other nodes and their addresses would be missing the point by a country mile). Movement also becomes problematic when one realises that mobile units will often move at a given speed for a given amount of time, as opposed to the speed/direction instructions that programs use to make calls to Drone::move.
+
+In order to attempt to solve these problems we first had to decide how the simulator could be run on multiple hosts. By far the simplest way to do this was to run individual ``simulations'' on each physical machine and have these communicate somehow. Users would use the same simulation structure as for conventional use (an environment with drone programs and communications modules), but each environment would contain only one messageable. This meant that each hardware unit could run an individual simulation, and that we could hook in to the functions exposed by the simulator API. As such, each time a a call was made to a function that required a call to hardware (such as sending messages), this could be intercepted and run on hardware without any change to the simulator API with the exception of instantiation, which necessarily required information on network interfaces. 
+
+It was useful to visualise how the sharded environment would look - figure \ref{simnorm} shows the thread structure of a simulated octoDrone run, which can be compared to the distributed version in figure \ref{simdist}. Note that the extra threads present in the distributed version of the software hook into the functions exposed by the simulator (a call to Environment::broadcast actually ends up going to the Comm server thread to be broadcast. This meant that the difference between compiling a simulation and a deployment application is as simple as linking against a different library.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[remember picture,
+  simulator engine/.style={fill=black!10,rounded corners,inner sep=20pt,inner xsep=5pt},
+  topology/.style={rounded corners,draw=blue!50,fill=blue!20,thick,inner sep=3pt},
+  neuron/.style={fill=blue!10,draw=blue,rounded corners,inner sep=15pt,inner xsep=5pt,minimum width=3.5cm},
+  synapse/.style={draw=red!75,fill=red!20,rounded corners,inner sep=5pt},
+  empty synapse/.style={draw=blue!10,rounded corners,inner sep=5pt}
+  ]
+  \node[simulator engine] (simulatorEngine) {
+    \begin{tikzpicture}
+      \node[topology] (topology1) {
+        \begin{tikzpicture}
+          \node [neuron] (neuron1-1)  {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-1-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-0] (synapse1-1-1) {Comm Mod Thread};
+              \end{tikzpicture}
+          };
+          \node [neuron,draw=blue,right=0.2cm of neuron1-1] (neuron1-2) {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-2-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-2-0] (synapse1-2-1) {Comm Mod Thread};
+              \end{tikzpicture}
+          };
+          \node [neuron,draw=blue,right=0.2cm of neuron1-2] (neuron1-3) {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-3-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-3-0] (synapse1-3-1) {Comm Mod Thread};
+              \end{tikzpicture}
+          };
+          \node [synapse,draw=blue,below=0.2cm of neuron1-2,minimum width=12cm,minimum height=0.5cm] (synapse1-4) {
+          };
+
+          \node [black,below] at (neuron1-1.north)  {Drone A};
+          \node [black,below] at (neuron1-2.north)  {Drone B};
+          \node [black,below] at (neuron1-3.north)  {Base Station};
+          \node [black,below] at (synapse1-4.north)	{Visualisation Thread};
+        \end{tikzpicture}
+      };
+
+    \end{tikzpicture}
+    };
+
+    \node [black,below] at (simulatorEngine.north) {Simulation Environment};
+\end{tikzpicture}
+\caption{Thread diagram for octoDrone simulations}
+\label{simnorm}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[remember picture,
+  simulator engine/.style={fill=black!10,rounded corners,inner sep=20pt,inner xsep=5pt},
+  topology/.style={rounded corners,draw=blue!50,fill=blue!20,thick,inner sep=3pt},
+  neuron/.style={fill=blue!10,draw=blue,rounded corners,inner sep=15pt,inner xsep=5pt,minimum width=3cm},
+  synapse/.style={draw=red!75,fill=red!20,rounded corners,inner sep=5pt},
+  empty synapse/.style={draw=blue!10,rounded corners,inner sep=5pt}
+  ]
+  \node[simulator engine] (simulatorEngine) {
+    \begin{tikzpicture}
+      \node[topology] (topology1) {
+        \begin{tikzpicture}
+          \node [neuron] (neuron1-1)  {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-1-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-0] (synapse1-1-1) {Comm Mod Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-1] (synapse1-1-2) {Comm Server Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-2] (synapse1-1-3) {Node Server Thread};
+              \end{tikzpicture}
+          };
+          \node [black,below] at (neuron1-1.north)  {Drone A};
+        \end{tikzpicture}
+      };
+
+    \end{tikzpicture}
+    };
+
+    \node [black,below] at (simulatorEngine.north) {Simulation Environment};
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture,
+  simulator engine/.style={fill=black!10,rounded corners,inner sep=20pt,inner xsep=5pt,},
+  topology/.style={rounded corners,draw=blue!50,fill=blue!20,thick,inner sep=3pt},
+  neuron/.style={fill=blue!10,draw=blue,rounded corners,inner sep=15pt,inner xsep=5pt,minimum width=3cm},
+  synapse/.style={draw=red!75,fill=red!20,rounded corners,inner sep=5pt},
+  empty synapse/.style={draw=blue!10,rounded corners,inner sep=5pt}
+  ]
+  \node[simulator engine] (simulatorEngine) {
+    \begin{tikzpicture}
+      \node[topology] (topology1) {
+        \begin{tikzpicture}
+          \node [neuron] (neuron1-1)  {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-1-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-0] (synapse1-1-1) {Comm Mod Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-1] (synapse1-1-2) {Comm Server Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-2] (synapse1-1-3) {Node Server Thread};
+              \end{tikzpicture}
+          };
+          \node [black,below] at (neuron1-1.north)  {Drone B};
+        \end{tikzpicture}
+      };
+
+    \end{tikzpicture}
+    };
+
+    \node [black,below] at (simulatorEngine.north) {Simulation Environment};
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture,
+  simulator engine/.style={fill=black!10,rounded corners,inner sep=20pt,inner xsep=5pt},
+  topology/.style={rounded corners,draw=blue!50,fill=blue!20,thick,inner sep=3pt},
+  neuron/.style={fill=blue!10,draw=blue,rounded corners,inner sep=15pt,inner xsep=5pt,minimum width=3cm},
+  synapse/.style={draw=red!75,fill=red!20,rounded corners,inner sep=5pt},
+  empty synapse/.style={draw=blue!10,rounded corners,inner sep=5pt}
+  ]
+  \node[simulator engine] (simulatorEngine) {
+    \begin{tikzpicture}
+      \node[topology] (topology1) {
+        \begin{tikzpicture}
+          \node [neuron] (neuron1-1)  {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-1-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-0] (synapse1-1-1) {Comm Mod Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-1] (synapse1-1-2) {Comm Server Thread};
+				  \node [empty synapse,below=0.35cm of synapse1-1-2] (synapse1-1-e) {};
+              \end{tikzpicture}
+          };
+          \node [black,below] at (neuron1-1.north)  {Base Station};
+        \end{tikzpicture}
+      };
+
+    \end{tikzpicture}
+    };
+
+    \node [black,below] at (simulatorEngine.north) {Simulation Environment};
+\end{tikzpicture}
+\caption{Thread diagram for octoDrone deployment}
+\label{simdist}
+\end{figure}
+
+\subsection{Sending and Receiving Messages}
+Because nodes must communicate with each other over a network (in this case Ethernet), they must be able to actually send packets to each other - a connection must be established between them. This introduces a problem in as much as nodes cannot know the addresses of other nodes in the network (as determined earlier in this section) they must use multicast or broadcast. Broadcasting is effectively deprecated in modern networks, with IPv6 removing it entirely. Add to this the fact that some devices will refuse to let broadcast packets cross the device boundary, it became clear that multicast was the only viable choice. In terms of implementation, raw C sockets were chosen due to their simplicity and speed. It would have been possible to use a wrapper on top of these (such as Boost), but would not have alleviated a significant amount of work during development and would not have made the application cross platform unless the threading library used had been changed from the linux POSIX threads (pthreads) library.
+
+Because the receiving of messages was driven by the sending of messages in the original simulator, these actions had to be decoupled for the distributed version. Because listening for an incoming connection is a blocking action it would require another thread to be run whilst the remainder of the application was executing. This thread would take a reference to the local messageable on instantiation that would later be used to deliver messages. Because the application would multicast packets, any outgoing messages would have to be sent to a multicast address that was known to all nodes (specified during the compilation of either the environment library or the simulation).
+
+\subsection{Movement}
+As there are no native C or C++ bindings (or indeed, any bindings) for the Parrot AR 2, making the quadcopters move involves using the node js package \textit{ardrone}. The \textit{ardrone} package handles connecting to a drone on the same network as the device it is run on (parrot drones use a default IP address, making them easy to find), as well as sending packets to the drone which it can understand. We created a javascript server application that could be run alongside the distributed simulator that would take commands and use the package to transmit them to the drone to be carried out. This server was passed messages by the environment through a UNIX socket in the filesystem of the host device.
+
+As mentioned above, there was an issue with how movement would be translated from the {speed, distance} format for used by the simulator and the {speed, time} format used by the drones. The first attempt at solving this problem assumed that the application would have easy access to GPS coordinates from the paired drone, and used this to perform location checks in the same way as for simulated runs. It was later learned that there was only one GPS unit available for the two quadcopters obtained, and extracting information from it at runtime was non-trivial. The fallback plan developed involved 
 \section{Results}
 \section{Review Against Original Objectives}
