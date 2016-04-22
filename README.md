@@ -1,8 +1,17 @@
 # octoDrone
 A discrete event network simulator for drone networks
 
+##First time setup
+There is a setup script supplied in the code directory which will set up octoDrone and its dependencies for you and then build the entire project.
+
+```cd code && ./setup.sh```
+
 ## Building octoDrone
+If you wish to build the entire project a script is supplied in the code directory
+
 ```cd code && ./build.sh```
+
+If you wish to build an individual component, `cd` into its directory and run `make`
 
 ##License
 * octoDrone is released under the GPL v3 license (or later)
