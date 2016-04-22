@@ -48,6 +48,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -109,6 +111,7 @@ $(document).ready(function(){initNavTree('class_comm_mod.html','');});
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_comm_mod-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CommMod Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -123,6 +126,7 @@ Inheritance diagram for CommMod:</div>
 <area href="class_aodv.html" alt="Aodv" shape="rect" coords="0,56,109,80"/>
 <area href="class_basic.html" alt="Basic" shape="rect" coords="119,56,228,80"/>
 <area href="class_basic__addressed.html" alt="Basic_addressed" shape="rect" coords="238,56,347,80"/>
+<area href="class_dummy__comm.html" alt="Dummy_comm" shape="rect" coords="357,56,466,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -152,10 +156,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a2acc6cb30eb7c9d55e3893da147db839">push_in_message</a> (std::string message)</td></tr>
 <tr class="memdesc:a2acc6cb30eb7c9d55e3893da147db839"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by a messagable to receive a message. <br /></td></tr>
 <tr class="separator:a2acc6cb30eb7c9d55e3893da147db839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab495c6e70229d18425f0db956086c9a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab495c6e70229d18425f0db956086c9a1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>comm_function_wrapper</b> ()</td></tr>
+<tr class="separator:ab495c6e70229d18425f0db956086c9a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48b1d970ce600043bf2b610ae113e825"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48b1d970ce600043bf2b610ae113e825"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a48b1d970ce600043bf2b610ae113e825">comm_function</a> ()=0</td></tr>
 <tr class="memdesc:a48b1d970ce600043bf2b610ae113e825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main loop which must be defined by communications implementations. <br /></td></tr>
 <tr class="separator:a48b1d970ce600043bf2b610ae113e825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77d334889146127e72381eec9cf3dd55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77d334889146127e72381eec9cf3dd55"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getAlive</b> ()</td></tr>
+<tr class="separator:a77d334889146127e72381eec9cf3dd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7415ee1b2835f8cb0d650df6ed80622a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7415ee1b2835f8cb0d650df6ed80622a"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a7415ee1b2835f8cb0d650df6ed80622a">getTime</a> ()</td></tr>
 <tr class="memdesc:a7415ee1b2835f8cb0d650df6ed80622a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the time from the environment. <br /></td></tr>
@@ -178,10 +188,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>push_out_message</b> 
 <tr class="memitem:a2acc6cb30eb7c9d55e3893da147db839"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2acc6cb30eb7c9d55e3893da147db839"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>push_in_message</b> (std::string message)</td></tr>
 <tr class="separator:a2acc6cb30eb7c9d55e3893da147db839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab495c6e70229d18425f0db956086c9a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab495c6e70229d18425f0db956086c9a1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>comm_function_wrapper</b> ()</td></tr>
+<tr class="separator:ab495c6e70229d18425f0db956086c9a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48b1d970ce600043bf2b610ae113e825"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48b1d970ce600043bf2b610ae113e825"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a48b1d970ce600043bf2b610ae113e825">comm_function</a> ()=0</td></tr>
 <tr class="memdesc:a48b1d970ce600043bf2b610ae113e825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main loop which must be defined by communications implementations. <br /></td></tr>
 <tr class="separator:a48b1d970ce600043bf2b610ae113e825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77d334889146127e72381eec9cf3dd55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77d334889146127e72381eec9cf3dd55"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getAlive</b> ()</td></tr>
+<tr class="separator:a77d334889146127e72381eec9cf3dd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7415ee1b2835f8cb0d650df6ed80622a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7415ee1b2835f8cb0d650df6ed80622a"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td></tr>
 <tr class="separator:a7415ee1b2835f8cb0d650df6ed80622a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,10 +220,16 @@ std::queue&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="botto
 <a class="el" href="class_messageable.html">Messageable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_comm_mod.html#a536486b3f1195ae3be8b97723fa98e4c">messageable</a></td></tr>
 <tr class="memdesc:a536486b3f1195ae3be8b97723fa98e4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the associated messageable. <br /></td></tr>
 <tr class="separator:a536486b3f1195ae3be8b97723fa98e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:acad25488547ae4951e0904461bce43e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acad25488547ae4951e0904461bce43e3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>alive</b></td></tr>
+<tr class="separator:acad25488547ae4951e0904461bce43e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/will/Documents/effacious-octo-weasel/code/liboctodrone/include/<a class="el" href="include_2_comm_mod_8hpp_source.html">CommMod.hpp</a></li>
-<li>/home/will/Documents/effacious-octo-weasel/code/liboctodrone/src/CommMod.cpp</li>
+<li>/home/will/Documents/octoDrone/code/liboctodrone/include/<a class="el" href="include_2_comm_mod_8hpp_source.html">CommMod.hpp</a></li>
+<li>/home/will/Documents/octoDrone/code/liboctodrone/src/CommMod.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -48,6 +48,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -121,7 +123,7 @@ Inheritance diagram for BaseStation:</div>
   <map id="BaseStation_map" name="BaseStation_map">
 <area href="class_messageable.html" alt="Messageable" shape="rect" coords="0,0,123,24"/>
 <area href="class_messageable.html" alt="Messageable" shape="rect" coords="133,0,256,24"/>
-<area href="class_sensing_base_station.html" alt="SensingBaseStation" shape="rect" coords="0,112,123,136"/>
+<area href="class_dummy__program.html" alt="Dummy_program" shape="rect" coords="0,112,123,136"/>
 <area href="class_sensing_base_station.html" alt="SensingBaseStation" shape="rect" coords="133,112,256,136"/>
 </map>
  </div></div>
@@ -131,9 +133,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa969be6d1673b8ad27229652ab608473"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa969be6d1673b8ad27229652ab608473"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BaseStation</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp)</td></tr>
 <tr class="separator:aa969be6d1673b8ad27229652ab608473"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac1678f1aa297b5a583f40e41d938af6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac1678f1aa297b5a583f40e41d938af6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BaseStation</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp, bool vs)</td></tr>
+<tr class="separator:aac1678f1aa297b5a583f40e41d938af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa969be6d1673b8ad27229652ab608473"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa969be6d1673b8ad27229652ab608473"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BaseStation</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp)</td></tr>
 <tr class="separator:aa969be6d1673b8ad27229652ab608473"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac1678f1aa297b5a583f40e41d938af6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac1678f1aa297b5a583f40e41d938af6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BaseStation</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp, bool vs)</td></tr>
+<tr class="separator:aac1678f1aa297b5a583f40e41d938af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_messageable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_messageable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_messageable.html">Messageable</a></td></tr>
 <tr class="memitem:a17da78cfa69fc760ece179365de9ef23 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17da78cfa69fc760ece179365de9ef23"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Messageable</b> (<a class="el" href="class_comm_mod.html">CommMod</a> *cm, double xp, double yp, double zp)</td></tr>
@@ -171,6 +179,12 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td>
 <tr class="memitem:adda0d24929a929b9d91c97da1fb91775 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adda0d24929a929b9d91c97da1fb91775"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>message_callback</b> (<a class="el" href="class_message.html">Message</a> *message)=0</td></tr>
 <tr class="separator:adda0d24929a929b9d91c97da1fb91775 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc870b33664dda52c75dcea125c30999 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc870b33664dda52c75dcea125c30999"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getAlive</b> ()</td></tr>
+<tr class="separator:adc870b33664dda52c75dcea125c30999 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58dfdf02070fffc6349ee0a57b2afc35 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58dfdf02070fffc6349ee0a57b2afc35"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>run_wrapper</b> ()</td></tr>
+<tr class="separator:a58dfdf02070fffc6349ee0a57b2afc35 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82c2308b9fabe8e06664d17b3c018b75 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82c2308b9fabe8e06664d17b3c018b75"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()=0</td></tr>
 <tr class="separator:a82c2308b9fabe8e06664d17b3c018b75 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,6 +227,12 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td>
 <tr class="memitem:adda0d24929a929b9d91c97da1fb91775 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adda0d24929a929b9d91c97da1fb91775"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>message_callback</b> (<a class="el" href="class_message.html">Message</a> *message)=0</td></tr>
 <tr class="separator:adda0d24929a929b9d91c97da1fb91775 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc870b33664dda52c75dcea125c30999 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc870b33664dda52c75dcea125c30999"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getAlive</b> ()</td></tr>
+<tr class="separator:adc870b33664dda52c75dcea125c30999 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58dfdf02070fffc6349ee0a57b2afc35 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58dfdf02070fffc6349ee0a57b2afc35"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>run_wrapper</b> ()</td></tr>
+<tr class="separator:a58dfdf02070fffc6349ee0a57b2afc35 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82c2308b9fabe8e06664d17b3c018b75 inherit pub_methods_class_messageable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82c2308b9fabe8e06664d17b3c018b75"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()=0</td></tr>
 <tr class="separator:a82c2308b9fabe8e06664d17b3c018b75 inherit pub_methods_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,8 +254,8 @@ std::queue&lt; <a class="el" href="class_message.html">Message</a> * &gt;&#160;<
 <tr class="separator:a49ee36421becbc9f529f3d63d5e3169a inherit pro_attribs_class_messageable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/will/Documents/effacious-octo-weasel/code/liboctodrone/include/<a class="el" href="include_2_base_station_8hpp_source.html">BaseStation.hpp</a></li>
-<li>/home/will/Documents/effacious-octo-weasel/code/liboctodrone/src/BaseStation.cpp</li>
+<li>/home/will/Documents/octoDrone/code/liboctodrone/include/<a class="el" href="include_2_base_station_8hpp_source.html">BaseStation.hpp</a></li>
+<li>/home/will/Documents/octoDrone/code/liboctodrone/src/BaseStation.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

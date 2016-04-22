@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['next_5fhop',['next_hop',['../class_aodv__route.html#abb6560ab9abb3445562173383963358f',1,'Aodv_route']]]
+  ['keyboard_20keys',['Keyboard keys',['../group__keys.html',1,'']]],
+  ['kill',['kill',['../class_drone.html#a87b644ed6c297252a0930b4a915a553e',1,'Drone']]]
 ];

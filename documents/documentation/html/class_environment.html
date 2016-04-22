@@ -48,6 +48,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -107,6 +109,7 @@ $(document).ready(function(){initNavTree('class_environment.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
@@ -116,6 +119,12 @@ $(document).ready(function(){initNavTree('class_environment.html','');});
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a7ac989afdd3bde4ea860c985ed1f8479"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ac989afdd3bde4ea860c985ed1f8479"></a>
+typedef std::vector&lt; std::vector&lt; std::vector&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data_type</b></td></tr>
+<tr class="separator:a7ac989afdd3bde4ea860c985ed1f8479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aaddf445dbf4217a68a373e183a2bfb0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaddf445dbf4217a68a373e183a2bfb0c"></a>
@@ -124,6 +133,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a098fcd6da9a033833095ec76f60aab0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a098fcd6da9a033833095ec76f60aab0d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Environment</b> (std::map&lt; std::string, data_type &gt;, double timestep)</td></tr>
 <tr class="separator:a098fcd6da9a033833095ec76f60aab0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12496f57c0b6592232b8942d98f0373d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12496f57c0b6592232b8942d98f0373d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Environment</b> (std::map&lt; std::string, data_type &gt;, std::function&lt; std::string(std::string)&gt;, double timestep, bool visualise)</td></tr>
+<tr class="separator:a12496f57c0b6592232b8942d98f0373d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abca42666df16d93f2ee8978722583778"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abca42666df16d93f2ee8978722583778"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Environment</b> (std::map&lt; std::string, data_type &gt;, double timestep, bool visualise)</td></tr>
+<tr class="separator:abca42666df16d93f2ee8978722583778"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d5bb36197739b8fb8532755210865c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d5bb36197739b8fb8532755210865c4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>broadcast</b> (std::string message, double xOrigin, double yOrigin, double zOrigin, double range, <a class="el" href="class_comm_mod.html">CommMod</a> *)</td></tr>
 <tr class="separator:a8d5bb36197739b8fb8532755210865c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,17 +155,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setBaseStation</b> (<
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> (std::string type, double x, double y, double z)</td></tr>
 <tr class="separator:a0a2b32ecbd52779d17b3d9a483aa6d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03d9d2db949b5491e60e922d9a33769b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03d9d2db949b5491e60e922d9a33769b"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td></tr>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a03d9d2db949b5491e60e922d9a33769b">getTime</a> ()</td></tr>
+<tr class="memdesc:a03d9d2db949b5491e60e922d9a33769b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modified to use real time. <br /></td></tr>
 <tr class="separator:a03d9d2db949b5491e60e922d9a33769b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41a43b88702fff5df95e98d10e49f541"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41a43b88702fff5df95e98d10e49f541"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
 <tr class="separator:a41a43b88702fff5df95e98d10e49f541"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaddf445dbf4217a68a373e183a2bfb0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaddf445dbf4217a68a373e183a2bfb0c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Environment</b> (std::map&lt; std::string, data_type &gt;, std::function&lt; std::string(std::string)&gt;, double timestep)</td></tr>
-<tr class="separator:aaddf445dbf4217a68a373e183a2bfb0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a098fcd6da9a033833095ec76f60aab0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a098fcd6da9a033833095ec76f60aab0d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Environment</b> (std::map&lt; std::string, data_type &gt;, double timestep)</td></tr>
-<tr class="separator:a098fcd6da9a033833095ec76f60aab0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaaf8cdbffa3afeb2c5c8991597a204e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaaf8cdbffa3afeb2c5c8991597a204e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Environment</b> (std::map&lt; std::string, data_type &gt;, std::function&lt; std::string(std::string)&gt;, std::string)</td></tr>
+<tr class="separator:adaaf8cdbffa3afeb2c5c8991597a204e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7d3cdc4bcf3280ce4b28b6a9b52c82f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7d3cdc4bcf3280ce4b28b6a9b52c82f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Environment</b> (std::map&lt; std::string, data_type &gt;, std::string)</td></tr>
+<tr class="separator:ac7d3cdc4bcf3280ce4b28b6a9b52c82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d5bb36197739b8fb8532755210865c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d5bb36197739b8fb8532755210865c4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>broadcast</b> (std::string message, double xOrigin, double yOrigin, double zOrigin, double range, <a class="el" href="class_comm_mod.html">CommMod</a> *)</td></tr>
 <tr class="separator:a8d5bb36197739b8fb8532755210865c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +182,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setBaseStation</b> (<
 <tr class="memitem:a0a2b32ecbd52779d17b3d9a483aa6d24"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a2b32ecbd52779d17b3d9a483aa6d24"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> (std::string type, double x, double y, double z)</td></tr>
 <tr class="separator:a0a2b32ecbd52779d17b3d9a483aa6d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fb13a13289b3fd869767a2775f21610"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fb13a13289b3fd869767a2775f21610"></a>
+<a class="el" href="class_drone.html">Drone</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a5fb13a13289b3fd869767a2775f21610">getDrone</a> ()</td></tr>
+<tr class="memdesc:a5fb13a13289b3fd869767a2775f21610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the only drone in the sharded environment. <br /></td></tr>
+<tr class="separator:a5fb13a13289b3fd869767a2775f21610"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03d9d2db949b5491e60e922d9a33769b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03d9d2db949b5491e60e922d9a33769b"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td></tr>
 <tr class="separator:a03d9d2db949b5491e60e922d9a33769b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,9 +198,6 @@ Private Types</h2></td></tr>
 <tr class="memitem:a7ac989afdd3bde4ea860c985ed1f8479"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ac989afdd3bde4ea860c985ed1f8479"></a>
 typedef std::vector&lt; std::vector&lt; std::vector&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data_type</b></td></tr>
 <tr class="separator:a7ac989afdd3bde4ea860c985ed1f8479"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ac989afdd3bde4ea860c985ed1f8479"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ac989afdd3bde4ea860c985ed1f8479"></a>
-typedef std::vector&lt; std::vector&lt; std::vector&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data_type</b></td></tr>
-<tr class="separator:a7ac989afdd3bde4ea860c985ed1f8479"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -190,6 +207,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>timeElapsed</b></td
 <tr class="memitem:a0eac119e9f0130f836f04224612dfb16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eac119e9f0130f836f04224612dfb16"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>timeStep</b></td></tr>
 <tr class="separator:a0eac119e9f0130f836f04224612dfb16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d14fe8a70ee0182b97a3b851292dd55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d14fe8a70ee0182b97a3b851292dd55"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>visualise</b></td></tr>
+<tr class="separator:a5d14fe8a70ee0182b97a3b851292dd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2adc71e199c021ce2939238cae1cd790"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2adc71e199c021ce2939238cae1cd790"></a>
 <a class="el" href="class_base_station.html">BaseStation</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>baseStation</b></td></tr>
 <tr class="separator:a2adc71e199c021ce2939238cae1cd790"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,10 +222,13 @@ std::map&lt; std::string, data_type &gt;&#160;</td><td class="memItemRight" vali
 <tr class="memitem:a4b0a738e681533a5a61bd77de809a0ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b0a738e681533a5a61bd77de809a0ae"></a>
 std::function&lt; std::string(std::string)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>noiseFun</b></td></tr>
 <tr class="separator:a4b0a738e681533a5a61bd77de809a0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed45ceb1eb3dcb35c4d90403f982087"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abed45ceb1eb3dcb35c4d90403f982087"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>if_addr</b></td></tr>
+<tr class="separator:abed45ceb1eb3dcb35c4d90403f982087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/will/Documents/effacious-octo-weasel/code/liboctodrone/include/<a class="el" href="include_2_environment_8hpp_source.html">Environment.hpp</a></li>
-<li>/home/will/Documents/effacious-octo-weasel/code/liboctodrone/src/Environment.cpp</li>
+<li>/home/will/Documents/octoDrone/code/liboctodrone/include/<a class="el" href="include_2_environment_8hpp_source.html">Environment.hpp</a></li>
+<li>/home/will/Documents/octoDrone/code/liboctodrone/src/Environment.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

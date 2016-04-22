@@ -48,6 +48,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -109,6 +111,7 @@ $(document).ready(function(){initNavTree('class_messageable.html','');});
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_messageable-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Messageable Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -124,32 +127,20 @@ Inheritance diagram for Messageable:</div>
 <area href="class_base_station.html" alt="BaseStation" shape="rect" coords="266,56,389,80"/>
 <area href="class_drone.html" alt="Drone" shape="rect" coords="532,56,655,80"/>
 <area href="class_drone.html" alt="Drone" shape="rect" coords="798,56,921,80"/>
-<area href="class_sensing_base_station.html" alt="SensingBaseStation" shape="rect" coords="133,112,256,136"/>
+<area href="class_dummy__program.html" alt="Dummy_program" shape="rect" coords="133,112,256,136"/>
 <area href="class_sensing_base_station.html" alt="SensingBaseStation" shape="rect" coords="133,168,256,192"/>
-<area href="class_sensing_base_station.html" alt="SensingBaseStation" shape="rect" coords="399,112,522,136"/>
+<area href="class_dummy__program.html" alt="Dummy_program" shape="rect" coords="399,112,522,136"/>
 <area href="class_sensing_base_station.html" alt="SensingBaseStation" shape="rect" coords="399,168,522,192"/>
-<area href="class_aodv_comms.html" alt="AodvComms" shape="rect" coords="665,112,788,136"/>
-<area href="class_aodv_test.html" alt="AodvTest" shape="rect" coords="665,168,788,192"/>
-<area href="class_aodv_test.html" alt="AodvTest" shape="rect" coords="665,224,788,248"/>
-<area href="class_basic_addr_test.html" alt="BasicAddrTest" shape="rect" coords="665,280,788,304"/>
-<area href="class_basic_addr_test.html" alt="BasicAddrTest" shape="rect" coords="665,336,788,360"/>
-<area href="class_basic_test.html" alt="BasicTest" shape="rect" coords="665,392,788,416"/>
-<area href="class_basic_test.html" alt="BasicTest" shape="rect" coords="665,448,788,472"/>
-<area href="class_parrot_test.html" alt="ParrotTest" shape="rect" coords="665,504,788,528"/>
-<area href="class_parrot_test.html" alt="ParrotTest" shape="rect" coords="665,560,788,584"/>
-<area href="class_sensing_drone.html" alt="SensingDrone" shape="rect" coords="665,616,788,640"/>
-<area href="class_sensing_drone.html" alt="SensingDrone" shape="rect" coords="665,672,788,696"/>
-<area href="class_aodv_comms.html" alt="AodvComms" shape="rect" coords="931,112,1054,136"/>
-<area href="class_aodv_test.html" alt="AodvTest" shape="rect" coords="931,168,1054,192"/>
-<area href="class_aodv_test.html" alt="AodvTest" shape="rect" coords="931,224,1054,248"/>
-<area href="class_basic_addr_test.html" alt="BasicAddrTest" shape="rect" coords="931,280,1054,304"/>
-<area href="class_basic_addr_test.html" alt="BasicAddrTest" shape="rect" coords="931,336,1054,360"/>
-<area href="class_basic_test.html" alt="BasicTest" shape="rect" coords="931,392,1054,416"/>
-<area href="class_basic_test.html" alt="BasicTest" shape="rect" coords="931,448,1054,472"/>
-<area href="class_parrot_test.html" alt="ParrotTest" shape="rect" coords="931,504,1054,528"/>
-<area href="class_parrot_test.html" alt="ParrotTest" shape="rect" coords="931,560,1054,584"/>
-<area href="class_sensing_drone.html" alt="SensingDrone" shape="rect" coords="931,616,1054,640"/>
-<area href="class_sensing_drone.html" alt="SensingDrone" shape="rect" coords="931,672,1054,696"/>
+<area href="class_aodv_test.html" alt="AodvTest" shape="rect" coords="665,112,788,136"/>
+<area href="class_basic_addr_test.html" alt="BasicAddrTest" shape="rect" coords="665,168,788,192"/>
+<area href="class_basic_test.html" alt="BasicTest" shape="rect" coords="665,224,788,248"/>
+<area href="class_parrot_test.html" alt="ParrotTest" shape="rect" coords="665,280,788,304"/>
+<area href="class_sensing_drone.html" alt="SensingDrone" shape="rect" coords="665,336,788,360"/>
+<area href="class_aodv_test.html" alt="AodvTest" shape="rect" coords="931,112,1054,136"/>
+<area href="class_basic_addr_test.html" alt="BasicAddrTest" shape="rect" coords="931,168,1054,192"/>
+<area href="class_basic_test.html" alt="BasicTest" shape="rect" coords="931,224,1054,248"/>
+<area href="class_parrot_test.html" alt="ParrotTest" shape="rect" coords="931,280,1054,304"/>
+<area href="class_sensing_drone.html" alt="SensingDrone" shape="rect" coords="931,336,1054,360"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -191,6 +182,12 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td>
 <tr class="memitem:adda0d24929a929b9d91c97da1fb91775"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adda0d24929a929b9d91c97da1fb91775"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>message_callback</b> (<a class="el" href="class_message.html">Message</a> *message)=0</td></tr>
 <tr class="separator:adda0d24929a929b9d91c97da1fb91775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc870b33664dda52c75dcea125c30999"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc870b33664dda52c75dcea125c30999"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getAlive</b> ()</td></tr>
+<tr class="separator:adc870b33664dda52c75dcea125c30999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58dfdf02070fffc6349ee0a57b2afc35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58dfdf02070fffc6349ee0a57b2afc35"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>run_wrapper</b> ()</td></tr>
+<tr class="separator:a58dfdf02070fffc6349ee0a57b2afc35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82c2308b9fabe8e06664d17b3c018b75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82c2308b9fabe8e06664d17b3c018b75"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()=0</td></tr>
 <tr class="separator:a82c2308b9fabe8e06664d17b3c018b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -233,6 +230,12 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td>
 <tr class="memitem:adda0d24929a929b9d91c97da1fb91775"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adda0d24929a929b9d91c97da1fb91775"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>message_callback</b> (<a class="el" href="class_message.html">Message</a> *message)=0</td></tr>
 <tr class="separator:adda0d24929a929b9d91c97da1fb91775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc870b33664dda52c75dcea125c30999"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc870b33664dda52c75dcea125c30999"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getAlive</b> ()</td></tr>
+<tr class="separator:adc870b33664dda52c75dcea125c30999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58dfdf02070fffc6349ee0a57b2afc35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58dfdf02070fffc6349ee0a57b2afc35"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>run_wrapper</b> ()</td></tr>
+<tr class="separator:a58dfdf02070fffc6349ee0a57b2afc35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82c2308b9fabe8e06664d17b3c018b75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82c2308b9fabe8e06664d17b3c018b75"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()=0</td></tr>
 <tr class="separator:a82c2308b9fabe8e06664d17b3c018b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -251,10 +254,16 @@ std::queue&lt; <a class="el" href="class_message.html">Message</a> * &gt;&#160;<
 <tr class="memitem:a49ee36421becbc9f529f3d63d5e3169a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49ee36421becbc9f529f3d63d5e3169a"></a>
 <a class="el" href="struct_coord.html">Coord</a>&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
 <tr class="separator:a49ee36421becbc9f529f3d63d5e3169a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a085f1f727c9567dc2ab351dfc9450bbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a085f1f727c9567dc2ab351dfc9450bbe"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>alive</b></td></tr>
+<tr class="separator:a085f1f727c9567dc2ab351dfc9450bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/will/Documents/effacious-octo-weasel/code/liboctodrone/include/<a class="el" href="include_2_messageable_8hpp_source.html">Messageable.hpp</a></li>
-<li>/home/will/Documents/effacious-octo-weasel/code/liboctodrone/src/Messageable.cpp</li>
+<li>/home/will/Documents/octoDrone/code/liboctodrone/include/<a class="el" href="include_2_messageable_8hpp_source.html">Messageable.hpp</a></li>
+<li>/home/will/Documents/octoDrone/code/liboctodrone/src/Messageable.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

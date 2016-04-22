@@ -1,6 +1,8 @@
 var NAVTREE =
 [
   [ "octoDrone", "index.html", [
+    [ "Bug List", "bug.html", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -20,7 +22,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_aodv_8hpp_source.html",
-"class_message.html#a5c9fecc6bf5fa404a04b89d7585a757c"
+"class_environment.html#a8d5bb36197739b8fb8532755210865c4",
+"group__shapes.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
