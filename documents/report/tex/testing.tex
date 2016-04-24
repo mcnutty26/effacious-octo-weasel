@@ -1,7 +1,67 @@
+Here the different tests developed for the simulator are detailed and described. Please note the difference between ``basic'' programs and the Basic communications module. Every attempt has been made to be unambiguous in this chapter, but the underwritten sections will be easier to follow with this distinction in mind.
+
 \section{Unit Testing}
+
+\subsection{The Simulator}
+In order to test the individual components of the simulator, a number of different messageable programs and simulations were created.
+
+\begin{itemize}
+\item Movement
+This unit test instantiates a drone and instructs it to move in one dimension, two dimensions, and finally in three dimensions. It also attempts to turn the drone. If the resulting heading and position in 3D space of the drone is the same as the known correct value then the test passes.
+
+\item Communications
+This unit test instantiates two drones which uses the most basic communications module (that simply delivers every message received to every messageable). It then attempts to send a message from one drone to the other. If the message is received and it correct, then the test passes.
+
+\item Noise Functions
+This unit test instantiates two drones using the most basic communications module, and passes a noise function to the environment which will drop the first message sent and deliver the second. The sending program dispatches two messages, and if the receiving program only detects the second message then the test passes.
+
+\item Visualisation
+The visualisation unit tests are comprised of each of the above tests, but run with the environment variable for visualisation set to true. If the results pass visual inspection (verified against the visualisation specification) then the tests are considered a success.
+\end{itemize}
+
+\subsection{Communications Programs}
+Each communications module that was developed had its own unit test written. This served the function of testing the individual features of the communications algorithm in turn. As most of the tasks performed by these programs were heavily interlinked with others, it was decided that they would be tested as a whole (by sending a message one can test a number of co-dependent features in succession). If all of the tasks described in the test program succeed then the test passes. As there are multiple parts of the implementation being tested by a single simulation the communication module instances are set to output diagnostic information during the entirety of the process. If at any point the test fails then it is possible to determine which component is broken from this output stream.
+
+\subsubsection{Basic}
+The unit test for the Basic communications module verifies that messages can be passed to the communications module, broadcast to other nodes, received, interpreted (in the case of the ``KILL'' message), and delivered.
+
+\subsection{Parrot version of the Simulator}
+
+\subsubsection{Communications}
+Single test file was devised for the Parrot library which tested two distinct areas of functionality.
+
+\subsubsection{Movement}
+
+\subsubsection{Basic Addressed}
+In addition to the above checks, this unit test verifies that the Basic addressed module will deliver messages only to the node identified by the IP address to which it is sent (or rather that nodes will drop any messages which they receive but are not addressed to them).
+
+\subsubsection{AODV}
+The testing procedure for AODV is significantly more complicated than for the above. In addition to all of the previously mentioned functionality, the unit test for the AODV communications module verifies that:
+
+\begin{itemize}
+\item nodes send hello messages at regular intervals
+\item nodes seeking to send data to a node without an active route generate and broadcast RREQ messages
+\item nodes seeking to send data to nodes with an active route use that route
+\item nodes receiving an RREQ for which they have an active route reply with an RREP for that route
+\item nodes receiving an RREQ for which they do not have an active route forward that RREQ to their neighbours
+\item nodes which receive an RREP for a route they requested record that route if it more efficient than their current active route for the destination node (or if it is the only active route they have for that node)
+\item nodes which receive an RREP for the route that they requested on behalf of another node return the received route if it is more efficient than the current active route they have for the destination (or it is the only active route they have for the destination)
+\item nodes record information about other nodes from received messages, including hello messages
+\item nodes receiving a data packet for which they are not the intended recipient forward that message on to the correct next hop on their active route to the destination if they have one
+\item nodes receiving a data packet for which they are not the intended recipient and for which they do not have an active route drop that packet and propagate an RERR packet the next upstream node on that route.
+\item nodes receiving an RERR packet for one of their active routes propagate that RERR message the next upstream node on that route, if any
+\end{itemize}
+
+\subsection{Demonstration Program}
+TODO: Ben to complete
+
 \section{Client Application Testing}
 \section{Usability Testing}
 \section{Performance Testing}
 \section{System Testing}
+The nature of octoDrone's architecture was such that many features did not need to be system tested. For example, if a program was proved to be correct when using the Basic Addressed communications module, the abstracted nature of messaging meant that it would be provably correct using any other addressed communications module. Being able to reason about the components of the project in this way saved a large amount of time during development.
+
+Another such inference was drawn about the correctness of the Parrot library and the main simulator library. If the main simulator was shown to be correct for a given set of functionality (excluding communications and movement), then the same had to have be true about the Parrot version of the simulator. This was because they shared large portions of the code base.
+
 \section{User Acceptance Testing}
 \section{Risk Assessment}

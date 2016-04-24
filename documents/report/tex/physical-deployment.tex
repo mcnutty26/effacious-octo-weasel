@@ -207,15 +207,17 @@ Because the receiving of messages was driven by the sending of messages in the o
 \subsection{Movement}
 As there are no native C or C++ bindings (or indeed, any bindings) for the Parrot AR 2, making the quadcopters move involves using the node js package \textit{ardrone}. The \textit{ardrone} package handles connecting to a drone on the same network as the device it is run on (parrot drones use a default IP address, making them easy to find), as well as sending packets to the drone which it can understand. We created a javascript server application that could be run alongside the distributed simulator that would take commands and use the package to transmit them to the drone to be carried out. This server was passed messages by the environment through a UNIX socket in the filesystem of the host device.
 
-As mentioned above, there was an issue with how movement would be translated from the {speed, distance} format for used by the simulator and the {speed, time} format used by the drones. The first attempt at solving this problem assumed that the application would have easy access to GPS coordinates from the paired drone, and used this to perform location checks in the same way as for simulated runs. It was later learned that there was only one GPS unit available for the two quadcopters obtained, and extracting information from it at runtime was non-trivial. The fallback plan developed involved estimating the time taken for a drone to travel a given distance based on the normalised speed which the \textit{ardrone} library requires. This had to be based on experimental evidence and was not consistent (see notes about drone movement in section \ref{movement}).
+As mentioned above, there was an issue with how movement would be translated from the {speed, distance} format for used by the simulator and the {speed, time} format used by the drones. The first attempt at solving this problem assumed that the application would have easy access to GPS coordinates from the paired drone, and used this to perform location checks in the same way as for simulated runs. It was later learned that there was only one GPS unit available for the two quadcopters obtained, and extracting information from it at runtime was non-trivial. The fallback plan developed involved estimating the time taken for a drone to travel a given distance based on the normalised speed which the \textit{ardrone} library requires. This had to be based on experimental evidence and was not consistent due to the fact that is was not possible to use a linear model over short distances (see notes about drone movement in section \ref{movement}).
 
 \begin{aside}
 \label{movement}
-Quadcopters move by inclining themselves relative to the horizon. This is achieved by having two rotors spinning clockwise, and two rotors spinning anticlockwise. Moving forward entails having one of the rotors which is spinning in a certain direction (say clockwise) move faster and the the opposing rotor of the same direction move slower. This has the effect of tilting the drone on the Y axis (see figure \ref{pitch}). With the drone thus inclined, the air displaced by the rotors now causes it to move forward. The same technique can be used in reverse to move the drone backwards, and applied to the rotors spinning in the opposite direction (in this case anticlockwise) to bank the drone left or right on the X axis.
+Quadcopters move by inclining themselves relative to the horizon. This is achieved by having two of the four coplanar rotors spinning clockwise, and two spinning anticlockwise. The differing direction of rotation is to ensure that the torque (turning force) exerted by the spinning of the rotors sums to zero. This is achieved in helicopters by the use of a tail rotor.
+
+Moving forward entails having one of the rotors which is spinning in a certain direction (say clockwise) move faster and the the opposing rotor of the same direction move slower. This has the effect of tilting the drone on the Y axis (see figure \ref{pitch}). With the drone thus inclined, the air displaced by the rotors now causes it to move forward. The same technique can be used in reverse to move the drone backwards, and applied to the rotors spinning in the opposite direction (in this case anticlockwise) to bank the drone left or right on the X axis.
 
 This method of movement results in a period of acceleration at the start of movement as the drone inclines to its target tilt. This means that it takes a few seconds to reach a stable speed, unlike with a ground based robot where the period of acceleration is much shorter. Tilting at too steep an angle will cause the drone to flip (or cut out if there is a hardware tilt-meter and firmware support). Stopping follows a similar transition period as the motor speeds are brought back in sync.
 
-Finally, a drone is turned on the Z axis by increasing the rotation speed of a pair of rotors operating in the same direction and altitude is controlled by increasing or decreasing the rotational speed of all motors in unison.
+Finally, a drone is turned on the Z axis by increasing the rotation speed (and thus torque) of a pair of rotors operating in the same direction. With the torque in one direction greater than the other the drone begins to turn. Altitude is controlled by increasing or decreasing the rotational speed of all motors in unison.
 
 \begin{figure}[H]
 \centering
@@ -226,4 +228,11 @@ Finally, a drone is turned on the Z axis by increasing the rotation speed of a p
 \end{aside}
 
 \section{Results}
+All in all the reference deployment of octoDrone was a great success. The final version of the parrot library was able to take simulator programs and run them on hardware with no changes and simulation files were usable with minimal changes. The quadcopters performed very similarly to our simulations, which simultaneously validates the accuracy of both the simulator and the deployment.
+
+Running distributed applications on the Raspberry Pi was made extremely easy by having the compiled simulation take care of starting and stopping any additional threads it needed to create. This ease of use was such that it piqued the interest of a number of faculty who identified it as being an excellent outreach resource.
+
+The results we managed to achieve also highlight how easy it would be to create a similar implementation for another hardware setup. In theory, it may also be possible to create a simulation which ran on a mixture of simulated and real drones. 
+
 \section{Review Against Original Objectives}
+TODO
