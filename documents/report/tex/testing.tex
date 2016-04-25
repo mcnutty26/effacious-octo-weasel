@@ -25,13 +25,6 @@ Each communications module that was developed had its own unit test written. Thi
 \subsubsection{Basic}
 The unit test for the Basic communications module verifies that messages can be passed to the communications module, broadcast to other nodes, received, interpreted (in the case of the ``KILL'' message), and delivered.
 
-\subsection{Parrot version of the Simulator}
-
-\subsubsection{Communications}
-Single test file was devised for the Parrot library which tested two distinct areas of functionality.
-
-\subsubsection{Movement}
-
 \subsubsection{Basic Addressed}
 In addition to the above checks, this unit test verifies that the Basic addressed module will deliver messages only to the node identified by the IP address to which it is sent (or rather that nodes will drop any messages which they receive but are not addressed to them).
 
@@ -52,16 +45,18 @@ The testing procedure for AODV is significantly more complicated than for the ab
 \item nodes receiving an RERR packet for one of their active routes propagate that RERR message the next upstream node on that route, if any
 \end{itemize}
 
+\subsection{Parrot version of the Simulator}
+A single test file was devised for the Parrot library which tested two the two areas of functionality which had been adapted from the original simulator - movement and communications delivery (as opposed to communications modules). The program could be run in sink or source mode, with sink mode simply waiting for a message to be delivered, and source mode sending a message. As soon as the sink version of the program received a message it performed a series of movements to make sure that the drone moved correctly (under both translation and rotation). This program was run on two hardware units, and the test failed if the drone failed to move correctly (or failed to move at all).
+
 \subsection{Demonstration Program}
 TODO: Ben to complete
 
-\section{Client Application Testing}
-\section{Usability Testing}
-\section{Performance Testing}
 \section{System Testing}
 The nature of octoDrone's architecture was such that many features did not need to be system tested. For example, if a program was proved to be correct when using the Basic Addressed communications module, the abstracted nature of messaging meant that it would be provably correct using any other addressed communications module. Being able to reason about the components of the project in this way saved a large amount of time during development.
 
 Another such inference was drawn about the correctness of the Parrot library and the main simulator library. If the main simulator was shown to be correct for a given set of functionality (excluding communications and movement), then the same had to have be true about the Parrot version of the simulator. This was because they shared large portions of the code base.
 
-\section{User Acceptance Testing}
-\section{Risk Assessment}
+For those parts of the codebase that did require integration testing, the sample progam that was produced to demonstrate the capabilities of the project software made use of all of the features that were unit tested. Because of this it was the best way to ensure that the different parts of octoDrone interfaced correctly. Because this test was verifying multiple assertions, it was important that diagnostic information was emitted with enough detail to identify which part of the software had failed in the event of the test not passing.
+
+\section{Testing Against the Specification}
+For testing against the original specification, the demonstration program mentioned above contained all of the requirements mentioned in the specification (indeed, it is the reason that those requirements are there). As such, this was used to ensure that all of the individual parts of the simulator interoperated correctly. In the case that the test failed, diagnostic information was emitted with enough detail to identify which part of the software had failed.

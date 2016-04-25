@@ -81,4 +81,17 @@ In the case where two drones have detected that their paths cross, they must eit
 This then presents the problem of deciding which drone should fly higher. This must be done deterministically by both drones, otherwise a collision may occur anyway. In order to solve this, a priority will be given to each drone. The drone with the higher priority will continue on its route, while the other immediately flies higher and over the top. This should mean that each drone will know whether it will be needing to change z-level without the need to communicate and agree on it each time, hence reducing wait times at potential collisions.
 
 \subsection{Physical Deployment}
+One thing that was established early on in the design process for the physical deployment was that each node in a deployed network should have its own simulation (Environment) thread running. This was needed so that LJHFSKDHFSDKFHSDFH The Parrot AR 2 extension that was developed as a case study for the physical deployment was designed with the aim of being a reference for future such extensions. To this end it was important that the different steps required to deploy octoDrone to a piece of hardware were clearly defined and delimited. A consultation of the specification suggested that the process was best divided into the following steps:
+
+\begin{itemize}
+\item Developing hardware specific definitions of Drone and Environment functions
+\item Developing an intermediate layer which translates commands between the simulator extension and actual hardware
+\item Ensuring that the Environment correctly starts and stops any extra processes that are required to fulfil the above steps
+\end{itemize}
+
+Focussing on the first point above, there are a number of functions in the \textit{Environment} and \textit{Drone} classes whichmust be redefined in order to send commands to hardware instead of other parts of the simulator. In \textit{Environment} these are \textit{Environment} (the constructors), \textit{Broadcast}, and \textit{Run}. In \textit{Drone} these are \textit{Drone}, \textit{Upkeep}, \textit{Kill}, \textit{Move} and \textit{Turn}.
+
+\subsubsection{Environment::Environment}
+The constructor for Environment must perform any reqired instantiation tasks, such as starting the unit listening for incomming communications.
+
 \subsubsection{Libraries}
