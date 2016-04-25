@@ -122,7 +122,54 @@
 		The window management system used in visualisation was GLFW3, a platform independent system chosen due to its flexible
 		nature and the fact that over systems like GLUT it can more easily handle multi-threaded applications.
 
-\section{Results}
-\section{Optimisation}
+\section{Potential Optimisations}
+	This section will highlight several areas for optimisation, how they are inefficient and why they were written this way.
+	The first and most obvious area for optimisation is in the environment code, in the way that broadcasting works. As the
+	code is now, when a broadcast occurs, the entire list of messageables is tested, each one being checked whether it is
+	within the range of the broadcast, if it is then the message is sent to that messageable. A potential optimisation 
+	(especially for broadcast-heavy programs running on the simulator) would be to limit the messageables that receive the
+	message to those in the general area of the broadcast perhaps through some kind of segmentation of the environment.
+
+	Another area to be optimised could be the main threads calling of the upkeep functions on the drones, the way it works
+	in the current implementation is that it calls upkeep one drone at a time. This works fine, but there are no dependencies
+	between each drone's upkeep method, so parallelising this process could improve performance, though this would cause the 
+	creation of even more threads (which this system already creates a lot of) so this optimisation could only be valid for
+	systems that can afford to have a large number of threads running at once.
+
+	These are the obvious systematic level optimisations that could be done, there are probably many more lower level
+	optimisations as well as less obvious high level ones, also to be considered could be reducing the amount of threads
+	that the system creates in order to improve performance on machines with less hardware threads (as switching the thread
+	of execution can be expensive).
+
 \section{Review Against Original Objectives}
+	The only objective that pertains to this section is ``Implement a network simulator" which requires analysis as to whether
+	the implemented system fulfills this objective. The objective requires a system that is capable of supporting the creation 
+	of a network of drones which are capable of sending messages and reacting to messages they recieve. Due to the way that the
+	system works, this requirement is fulfiled, arbirtary drone programs can be implemented on user defined Drone, CommMod and
+	BaseStation subclasses.
+
+	However, this objective also specifies ``Specifically tailored to our domain", this is where the analysis is required as
+	the domain in which the project lies is flexible, in order to fulfil this objective the system would have to enable the
+	creation of drone programs that can perform arbitrary tasks. The system fulfils this requrement too, the system was crafted
+	specifically with this in mind, the simulator specified very little, causing no bottlenecks or restictions (with the exception
+	of requiring exactly one base station).
+
 \section{User Manual}
+	In order to use the simulator, extend BaseStation once implementing the run and message\_callback methods and pass it to an
+	instance of Environment created with the sample data for the simulation. From here, implement extensions to Drone and CommMod,
+	one for each type of drone and communications module required, many projects will require only one of each of these, but it is
+	possible that a project with multiple types of drones could be created. Instances of the created drones should be passed to
+	the environment instance. In the run method for any Drone or BaseStation derived class, you may use the ``send\_message" method
+	in order to send a message to the communications module for broadcasting, the ``wait\_for\_message" method in order to wait for
+	the next incoming message (implementing the ``message\_callback" function allows for non-blocking communication) and use the
+	``get\_time" and ``get\_position" methods to get the time and position respectively. Drone adds the functions ``move", ``turn",
+	``getMaxSpeed", ``getSpeed", ``getAngle" and ``hasFinishedMoving" which return their respective values or do the obvious. The
+	function ``sense" allows the drone to gather data of the supplied type.
+
+	The ``CommMod" extensions allow the use of the ``broadcast" method as well as the ``pass\_message" method, with these sending
+	messages into the environment and to the attached messageable respectively. The function of ``comm\_function" which should be
+	extended by every extension of CommMod is the actual communication module code.
+
+	The purpose of the simulator is the simulate the physical deployment of code on drones. The idea is that with a properly
+	configured drone or base station, you can take the code in the simulator and run it on the actual drones and base stations
+	with no work to port the code to the new machine.
