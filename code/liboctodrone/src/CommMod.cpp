@@ -60,6 +60,11 @@ void CommMod::push_out_message(Message* message)
 	outQueue.push(message);
 }
 
+void CommMod::pass_message(Message* message)
+{
+	messageable->push_message(message);
+}
+
 ///Set the messageble associated with this communications module
 void CommMod::set_messageable(Messageable* msg)
 {

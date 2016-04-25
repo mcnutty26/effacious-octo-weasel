@@ -35,6 +35,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			void broadcast(Message* message, double xPos, double yPos, double zPos, double range);
 			void push_out_message(Message* message);
 			void push_in_message(std::string message);
+			void pass_message(Message* message);
 
 			//to avoid weirdness
 			void comm_function_wrapper();
