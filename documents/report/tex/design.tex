@@ -30,5 +30,55 @@ Underpinning all of the above design decisions is the idea of a common specifica
 Given the above it must be possible for the base message model to be extended by individual implementations, given that the basic object will remain simple enough that every included feature is required by \textit{all} implementations. It is useful to have an extension of the message class which has a payload, and also one which additionally includes addressing information. These modules serve a dual purpose of being able to test the simulator functions as well as being useful to build upon for more complex communications. It is not required to plan such implementations, as it is expected that they will already have their own specifications (such as AODV in our reference code).
 		
 \subsection{Physical Routing} 
+
+Physical routing in this context is defined as the methods and algorithms applied by the physical entities in the system in order to manage their movement around the environment.
+
+The design of physical routing concerns itself with a number of key problems:
+\begin{itemize}
+\item Understanding the environment.
+\item Finding routes between locations.
+\item Avoiding Obstacles.
+\item Avoiding other agents in the environment.
+\end{itemize}
+
+In the case of this project, the agents are the drones. The nature of the environment is unknown, although due to the scope of the project and the available hardware, it will be assumed that the environment's area is open. A discussion on this problem and possible extensions will be discussed in a later section.
+
+Due to the autonomous nature of the system, each drone must be responsible for its own routing. It might be thought that a way to greatly simplify the problem would be to give the task of routing the drones to the base station with it keeping track of the location of every drone and its environment. However, there are a number of problems to this approach.
+
+Firstly, if all the responsibilities for routing were on one agent, then it would introduce a critical weakness into the system by creating a single point of failure. Should the base station terminate unexpectedly or behave erratically or erroneously, then the entire system would be compromised, potentially leading to disastrous results.
+
+Secondly, allowing the base station to perform all the routing algorithms is making the assumption that it will be in contact with every drone at all times. As is covered in the project specification, it may not be the case that the drones are all within communication distance of the base station. This would, of course, mean that any drone that left the area where it could receive messages from the base station, it would be unable to act. To counteract this, fallback algorithms could be run on the drone, but at that point, the drone may as well run the algorithms in the first place.
+
+		\subsubsection{Environment Representation}
+		
+The first and most fundamental problem associated with routing around a physical environment is being able to represent, understand, and act on the information about that environment.
+
+The environment, its boundaries, and locations in it will be referred to using a normal 3-dimensional Cartesian coordinate system. The exact size of a 'unit' in this coordinate system will be left intentionally undefined. This is so as to leave the scale of the implementation up to the application of the system. A mapping would be provided to convert from whatever real measurements of the environment the drone is moving through, to the x, y and z coordinates of the virtual representation. As an example, one possible scale and mapping would be in the California forest fires problem. For these drones, a GPS could be used with a mapping between the latitude and longitude provided by the GPS and the x and y coordinates of the Cartesian frame.
+
+		\subsubsection{Pathfinding}
+\label{sec:design_physicalrouting_pathfinding}
+		
+As essential part of physical routing is getting from point A to point B. Given the representation of the environment given above, then this provides a number of options as to how the pathfinding could be done. In most cases, little to no complex pathfinding is required, given that the environemnt is open. In this case, it is only the other drones that would need to be avoided, and this will be discussed below in section \ref{sec:design_physicalrouting_collisionavoidance}.
+
+Assuming obstacles, if there are any, are stored as points in the Cartesian space, then the drone must route around them. This could be done marking an area around the obstacle as impassable, or by constructing a Voronoi map of some other variation of pathing map in order to define the areas the drone can travel through. Given the complexity of creating a Voronoi map and updating it in real time as new obstacles might be detected, simply marking areas around obstacles are restricted would appear to be the best solution.
+
+With this, the environment's 'map' can be viewed as a 3-dimension grid. Using this grid, and any grid areas blocked by obstacles, an A* pathfinding algorithm can be written to navigate around the environment. Given the worst case performance of A* is O(|E|) where |E| is the number of edges or connections in the map and |E| for a 3-dimensional Cartesian map is $n \times 26$, the algorithm is relatively efficient.
+
+For most cases, however, 3 dimensions will not be needed. In most environments, if an area is blocked, it will be blocked for the entire height of the environment as obstacles such as trees, buildings and so on. Due to this, the pathfinding problem can be simplifed to only require 2-dimensions of pathfinding, with the drones adjusting their height as required once the destination has been reached. This means the worst case performance of the A* algorithm becomes $n \times 8$ for 8-way connectivity in a 2-dimensional Cartesian grid.
+
+		\subsubsection{Collision Avoidance}	\label{sec:design_physicalrouting_collisionavoidance}
+		
+The main routing problem that is present in the specification is dealing with other drones moving about the environment. Pathfinding around immobile objects is relatively simple, as explained above in section \ref{design_physicalrouting_pathfinding}. Conversely, ensuring that no collisions occur between the drones requires real-time updates on the locations of every agent in the system.
+
+Each drone must be responsible for its own collision avoidance around it. Given the drones have no way of easily detecting the presence of other drones, then the drones must continuously broadcast their positions so that any nearby drone can react accordingly. To enable this, each drone will broadcast its location to all other drones in set intervals.
+
+The first, and easiest check to make, is to test if the drones are within range of each other that they could feasibly collide. Conveniently, the limited range of the communication means any drone outside that range is automatically not checked for potential collisions. It is worth noting that because of this, a problem can arise if the drones can travel more distance than the range of communication in the time between location broadcasts. This can be solved by ensuring that the location broadcast is suitable small.
+
+Each drone has a maximum speed it can travel, which is referring to the distance it is allowed to move in a certain time which, again, is mapped to real-world distances. If a message is sent every time step $t$, then the maximum distance a drone can move in that time is $t \times s_max$ where $s_max$ is the maximum speed of the drone. Therefore, a potential collision could occur if the drones are within $(t \times s_max) * 2$ distance of each other in the worst case scenario that both drones are flying towards each other at maximum speed. Using this, an initial check can be done that checks if the drone's are within this distance from each other. If they are not, then no more calculations are required to be done. This will greatly speed up the process for collision avoidance.
+
+In the case where two drones have detected that their paths cross, they must either move to avoid each other, or one must stop. Moving to avoid each other at the same height adds a great deal of extra complication, as well as more computation time on drones' likely limited processors. Because of this, one of the drones will fly over the other.
+
+This then presents the problem of deciding which drone should fly higher. This must be done deterministically by both drones, otherwise a collision may occur anyway. In order to solve this, a priority will be given to each drone. The drone with the higher priority will continue on its route, while the other immediately flies higher and over the top. This should mean that each drone will know whether it will be needing to change z-level without the need to communicate and agree on it each time, hence reducing wait times at potential collisions.
+
 \subsection{Physical Deployment}
 \subsubsection{Libraries}
