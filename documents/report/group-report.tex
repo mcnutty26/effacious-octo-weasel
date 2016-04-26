@@ -3,7 +3,7 @@
 \usepackage{url}
 \usepackage{float}
 \usepackage{microtype}
-\usepackage{titlesec}
+\usepackage[explicit]{titlesec}
 \usepackage[titletoc]{appendix}
 \usepackage{lipsum}
 \usepackage[normalem]{ulem}
@@ -13,18 +13,52 @@
 \usepackage{multicol}
 \usepackage{tikz}
 \usepackage{mdframed}
+\usepackage{epigraph}
+\usepgflibrary{qrr.shapes.openrectangle}
 
-\hypersetup{colorlinks=true,linkcolor=blue}
+%set header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{octoDrone: Simulation and Deployment for Autonomous Drone Networks}
+\renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
+\rhead{\thepage}
+\cfoot{Henson, De Ivey, Gibson, and Seymour}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\thepage\ of \pageref{LastPage}}%
+  \renewcommand{\headrulewidth}{0pt}% Line at the header invisible
+  \renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
+  \cfoot{Henson, De Ivey, Gibson, and Seymour}
+}
+
+%set chapter heading colours
+\definecolor{mybluei}{RGB}{0,173,239}
+\definecolor{myblueii}{RGB}{63,200,244}
+\definecolor{myblueiii}{RGB}{199,234,253}
+
+%set chapter heading tikz style
+\tikzset{
+mynode/.style={
+  rounded corners=30pt,
+  shape=open rectangle,
+  open rectangle fill=myblueii,
+  open rectangle sides=#1,
+  }
+}
+
+%set up reference links
+\hypersetup{colorlinks=true,allcolors=blue}
 \bibliographystyle{plain}
 \usetikzlibrary{shapes.geometric, arrows, positioning}
 
+%look for images in the image folder
 \graphicspath{{img/}}
 
-\linespread{1.3}
-\titleformat{\chapter}{\large\bf\centering}{CHAPTER \MakeUppercase{\thechapter}.}{1em}{}
-\titleformat{\section}{\normalfont\bf}{{\thesection}}{1em}{}
-\titleformat{\subsection}{\normalfont\bf}{{\thesubsection}}{1em}{}
+%use 1.5x line spacing
+\linespread{1.5}
 
+%set up the aside environment
 \newenvironment{aside}
   {\begin{mdframed}[style=0,%
       leftline=false,rightline=false,leftmargin=2em,rightmargin=2em,%
@@ -34,6 +68,7 @@
 
 \begin{document}
 
+%use roman numbering for the front matter
 \pagenumbering{roman}
 \begin{titlepage}
 \begin{center}
@@ -79,12 +114,59 @@
 \listoftables
 
 \abstract{\lipsum[1]}
+
+%switch back to arabic numbering
 \pagenumbering{arabic}
 
-%\begin{multicols}{2}
+%set the chapter headings
+\titleformat{\chapter}[display]
+  {\normalfont\huge\sffamily}
+  {}
+  {20pt}
+  {%
+  \begin{tikzpicture}[remember picture,overlay]
+  \node[
+    anchor=west,
+    rectangle,
+    minimum height=4cm,
+    text width=\paperwidth+1in,
+    xshift=-\the\dimexpr\oddsidemargin+2in\relax,
+    outer sep=0pt,
+    fill=myblueiii] (titlerect) {};
+  \node[
+    anchor=south west,
+    xshift=4.5cm,
+    text width=\textwidth] 
+    at ([yshift=5pt]titlerect.south west) {\fontsize{30}{36}\selectfont#1};
+  \node[
+    mynode=nw,
+    anchor=south east,
+    fill=myblueii,
+    inner xsep=1.5cm,
+    outer sep=0pt,
+    font=\color{white},
+    minimum height=30pt] 
+    at (current page.east|-titlerect.north)
+     {\bfseries\MakeUppercase{\chaptertitlename}\ \thechapter};
+  \end{tikzpicture}%
+  }
+\titlespacing*{\chapter}
+  {0pt}{-20pt}{60pt}
 
+\setlength\beforeepigraphskip{1.5\baselineskip}
+\setlength\afterepigraphskip{2\baselineskip}
+\setlength\epigraphwidth{6.8cm}
+\setlength\epigraphrule{0pt}
+\renewcommand\epigraphsize{\large}
+\renewcommand\textflush{flushright}
+
+\let\oldepigraph\epigraph \renewcommand\epigraph[2]{%
+  \oldepigraph{\color{mybluei}\itshape #1}{#2}}
+ 
 \chapter{Opening}
-	\input{tex/opening}
+\epigraph{``The beginning is the most \\ important part of the work'' \\ -Plato, The Republic}
+
+\input{tex/opening}
 
 \chapter{Background}
 	\input{tex/background}
