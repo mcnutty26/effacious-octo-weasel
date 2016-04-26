@@ -19,17 +19,18 @@
 %set header and footer
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{octoDrone: Simulation and Deployment for Autonomous Drone Networks}
+\chead{octoDrone: Simulation and Deployment for Autonomous Drone Networks}
+\lhead{}
+\rhead{}
 \renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
-\rhead{\thepage}
-\cfoot{Henson, De Ivey, Gibson, and Seymour}
+\cfoot{\thepage}
 
 \fancypagestyle{plain}{%
   \fancyhf{}%
-  \fancyfoot[C]{\thepage\ of \pageref{LastPage}}%
+  \fancyfoot[C]{}%
   \renewcommand{\headrulewidth}{0pt}% Line at the header invisible
   \renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
-  \cfoot{Henson, De Ivey, Gibson, and Seymour}
+  \cfoot{\thepage}
 }
 
 %set chapter heading colours
