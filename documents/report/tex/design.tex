@@ -92,11 +92,21 @@ One thing that was established early on in the design process for the physical d
 Focussing on the first point above, there are a number of functions in the \textit{Environment} and \textit{Drone} classes which must be redefined in order to send commands to hardware instead of other parts of the simulator. In \textit{Environment} these are \textit{Environment} (the constructors), \textit{Broadcast}, and \textit{Run}. In \textit{Drone} these are \textit{Drone}, \textit{Upkeep}, \textit{Kill}, \textit{Move} and \textit{Turn}.
 
 \subsubsection{Environment::Broadcast}
-This must be modified to send messages to other nodes in the deployment instead of other nodes in the simulation (of which there are none).
+This must be modified to send messages to other nodes in the deployment instead of other nodes in the deployment (of which there are none). In the parrot example presented in the project this would entail sending the message to some socket connection (or wrapper on top of one) that would result in the message being sent to all of the other nodes which are in range.
+
+\subsubsection{Drone::Turn and Drone::Move}
+Turning and moving is necessarily different when considering a physical deployment. In order to actuate movement commands need to be sent wirelessly to the quadcopter. Whether this is done directly or through a piece of middleware will depend upon the specifics of the platform being targeted, but the calls will originate from these functions. These functions also need to calculate how long the movement will take, either by querying GPS information or by using pre-existing knowledge about the drones hardware.
 
 \subsubsection{Environment::Environment}
-The constructor for Environment must perform any required instantiation tasks, such as starting the unit listening for incoming communications. In the case of the parrot example presented in the project this entailed starting 
+The constructor for Environment must perform any required instantiation tasks, such as starting the unit listening for incoming communications. In the sample deployment this is starting a thread to listen to the socket that the broadcast function is sending to, as well as starting a thread to communicate with the drone hardware for movement and turning.
 
+\subsubsection{Drone::Upkeep}
+On the subject of movement and turning, the upkeep function is normally used to update the position of the drone in the simulated environment and mark it as having stopped moving when it reaches its destination. While the actuators on a node will take care of actually moving, the hardware must still be told when to stop (and to mark it as stopped in software). This requires communication with the thread set up to communicate (described above).
 
+\subsubsection{Drone::Drone and Drone::Kill}
+Because there is no way in the simulator to instruct drones to take off or land (stemming from the fact that there is no concept of a drone being airborne or grounded) this must be handled by the drone constructor and kill functions. The Drone method should instruct the physical quadcopter to take off, and given that Kill is usually used to mark a drone as having finished execution for the run (either through collision, to reoresent a fault, or just because the program has finished running) it is the method that should be responsible for making the drone land.
+
+\subsubsection{Environment::Run}
+The final method that must be redefined for a physical deployment is the Run function of the simulator environment. As part of the teardown performed when a simulation finishes, any extra threads that were created during the running of the program must be stopped or waited for.
 
 \subsubsection{Libraries}
