@@ -17,11 +17,11 @@ The reliable delivery of messages between the drones and base station are handle
 
 \begin{figure}
 \begin{tabular}{c|l|l}
-Label		& Data								& Action to Take	\\
-NEWAREA		& Four values making a 2D rectangle	& Set this area as the new area to collect data over. Call the function to split this into points.
-BASEIP		& An IP Address						& Record this IP address as the base station's IP address. \\
-DRONEIP		& An IP Address						& Record this IP address in the list of drone IP addresses. \\
-LOC			& The current location, angle, speed and routing priority of another drone & Perform collision avoidance.
+Label & Data & Action to Take \\
+NEWAREA	& Four values making a 2D rectangle	& Set this area as the new area to collect data over. Call the function to split this into points. \\
+BASEIP & An IP Address & Record this IP address as the base station's IP address. \\
+DRONEIP	& An IP Address	& Record this IP address in the list of drone IP addresses. \\
+LOC	& The current location, angle, speed and routing priority of another drone & Perform collision avoidance. \\
 \end{tabular}
 \caption{Table showing the messages a drone understands}
 \label{tbl:messages_drone}
