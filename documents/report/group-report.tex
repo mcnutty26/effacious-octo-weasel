@@ -19,17 +19,18 @@
 %set header and footer
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{octoDrone: Simulation and Deployment for Autonomous Drone Networks}
+\chead{octoDrone: Simulation and Deployment for Autonomous Drone Networks}
+\lhead{}
+\rhead{}
 \renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
-\rhead{\thepage}
-\cfoot{Henson, De Ivey, Gibson, and Seymour}
+\cfoot{\thepage}
 
 \fancypagestyle{plain}{%
   \fancyhf{}%
-  \fancyfoot[C]{\thepage\ of \pageref{LastPage}}%
+  \fancyfoot[C]{}%
   \renewcommand{\headrulewidth}{0pt}% Line at the header invisible
   \renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
-  \cfoot{Henson, De Ivey, Gibson, and Seymour}
+  \cfoot{\thepage}
 }
 
 %set chapter heading colours
@@ -164,7 +165,7 @@ mynode/.style={
   \oldepigraph{\color{mybluei}\itshape #1}{#2}}
  
 \chapter{Opening}
-\epigraph{``The beginning is the most \\ important part of the work'' \\ -Plato, The Republic}
+\epigraph{``Once you have tasted flight, \\ you will forever walk the earth with your eyes turned skyward, \\ for there you have been, and there you will always long to return'' \\ ― Leonardo da Vinci}
 
 \input{tex/opening}
 
