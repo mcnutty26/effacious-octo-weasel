@@ -16,6 +16,7 @@
 \usepackage{mdframed}
 \usepackage{epigraph}
 \usepackage{pdfpages}
+\usepackage[titletoc]{appendix}
 \usepackage[nottoc,numbib]{tocbibind}
 \usepgflibrary{qrr.shapes.openrectangle}
 
@@ -208,12 +209,12 @@ mynode/.style={
 \chapter{Conclusion}
 	\input{tex/conclusion}
 
-\appendix
+\begin{appendices}
 \chapter{API Documentation}
 \includepdf[pages={-}]{../documentation/latex/refman.pdf}
 
 \bibliography{biblio}
 
-%\end{multicols}
+\end{appendices}
 
 \end{document}
