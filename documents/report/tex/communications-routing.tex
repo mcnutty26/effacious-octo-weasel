@@ -4,7 +4,7 @@
 \emph{This chapter focusses on the comunication module implementations which form a part of octoDrone programs. It highlights the process for creating a simulation using communications, as well as the functions performed by the components which make up a communication module. A brief description of the supplied communications modules is also given.}
 
 \section{Overview}
-The communications module class, \textit{CommMod}, is the part of the simulator solution that is responsible for performing tasks at level three of the OSI model (the networking layer). Depending on the noise function used by the simulator, it is also possible to have communications modules perform tasks in layer two (such as collision detection and avoidance). Whilst the base class is a part of the simulator itself, the actual implementation of routing algorithms are part of a separate library in their own right. In this way, the communications library is intended to be distributed with \textbf{octoDrone} without being a required constituent part.
+The communications module class, \textit{CommMod}, is the part of the simulator solution that is responsible for performing tasks at level three of the OSI model\cite{normiec} (the networking layer). Depending on the noise function used by the simulator, it is also possible to have communications modules perform tasks in layer two (such as collision detection and avoidance). Whilst the base class is a part of the simulator itself, the actual implementation of routing algorithms are part of a separate library in their own right. In this way, the communications library is intended to be distributed with \textbf{octoDrone} without being a required constituent part.
 
 \section{Structure}
 \subsection{Structure of an Individual Module}

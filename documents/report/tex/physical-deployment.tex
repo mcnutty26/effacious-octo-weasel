@@ -209,12 +209,47 @@ Because nodes must communicate with each other over a network (in this case Ethe
 Because the receiving of messages was driven by the sending of messages in the original simulator, these actions had to be decoupled for the distributed version. Because listening for an incoming connection is a blocking action, it would require another thread to be run whilst the remainder of the application was executing. This thread would take a reference to the local messageable on instantiation that would later be used to deliver messages. Because the application would multicast packets, any outgoing messages would have to be sent to a multicast address that was known to all nodes (specified during the compilation of either the environment library or the simulation).
 
 \subsection{Movement}
-As there are no native C or C++ bindings (or indeed, any bindings) for the Parrot AR 2, making the quadcopters move involves using the node js package \textit{ardrone}. The \textit{ardrone} package handles connecting to a drone on the same network as the device it is run on (parrot drones use a default IP address, making them easy to find), as well as sending packets to the drone which it can understand. We created a javascript server application that could be run alongside the distributed simulator that would take commands and use the package to transmit them to the drone to be carried out. This server was passed messages by the environment through a UNIX socket in the filesystem of the host device.
-
-As mentioned above, there was an issue with how movement would be translated from the \{speed, distance\} format for used by the simulator and the \{speed, time\} format used by the drones. The first attempt at solving this problem assumed that the application would have easy access to GPS coordinates from the paired drone, and used this to perform location checks in the same way as for simulated runs. It was later learned that there was only one GPS unit available for the two quadcopters obtained, and extracting information from it at runtime was non-trivial. The fallback plan developed involved estimating the time taken for a drone to travel a given distance based on the normalised speed which the \textit{ardrone} library requires. This had to be based on experimental evidence, and was not consistent due to the fact that is was not possible to use a linear model over short distances (see notes about drone movement in section \ref{movement}).
+While there are native C bindings for the Parrot AR 2, creating an application with the open source Parrot library is quite an involved procedure. Given that the project does not require a full application for the quadcopters, just a means of making them move, it made sense to use the node js package \textit{ardrone} as middleware. The \textit{ardrone} package handles connecting to a drone on the same network as the device it is run on (parrot drones use a default IP address, making them easy to find), as well as sending packets to the drone which it can understand. We created a javascript server application that could be run alongside the distributed simulator that would take commands and use the package to transmit them to the drone to be carried out. This server was passed messages by the environment through a UNIX socket in the filesystem of the host device. The server program takes high level instructions from the simulator and uses the \textit{ardrone} package to translate them into low level AT commands (see the aside on AT commands for more information on the drone API).
 
 \begin{aside}
-\label{movement}
+		{\large AT Commands\par}
+		
+	The low level instructions accepted by Parrot drones are known as AT commands. These are sent to the drone on port 5556 via UDP and contain an instruction and a number of arguments\cite{piskorski2012ar}. An example at command is as follows:
+	
+	$AT*PCMD_MAG=21625,1,0,0,0,0,0,0<CR>AT*REF=21626,290717696<CR>$
+	
+	The list of valid AT commands can be found in table \ref{atcomm}, and contains three characters (``AT*'') followed by a command name, an equals sign, a sequence number, and a list of arguments if appropriate. The sequence number is used to prevent a drone from following out of date instructions: any commands received with a sequence number lower than the highest received sequence number are dropped.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline AT command & Argument(s) & Description \\ 
+			\hline AT*REF & input & Takeoff/Landing/Emergency stop command \\ 
+			\hline AT*PCMD & flag, roll, pitch,
+			gaz, yaw & Move the drone \\ 
+			\hline AT*PCMD_MAG & flag, roll, pitch,
+			gaz, yaw, psi, psi
+			accuracy & Move the drone (with Absolute Control support) \\ 
+			\hline AT*FTRIM & - & Sets the reference for the horizontal plane (must be
+			on ground) \\ 
+			\hline AT*CONFIG & key, value & Configuration of the AR.Drone 2.0 \\ 
+			\hline AT*CONFIG_IDS & session, user, application
+			ids & Identifiers for AT*CONFIG commands \\ 
+			\hline AT*COMWDG & - & Reset the communication watchdog \\ 
+			\hline AT*CALIB & device number & Ask the drone to calibrate the magnetometer
+			(must be flying) \\ 
+			\hline 
+		\end{tabular}
+		\caption{Valid AT commands for Parrot quadcopters\cite{piskorski2012ar}}
+		\label{atcomm}
+	\end{figure}
+\end{aside}
+
+As mentioned above, there was an issue with how movement would be translated from the \{speed, distance\} format for used by the simulator and the \{speed, time\} format used by the drones. The first attempt at solving this problem assumed that the application would have easy access to GPS coordinates from the paired drone, and used this to perform location checks in the same way as for simulated runs. It was later learned that there was only one GPS unit available for the two quadcopters obtained, and extracting information from it at runtime was non-trivial. The fallback plan developed involved estimating the time taken for a drone to travel a given distance based on the normalised speed which the \textit{ardrone} library requires. This had to be based on experimental evidence, and was not consistent due to the fact that is was not possible to use a linear model over short distances (see notes about drone movement in movement aside).
+
+\begin{aside}
+	{\large Movement\par}
+	
 Quadcopters move by inclining themselves relative to the horizon. This is achieved by having two of the four coplanar rotors spinning clockwise, and two spinning anticlockwise. The differing direction of rotation is to ensure that the torque (turning force) exerted by the spinning of the rotors sums to zero. This is achieved in helicopters by the use of a tail rotor. Quadcopters are underactuated in as much as they have fewer motors than they have degrees of freedom (four rotors, six degrees of freedom), meaning that they cannot follow arbitrary paths in 3D space. Put another way, there are some movements that drones are unable to achieve, such as simultaneously moving and turning, which directly stem from the lack of additional rotors.
 
 Moving forward entails having one of the rotors which is spinning in a certain direction (say clockwise) move faster and the the opposing rotor of the same direction move slower. This has the effect of tilting the drone on the Y axis (see figure \ref{pitch}). With the drone thus inclined, the air displaced by the rotors now causes it to move forward. The same technique can be used in reverse to move the drone backwards, and applied to the rotors spinning in the opposite direction (in this case anticlockwise) to bank the drone left or right on the X axis.
