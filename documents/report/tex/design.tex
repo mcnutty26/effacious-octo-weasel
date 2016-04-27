@@ -4,56 +4,25 @@ This chapter of the report will describe in detail the design decisions which we
 
 \section{System Architecture}
 
-	\subsection{Network Simulation}
+\subsection{Network Simulation}
 
-		\subsubsection{Fundamental Design}
-			The fundamental design of the simulator focusses on the concept of portability, if implemented correctly, programs written for use on the
-			simulator should be trivially transferable to actual drones of any type, so long as those drones are configured correctly and have the
-			appropriate environment set up. Another focus of the simulator is on simplicity, it should not be prohibitively difficult to create even
-			simple programs. Ideally the simulator should handle as much of the work that is not relevant to actual drones as possible, allowing
-			users of the system to focus on what the simulator is simulating rather than getting the simulator to work.
+\subsubsection{Fundamental Design}
+The fundamental design of the simulator focusses on the concept of portability, if implemented correctly, programs written for use on the simulator should be trivially transferable to actual drones of any type, so long as those drones are configured correctly and have the appropriate environment set up. Another focus of the simulator is on simplicity, it should not be prohibitively difficult to create even simple programs. Ideally the simulator should handle as much of the work that is not relevant to actual drones as possible, allowing users of the system to focus on what the simulator is simulating rather than getting the simulator to work.
 
-		\subsubsection{Implementation approach}
-			There exist two possible approaches to the overall design of the system that were considered for this project: serial simulation
-			and parallel simulation.
+\subsubsection{Implementation approach}
+There exist two possible approaches to the overall design of the system that were considered for this project: serial simulation and parallel simulation.
 
-			Serial simulation would define a strict ordering over which each element inside the simulation would run, each simulation element would be run
-			sequentially, allowing a single ``frame" of its program to be run. This provides several advantages, e.g: the simulation would
-			have an inherent synchronicity; no drone or other element could ever get ``out of sync" with the rest of the program, creating a
-			serial simulation would be significantly less work than a parallel one as no thread interactions would have to be considered. However,
-			this approach also has several disadvantages. For example, creating programs for the simulator to run would be significantly less
-			intuitive from the users point of view, the function to be ran on each element of the simulator would have to be a single ``frame"
-			of that elements simulation, which could lead to confusion (or even the simulator hanging if the user does not realise this). Another
-			problem is that this simulation method is not particularity realistic, in a physical deployment each drone and other element will be acting
-			independently, not in the strict ordering implied by serial simulation.
+Serial simulation would define a strict ordering over which each element inside the simulation would run, each simulation element would be run sequentially, allowing a single ``frame" of its program to be run. This provides several advantages, e.g: the simulation would have an inherent synchronicity; no drone or other element could ever get ``out of sync" with the rest of the program, creating a serial simulation would be significantly less work than a parallel one as no thread interactions would have to be considered. However, this approach also has several disadvantages. For example, creating programs for the simulator to run would be significantly less intuitive from the users point of view, the function to be ran on each element of the simulator would have to be a single ``frame" of that elements simulation, which could lead to confusion (or even the simulator hanging if the user does not realise this). Another problem is that this simulation method is not particularity realistic, in a physical deployment each drone and other element will be acting independently, not in the strict ordering implied by serial simulation.
 
-			Parallel simulation involves running each element of the simulation on its own thread of execution, each element runs its own programming
-			independently of all the others, allowing elements to act simultaneously. The disadvantages and advantages of this method are effectively the
-			polar opposites of the disadvantages and advantages of the serial method respectively. In other words, parallel allows for more intuitive
-			program writing, creating the entire program at once, and the very concept of the simulation being more realistic as the drones are acting
-			simultaneously for advantages. Lack of synchronicity (drones can be several entire loop iterations ahead of other drones for instance) and
-			thread interactions for disadvantages.
+Parallel simulation involves running each element of the simulation on its own thread of execution, each element runs its own programming independently of all the others, allowing elements to act simultaneously. The disadvantages and advantages of this method are effectively the polar opposites of the disadvantages and advantages of the serial method respectively. In other words, parallel allows for more intuitive program writing, creating the entire program at once, and the very concept of the simulation being more realistic as the drones are acting simultaneously for advantages. Lack of synchronicity (drones can be several entire loop iterations ahead of other drones for instance) and thread interactions for disadvantages.
 
-			Ultimately, parallel simulation was chosen as the method of choice, choosing the more difficult but more realistic and useful approach over
-			the easy abstraction. This was primarily chosen due to the fact that the simulator is designed to be a testing bed for actual programs being run
-			on actual drones. Thus the easier it is to transfer programs over from one system to the other the better, and allowing users to create the entire
-			program in a single function rather than that function representing a single frame of execution allows this to happen more easily.
+Ultimately, parallel simulation was chosen as the method of choice, choosing the more difficult but more realistic and useful approach over the easy abstraction. This was primarily chosen due to the fact that the simulator is designed to be a testing bed for actual programs being run on actual drones. Thus the easier it is to transfer programs over from one system to the other the better, and allowing users to create the entire program in a single function rather than that function representing a single frame of execution allows this to happen more easily.
 
-		\subsubsection{Environment}
-			The environment should be the majority of the predefined segment of the simulator. The environment should handle all of the possible
-			sensor data that is to be used by the simulator to be gathered by the drones in the simulation. The environment can also be seen as the
-			actual simulator itself, whereas drone, base station and communications code are the ``programs" that run on the simulator, thus the
-			environment should handle any and all tasks that would not need to be handled in physical deployment. This means that the environment
-			handles tasks such as moving drones around, passing messages between them and sending the sensor data that is requested when it is
-			requested.
+\subsubsection{Environment}
+The environment should be the majority of the predefined segment of the simulator. The environment should handle all of the possible sensor data that is to be used by the simulator to be gathered by the drones in the simulation. The environment can also be seen as the actual simulator itself, whereas drone, base station and communications code are the ``programs" that run on the simulator, thus the environment should handle any and all tasks that would not need to be handled in physical deployment. This means that the environment handles tasks such as moving drones around, passing messages between them and sending the sensor data that is requested when it is requested.
 
-		\subsubsection{Application Programming Interfaces (API)}
-			The simulator has to be as flexible as possible, allowing for arbitrary drone programs to be run with it. Due to this, the API was designed
-			in order to maximise usability. To this end, the simulator is effectively an unfinished program, the user ``finishes" this program with their
-			own code, extending classes as necessary in order to run the code that they want the simulator to handle. This also mirrors how the code would
-			interface with the actual physical drones as the code written in the extensions of the drone class is the code that will be running on the
-			physical drone itself, similarly code for communications modules and base stations will be simply transferable to actual physical implementations
-			of these systems.
+\subsubsection{Application Programming Interfaces (API)}
+The simulator has to be as flexible as possible, allowing for arbitrary drone programs to be run with it. Due to this, the API was designed in order to maximise usability. To this end, the simulator is effectively an unfinished program, the user ``finishes" this program with their own code, extending classes as necessary in order to run the code that they want the simulator to handle. This also mirrors how the code would interface with the actual physical drones as the code written in the extensions of the drone class is the code that will be running on the physical drone itself, similarly code for communications modules and base stations will be simply transferable to actual physical implementations of these systems.
 
 \subsection{Communications Modules}
 In order to remain as generic as possible, the simulator itself should not prescribe a set way of performing communications routing. Rather, it is up to the user to specify the routing algorithm they wish to use. This needs to be done in a way which makes it easy to specify different routing algorithms for different nodes in a simulation, i.e. there is not one set algorithm for each simulation. This is useful, for example, if one wishes to simulate a network of quadcopters backed up by a series of stationary nodes on the ground. In terms of extensibility, it should also be possible to package, distribute, and import implementations for different communications algorithms.
@@ -72,17 +41,12 @@ The module also needs some way of performing tasks which are not triggered by th
 
 So, the must be some condition upon which a communications module terminates, lest the simulation run indefinitely. If the threads for a messageable and its communication object were associated with each other then it would be possible to terminate both when the former exits. This can also be achieved by having the program notify the communications module that execution is complete and that it should terminate. The latter option was chosen due to the fact that it simplified the construction of the simulator, and made it easier to modify the relationship between messageable objects and communications modules in the future, for example to change the relationship from one to one to one to many (so that a base station could have separate communication interfaces to other stationary nodes and to aerial units). We devised a de facto standard for this which was to send a message with no addressing information containing only the payload ``KILL''. With the aim of flexibility, developers are at liberty to devise other methods for future communication module implementations.
 
-<<<<<<< HEAD
-Underpinning all of the above design decisions is the idea of a common specification of a message. With the view of defining this, it would be sensible to expect all messages to be serialisable as text so that they can be safely transmitted across a real world network. Beyond that it is useful to be able to label messages so that perfunctory filtering can be carried out on incoming traffic without the need for in-depth inspection. Routing model will invariably require more than this, as it does not even include space for a payload or addressing (which are both quite useful when delivering messages), but it serves as a definition of the bare minimum which can be expected. 
-=======
 \subsubsection{Defining a Message}
-Underpinning all of the above design decisions is the idea of a common specification of a message. With the view of defining this, it would be sensible to expect all messages to be serialisable as text so that they can be safely transmitted across a real world network. Beyond that it is useful to be able to label messages so that perfunctory filtering can be carried out on incomming traffic without the need for in-depth inspection. Routing model will invariably require more than this, as it does not even include space for a payload or addressing (which are both quite useful when delivering messages), but it serves as a definition of the bare minimum which can be expected. 
->>>>>>> a4a04d891d1e06ad74a20a8fa9a188bc7d2f83c0
+Underpinning all of the above design decisions is the idea of a common specification of a message. With the view of defining this, it would be sensible to expect all messages to be serialisable as text so that they can be safely transmitted across a real world network. Beyond that it is useful to be able to label messages so that perfunctory filtering can be carried out on incoming traffic without the need for in-depth inspection. Routing model will invariably require more than this, as it does not even include space for a payload or addressing (which are both quite useful when delivering messages), but it serves as a definition of the bare minimum which can be expected. 
 
 Given the above it must be possible for the base message model to be extended by individual implementations, given that the basic object will remain simple enough that every included feature is required by \textit{all} implementations. It is useful to have an extension of the message class which has a payload, and also one which additionally includes addressing information. These modules serve a dual purpose of being able to test the simulator functions as well as being useful to build upon for more complex communications. It is not required to plan such implementations, as it is expected that they will already have their own specifications (such as AODV in our reference code).
 		
 \subsection{Physical Routing} 
-
 Physical routing in this context is defined as the methods and algorithms applied by the physical entities in the system in order to manage their movement around the environment.
 
 The design of physical routing concerns itself with a number of key problems:
