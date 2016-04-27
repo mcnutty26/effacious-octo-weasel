@@ -175,12 +175,70 @@ Research into the application of networked UAVs for disaster management is also 
 Two of the biggest challenges for UAV Sensor networks which have been introduced so far are the issues of limited resources and the environment. In order to minimise overheads, reduce computation time, optimise pathing and battery usage, and introduce energy-efficient communication, it is essential to consider different methods of routing in sensor networks. The length of operation time and success of the network relies on firmly established protocols which are optimised for the application. In this section, we examine some of the existing algorithms for routing, giving a brief discussion of the advantages and disadvantages of each method, and how they deal with specific challenges such as robustness and energy efficiency. 
 
 \subsection{Ad Hoc On-Demand Distance Vector}
-Ad Hoc On-Demand Distance Vector (AODV) is a non-position based protocol which enables dynamic, self-starting, multi-hop routing between participating mobile nodes. It operates by sending Route Requests (RREQs), Route Replies (RREPs) and Route Errors (RERRs) messages between nodes, which are used to establish endpoints of a communication connection.  In AODV, the source node and the intermediate nodes store the next top information corresponding to each flow for data packet transmission \cite{perkins2003}.
-AODV is a reactive (on-demand) routing protocol in that it does not do anything if a route already exists between communicating nodes, so connection setup delay is less, and destination sequence numbers are used to find the latest route to the destination . The AODV protocol also keeps the overhead of messages small, and has a great advantage in overhead over simple protocols which need to keep the entire route from source to destination in their messages. This protocol is also loop-free and avoids the counting to infinity problem through the use of sequence numbers. Despite this, such protocols have a high latency time in finding a route, and excessive flooding can lead to network clogging. 
+Ad Hoc On-Demand Distance Vector (AODV) routing is a non-position based protocol which enables dynamic, self-starting, multi-hop routing between participating mobile nodes. It operates by sending Route Request (RREQ), Route Reply (RREP) and Route Error (RERR) messages between nodes, which are used to establish endpoints of a communication connection (as shown in figure \ref{aodv}).  In AODV, the source node and the intermediate nodes store the next top information corresponding to each flow for data packet transmission \cite{perkins2003}.
+
+AODV is a reactive (on-demand) routing protocol in that it does not do anything if an active route already exists between communicating nodes, so connection setup delay is less, and destination sequence numbers are used to find the latest route to the destination. The AODV protocol also keeps the overhead of messages small, and has a great advantage in overhead over simple protocols which need to keep the entire route from source to destination in their messages. This protocol is also loop-free and avoids the counting to infinity problem through the use of sequence numbers. Despite this, such protocols have a high latency time in finding a route (because routing is done in reaction to a message being sent), and excessive flooding can lead to network clogging. 
+
+More information about AODV can be found in section \ref{AODVdesc}.
+
+\begin{figure}
+	\centering	
+	\includegraphics[scale=0.7]{aodv}
+	\caption{Packet delivery rate for a 50 node model (30 traffic sources)\cite{chakeres2004aodv}}
+	\label{aodv}
+\end{figure}
 
 \subsection{Dynamic Source Routing}
+Like AODV, Dynamic Source Routing (DSR) is an on-demand routing protocol for mobile ad hoc networks. DSR divides the routing problem into two parts: route discovery and route maintenance. Route discovery finds routes between nodes by flooding the network with discovery packets until the destination node is reached. A route reply message is propogated back and cached. Unlike AODV, routes are retained indefinitely (unless they are broken), meaning that when nodes are static the overhead from using DSR is zero\cite{Johnson01dsr:the}\cite{johnson2007dynamic}.
+
+Route maintenance is performed whenever a data message is being sent through the network. Each node is responsible for ensuring that messages it forwards are received (this is often done through link-level protocols or passively on retransmission). In the event of a link being severed and a message being lost, the node which attempted to send over the broken link returns a route error message to the originator of the message. Routes using this link are removed from the cache.
+
+One of the advantages of DSR is that new routes and network updates are retained by every node which witnesses them (each node a route error message passes through will remove the broken link from their routing cache). Additionally, DSR nodes will attempt to shorten routes, salvage packets sent over broken links, and reason about link uni/bi-directionality. This focus on preventing the duplication of messages means that DSR is fast with very low overhead.
+
 \subsection{Greedy Perimeter Stateless Routing}
-\subsection{Distributed Efficient Multi-Hop Clustering Protocol}	
+Greedy Perimeter Stateless Routing (GPSR) take a different approach to routing than AODV and DSR in that it is stateless. Instead of using caching to reduce the amount of overhead, each node memorises the geographical locations of its neighbours and uses this to greedily forward messages. The optimal (one hop) choice for routing is the neighbour which is closest to the destination node\cite{karp2000gpsr} (see figure \ref{gpsr1}).
+
+\begin{figure}
+	\centering	
+	\includegraphics[scale=0.7]{gpsr2}
+	\caption{An example of greedy forwarding in GPSR\cite{karp2000gpsr}}
+	\label{gpsr1}
+\end{figure}
+
+The disadvantage of retaining as little information as possible is that there is an associated messaging overhead. GPSR nodes will routinely beacon information about their location, though can be mitigated through the practice of attaching beaconing information to all packets sent. This is exactly what AODV and DSR explicitly try and avoid through the use of caching. There are also scenarios where the optimal node to forward to is not the one chosen by the greedy algorithm. In this case, the right hand rule is used to route packets to their destination.
+
+Benchmark simulations of GPSR and DSR reveal that the overhead incurred by beaconing is normally less than that of more stateful solutions, as shown in figure \ref{gpsr2}. It is worth noting that 
+
+\begin{figure}
+	\centering	
+	\includegraphics[scale=0.7]{gpsr}
+	\caption{A comparison between DSR and GPSR with different beaconing intervals $b$\cite{karp2000gpsr}}
+	\label{gpsr2}
+\end{figure}	
+	
+\subsection{Comparison}
+Figures \ref{dsraodv1}, \ref{dsraodv2}, and \ref{dsraodv3} show a comparison between AODV and DSR in similar conditions. It can be seen that DSR tends to perform better in terms of overhead when considering short pause times (typical of a drone network), but that AODV results in a higher percentage of packets being delivered. Given the need for high priority messages to be delivered as quickly as possible in a quadcopter network (to prevent a collision, for example), it was decided that AODV would be a more appropriate algorithm to implement as a reference communication model in octoDrone than DSR. GPSR is very efficient but suffers from the problem that geographic routing tends to break down when nodes are moving at high speeds most (if not all) of the time. As information on neighbours becomes less certain it is harder to make efficient routing decisions without drastically decreasing the broadcast interval. After some consideration it was decided that AODV would be more broadly applicable, with GPSR being a worthwhile future addition.
+
+\begin{figure}
+\centering	
+\includegraphics[scale=0.7]{dsradov1}
+\caption{Packet delivery rate for a 50 node model (30 traffic sources)\cite{perkins2001performance}}
+\label{dsraodv1}
+\end{figure}
+	
+\begin{figure}
+\centering	
+\includegraphics[scale=0.7]{dsradov2}
+\caption{Average data packet delay for a 50 node model (30 traffic sources)\cite{perkins2001performance}}
+\label{dsraodv2}
+\end{figure}
+		
+\begin{figure}
+\centering	
+\includegraphics[scale=0.7]{dsradov3}
+\caption{Normalised routing load for a 50 node model (30 traffic sources)\cite{perkins2001performance}}
+\label{dsraodv3}
+\end{figure}
 	
 \section{Social and Ethical Issues}
 The subject of drones has been the focus of much controversy with regards to issues of privacy, invasion of airspace and other unsanctioned uses of UAVs with the ability to, for example, use a camera to take pictures or video. Therefore, a platform for an entire network of drones with a variety of sensors which is open source presents a multitude of possible problems. Furthermore, with the potential to be used as a foundation for military efforts, which form the basis of many current topics of research into drones and sensor networks, there are many implications for potential misuse of the project. As a result, it is necessary to research and discuss the possible methods of unlawful utilisation of drones and drone networks, in order to ensure that the project group is aware of these issues.
