@@ -11,5 +11,55 @@ Similarly to the base station, the first thing the drones do is broadcast their 
 
 Each time a drone collects data from a point in the area, it sends that data back to the base station immediately, meaning the base station receives many small messages each containing a single data point. This was done for two reasons. Firstly, the base station can spread the work of combining the data over the course of the system execution. Secondly, this means that if one of the drones fails, then its previous work is not lost.
 
+\subsection{Handling Messages}
+
+The reliable delivery of messages between the drones and base station are handled by the communication module. However, the implementation of a given system must specify how the messages are acting upon and how they are managed. For this implementation, both the drone and base station listen for messages during their program loops. When a messages is received it is then 'interpreted' by entering into a separate function that deals with all possible actions that might need to be done regarding a messages. For example, A drone might receive a message informing it of the base station's IP address. The table in figure \ref{tbl:messages_drone} shows the messages that the drone understands on top of those implemented by the base simulation software. Figure \ref{tbl:messages_basestation} shows the same for the base station.
+
+\begin{figure}
+\begin{tabular}{c|l|l}
+Label		& Data								& Action to Take	\\
+NEWAREA		& Four values making a 2D rectangle	& Set this area as the new area to collect data over. Call the function to split this into points.
+BASEIP		& An IP Address						& Record this IP address as the base station's IP address. \\
+DRONEIP		& An IP Address						& Record this IP address in the list of drone IP addresses. \\
+LOC			& The current location, angle, speed and routing priority of another drone & Perform collision avoidance.
+\end{tabular}
+\caption{Table showing the messages a drone understands}
+\label{tbl:messages_drone}
+\end{figure}
+
+\begin{figure}
+\begin{tabular}{c|l|l}
+Label	& Data							& Action to Take	\\
+DRONEIP	& An IP Address					& Record this IP address in the list of drone IP addresses. \\
+DATUM	& A point location and value	& This is a data value from a drone so record it.
+\end{tabular}
+\caption{Table showing the messages the base station understands}
+\label{tbl:messages_basestation}
+\end{figure}
+
 \subsection{What Does this Demonstrate?}
 This sample application demonstrates that it is very much possible for a working drone network to be built using the simulation. It shows the drones working autonomously and separate from each other, as well as a base station performing a similar task as would be expected in a real-world application. While this system only provides simple functionality, it demonstrates the possibility for a wide array of applications using fault tolerance, efficient communication, and robust physical routing.
+
+\subsection{Area Representation}
+
+As described in the physical routing section of the design, the drone's understanding of the world is in 3-dimensional Cartesian coordinates. However, for this implementation, the drone does not concern itself with the potential for obstacles in the area it is measuring as it is assumed to be completely open. From this, this means there is no need to store a representation of the 'map' on the drone, but only of the points that the drone should be travelling to and measuring.
+
+When the drone receives the area it is to sense over, it is in the form of four values corresponding to the x-min, y-min, x-max, and y-max denoting a 2-dimensional plane. Using the sensing radius of the drone's sensing equipment, passed in as arguments to the drone when it is started, the drone determines how many measurements it will need to perform in order to cover the whole area. These points are then stored in a C++ queue so that the elements can be accessed in a strict order. The ordering walks up and down the area so that the drone has to travel the smallest distance between points. The queue is efficient and easy to iteratively add to as opposed to a vector.
+
+\subsection{Collision Avoidance}
+
+The overall physical routing technique used for collision avoidance was described in the physical routing design section. It was implemented as described there, with both drones calculating if a collision would occur and, if one would, one flying higher than the other so that the collision is avoided.
+
+In order to detect if a collision might occur, then each drone, when sending broadcasting its location to all other drones around, also includes its current position, facing, speed, and priority. Each drone sends this broadcast with the frequency meaning that the interval between broadcasts can be used as the maximum time we need to check for collisions in. From this information, the maximum change in the x direction for this timestep is given by,
+\begin{verbatim}
+	dx = t * 2 * s * sin(\theta)
+\end{verbatim}
+and the maximum change in the y direction is given by,
+\begin{verbatim}
+	dy = t * 2 * s * cos(\theta)
+\end{verbatim}
+where t is the broadcast interval, s is the speed of the drone, and $\theta$ is the current facing of the drone.
+
+Unfortunately, this alone leaves the issue presented if the drones are moving too fast and will not collide at the end of their movement, but rather at single point during their movement. While it is possible to extrapolate back from the collision to find the exact point of collision, for this it is not necessary to know exactly where and when the drones would collide, only that they will so it can be avoided. Because of this, the algorithm then checks for a collision another four times along the path of the drones.
+
+It is worth noting that this whole calculation is only done by the drone with the lower priority as only it will need to know if it should be getting out of the way. This means only the half the computation is required across the drones in total.
