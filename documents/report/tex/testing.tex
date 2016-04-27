@@ -6,16 +6,16 @@ In this chapter the different tests developed for the simulator are detailed and
 In order to test the individual components of the simulator, a number of different messageable programs and simulations were created.
 
 \begin{itemize}
-\item Movement
+\item \textbf{Movement} \\
 This unit test instantiates a drone and instructs it to move in one dimension, two dimensions, and finally in three dimensions. It also attempts to turn the drone. If the resulting heading and position in 3D space of the drone is the same as the known correct value then the test passes.
 
-\item Communications
+\item \textbf{Communications} \\
 This unit test instantiates two drones which uses the most basic communications module (that simply delivers every message received to every messageable). It then attempts to send a message from one drone to the other. If the message is received and it correct, then the test passes.
 
-\item Noise Functions
+\item \textbf{Noise Functions} \\
 This unit test instantiates two drones using the most basic communications module, and passes a noise function to the environment which will drop the first message sent and deliver the second. The sending program dispatches two messages, and if the receiving program only detects the second message then the test passes.
 
-\item Visualisation
+\item \textbf{Visualisation} \\
 The visualisation unit tests are comprised of each of the above tests, but run with the environment variable for visualisation set to true. If the results pass visual inspection (verified against the visualisation specification) then the tests are considered a success.
 \end{itemize}
 
