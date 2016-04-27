@@ -15,6 +15,8 @@
 \usepackage{fourier}
 \usepackage{mdframed}
 \usepackage{epigraph}
+\usepackage{pdfpages}
+\usepackage[nottoc,numbib]{tocbibind}
 \usepgflibrary{qrr.shapes.openrectangle}
 
 %set header and footer
@@ -205,6 +207,10 @@ mynode/.style={
 
 \chapter{Conclusion}
 	\input{tex/conclusion}
+
+\appendix
+\chapter{API Documentation}
+\includepdf[pages={-}]{../documentation/latex/refman.pdf}
 
 \bibliography{biblio}
 
