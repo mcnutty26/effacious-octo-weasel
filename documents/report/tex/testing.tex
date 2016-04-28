@@ -49,7 +49,11 @@ The testing procedure for AODV is significantly more complicated than for the ab
 A single test file was devised for the Parrot library which tested two the two areas of functionality which had been adapted from the original simulator - movement and communications delivery (as opposed to communications modules). The program could be run in sink or source mode, with sink mode simply waiting for a message to be delivered, and source mode sending a message. As soon as the sink version of the program received a message it performed a series of movements to make sure that the drone moved correctly (under both translation and rotation). This program was run on two hardware units, and the test failed if the drone failed to move correctly (or failed to move at all).
 
 \subsection{Demonstration Program}
-TODO: Ben to complete
+
+During the implementation of the demonstration program, text output was used as the visualisation had not been completed at that time. This involved careful integration and unit testing of new components, ensuring that the system's integrity was not compromised by any additional functionality. When the visualisation was completed, it was then used to ensure that no previously unexpected emergent behaviour existed. Specific cases were tracked in the code to ensure, for example, there was no case where two drones had collided.
+
+The demonstration program itself acted as a test for the other components of the system, notably the communications module and underlying simulation.
+
 
 \section{System Testing}
 The nature of octoDrone's architecture was such that many features did not need to be system tested. For example, if a program was proved to be correct when using the Basic Addressed communications module, the abstracted nature of messaging meant that it would be provably correct using any other addressed communications module. Being able to reason about the components of the project in this way saved a large amount of time during development.
