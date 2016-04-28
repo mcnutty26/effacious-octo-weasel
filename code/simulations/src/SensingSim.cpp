@@ -316,8 +316,8 @@ int main(int argv, char* argc[]){
 
 	CommMod* comm_basic1 = new Basic_addressed(env, &stdout_lock, "10.0.0.1");
 	CommMod* comm_basic2 = new Basic_addressed(env, &stdout_lock, "10.0.0.2");
-	CommMod* comm_basic3 = new Basic_addressed(env, &stdout_lock, "10.0.0.3");
-	CommMod* comm_basic4 = new Basic_addressed(env, &stdout_lock, "10.0.0.4");
+	//CommMod* comm_basic3 = new Basic_addressed(env, &stdout_lock, "10.0.0.3");
+	//CommMod* comm_basic4 = new Basic_addressed(env, &stdout_lock, "10.0.0.4");
 
 	CommMod* comm_basic_base = new Basic_addressed(env, &stdout_lock, "10.0.0.255");
 
@@ -328,12 +328,12 @@ int main(int argv, char* argc[]){
 	//create and add drones
 	SensingDrone* drone1 = new SensingDrone(comm_basic1, 1.0, 1.0, 0.0, 0.1, 0.5, env, false);
 	SensingDrone* drone2 = new SensingDrone(comm_basic2, 2.0, 2.0, 0.0, 1.0, 0.5, env, true);
-	SensingDrone* drone3 = new SensingDrone(comm_basic3, 2.0, 3.0, 0.0, 1.0, 0.5, env, true);
-	SensingDrone* drone4 = new SensingDrone(comm_basic4, 2.0, 4.0, 0.0, 1.0, 0.5, env, true);
+	//SensingDrone* drone3 = new SensingDrone(comm_basic3, 2.0, 3.0, 0.0, 1.0, 0.5, env, true);
+	//SensingDrone* drone4 = new SensingDrone(comm_basic4, 2.0, 4.0, 0.0, 1.0, 0.5, env, true);
 	env->addDrone(drone1);
 	env->addDrone(drone2);
-	env->addDrone(drone3);
-	env->addDrone(drone4);
+	//env->addDrone(drone3);
+	//env->addDrone(drone4);
 
 	//run the simulation
 	env->run();
