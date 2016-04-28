@@ -1,63 +1,74 @@
+\label{litreview}
 \emph{This chapter of the report focuses on examination and analysis of current research and development in the field, in order to find out more about the structure of Mobile ad hoc networks (MANETs) and corresponding simulators, how drones can be employed in this field, as well as existing solutions for drone sensor networks. Then, the specific algorithms and characteristics of sensor networks must be researched, as this dictates the core functionality of the project network and how this can be achieved. This chapter will be cover the topics of learning about the current state-of-the-art, and allowing that to influence our design and implementation decisions.}
 
 \section{MANETs}
 
 \subsection{Structure}
-It is necessary for a MANET to be capable of self-configuring without an infrastructure, where mobile devices can connect without wires. Given that they are mobile nodes that communicate by forming a network dynamically, they lack a fixed infrastructure or centralised control. Nodes are independent, and the network topology is temporary as each node dynamically self-organises. This means that each device must be a router. Each node must be capable of shifting its organisation, and forwarding packets \cite{jaydipsen2010}. When nodes wish to communicate with one another they can use a variety of different mediums, such as Wi-Fi or radio waves, but they must depend on intermediate nodes to route their data packets in the event that the source and destination are not in range of one another \cite{ramramathanjasonredi2012}.
-MANETs may employ a specific network model, or a general approach in which nodes are aware of other nodes in range and their task only. Various methods of forwarding data exist, such as flooding data by broadcasting to all neighbours, or by using predefined metrics to determine the optimal path \cite{jaydipsen2010}. It is in stark contrast to a centralised wireless network, as there are no access points in a managed infrastructure. Forwarding of data is dependent on the basis of network connectivity, so nodes must be able to create and join networks arbitrarily, which requires high adaptability to constant changes in topology. MANET systems must also consider problems such as limited power and storage for each individual node; the network must be fault tolerant such that it can deal with problems such as when connectivity is lost or a node powers down. Energy and power consumption are priority concerns which are directly related to the hardware resources available to each node, and the environment in which the network is deployed \cite{sajshahmina2012}.
-POSSIBLE OBLIGATORY PICTURE OF MANET INFRASTRUCTURE
-
-\subsection{Simulations}
-\label{simSoft}
-Network simulators are software that predict the behaviour of a computer network, making them a popular method for experimentation with a possible model for MANETs due to their ability to cheaply and flexibly model a solution. These simulation tools make it possible to model fault tolerance, scalability, make monitoring easy, and provide reproducibility \cite{stuartkurkowski2005}. It should be noted that there are significant variations in the way that individual simulators operate, which cannot be expressed in terms of accuracy. At best, they can be said to be dependable and realistic, but will have difficulty modelling unpredictable error in a real environment. Simulation events can be split into continuous and discrete simulation, where continuous simulation makes use of analytic models, and so can hardly be applied in practice. Conversely, discrete simulation allows for parallelism for scalability and speed up, as well as developing trace files containing a description of each event that occurred \cite{luchogie2006}. These trace files can then be used to generate a visualisation of the simulation, so they would be preferred for our project (or they will influence how we build our simulation and visualise it). This section gives an overview of the potential solutions available for simulations, and the alternatives to using a simulator.
-
-\subsubsection{ns-2}
-ns-2 (network simulator) is a discrete-event network simulator, for research and educational use. Its software infrastructure encourages the development of simulation models which are sufficiently realistic to allow it to be used as a real-time network emulator, and is the basis for many existing real-world implementations \cite{tommasopecorella2016}. In particular, it provides a set of randomised mobility models, including random waypoint, such that the advanced node mobility constitutes a progression towards realistic simulation. ns-2 programs are scripted in OTcl, with some components written in C++ . Despite its popularity, ns-2 suffers for its lack of modularity and inherent complexity, but does provide excellent documentation. It is the predecessor of ns-3, although it has a greater diversity of models given there more years of contributions. ns-2 also allows for visualisation of the simulation through its GUI out.nam with the use of trace files, as shown in figure 8.1 below \cite{luchogie2006}.
+It is necessary for a MANET to be capable of self-configuring without an infrastructure, where mobile devices can connect without wires. This is because mobile nodes communicate by forming a network dynamically, and so they lack a fixed infrastructure or centralised control. Nodes are independent, and the network topology is temporary as each node dynamically self-organises. This means that each device must be a router. Each node must be aware of the organisation when forwarding packets \cite{jaydipsen2010}. When nodes wish to communicate with one another they can use a variety of different mediums, such as Wi-Fi or radio waves, but they must depend on intermediate nodes to route their data packets in the event that the source and destination are not in range of one another \cite{ramramathanjasonredi2012}.
+MANETs may employ a specific network model, or a general approach in which nodes are aware of other nodes in range and their task only. Various methods of forwarding data exist, such as flooding data by broadcasting to all neighbours, or by using predefined metrics to determine the optimal path \cite{jaydipsen2010}. It is in stark contrast to a centralised wireless network, as there are no access points in a managed infrastructure. Forwarding of data is dependent on the presence of network connectivity, so nodes must be able to create and join networks arbitrarily, which requires high adaptability to constant changes in topology. MANET systems must also consider problems such as limited power and storage for each individual node; the network must be fault tolerant such that it can deal with problems such as when connectivity is lost or a node powers down. Energy and power consumption are priority concerns which are directly related to the hardware resources available to each node, and the environment in which the network is deployed \cite{sajshahmina2012}.
 
 \begin{figure}
 \centering	
-\includegraphics[scale=0.4]{img/outnam}	
-\caption{ Visualisation for ns-2 trace files in out.nam}
+\includegraphics[scale=0.7]{img/manet}	
+\caption{Example topology of a MANET}
 \end{figure}
-
-\subsubsection{ns-3}
-ns-3 is a new software development which followed  ns-2 , focusing its efforts on improving the core architecture, software integration, models, and educational components of ns-2 \cite{ns2006}. ns-3 differs from ns-2 in that it is purely written in C++, with optional Python bindings. New scripts can therefore be written in C++ or in Python. This version is recommended over ns-2 due to features which are not available in the previous version, such as an implementation code execution environment, which allows users to run real implementation code in the simulator. Additionally, it has more detailed models, as well as being actively maintained and developed. ns-3 is not backwards compatible with ns-2; it is an entirely new simulator, with several models which were written in C++ which are already been ported to ns-3 \cite{tommasopecorella2016}. The visualisation platform for ns-3 is the offline animator NetAnim, based on the Qt toolkit.
-
-\begin{figure}
-\centering	
-\includegraphics[scale=0.4]{img/netanim}	
-\caption{An example of NetAnim simulation animation}
-\end{figure}
-
-\subsubsection{GloMoSim}
-Short for Global Mobile Information System Simulator, GloMoSim is a network protocol simulation software for parallel simulation of wireless and wired network systems using the parallel programming language PARSEC \cite{zengxiang1998}. It uses a message-based approach to discrete-event simulation, where network layers are represented as objects called entities, which handle events represented by timestamped messages. The library has been designed to be extensible and composable, and its modular implementation enables consistent comparison of protocols at a given layer. While research into parallel simulation is relatively limited, and areas such as signal interference and attenuation are inherently more complicated, there are clear implications for a significant increase in performance in terms of spreading out the simulation overheads, which may outweigh the inherent complexity. The PARSEC Visual Environment (PAVE) has also been developed to support the visual design of GlomoSim event simulations \cite{luchogie2006}.
-
-\begin{figure}
-\centering	
-\includegraphics[scale=0.4]{img/pave}	
-\caption{Example output from the PARSEC Visual Environment}
-\end{figure}
-
-\subsubsection{OMNet++}
-OMNet++ is an extensible, modular, component-based C++ simulation library and framework, primarily for building network simulators \cite{omnet2016}. This includes wired and wireless communication networks for sensor networks, ad hoc networks, Internet protocols, and so on. OMNet++ is not a network simulator in and of itself, but provides a wide range of tools and extensions, including an Eclipse-based IDE (Integrated Development Environment). It provides a component architecture for models; components are programmed in C++ and then assembled into larger components and models using a high-level language (NED) which also has GUI support. OMNet++ was designed for the general use case, as opposed to being a specialised simulator, and its modular architecture allows for the simulation kernel (and models) to be easily integrated into wider systems \cite{varga2008}. 
-
-\begin{figure}
-\centering	
-\includegraphics[scale=0.4]{img/omnet}	
-\caption{Example of the OMNet++ NED editor IDE }
-\end{figure}
-
-\subsubsection{Testbeds}
-As an alternative to simulations, testbeds are in-lab networks built and used by researchers, which involves creating and connecting physical devices for testing the application of real networks. As a result, the cost of hardware coupled with the difficulty of managing applications in terms of deployment and monitoring creates limitations on the complexity and scalability of the network. While it can be said that the physical testing environment is much more effective and realistic than a simulation, the lack of larger testbeds of over 50 nodes prevents this from becoming a major component for validating new concepts and applications for MANETs \cite{luchogie2006}.
 
 \subsection{Data Mining and Monitoring}
 The core functionality of MANETs is to provide a network of mobile nodes which can communicate with one another and pass information by routing through intermediate nodes where necessary. In a sensor network, each node is tasked with collecting specialised data through the use of sensory peripherals, and this data must be passed effectively to its destination. Given the dynamic nature of MANETS, considerations must be made for the constant changing topology in order to ensure that the networks's integrity and availability is not compromised and that nodes can effectively communicate with one another at any time \cite{ramramathanjasonredi2012}. This includes problems such as losing connection or going out of range, which will cause the loss of packets when communications links are inevitably cut and messages lost. 
+
 Connections between nodes and algorithms for data mining must be carefully established and monitored in order to ensure secure and efficient routing. For example, the data collected by each individual sensor node which is monitoring an environmental feature will typically register similar values due to spatial correlation, so there is a danger for unnecessary overheads as a result of unneeded data. By measuring spatial correlation between data sampled by different sensors, specialised algorithms can be developed to implement more efficient data mining, as well as optimising routing strategies \cite{mayajie2011}. In order to aggregate data more effectively, a  stationary base station node may be included, which acts as the data sink, and may be capable of passing user input to nodes, which would allow for some stability and interaction with the network by the user. 
 POSSIBLE OBLIGATORY IMAGE OF BASE STATION NETWORK/BROKEN LINKS
 
 \subsection{Sensor Networks}
 A sensor network is different to a simple MANET in that each node has autonomous sensors to monitor physical or environmental conditions such as temperature, sound or pressure. This data can also be routed through other nodes, and it may be possible to control sensor activity if networks are bidirectional \cite{kazem2007}. While sensor networks themselves can range from wired to wireless, or have predefined topologies such as the simple star network or a multi-hop wireless mesh network, a drone sensor network would be classified as a mobile wireless sensor network (MWSN) for obvious reasons. 
 The biggest challenges to MWSNs, in general terms, are hardware and environment. Power consumption of the sensing device should be minimised and sensor nodes should be energy-efficient, since their limited energy resource determines their lifetime. As with any mobile network, the varying topology due to the mobility of nodes results in further usage of the already limited resources in terms of battery power. If it is possible, nodes could consider powering off unused parts to save power, such as immediately after takeoff, where sensors may not be required en route to the target area. However, this is also dependent on the environment, which may require additional precautions in the event that it is hazardous or requires heavy monitoring. The most effective method for energy efficiency is the use of optimal routing protocols, which will be discussed in later sections \cite{shiny2012}.
+
+\section{Simulations}
+\label{simSoft}
+Network simulators are software that predict the behaviour of a computer network, making them a popular method for experimentation with a possible model for MANETs due to their ability to cheaply and flexibly model a solution. These simulation tools make it possible to model fault tolerance, scalability, make monitoring easy, and provide reproducibility \cite{stuartkurkowski2005}. It should be noted that there are significant variations in the way that individual simulators operate, which cannot be expressed in terms of accuracy. At best, they can be said to be dependable and realistic with reasonable proficiency at modelling unpredictable error in a real environment. Simulation events can be split into continuous and discrete simulation, where continuous simulation makes use of analytic models, and so can hardly be applied in practice. Conversely, discrete simulation allows for parallelism, scalability, and speed up, as well as developing trace files containing a description of each event that occurred \cite{luchogie2006}. These trace files can then be used to generate a visualisation of the simulation, so they would be preferred for our project (or they will influence how we build our simulation and visualise it). This section gives an overview of the potential solutions available for simulations, and the alternatives to using a simulator.
+
+\subsection{ns-2}
+ns-2 (network simulator) is a discrete-event network simulator, for research and educational use. Its software infrastructure encourages the development of simulation models which are sufficiently realistic to allow it to be used as a real-time network emulator, and is the basis for many existing real-world implementations \cite{tommasopecorella2016}. In particular, it provides a set of randomised mobility models, including random waypoint, such that the advanced node mobility constitutes a progression towards realistic simulation. ns-2 programs are scripted in OTcl, with some components written in C++ . Despite its popularity, ns-2 suffers for its lack of modularity and inherent complexity, but does provide excellent documentation. It is the predecessor of ns-3, although it has a greater diversity of models given there more years of contributions. ns-2 also allows for visualisation of the simulation through its GUI out.nam with the use of trace files, as shown in figure \ref{outnam} \cite{luchogie2006}.
+
+\begin{figure}
+\centering	
+\includegraphics[scale=0.4]{img/outnam}	
+\caption{ Visualisation for ns-2 trace files in out.nam}
+\label{outnam}
+\end{figure}
+
+\subsection{ns-3}
+ns-3 is a new software development which followed  ns-2, focusing its efforts on improving the core architecture, software integration, models, and educational components of ns-2 \cite{ns2006}. ns-3 differs from ns-2 in that it is purely written in C++, with optional Python bindings. New scripts can therefore be written in C++ or in Python. This version is recommended over ns-2 by the creators of ns due to features which are not available in the previous version, such as an implementation code execution environment, which allows users to run real implementation code in the simulator. Additionally, it has more detailed models, as well as being actively maintained and developed. ns-3 is not backwards compatible with ns-2; it is an entirely new simulator, with several models which were written in C++ which are already been ported to ns-3 \cite{tommasopecorella2016}. The visualisation platform for ns-3 is the animator NetAnim, shown in figure \ref{netanim} based on the Qt toolkit.
+
+\begin{figure}
+\centering	
+\includegraphics[scale=0.3]{img/netanim}	
+\caption{An example of NetAnim simulation animation}
+\label{netanim}
+\end{figure}
+
+\subsection{GloMoSim}
+Short for Global Mobile Information System Simulator, GloMoSim is a network protocol simulation software for parallel simulation of wireless and wired network systems using the parallel programming language PARSEC \cite{zengxiang1998}. It uses a message-based approach to discrete-event simulation, where network layers are represented as objects called entities, which handle events represented by timestamped messages. The library has been designed to be extensible and composable, and its modular implementation enables consistent comparison of protocols at a given layer. While research into parallel simulation is relatively limited, and areas such as signal interference and attenuation are inherently more complicated, there are clear implications for a significant increase in performance in terms of spreading out the simulation overheads, which may outweigh the inherent complexity. The PARSEC Visual Environment (PAVE) shown in figure \ref{pave} has also been developed to support the visual design of GlomoSim event simulations \cite{luchogie2006}.
+
+\begin{figure}
+\centering	
+\includegraphics[scale=0.8]{img/pave}	
+\caption{Example output from the PARSEC Visual Environment}
+\label{pave}
+\end{figure}
+
+\subsection{OMNet++}
+OMNet++ is an extensible, modular, component-based C++ simulation library and framework, primarily for building network simulators \cite{omnet2016}. This includes wired and wireless communication networks for sensor networks, ad hoc networks, Internet protocols, and so on. OMNet++ is not a network simulator in and of itself, but provides a wide range of tools and extensions, including an Eclipse-based IDE (Integrated Development Environment). It provides a component architecture for models; components are programmed in C++ and then assembled into larger components and models using a high-level language (NED) which also has GUI support, as shown in figure \ref{omnet}. OMNet++ was designed for the general use case, as opposed to being a specialised simulator, and its modular architecture allows for the simulation kernel (and models) to be easily integrated into wider systems \cite{varga2008}. 
+
+\begin{figure}
+\centering	
+\includegraphics[scale=0.7]{img/omnet}	
+\caption{Example of the OMNet++ NED editor IDE}
+\label{omnet}
+\end{figure}
+
+\subsection{Testbeds}
+As an alternative to simulations, testbeds are in-lab networks built and used by researchers, which involves creating and connecting physical devices for testing the application of real networks. As a result, the cost of hardware coupled with the difficulty of managing applications in terms of deployment and monitoring creates limitations on the complexity and scalability of the network. While it can be said that the physical testing environment is much more effective and realistic than a simulation, the lack of larger testbeds of over 50 nodes prevents this from becoming a major component for validating new concepts and applications for MANETs \cite{luchogie2006}.
 
 \section{Drones}
 
