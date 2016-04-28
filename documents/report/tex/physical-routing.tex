@@ -1,3 +1,7 @@
+This section will outline the implementation of the demonstration program that shows a specific use case of the simulation, that of programming a drone network to measure temperature over a large area. A discussion is given on the specific methods chosen and why, as well as what this means for other applications of the simulation software.
+
+In addition to this, the section will go over the implementation of the physical routing algorithms described in the design section where they were used. This includes an explanation of the collision avoidance and area representation required for such techniques and how they may be applied to other applications.
+
 \section{Drone and Base Station Sample Implementation}
 In order to demonstrate the capabilities of the octoDrone product, both through the simulation and physical drones, a sample set of code was written. This demonstrative drone network uses heat sensors on the drones to collect temperature data across a predefined area. This does, of course, draw an immediate link with the forest fires prevalent in California. Once the 'normal' temperatures for an area are monitored, it could be extended such that any unexpected change to this temperature might mean there is the beginnings of a fire. Once alerted, wardens could confirm or refute this premise using cameras on the drone. This chapter covers the implementation of the demonstration code and physical routing algorithms used.
 
