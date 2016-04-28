@@ -2,19 +2,46 @@
 A discrete event network simulator for drone networks
 
 ##First time setup
-There is a setup script supplied in the code directory which will set up octoDrone and its dependencies for you and then build the entire project.
+There is a setup script supplied in the code directory which will set up octoDrone and its dependencies for you and then build the entire project. Note that this process requires root access.
 
-```cd code && ./setup.sh```
+`cd code && ./setup.sh`
 
 ## Building octoDrone
 If you wish to build the entire project a script is supplied in the code directory
 
-```cd code && ./build.sh```
+`cd code && ./build.sh`
 
 If you wish to build an individual component, `cd` into its directory and run `make`
 
-##License
+##Creating a Simulation
+Instantiate a simulation environment with sensor data, a timestep, and a visualisation boolean:
+
+`Environment* env = new Environment(*sensor_map, 1.0, true);`
+
+Create communication modules as appropriate (see documentation for more information):
+
+`CommMod* my_comm_mod = new Basic(env, &stdout_lock);`
+
+Create drones and a basestation as appropriate (see documentation for more information):
+
+`BasicTest* my_drone = new BasicTest(my_comm_mod, 0.0, 0.0, 0.0, 0.0, env, false);`
+
+Register drones and the base station with the environment:
+
+`env->addDrone(my_drone);`
+
+`env->setBaseStation(my_base_station);`
+
+Run the simulation:
+`env->run();`
+
+##Examples
+
+A number of examples of programs, communications modules, and simulations are provided with octoDrone. These can be found, with make files, in the *programs*, *liboctodronecomms*, and *simulations* directories (under *code*) respectively. If at any point you require more information on individual components, full documentiation of the octoDrone API is provided in the documents folder.
+
+##Licenses
 * octoDrone is released under the GPL v3 license (or later)
+* the included report is released under the Creative Commons Attribution-ShareAlike 4.0 International license
 * the included glew binary is used under license
 * the included glfw binary is used under license
 
