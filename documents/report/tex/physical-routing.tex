@@ -8,7 +8,7 @@ Once this has been done, the base station determines which sections of the defin
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=15cm]{DroneAreas}
+\includegraphics[scale=0.3]{DroneAreas}
 \caption{Dissemination of the area to drones.}
 \label{fig:area_dissemination}
 \end{figure}
@@ -23,22 +23,24 @@ Each time a drone collects data from a point in the area, it sends that data bac
 The reliable delivery of messages between the drones and base station are handled by the communication module. However, the implementation of a given system must specify how the messages are acting upon and how they are managed. For this implementation, both the drone and base station listen for messages during their program loops. When a messages is received it is then 'interpreted' by entering into a separate function that deals with all possible actions that might need to be done regarding a messages. For example, A drone might receive a message informing it of the base station's IP address. The table in figure \ref{tbl:messages_drone} shows the messages that the drone understands on top of those implemented by the base simulation software. Figure \ref{tbl:messages_basestation} shows the same for the base station.
 
 \begin{figure}
-\begin{tabular}{c|l|l}
-Label & Data & Action to Take \\
-NEWAREA	& Four values making a 2D rectangle	& Set this area as the new area to collect data over. Call the function to split this into points. \\
-BASEIP & An IP Address & Record this IP address as the base station's IP address. \\
-DRONEIP	& An IP Address	& Record this IP address in the list of drone IP addresses. \\
-LOC	& The current location, angle, speed and routing priority of another drone & Perform collision avoidance. \\
+\begin{tabular}{|p{2cm}|p{4cm}|p{7.5cm}|}
+\hline
+Label & Data & Action to Take \\ \hline
+NEWAREA	& Four values making a 2D rectangle	& Set this area as the new area to collect data over. Call the function to split this into points. \\ \hline
+BASEIP & An IP Address & Record this IP address as the base station's IP address. \\ \hline
+DRONEIP	& An IP Address	& Record this IP address in the list of drone IP addresses. \\ \hline
+LOC	& The current location, angle, speed and routing priority of another drone & Perform collision avoidance. \\ \hline
 \end{tabular}
 \caption{Table showing the messages a drone understands}
 \label{tbl:messages_drone}
 \end{figure}
 
 \begin{figure}
-\begin{tabular}{c|l|l}
-Label	& Data							& Action to Take	\\
-DRONEIP	& An IP Address					& Record this IP address in the list of drone IP addresses. \\
-DATUM	& A point location and value	& This is a data value from a drone so record it.
+\begin{tabular}{|p{2cm}|p{4cm}|p{7.5cm}|}
+\hline
+Label	& Data							& Action to Take	\\ \hline
+DRONEIP	& An IP Address					& Record this IP address in the list of drone IP addresses. \\ \hline
+DATUM	& A point location and value	& This is a data value from a drone so record it. \\ \hline
 \end{tabular}
 \caption{Table showing the messages the base station understands}
 \label{tbl:messages_basestation}
@@ -68,9 +70,9 @@ and the maximum change in the y direction is given by,
 \end{verbatim}
 where t is the broadcast interval, s is the speed of the drone, and $\theta$ is the current facing of the drone.
 
-\begin{figure}[h!]
+\begin{figure}
 \centering
-\includegraphics[width=15cm]{DroneFlight}
+\includegraphics[scale=0.5]{DroneFlight}
 \caption{Two drones and their projected paths with $\theta$ angles shown.}
 \label{fig:drone_flight}
 \end{figure}
