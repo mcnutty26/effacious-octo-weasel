@@ -6,8 +6,15 @@ In this network, as expected, the base station will perform the task of dissemin
 
 Once this has been done, the base station determines which sections of the defined area will be allocated to each drone. This is done simply by splitting the area 1-dimensionally along the x-direction, where each drone is responsible for all points in the y-direction as shown in figure \ref{fig:area_dissemination}. The base station then waits messages from the drones containing temperature information.
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=15cm]{DroneAreas}
+\caption{Dissemination of the area to drones.}
+\label{fig:area_dissemination}
+\end{figure}
+
 \subsection{The Drones}
-Similarly to the base station, the first thing the drones do is broadcast their address to everything around, followed by waiting to receive the address of the base station. Before the drones then do anything, they wait for the areas that they are to collect data on. Once this has been received, the drones systematically travel to each allocated point in space, measuring the temperature and moving onto the next. The physical routing techniques used for this are described in section \ref{sec:physicalrouting}.
+Similarly to the base station, the first thing the drones do is broadcast their address to everything around, followed by waiting to receive the address of the base station. Before the drones then do anything, they wait for the areas that they are to collect data on. Once this has been received, the drones systematically travel to each allocated point in space, measuring the temperature and moving onto the next. The physical routing techniques used for this are described in section \ref{sec:physicalrouting_collsionavoidance}.
 
 Each time a drone collects data from a point in the area, it sends that data back to the base station immediately, meaning the base station receives many small messages each containing a single data point. This was done for two reasons. Firstly, the base station can spread the work of combining the data over the course of the system execution. Secondly, this means that if one of the drones fails, then its previous work is not lost.
 
@@ -47,6 +54,7 @@ As described in the physical routing section of the design, the drone's understa
 When the drone receives the area it is to sense over, it is in the form of four values corresponding to the x-min, y-min, x-max, and y-max denoting a 2-dimensional plane. Using the sensing radius of the drone's sensing equipment, passed in as arguments to the drone when it is started, the drone determines how many measurements it will need to perform in order to cover the whole area. These points are then stored in a C++ queue so that the elements can be accessed in a strict order. The ordering walks up and down the area so that the drone has to travel the smallest distance between points. The queue is efficient and easy to iteratively add to as opposed to a vector.
 
 \subsection{Collision Avoidance}
+\label{sec:physicalrouting_collsionavoidance}
 
 The overall physical routing technique used for collision avoidance was described in the physical routing design section. It was implemented as described there, with both drones calculating if a collision would occur and, if one would, one flying higher than the other so that the collision is avoided.
 
@@ -59,6 +67,13 @@ and the maximum change in the y direction is given by,
 	dy = t * 2 * s * cos(\theta)
 \end{verbatim}
 where t is the broadcast interval, s is the speed of the drone, and $\theta$ is the current facing of the drone.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=15cm]{DroneFlight}
+\caption{Two drones and their projected paths with $\theta$ angles shown.}
+\label{fig:drone_flight}
+\end{figure}
 
 Unfortunately, this alone leaves the issue presented if the drones are moving too fast and will not collide at the end of their movement, but rather at single point during their movement. While it is possible to extrapolate back from the collision to find the exact point of collision, for this it is not necessary to know exactly where and when the drones would collide, only that they will so it can be avoided. Because of this, the algorithm then checks for a collision another four times along the path of the drones.
 
