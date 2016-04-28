@@ -39,26 +39,27 @@ This list is not exhaustive, and many tasks were performed by more than one grou
 \section{Time Management}
 One of the most important areas of project management is the ability to complete the project within time constraints. Therefore, it is necessary to accurately identify and schedule tasks to be completed within a reasonable timeframe. A projected timeline for the project is shown in figure \ref{timeline}, which outlines the fundamental tasks, and a Gantt chart is also included in figure \ref{gantt} which shows the scheduling of those events, from the beginning of the project until delivery. 
 
-\begin{table}
+\begin{table}[]
 \centering
-\caption{Project timeline}
+\caption{Schedule of project tasks}
 \label{timeline}
-\begin{tabular}{lll}
-Time           & Task                                                                         & Details                                                                                                                                       \\
-T1 W1,2        & \begin{tabular}[c]{@{}l@{}}Group Meeting\\   Supervisor Meeting\end{tabular} & Meet up to discuss project planning and schedule meeting times.                                                                               \\
-T1 W3,4        & Project Planning                                                             & Decide upon tasks to be completed up until project specification.                                                                             \\
-T1 W5,6        & Project Research                                                             & \begin{tabular}[c]{@{}l@{}}Research subject material to aid in design such as simulators and\\   drones.\end{tabular}                         \\
-T1 W7,8        & Design Completion                                                            & \begin{tabular}[c]{@{}l@{}}Complete the design of each project component so as to begin\\   implementation.\end{tabular}                      \\
-T1 W9          & Initial Project Specification                                                & \begin{tabular}[c]{@{}l@{}}Write-up project specification. \\   Have supervisor check draft and revise.\end{tabular}                          \\
-T1 W9,10       & Simulation Environment                                                       & \begin{tabular}[c]{@{}l@{}}Complete implementation of basic simulation environment including\\   nodes and communication models.\end{tabular} \\
-Holiday        & N/A                                                                          & Temporary buffer for tasks running overtime.                                                                                                  \\
-T2 W1-5        & Communications Routing                                                       & Complete message passing using communications algorithms in simulator.                                                                        \\
-T2 W1-5        & Physical Routing                                                             & Complete physical routing for nodes in simulator.                                                                                             \\
-T2 W5-8        & Simulator Visualisation                                                      & Complete graphical output for simulation execution.                                                                                           \\
-T2 W5-8        & Simulator Demonstration                                                      & \begin{tabular}[c]{@{}l@{}}Complete demonstration of drone network simulation to be adapted to\\   hardware\end{tabular}                      \\
-T2 W9,10       & Physical Deployment                                                          & \begin{tabular}[c]{@{}l@{}}Complete adaption of simulation code to hardware.\\   Deploy network and record results.\end{tabular}              \\
-Holiday, T3 W1 & Final Project report                                                         & Complete project report following results of deployment.                                                                                      \\
-T3 W2-3        & Final Presentation                                                           & \begin{tabular}[c]{@{}l@{}}Prepared demo video for presentation.\\   Present results to complete the project.\end{tabular}                   
+\begin{tabular}{|l|l|l|}
+\hline
+Time           & Task                                                                         & Details                                                                                                                                       \\ \hline
+T1 W1,2        & \begin{tabular}[c]{@{}l@{}}Group Meeting\\   Supervisor Meeting\end{tabular} & Meet up to discuss project planning and schedule meeting times.                                                                               \\ \hline
+T1 W3,4        & Project Planning                                                             & Decide upon tasks to be completed up until project specification.                                                                             \\ \hline
+T1 W5,6        & Project Research                                                             & \begin{tabular}[c]{@{}l@{}}Research subject material to aid in design such as simulators and\\   drones.\end{tabular}                         \\ \hline
+T1 W7,8        & Design Completion                                                            & \begin{tabular}[c]{@{}l@{}}Complete the design of each project component so as to begin\\   implementation.\end{tabular}                      \\ \hline
+T1 W9          & Initial Project Specification                                                & \begin{tabular}[c]{@{}l@{}}Write-up project specification. \\   Have supervisor check draft and revise.\end{tabular}                          \\ \hline
+T1 W9,10       & Simulation Environment                                                       & \begin{tabular}[c]{@{}l@{}}Complete implementation of basic simulation environment including\\   nodes and communication models.\end{tabular} \\ \hline
+Holiday        & N/A                                                                          & Temporary buffer for tasks running overtime.                                                                                                  \\ \hline
+T2 W1-5        & Communications Routing                                                       & Complete message passing using communications algorithms in simulator.                                                                        \\ \hline
+T2 W1-5        & Physical Routing                                                             & Complete physical routing for nodes in simulator.                                                                                             \\ \hline
+T2 W5-8        & Simulator Visualisation                                                      & Complete graphical output for simulation execution.                                                                                           \\ \hline
+T2 W5-8        & Simulator Demonstration                                                      & \begin{tabular}[c]{@{}l@{}}Complete demonstration of drone network simulation to be adapted to\\   hardware\end{tabular}                      \\ \hline
+T2 W9,10       & Physical Deployment                                                          & \begin{tabular}[c]{@{}l@{}}Complete adaption of simulation code to hardware.\\   Deploy network and record results.\end{tabular}              \\ \hline
+Holiday, T3 W1 & Final Project report                                                         & Complete project report following results of deployment.                                                                                      \\ \hline
+T3 W2-3        & Final Presentation                                                           & \begin{tabular}[c]{@{}l@{}}Prepared demo video for presentation.\\   Present results to complete the project.\end{tabular}                    \\ \hline
 \end{tabular}
 \end{table}
 
@@ -119,24 +120,25 @@ The risks involved with the project are detailed in table \ref{risktable}.
 \centering
 \caption{List of risks for the project}
 \label{risktable}
-\begin{tabular}{|l|l|l}
-\# & Risk Event                                                           & Mitigation                                                                                                                                                               \\
-1  & Team member falls ill during the project                             & \begin{tabular}[c]{@{}l@{}}Reassign tasks where necessary and focus on schedule. Use buffer time\\   if necessary.\end{tabular}                                          \\
-2  & Parrot drones have faulty hardware                                   & \begin{tabular}[c]{@{}l@{}}Reason with Department for replacement hardware and focus on other\\   tasks.\end{tabular}                                                    \\
-3  & Any hardware breaks or is faulty                                     & Same as 2 - replace where necessary or continue without if possible.                                                                                                     \\
-4  & Lack of contribution from a team member                              & \begin{tabular}[c]{@{}l@{}}Attempt to encourage the team member and assist with the task if\\   necessary. If problem persists, consult project supervisor.\end{tabular} \\
-5  & Development turns out to be too difficult technically                & \begin{tabular}[c]{@{}l@{}}Consult project supervisor for advice as to changing the project/project\\   task/how to complete the task in question.\end{tabular}          \\
-6  & Code becomes corrupted or lost due to accident/damage                & Recover backup code from git repository and continue.                                                                                                                    \\
-7  & Simulation environment is too slow to perform as needed              & \begin{tabular}[c]{@{}l@{}}Consider optimisation of simulation as priority over other tasks in\\   order to preserve core functionality\end{tabular}                     \\
-8  & Research for drone sensor networks is limited                        & \begin{tabular}[c]{@{}l@{}}Focus on combinations of alternatives e.g. research on drones,\\   research on sensor networks\end{tabular}                                   \\
-9  & Unable to implement visualisation for the simulation                 & \begin{tabular}[c]{@{}l@{}}Focus on ensuring that other key functionality is achieved/maintained\\   for the simulator and consider as future work\end{tabular}          \\
-10 & Drone gets lost during deployment due to loss of signal/out of range & Go call security lol                                                                                                                                                     \\
-11 & Communications routing is too difficult/time costly to implement     & \begin{tabular}[c]{@{}l@{}}Consider finding and using pre-existing libraries which can be\\   imported to the stimulator\end{tabular}                                    \\
-12 & Physical routing is too difficult/time costly to implement           & \begin{tabular}[c]{@{}l@{}}Consider reverting to core functionality or pre-existing libraries\\   where necessary\end{tabular}                                           \\
-13 & Drones are unable to perform collision detection                     & \begin{tabular}[c]{@{}l@{}}Ensure that drones manage individual, well-separated airspace only and\\   are physically unable to go near each other\end{tabular}           \\
-14 & Physical deployment is not completed on time                         & \begin{tabular}[c]{@{}l@{}}Focus on functionality of the simulator for demo and present\\   theoretical results for real deployment where possible\end{tabular}          \\
-15 & Scheduling is poorly managed and tasks are overestimated timewise    & \begin{tabular}[c]{@{}l@{}}Re-evaluate schedule and use buffer time if necessary. Tasks may also\\   be added or removed where necessary\end{tabular}                    \\
-16 & Demonstration code for simulation is not completed on time           & \begin{tabular}[c]{@{}l@{}}Revert to using example code used to test simulation for demo and\\   physical deployment.\end{tabular}                                       \\
-17 & Use of drones on campus is deemed illegal/unsanctioned               & \begin{tabular}[c]{@{}l@{}}Find open airspace in alternate location which is not monitored/free\\   to use\end{tabular}                                                 
+\begin{tabular}{|l|l|l|}
+\hline
+\# & Risk Event                                                           & Mitigation                                                                                                                                                               \\ \hline
+1  & Team member falls ill during the project                             & \begin{tabular}[c]{@{}l@{}}Reassign tasks where necessary and focus on schedule. Use buffer time\\   if necessary.\end{tabular}                                          \\ \hline
+2  & Parrot drones have faulty hardware                                   & \begin{tabular}[c]{@{}l@{}}Reason with Department for replacement hardware and focus on other\\   tasks.\end{tabular}                                                    \\ \hline
+3  & Any hardware breaks or is faulty                                     & Same as 2 - replace where necessary or continue without if possible.                                                                                                     \\ \hline
+4  & Lack of contribution from a team member                              & \begin{tabular}[c]{@{}l@{}}Attempt to encourage the team member and assist with the task if\\   necessary. If problem persists, consult project supervisor.\end{tabular} \\ \hline
+5  & Development turns out to be too difficult technically                & \begin{tabular}[c]{@{}l@{}}Consult project supervisor for advice as to changing the\\   project/project task/how to complete the task in question.\end{tabular}          \\ \hline
+6  & Code becomes corrupted or lost due to accident/damage                & Recover backup code from git repository and continue.                                                                                                                    \\ \hline
+7  & Simulation environment is too slow to perform as needed              & \begin{tabular}[c]{@{}l@{}}Consider optimisation of simulation as priority over other tasks in\\   order to preserve core functionality\end{tabular}                     \\ \hline
+8  & Research for drone sensor networks is limited                        & \begin{tabular}[c]{@{}l@{}}Focus on combinations of alternatives e.g. research on drones,\\   research on sensor networks\end{tabular}                                   \\ \hline
+9  & Unable to implement visualisation for the simulation                 & \begin{tabular}[c]{@{}l@{}}Focus on ensuring that other key functionality is achieved/maintained\\   for the simulator and consider as future work\end{tabular}          \\ \hline
+10 & Drone gets lost during deployment due to loss of signal/out of range & Go call security lol                                                                                                                                                     \\ \hline
+11 & Communications routing is too difficult/time costly to implement     & \begin{tabular}[c]{@{}l@{}}Consider finding and using pre-existing libraries which can be\\   imported to the stimulator\end{tabular}                                    \\ \hline
+12 & Physical routing is too difficult/time costly to implement           & \begin{tabular}[c]{@{}l@{}}Consider reverting to core functionality or pre-existing libraries\\   where necessary\end{tabular}                                           \\ \hline
+13 & Drones are unable to perform collision detection                     & \begin{tabular}[c]{@{}l@{}}Ensure that drones manage individual, well-separated airspace only\\   and are physically unable to go near each other\end{tabular}           \\ \hline
+14 & Physical deployment is not completed on time                         & \begin{tabular}[c]{@{}l@{}}Focus on functionality of the simulator for demo and present\\   theoretical results for real deployment where possible\end{tabular}          \\ \hline
+15 & Scheduling is poorly managed and tasks are overestimated timewise    & \begin{tabular}[c]{@{}l@{}}Re-evaluate schedule and use buffer time if necessary. Tasks may also\\   be added or removed where necessary\end{tabular}                    \\ \hline
+16 & Demonstration code for simulation is not completed on time           & \begin{tabular}[c]{@{}l@{}}Revert to using example code used to test simulation for demo and\\   physical deployment.\end{tabular}                                       \\ \hline
+17 & Use of drones on campus is deemed illegal/unsanctioned               & \begin{tabular}[c]{@{}l@{}}Find open airspace in alternate location which is not monitored/free\\   to use\end{tabular}                                                  \\ \hline
 \end{tabular}
 \end{table}
