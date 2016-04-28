@@ -85,7 +85,7 @@ For most cases, however, 3 dimensions will not be needed. In most environments, 
 \subsubsection{Collision Avoidance}
 \label{sec:design_physicalrouting_collisionavoidance}
 		
-The main routing problem that is present in the specification is dealing with other drones moving about the environment. Pathfinding around immobile objects is relatively simple, as explained above in section \ref{design_physicalrouting_pathfinding}. Conversely, ensuring that no collisions occur between the drones requires real-time updates on the locations of every agent in the system.
+The main routing problem that is present in the specification is dealing with other drones moving about the environment. Pathfinding around immobile objects is relatively simple, as explained above in section \ref{sec:design_physicalrouting_pathfinding}. Conversely, ensuring that no collisions occur between the drones requires real-time updates on the locations of every agent in the system.
 
 Each drone must be responsible for its own collision avoidance around it. Given the drones have no way of easily detecting the presence of other drones, then the drones must continuously broadcast their positions so that any nearby drone can react accordingly. To enable this, each drone will broadcast its location to all other drones in set intervals.
 
