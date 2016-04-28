@@ -219,10 +219,11 @@ While there are native C bindings for the Parrot AR 2, creating an application w
 	$AT*PCMD_MAG=21625,1,0,0,0,0,0,0<CR>AT*REF=21626,290717696<CR>$
 	
 	The list of valid AT commands can be found in table \ref{atcomm}, and contains three characters (``AT*'') followed by a command name, an equals sign, a sequence number, and a list of arguments if appropriate. The sequence number is used to prevent a drone from following out of date instructions: any commands received with a sequence number lower than the highest received sequence number are dropped.
-	
-	\begin{figure}[H]
+\end{aside}
+
+\begin{figure}
 		\centering
-		\begin{tabular}{|c|c|c|}
+		\begin{tabular}{|p{2.5cm}|p{4cm}|p{7cm}|}
 			\hline AT command & Argument(s) & Description \\ 
 			\hline AT*REF & input & Takeoff/Landing/Emergency stop command \\ 
 			\hline AT*PCMD & flag, roll, pitch,
@@ -243,7 +244,6 @@ While there are native C bindings for the Parrot AR 2, creating an application w
 		\caption{Valid AT commands for Parrot quadcopters\cite{piskorski2012ar}}
 		\label{atcomm}
 	\end{figure}
-\end{aside}
 
 As mentioned above, there was an issue with how movement would be translated from the \{speed, distance\} format for used by the simulator and the \{speed, time\} format used by the drones. The first attempt at solving this problem assumed that the application would have easy access to GPS coordinates from the paired drone, and used this to perform location checks in the same way as for simulated runs. It was later learned that there was only one GPS unit available for the two quadcopters obtained, and extracting information from it at runtime was non-trivial. The fallback plan developed involved estimating the time taken for a drone to travel a given distance based on the normalised speed which the \textit{ardrone} library requires. This had to be based on experimental evidence, and was not consistent due to the fact that is was not possible to use a linear model over short distances (see notes about drone movement in movement aside).
 
