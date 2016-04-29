@@ -14,6 +14,8 @@ var class_comm_mod =
     [ "getAlive", "class_comm_mod.html#a77d334889146127e72381eec9cf3dd55", null ],
     [ "getTime", "class_comm_mod.html#a7415ee1b2835f8cb0d650df6ed80622a", null ],
     [ "getTime", "class_comm_mod.html#a7415ee1b2835f8cb0d650df6ed80622a", null ],
+    [ "pass_message", "class_comm_mod.html#a9df6efcac0a3320c8c895cfe01052dae", null ],
+    [ "pass_message", "class_comm_mod.html#a9df6efcac0a3320c8c895cfe01052dae", null ],
     [ "push_in_message", "class_comm_mod.html#a2acc6cb30eb7c9d55e3893da147db839", null ],
     [ "push_in_message", "class_comm_mod.html#a2acc6cb30eb7c9d55e3893da147db839", null ],
     [ "push_out_message", "class_comm_mod.html#a696711acc752f9c2c60865194de3287f", null ],
