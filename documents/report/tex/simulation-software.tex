@@ -1,14 +1,15 @@
 \tikzstyle{env} = [rectangle, rounded corners, text centered, draw=black, fill=red!30]
 \tikzstyle{vert} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\emph{This section will focus on an analysis of the implementation of the simulator, more specifically on how each element of the simulator interacts and the general structure of the simulator itself}
 
-\section{The Original Choice of ns3}
+\section{The Original Choice of ns-3}
 \label{ns3decision}
-As the premier free and open source network simulation tool, ns3 seemed like the perfect choice for the project. The vast body of functionality that ns3 has built up over its lifetime means that most of the code that would be required could be reused, both shortening development time and reducing implementation errors.
+As the premier free and open source network simulation tool, ns-3 seemed like the perfect choice for the project. The vast body of functionality that ns-3 has built up over its lifetime means that most of the code that would be required could be reused, both shortening development time and reducing implementation errors.
 
-Compared to its competitors, ns3 had the richest feature set, as well as the best API documentation. For this reason it appeared to be the easiest product to use.
+Compared to its competitors, ns-3 had the richest feature set, as well as the best API documentation. For this reason it appeared to be the easiest product to use.
 
-\section{Why ns3 was Dropped in Favour of a Bespoke Solution}
-Unfortunately, despite the promising findings of our preliminary research, it became apparent when ns3  was used to inform our initial design work that it would not be suitable for the project. The sheer amount of features in ns3 lead to a level of complexity which made it inaccessible. Whilst individual features were well documented and easy to use, amalgamations of%ii these features were much harder to implement (not helped by a lack of documentation).
+\section{Why ns-3 was Dropped in Favour of a Bespoke Solution}
+Unfortunately, despite the promising findings of our preliminary research, it became apparent when ns-3  was used to inform our initial design work that it would not be suitable for the project. The sheer amount of features in ns-3 lead to a level of complexity which made it inaccessible. Whilst individual features were well documented and easy to use, amalgamations of these features were much harder to implement (not helped by a lack of documentation).
 
 After some time spent struggling to actuate what were fairly simple tasks in the grand scheme of the project, it became clear that an alternative would need to be found. Given that even the masters level module at Warwick stops short of requiring students to perform more than simple tasks, the project would need something more accessible in order to achieve the requirement of being easy to use.
 
@@ -16,7 +17,6 @@ The research presented in section \ref{simSoft} shows the other network simulato
 
 Finally, a key advantage of creating a new simulator was that it would allow for easier deployment of programs to actual hardware. Given the breadth of drone models and software available, adapting an existing solution to be generic enough to interface with even a small subset of hardware available would have been a gargantuan task.
 
-\emph{This section will focus on an analysis of the implementation of the simulator, more specifically on how each element of the simulator interacts and the general structure of the simulator itself}
 
 \section{Code Structure and Development Methodology}
 	The simulator was created to be as modular as possible with each subsystem having very clearly defined
@@ -31,8 +31,8 @@ Finally, a key advantage of creating a new simulator was that it would allow for
 	of the simulator is that users extend the classes provided to use the simulator. This also
 	allows users to extend the simulator in order to alter the way that the simulator works. As it is,
 	the simulator is devoid of any non-essential features, but this is by design, as the main problem
-	identified with NS3, was feature bloat, causing
-	the entire system to be unfocussed and thus more difficult to develop for than a more focussed system.
+	identified with ns-3, was feature bloat, causing
+	the entire system to be unfocused and thus more difficult to develop for than a more focussed system.
 
 	Despite seemingly contradicting the first point of this section, the simulator is also interconnecting,
 	every system is related in some way to the other systems, Drone works very similarly to Base Station
@@ -56,8 +56,8 @@ Finally, a key advantage of creating a new simulator was that it would allow for
 		that have elapsed since the beginning of the simulation).
 
 		Another responsibility of the environment code is to handle the broadcasting of messages to
-		the drones, in the implementation this is achieved relatively inefficiently, using a simple collision detection
-		method to check whether every known messageable is in range or not, this could be a target
+		the drones. In the implementation, this is achieved relatively inefficiently using a simple collision detection
+		method to check whether every known messageable is in range or not. This could be a target
 		for optimisation for further development of the simulator, as will be outlined in the optimisation
 		section below.
 
@@ -73,7 +73,7 @@ Finally, a key advantage of creating a new simulator was that it would allow for
 
 		In terms of the actual functionality built in to the ``CommMod" class that represents the communications
 		modules, it does little but pass messages and call the environment's ``broadcast" method. This is because
-		the communications modules are not defined by the simulator but rather the user, allowing for any user defined
+		the communications modules are not defined by the simulator but rather the user, allowing for any user-defined
 		communication protocols to be used.
 
 		The job of each communication module's thread is to run the supplied function until it terminates.
@@ -88,7 +88,7 @@ Finally, a key advantage of creating a new simulator was that it would allow for
 		Each messageable's thread runs the user's overwritten function in the final subclass of the messageable.
 
 		\subsubsection{Drone}
-			Drone is a subclass of Messageable. The changes made to messageable with drone are simple, introducing
+			Drone is a subclass of Messageable. The changes made to Messageable with Drone are simple, introducing
 			new functions to facilitate the movement of the drone, as well as various utility functions to query the
 			status of the drone, most of these functions are never called in the simulator itself, but rather are
 			designed to be called by user defined subclasses of drone in the override of the ``run" function.
