@@ -1,3 +1,5 @@
+\emph{This section will outline the implementation of the demonstration program that shows a specific use case of the simulator: that of programming a drone network to measure temperature over a large area. A discussion is given on the specific methods chosen and why, as well as what this means for other applications of the simulation software. In addition to this, the section will go over the implementation of the physical routing algorithms described in the design section, as well as where they were used. This includes an explanation of the collision avoidance and area representation required for such techniques, and how they may be applied to other applications.}
+
 \section{Drone and Base Station Sample Implementation}
 In order to demonstrate the capabilities of the octoDrone product, both through the simulation and physical drones, a sample set of code was written. This demonstrative drone network uses heat sensors on the drones to collect temperature data across a predefined area. This does, of course, draw an immediate link with the forest fires prevalent in California. Once the 'normal' temperatures for an area are monitored, it could be extended such that any unexpected change to this temperature might mean there is the beginnings of a fire. Once alerted, wardens could confirm or refute this premise using cameras on the drone. This chapter covers the implementation of the demonstration code and physical routing algorithms used.
 
@@ -22,7 +24,8 @@ Each time a drone collects data from a point in the area, it sends that data bac
 
 The reliable delivery of messages between the drones and base station are handled by the communication module. However, the implementation of a given system must specify how the messages are acting upon and how they are managed. For this implementation, both the drone and base station listen for messages during their program loops. When a messages is received it is then 'interpreted' by entering into a separate function that deals with all possible actions that might need to be done regarding a messages. For example, A drone might receive a message informing it of the base station's IP address. The table in figure \ref{tbl:messages_drone} shows the messages that the drone understands on top of those implemented by the base simulation software. Figure \ref{tbl:messages_basestation} shows the same for the base station.
 
-\begin{figure}
+\begin{table}[]
+\centering
 \begin{tabular}{|p{2cm}|p{4cm}|p{7.5cm}|}
 \hline
 Label & Data & Action to Take \\ \hline
@@ -33,9 +36,10 @@ LOC	& The current location, angle, speed and routing priority of another drone &
 \end{tabular}
 \caption{Table showing the messages a drone understands}
 \label{tbl:messages_drone}
-\end{figure}
+\end{table}
 
-\begin{figure}
+\begin{table}[]
+\centering
 \begin{tabular}{|p{2cm}|p{4cm}|p{7.5cm}|}
 \hline
 Label	& Data							& Action to Take	\\ \hline
@@ -44,7 +48,7 @@ DATUM	& A point location and value	& This is a data value from a drone so record
 \end{tabular}
 \caption{Table showing the messages the base station understands}
 \label{tbl:messages_basestation}
-\end{figure}
+\end{table}
 
 \subsection{What Does this Demonstrate?}
 This sample application demonstrates that it is very much possible for a working drone network to be built using the simulation. It shows the drones working autonomously and separate from each other, as well as a base station performing a similar task as would be expected in a real-world application. While this system only provides simple functionality, it demonstrates the possibility for a wide array of applications using fault tolerance, efficient communication, and robust physical routing.
