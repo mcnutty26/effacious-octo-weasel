@@ -15,7 +15,7 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
-std::vector<Element> elements;
+std::vector<Element>* elements;
 
 std::atomic_flag lock_vis = ATOMIC_FLAG_INIT;
 
@@ -25,6 +25,7 @@ bool running;
 
 void createWindow()
 {
+	elements = new std::vector<Element>();
 	if(!glfwInit())
 	{
 		std::cout << "error@visualisation, GLFW failed to initialise" << std::endl;
@@ -104,11 +105,11 @@ void Element::draw()
 void step()
 {
 	while(lock_vis.test_and_set()){}
-	for(auto i = elements.begin(); i != elements.end(); ++i)
+	for(auto i = elements->begin(); i != elements->end(); ++i)
 	{
 		if(i->step())
 		{
-			i = elements.erase(i);
+			i = elements->erase(i);
 			--i;
 		}
 	}
@@ -123,7 +124,7 @@ void visLoop()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		while(lock_vis.test_and_set()){}
-		for(auto i = elements.begin(); i != elements.end(); ++i)
+		for(auto i = elements->begin(); i != elements->end(); ++i)
 		{
 			i->draw();
 		}
@@ -137,19 +138,20 @@ void visLoop()
 void visKill()
 {
 	running = false;
+	delete elements;
 }
 
 void pushDrone(int x, int y)
 {
-	elements.emplace_back(IMG::DRONE, x, y, 1, 1);
+	elements->emplace_back(IMG::DRONE, x, y, 1, 1);
 }
 
 void pushBcast(int x, int y, int range)
 {
-	elements.emplace_back(IMG::BCAST, x, y, range, 5);
+	elements->emplace_back(IMG::BCAST, x, y, range, 5);
 }
 
 void pushBstation(int x, int y)
 {
-	elements.emplace_back(IMG::STATION, x, y, 1, -1);
+	elements->emplace_back(IMG::STATION, x, y, 1, -1);
 }
