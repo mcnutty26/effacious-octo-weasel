@@ -32,7 +32,7 @@ int main(int argv, char* argc[]){
 	std::map<std::string, data_type>* sensor_map = new std::map<std::string, data_type>;
 
 	//create the environment and comm module
-	Environment* env = new Environment(*sensor_map, "10.0.0.1");
+	Environment* env = new Environment(*sensor_map, "10.0.0.2");
 	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
 
 	CommMod* comm_basic = new Basic(env, &stdout_lock);

@@ -40,6 +40,12 @@ toda.o: TODa.cpp
 todb.o: TODb.cpp
 	$(CXX) $(CXXFLAGS) -c -o build/todb.o src/TODb.cpp -I ../liboctodroneparrot/include -I ../liboctodronecomms/include -I ../programs/include
 
+cada.o: CADa.cpp
+	$(CXX) $(CXXFLAGS) -c -o build/cada.o src/CADa.cpp -I ../liboctodroneparrot/include -I ../liboctodronecomms/include -I ../programs/include
+
+cada.o: CADb.cpp
+	$(CXX) $(CXXFLAGS) -c -o build/cadb.o src/CADb.cpp -I ../liboctodroneparrot/include -I ../liboctodronecomms/include -I ../programs/include
+
 aodvtest: AodvTestSim.o
 	$(CXX) $(CXXFLAGS) -o bin/aodvtestsim build/AodvTestSim.o ../liboctodronecomms/src/Basic_message.cpp $(SIMLINK) $(SLDFLAGS)
 
@@ -56,6 +62,10 @@ sensing: SensingSim.o
 tod: toda.o todb.o
 	$(CXX) $(CXXFLAGS) -o bin/toda build/toda.o ../liboctodronecomms/src/Basic_message.cpp $(PARLINK) $(PLDFLAGS)
 	$(CXX) $(CXXFLAGS) -o bin/todb build/todb.o ../liboctodronecomms/src/Basic_message.cpp $(PARLINK) $(PLDFLAGS)
+
+cad: cada.o cadb.o
+	$(CXX) $(CXXFLAGS) -o bin/cada build/cada.o ../liboctodronecomms/src/Basic_message.cpp $(PARLINK) $(PLDFLAGS)
+	$(CXX) $(CXXFLAGS) -o bin/cadb build/cadb.o ../liboctodronecomms/src/Basic_message.cpp $(PARLINK) $(PLDFLAGS)
 
 clean:
 	$(RM) build/*

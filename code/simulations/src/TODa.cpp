@@ -32,7 +32,7 @@ int main(int argv, char* argc[]){
 	std::map<std::string, data_type>* sensor_map = new std::map<std::string, data_type>;
 
 	//create the environment and comm module
-	Environment* env = new Environment(*sensor_map, "10.0.0.1");
+	Environment* env = new Environment(*sensor_map, "10.0.0.2");
 	std::atomic_flag stdout_lock = ATOMIC_FLAG_INIT;
 
 	CommMod* comm_basic = new Basic(env, &stdout_lock);
@@ -40,7 +40,7 @@ int main(int argv, char* argc[]){
 
 	//create and add drones
 	Dummy_program* base = new Dummy_program(comm_dummy, 0.0, 0.0, 0.0);
-	TakeOff* drone1 = new TakeOff(comm_basic, 0.0, 0.0, 0.0, 0.1, env, true);
+	TakeOff* drone1 = new TakeOff(comm_basic, 0.0, 0.0, 0.0, 1.0, env, true);
 	env->addDrone(drone1);
 	env->setBaseStation(base);
 
