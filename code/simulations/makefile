@@ -17,7 +17,7 @@ endef
 vpath %.cpp src
 vpath %.o build
 
-all: aodvtest basictest parrottest sensing
+all: aodvtest basictest parrottest sensing tod
 
 AodvTestSim.o: AodvTestSim.cpp
 	$(CXX) $(CXXFLAGS) -c -o build/AodvTestSim.o src/AodvTestSim.cpp -I ../liboctodrone/include -I ../liboctodronecomms/include -I ../programs/include
@@ -34,6 +34,12 @@ ParrotTestSimB.o: ParrotTestSimB.cpp
 SensingSim.o: SensingSim.cpp
 	$(CXX) $(CXXFLAGS) -c -o build/SensingSim.o src/SensingSim.cpp -I ../liboctodrone/include -I ../liboctodronecomms/include -I ../programs/include
 
+toda.o: TODa.cpp
+	$(CXX) $(CXXFLAGS) -c -o build/toda.o src/TODa.cpp -I ../liboctodroneparrot/include -I ../liboctodronecomms/include -I ../programs/include
+
+todb.o: TODb.cpp
+	$(CXX) $(CXXFLAGS) -c -o build/todb.o src/TODb.cpp -I ../liboctodroneparrot/include -I ../liboctodronecomms/include -I ../programs/include
+
 aodvtest: AodvTestSim.o
 	$(CXX) $(CXXFLAGS) -o bin/aodvtestsim build/AodvTestSim.o ../liboctodronecomms/src/Basic_message.cpp $(SIMLINK) $(SLDFLAGS)
 
@@ -46,6 +52,10 @@ parrottest: ParrotTestSimA.o ParrotTestSimB.o
 
 sensing: SensingSim.o
 	$(CXX) $(CXXFLAGS) -o bin/sensingsim build/SensingSim.o ../liboctodronecomms/src/Basic_message.cpp $(SIMLINK) $(SLDFLAGS)
+
+tod: toda.o todb.o
+	$(CXX) $(CXXFLAGS) -o bin/toda build/toda.o ../liboctodronecomms/src/Basic_message.cpp $(PARLINK) $(PLDFLAGS)
+	$(CXX) $(CXXFLAGS) -o bin/todb build/todb.o ../liboctodronecomms/src/Basic_message.cpp $(PARLINK) $(PLDFLAGS)
 
 clean:
 	$(RM) build/*

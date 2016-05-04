@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License
 along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef EOW_PROGRAMS_PARROT
-	#define EOW_PROGRAMS_PARROT
+#ifndef EOW_PROGRAMS_AVOID
+	#define EOW_PROGRAMS_AVOID
 
 	#include <string>
 	#include <Drone.hpp>

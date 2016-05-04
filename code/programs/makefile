@@ -15,7 +15,7 @@ define colorecho
       @tput sgr0
 endef
 
-all: BasicTest.o BasicAddrTest.o AodvTest.o ParrotTest.o SensingDrone.o SensingBaseStation.o Dummy_program.o
+all: BasicTest.o BasicAddrTest.o AodvTest.o ParrotTest.o SensingDrone.o SensingBaseStation.o Dummy_program.o TakeOff.o CollisionAvoidance.o
 
 BasicTest.o: BasicTest.cpp BasicTest.hpp
 	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/BasicTest.o src/BasicTest.cpp
@@ -37,6 +37,11 @@ SensingBaseStation.o: SensingBaseStation.cpp SensingBaseStation.hpp
 
 Dummy_program.o: Dummy_program.cpp Dummy_program.hpp
 	$(CXX) $(CXXFLAGS) $(SIMLINK) -I include -c -o build/Dummy_program.o src/Dummy_program.cpp
+
+TakeOff.o: TakeOff.cpp TakeOff.hpp
+	$(CXX) $(CXXFLAGS) $(PARLINK) -I include -c -o build/TakeOff.o src/TakeOff.cpp
+CollisionAvoidance.o: CollisionAvoidance.cpp CollisionAvoidance.hpp
+	$(CXX) $(CXXFLAGS) $(PARLINK) -I include -c -o build/CollisonAvoidance.o src/CollisionAvoidance.cpp
 
 clean:
 	$(RM) build/*
