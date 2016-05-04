@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "TakeOff.hpp"
+#include "CollisionAvoidance.hpp"
 #include "Dummy_program.hpp"
 #include <Environment.hpp>
 #include <Basic.hpp>
@@ -40,7 +40,7 @@ int main(int argv, char* argc[]){
 
 	//create and add drones
 	Dummy_program* base = new Dummy_program(comm_dummy, 0.0, 0.0, 0.0);
-	TakeOff* drone1 = new TakeOff(comm_basic, 0.0, 0.0, 0.0, 0.1, env, true);
+	CollisionAvoidance* drone1 = new CollisionAvoidance(comm_basic, 0.0, 0.0, 0.0, 1.0, env, true);
 	env->addDrone(drone1);
 	env->setBaseStation(base);
 

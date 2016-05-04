@@ -40,7 +40,7 @@ int main(int argv, char* argc[]){
 
 	//create and add drones
 	Dummy_program* base = new Dummy_program(comm_dummy, 0.0, 0.0, 0.0);
-	TakeOff* drone1 = new TakeOff(comm_basic, 0.0, 0.0, 0.0, 0.0, env, false);
+	TakeOff* drone1 = new TakeOff(comm_basic, 0.0, 0.0, 0.0, 1.0, env, false);
 	env->addDrone(drone1);
 	env->setBaseStation(base);
 
