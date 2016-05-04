@@ -22,7 +22,7 @@
                           std::cout << "CollisionAvoidance: received message" << std::endl;
 			  
                          
-                          move(Direction::FORWARD, 0.5, 4);
+                          move(Direction::FORWARD, 0.5, 1);
                           while(!hasFinishedMoving()){}
                           move(Direction::UP, 0.5, 1);
                           while(!hasFinishedMoving()){}
