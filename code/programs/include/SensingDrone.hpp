@@ -45,6 +45,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			// into points that the drone needs to go to.
 			void newArea(double x1, double y1, double x2, double y2, double height);
 
+			void log(std::string);
+
 			int m_task;
 			int* m_flag;
 			void quit();

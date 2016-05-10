@@ -37,6 +37,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 			void interpretMessage(Message* message);
 
+			void log(std::string);
+
 			double areaX1;
 			double areaX2;
 			double areaY1;

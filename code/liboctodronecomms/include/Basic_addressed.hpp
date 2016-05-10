@@ -27,6 +27,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 		public:
 			Basic_addressed(Environment*, std::atomic_flag*, std::string ip);
 			void log(std::string);
+			std::string get_ip_address();
 
 		protected:
 			void comm_function();

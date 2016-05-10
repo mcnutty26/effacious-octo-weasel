@@ -18,6 +18,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include "SensingBaseStation.hpp"
 #include <iostream>
 #include <Basic_addressed_message.hpp>
+#include <Basic_addressed.hpp>
 
 SensingBaseStation::SensingBaseStation(CommMod* cm, double xp, double yp, double zp, double areaX1, double areaY1, double areaX2, double areaY2) : BaseStation(cm, xp, yp, zp) {
 	this->areaX1 = areaX1;
@@ -132,7 +133,9 @@ void SensingBaseStation::interpretMessage(Message* msg)
 	/* Act on the message */
 	if (valueName == "DATUM")
 	{ // This message contains a data point
-		std::cout << "BASESTATION: Received point (" << values[0] << ", " << values[1] << ", " << values[2] << ") = " << values[3] << " from drone " << message->get_source() << std::endl;
+		std::string log_message = std::string(" Received point (") + values[0] + ", " + values[1] + ", " + values[2] + ", " + values[3] + " from drone " + message->get_source();
+		log(log_message);
+		//std::cout << "BASESTATION: Received point (" << values[0] << ", " << values[1] << ", " << values[2] << ") = " << values[3] << " from drone " << message->get_source() << std::endl;
 	}
 	else if (valueName == "DRONEIP")
 	{ // This message contains a drone IP
@@ -141,4 +144,9 @@ void SensingBaseStation::interpretMessage(Message* msg)
 		droneIPs.push_back(message->get_source());
 	}
 
+}
+
+void SensingBaseStation::log(std::string log_message)
+{
+	dynamic_cast<Basic_addressed*>(communicationsModule)->log(log_message);
 }

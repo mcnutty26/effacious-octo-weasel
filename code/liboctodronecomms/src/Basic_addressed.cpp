@@ -93,6 +93,11 @@ void Basic_addressed::log(std::string log_message){
 	lock->clear();
 }
 
+std::string Basic_addressed::get_ip_address()
+{
+	return ip_address;
+}
+
 std::string Basic_addressed::get_attribute(std::string message){
 	std::string attribute;
 	std::stringstream attr;

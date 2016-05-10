@@ -19,6 +19,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <Basic_message.hpp>
 #include <Basic_addressed_message.hpp>
+#include <Basic_addressed.hpp>
 #include <chrono>
 #include <thread>
 #include <cmath>
@@ -96,7 +97,8 @@ void SensingDrone::run(){
 				kill();
 				break;
 			}
-			std::cout << "DRONE: waiting for new area" << std::endl;
+			//std::cout << "DRONE: waiting for new area" << std::endl;
+			log(" waiting for new area");
 
 			while (!givenArea)
 			{
@@ -107,7 +109,8 @@ void SensingDrone::run(){
 		}
 	}
 
-	std::cout << "Drone Thread Ending" << std::endl;
+	//std::cout << "Drone Thread Ending" << std::endl;
+	log("Exiting");
 
 	/*
 	switch(m_task){
@@ -233,6 +236,8 @@ void SensingDrone::interpretMessage(Message* msg)
 	{
 		//std::cout << "DRONE: Sensing on area: ";
 		//std::cout << values.at(0) << ", " << values.at(1) << ", " << values.at(2) << ", " << values.at(3)  << std::endl;
+		log(msgstr);
+
 		newArea(std::stod(values[0]), std::stod(values[1]), std::stod(values[2]), std::stod(values[3]), 1.0);
 		givenArea = true;
 	}
@@ -295,7 +300,9 @@ void SensingDrone::interpretMessage(Message* msg)
 				waiting = true;
 				move(Direction::DOWN, getMaxSpeed(), 1);
 				waitTimer = PING_FREQ * 2;
-				std::cout << "Potential collision detected between " << message->get_source() << " and " << message->get_destination() << std::endl;
+				std::string log_message = std::string("Potential collision detected between ") + message->get_source() + " and " + message->get_destination();
+				log(log_message);
+				//std::cout << "Potential collision detected between " << message->get_source() << " and " << message->get_destination() << std::endl;
 			}
 		}
 
@@ -353,6 +360,12 @@ void SensingDrone::newArea(double x1, double y1, double x2, double y2, double he
 	std::cout << std::endl;
 	*/
 }
+
+void SensingDrone::log(std::string log_message)
+{
+	dynamic_cast<Basic_addressed*>(communicationsModule)->log(log_message);
+}
+
 /*
 void Basic_addressed::log(std::string log_message){
 	while (lock->test_and_set()){}
@@ -361,3 +374,4 @@ void Basic_addressed::log(std::string log_message){
 	lock->clear();
 }
 */
+
