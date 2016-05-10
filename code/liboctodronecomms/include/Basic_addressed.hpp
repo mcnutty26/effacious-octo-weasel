@@ -26,6 +26,8 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 	class Basic_addressed: public CommMod {
 		public:
 			Basic_addressed(Environment*, std::atomic_flag*, std::string ip);
+			void log(std::string);
+
 		protected:
 			void comm_function();
 		private:
@@ -33,7 +35,6 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 			double RANGE;
 			///An atomic lock to regulate access to stdout
 			std::atomic_flag* lock;
-			void log(std::string);
 			///The IP address of the communication module
 			std::string ip_address;
 			std::string get_attribute(std::string);

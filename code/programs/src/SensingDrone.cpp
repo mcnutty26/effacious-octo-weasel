@@ -69,6 +69,7 @@ void SensingDrone::run(){
 	}
 	//std::cout << "The Basestation IP is: " << baseStationIP << std::endl;
 
+	givenArea = false;
 
 	while (isAlive())
 	{
@@ -90,16 +91,23 @@ void SensingDrone::run(){
 		}
 		else
 		{
+			if (givenArea)
+			{
+				kill();
+				break;
+			}
 			std::cout << "DRONE: waiting for new area" << std::endl;
-			Basic_addressed_message* message = dynamic_cast<Basic_addressed_message*>(wait_for_message());
-			// Will the message be lost if it is not from the basestation?
-			//if (message->get_source() == baseStationIP)
-			//{
+
+			while (!givenArea)
+			{
+				Basic_addressed_message* message = dynamic_cast<Basic_addressed_message*>(wait_for_message());
 				interpretMessage(message);
-			//}
+			}
 			
 		}
 	}
+
+	std::cout << "Drone Thread Ending" << std::endl;
 
 	/*
 	switch(m_task){
@@ -185,6 +193,7 @@ void SensingDrone::continueJob()
 void SensingDrone::sendDataPoint(double x, double y, double z, double datum)
 {
 	std::string message = std::string("DATUM=") + std::to_string(x) + "," + std::to_string(y) + "," + std::to_string(z) + "," + std::to_string(datum);
+	//std::cout << "DRONE: Sending data point: " << message << std::endl;
 	//std::cout << "DRONE: sending message to " << baseStationIP << std::endl;
 	send_message(new Basic_addressed_message(message, "10.0.0.255", ""));
 }
@@ -225,6 +234,7 @@ void SensingDrone::interpretMessage(Message* msg)
 		//std::cout << "DRONE: Sensing on area: ";
 		//std::cout << values.at(0) << ", " << values.at(1) << ", " << values.at(2) << ", " << values.at(3)  << std::endl;
 		newArea(std::stod(values[0]), std::stod(values[1]), std::stod(values[2]), std::stod(values[3]), 1.0);
+		givenArea = true;
 	}
 	else if (valueName == "BASEIP")
 	{
@@ -239,12 +249,13 @@ void SensingDrone::interpretMessage(Message* msg)
 		// The perceived size of a drone (hopefully much bigger than the drone itself)
 
 		//std::cout << "DRONE: Received Location ping: ";
+		/*
 		for (auto v : values)
 		{
 			std::cout << v << ", ";
 		}
 		std::cout << std::endl;
-
+		*/
 
 		double collisionDiameter = 2.0;
 
@@ -284,6 +295,7 @@ void SensingDrone::interpretMessage(Message* msg)
 				waiting = true;
 				move(Direction::DOWN, getMaxSpeed(), 1);
 				waitTimer = PING_FREQ * 2;
+				std::cout << "Potential collision detected between " << message->get_source() << " and " << message->get_destination() << std::endl;
 			}
 		}
 
@@ -341,3 +353,11 @@ void SensingDrone::newArea(double x1, double y1, double x2, double y2, double he
 	std::cout << std::endl;
 	*/
 }
+/*
+void Basic_addressed::log(std::string log_message){
+	while (lock->test_and_set()){}
+	std::string ip_address = dynamic_cast<Basic_addressed*>(communicationsModule)->getIPAdress();
+	std::cout << "basic_addressed@" << ip_address << ": " << log_message << std::endl;
+	lock->clear();
+}
+*/

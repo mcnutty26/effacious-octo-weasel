@@ -65,5 +65,7 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 
 			std::string baseStationIP;
 			std::vector<std::string> droneIPs;
+
+			bool givenArea;
 	};
 #endif

@@ -51,13 +51,13 @@ void Basic_addressed::comm_function(){
 			std::string content = Basic_addressed::get_attribute(message);
 
 			if (dst_ip != ip_address && dst_ip != "255.255.255.255"){
-				log("dropped message");
+				//log("dropped message");
 				break;
 			}
 
 			Message* to_push = new Basic_addressed_message(content, dst_ip, src_ip);
 			messageable->push_message(to_push);
-			log("rec'd message");
+			//log("rec'd message");
 		}
 
 		while (!outQueue.empty()){
@@ -72,7 +72,7 @@ void Basic_addressed::comm_function(){
 			Basic_addressed_message* addressed_message = new Basic_addressed_message(message_string, dst_ip, ip_address);
 			
 			if (message->to_string() == "KILL"){
-			    log("exiting");
+			    //log("exiting");
 			    return;
 			}
 			
@@ -81,7 +81,7 @@ void Basic_addressed::comm_function(){
 			double zpos = messageable->getZ();
 			//environment->broadcast(message->to_string(), xpos, ypos, zpos, RANGE, this); 
 			environment->broadcast(addressed_message->to_string(), xpos, ypos, zpos, RANGE, this); 
-			log("broadcast message");
+			//log("broadcast message");
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}

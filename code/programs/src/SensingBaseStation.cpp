@@ -132,7 +132,7 @@ void SensingBaseStation::interpretMessage(Message* msg)
 	/* Act on the message */
 	if (valueName == "DATUM")
 	{ // This message contains a data point
-		//std::cout << "BASESTATION: Received point (" << values[0] << ", " << values[1] << ", " << values[2] << ") = " << values[3] << std::endl;
+		std::cout << "BASESTATION: Received point (" << values[0] << ", " << values[1] << ", " << values[2] << ") = " << values[3] << " from drone " << message->get_source() << std::endl;
 	}
 	else if (valueName == "DRONEIP")
 	{ // This message contains a drone IP
