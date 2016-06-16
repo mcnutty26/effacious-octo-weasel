@@ -1,0 +1,248 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% baposter Landscape Poster
+% LaTeX Template
+% Version 1.0 (11/06/13)
+%
+% baposter Class Created by:
+% Brian Amberg (baposter@brian-amberg.de)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[landscape,a0paper,fontscale=0.285]{baposter} % Adjust the font scale/size here
+
+\usepackage{graphicx} % Required for including images
+\graphicspath{{figures/}} % Directory in which figures are stored
+
+\usepackage{amsmath} % For typesetting math
+\usepackage{amssymb} % Adds new symbols to be used in math mode
+
+\usepackage{booktabs} % Top and bottom rules for tables
+\usepackage{enumitem} % Used to reduce itemize/enumerate spacing
+\usepackage{palatino} % Use the Palatino font
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+
+\usepackage{multicol} % Required for multiple columns
+\setlength{\columnsep}{1.5em} % Slightly increase the space between columns
+\setlength{\columnseprule}{0mm} % No horizontal rule between columns
+
+\usepackage{tikz} % Required for flow chart
+\usetikzlibrary{shapes,arrows} % Tikz libraries required for the flow chart in the template
+
+\newcommand{\compresslist}{ % Define a command to reduce spacing within itemize/enumerate environments, this is used right after \begin{itemize} or \begin{enumerate}
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+}
+
+\definecolor{lightblue}{rgb}{0.145,0.6666,1} % Defines the color used for content box headers
+
+\begin{document}
+
+\begin{poster}
+{
+headerborder=closed, % Adds a border around the header of content boxes
+colspacing=1em, % Column spacing
+bgColorOne=white, % Background color for the gradient on the left side of the poster
+bgColorTwo=white, % Background color for the gradient on the right side of the poster
+borderColor=lightblue, % Border color
+headerColorOne=black, % Background color for the header in the content boxes (left side)
+headerColorTwo=lightblue, % Background color for the header in the content boxes (right side)
+headerFontColor=white, % Text color for the header text in the content boxes
+boxColorOne=white, % Background color of the content boxes
+textborder=roundedleft, % Format of the border around content boxes, can be: none, bars, coils, triangles, rectangle, rounded, roundedsmall, roundedright or faded
+eyecatcher=true, % Set to false for ignoring the left logo in the title and move the title left
+headerheight=0.1\textheight, % Height of the header
+headershape=roundedright, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
+headerfont=\Large\bf\textsc, % Large, bold and sans serif font in the headers of content boxes
+%textfont={\setlength{\parindent}{1.5em}}, % Uncomment for paragraph indentation
+linewidth=2pt % Width of the border lines around content boxes
+}
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION 
+%----------------------------------------------------------------------------------------
+%
+{\includegraphics[height=4em]{logo.png}} % First university/lab logo on the left
+{\bf\textsc{Drone Mounted Sensor Networks}\vspace{0.5em}} % Poster title
+{\textsc{\{ Alex Henson, Ben De Ivey, Jon Gibson, and William Seymour \} \hspace{12pt} Computer Science, University of Warwick}} % Author names and institution
+{\includegraphics[height=4em]{logo.png}} % Second university/lab logo on the right
+
+%----------------------------------------------------------------------------------------
+%	OBJECTIVES
+%----------------------------------------------------------------------------------------
+
+\headerbox{Introduction}{name=objectives,column=0,row=0}{
+
+A great amount of work has gone into research surrounding sensor networks in recent years, and the explosion in popularity of the internet of things (IoT) means there is a great deal of support from both academia and industry for development in the field. 
+
+The use of quadcopters (and drones in general) has also increased in both the civilian and military sectors. By combining the power of distributed sensor networks with the manoeuvrability of unmanned drones it is possible to quickly survey and map properties over a large area.
+}
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\headerbox{Objectives}{name=introduction,column=1,row=0}{
+
+This project focuses on methods by which such networks can be controlled and tasked. We are working to create a framework by which autonomous flying vehicles can be tasked remotely to map sensor properties over predefined areas. This encompasses:
+
+\begin{enumerate}\compresslist
+\item Creation of network simulator
+\item Physical routing of drones
+\item Routing of communications
+\item Fault tolerance of the network
+\item Division and dissemination of instructions
+\end{enumerate}
+
+\includegraphics[scale=0.21]{figures/drone}
+{\tiny DJI Phantom 2 - http://droneandquadcopter.com/dji-phantom-2-pros-and-cons-before-you-buy/}
+}
+
+%----------------------------------------------------------------------------------------
+%	RESULTS 1
+%----------------------------------------------------------------------------------------
+
+\headerbox{Communications Routing}{name=results,column=2,span=2,row=0}{
+\begin{multicols}{2}
+
+Mobile Ad-hoc Networks (MANETs) have several distinguishing characteristics which must be accounted for when designing and evaluating routing algorithms[1]:
+
+\begin{enumerate}\compresslist
+\item Dynamic topologies
+\item Bandwidth-constrained, variable capacity links
+\item Energy-constrained operation
+\item Limited physical security
+\end{enumerate}
+
+All electromagnetic signals dissipate as they propagate through space, limiting the range at which communications can be received. Under ideal conditions this can be modelled using the Friis free space equation:
+
+\begin{equation}
+P_{rx} = P_{tx}G_{tx}G_{rx}\frac{\lambda^2}{4{\pi}D}
+\label{friis}
+\end{equation} 
+
+Where $P$ is the power of the radio signal, $G$ the gain (or efficiency) of the antenna and $D$ the distance between them. Under real world conditions additional path loss can be modelled  using the log distance path loss model:
+
+\begin{equation}
+L = 10n {\log_{10}}d + C
+\end{equation}
+
+Multiple algorithms exist to route packets within a network, which are usually classified into topological and positional. For mobile networks, topological models are ineffective due to the aforementioned dynamic topologies employed.
+\newline
+
+Ad hoc On-Demand Distance Vector (AODV) routing is one of the most popular reactive protocols used in MANETS[2]. When a node wishes to send a message but does not have a route to the destination, it broadcasts a route request (RREQ) packet to it's neighbours. Each neighbour either returns a route if it has one (RREP) or rebroadcasts the RREQ to it's own neighbours. Sequence numbers are used to eliminate suboptimal routes and by extension to prevent cyclical routes.
+
+\includegraphics[scale=0.25]{figures/aodv-1}
+
+If the network topology has changed and a route is invalid, a node returns a route error (RERR) message. This causes other nodes to flush the parts of their routing tables which have become invalid. AODV does not have a security component, but this can be added separately. As all nodes in the network are known beforehand, keys can be distributed prior to deployment.
+\newline
+
+For MANETS, reactive protocols like AODV are preferred to proactive protocols (such as OLSR) due to low power and processing requirements.
+\end{multicols}
+}
+
+%----------------------------------------------------------------------------------------
+%	REFERENCES
+%----------------------------------------------------------------------------------------
+
+\headerbox{Project Management}{name=references,column=0,span=2,above=bottom}{
+Weekly group meetings and an agile development methodology are used to manage project progress. Project material is handled by a git repository.
+}
+
+%----------------------------------------------------------------------------------------
+%	FUTURE RESEARCH
+%----------------------------------------------------------------------------------------
+
+\headerbox{References}{name=futureresearch,column=2,span=2,aligned=references,above=bottom}{ % This block is as tall as the references block
+\scriptsize{ % Reduce the font size in this block
+\noindent [1]Macker, Joseph. "Mobile ad hoc networking (MANET): Routing protocol performance issues and evaluation considerations." (1999).
+
+[2]Perkins, Charles, Elizabeth Belding-Royer, and Samir Das. Ad hoc on-demand distance vector (AODV) routing. No. RFC 3561. 2003.
+}
+}
+
+%----------------------------------------------------------------------------------------
+%	CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+
+%\headerbox{Contact Information}{name=contact,column=3,aligned=references,above=bottom}{ % This block is as tall as the references block
+
+%\begin{description}\compresslist
+%\item[Web] www.university.edu/smithlab
+%\item[Email] john@smith.com
+%\item[Phone] +1 (000) 111 1111
+%\end{description}
+%}
+
+%----------------------------------------------------------------------------------------
+%	CONCLUSION
+%----------------------------------------------------------------------------------------
+
+\headerbox{Planned Work}{name=conclusion,column=2,span=2,row=0,below=results,above=references}{
+
+\begin{multicols}{2}
+\begin{enumerate}\compresslist
+\item Finish implementing Simulator
+\item Implement physical routing
+\item Implement communications routing
+\item Implement fault tolerance
+\end{enumerate}
+
+\includegraphics[scale=0.30]{figures/gannt2}
+
+\end{multicols}
+}
+
+%----------------------------------------------------------------------------------------
+%	MATERIALS AND METHODS
+%----------------------------------------------------------------------------------------
+
+\headerbox{Physical Routing}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+
+Pathfinding for aerial vehicles is often easier than their ground based counterparts given the relative lack of obstacles. Given that the scope of the project extends only to pre-defined areas, problems with pylons and buildings can be avoided by providing coordinates of these fixtures in advance of deployment.
+
+In order to have drones avoid collisions with other drones, the following algorithm is proposed:
+\newline
+
+1) Each node begins with a pass counter $p = 0$.
+\newline
+
+2) When two nodes $i$ and $j$ identify themselves as being within a predefined collision radius they compare $p_i$ and $p_j$.
+\newline
+
+3) If $p_i < p_j$ then node $i$ waits for $j$ to pass, or vice versa.
+\newline
+
+4) A passing drone sets $p = 0$ and a passed drone sets $p = p + 1$.
+\newline
+
+5) A drone undertaking a high priority task sets $p = \infty$.
+}
+
+%----------------------------------------------------------------------------------------
+%	RESULTS 2
+%----------------------------------------------------------------------------------------
+
+\headerbox{Tools}{name=results2,column=1,below=introduction,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+
+NS3 is a popular ``discrete-event network simulator'' that allows for a complete simulation of network stacks and communications. However, using NS3 has proven to be more time consuming and complex than originally expected. 
+\newline
+
+Due to this, the network simulation will now be custom built, allowing the abstraction of features as appropriate. This will be done in C++ because it is easily portable to real drones, as well as being easily extensible and efficient. We can specify different modules in our program for tasks such as communication, one sending simulated packets and one sending packets to a real radio link.
+
+}
+
+%----------------------------------------------------------------------------------------
+
+\end{poster}
+
+\end{document}
