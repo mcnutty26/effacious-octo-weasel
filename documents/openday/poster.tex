@@ -30,6 +30,13 @@
 \usepackage{enumitem} % Used to reduce itemize/enumerate spacing
 \usepackage{palatino} % Use the Palatino font
 \usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+\usepackage{url}
+\usepackage{vwcol}
+\usepackage{tikz}
+%\usepackage[hmarginratio=1:1]{geometry}
+%\usepgflibrary{qrr.shapes.openrectangle}
+\usetikzlibrary{positioning}
+
 
 \usepackage{multicol} % Required for multiple columns
 \setlength{\columnsep}{1.5em} % Slightly increase the space between columns
@@ -72,7 +79,7 @@ linewidth=2pt % Width of the border lines around content boxes
 %----------------------------------------------------------------------------------------
 %
 {\includegraphics[height=4em]{logo.png}} % First university/lab logo on the left
-{\bf\textsc{Drone Mounted Sensor Networks}\vspace{0.5em}} % Poster title
+{\bf\textsc{octoDrone: Developing Heterogenous Drone Platforms}\vspace{0.5em}} % Poster title
 {\textsc{\{ Alex Henson, Ben De Ivey, Jon Gibson, and William Seymour \} \hspace{12pt} Computer Science, University of Warwick}} % Author names and institution
 {\includegraphics[height=4em]{logo.png}} % Second university/lab logo on the right
 
@@ -80,38 +87,90 @@ linewidth=2pt % Width of the border lines around content boxes
 %	OBJECTIVES
 %----------------------------------------------------------------------------------------
 
-\headerbox{Introduction}{name=objectives,column=0,row=0}{
+\headerbox{Objectives}{name=objectives,column=0,row=0}{
 
-A great amount of work has gone into research surrounding sensor networks in recent years, and the explosion in popularity of the internet of things (IoT) means there is a great deal of support from both academia and industry for development in the field. 
+The aim of the project was to create a platform for the simulation and deployment of drone-based sensor networks. We aimed to develop a generic solution to the problem of modelling airborne sensor networks, including those comprised of heterogeneous hardware. \\
 
-The use of quadcopters (and drones in general) has also increased in both the civilian and military sectors. By combining the power of distributed sensor networks with the manoeuvrability of unmanned drones it is possible to quickly survey and map properties over a large area.
+By establishing a framework for implementing physical deployment without the requirement of changing program code, we hope that this solution will provide a basis for teaching and research into the way that these networks are used in the future.
+
 }
 
 %----------------------------------------------------------------------------------------
-%	INTRODUCTION
+%	SIMULATION
 %----------------------------------------------------------------------------------------
 
-\headerbox{Objectives}{name=introduction,column=1,row=0}{
+\headerbox{Simulation}{name=introduction,column=1,row=0}{
 
-This project focuses on methods by which such networks can be controlled and tasked. We are working to create a framework by which autonomous flying vehicles can be tasked remotely to map sensor properties over predefined areas. This encompasses:
+Our research found that network simulators used for research often become difficult to use after years of continual development. The most popular product, ns3, suffers from a steep learning curve and feature bloat. Thus, we designed our own simulator, octoDrone, to be accessible, extensible, and lightweight. 
+\newline
 
-\begin{enumerate}\compresslist
-\item Creation of network simulator
-\item Physical routing of drones
-\item Routing of communications
-\item Fault tolerance of the network
-\item Division and dissemination of instructions
-\end{enumerate}
+Accessibility was achieved by exposing a limited set of API commands which still allowed for the creation of powerful programs. More complicated actions, like routing messages between drones, are handled by separate modules to promote simplicity whilst still allowing for low level control.
 
-\includegraphics[scale=0.21]{figures/drone}
-{\tiny DJI Phantom 2 - http://droneandquadcopter.com/dji-phantom-2-pros-and-cons-before-you-buy/}
+\begin{minipage}{0.4\linewidth}
+\includegraphics[scale=0.15]{rreq}
+\end{minipage}
+\begin{minipage}{0.6\linewidth}
+In this way, developers can extend existing classes to create their own application specific instances. The AODV RREQ class is a good example of this, extending the AODV message class which itself inherits from a basic message class.
+\end{minipage}
+\newline
+
+Each drone has separate threads representing its control and communication code. On top of this, the simulation and environment and visualisation layer have additional threads.
+
+\begin{center}
+\begin{tikzpicture}[remember picture,
+  simulator engine/.style={fill=black!10,rounded corners,inner sep=15pt,inner xsep=5pt},
+  topology/.style={rounded corners,draw=blue!50,fill=blue!20,thick,inner sep=3pt},
+  neuron/.style={fill=blue!10,draw=blue,rounded corners,inner sep=15pt,inner xsep=5pt,minimum width=3.5cm},
+  synapse/.style={draw=red!75,fill=red!20,rounded corners,inner sep=5pt},
+  empty synapse/.style={draw=blue!10,rounded corners,inner sep=5pt},scale=0.6, every node/.style={transform shape}
+  ]
+  \node[simulator engine] (simulatorEngine) {
+    \begin{tikzpicture}
+      \node[topology] (topology1) {
+        \begin{tikzpicture}
+          \node [neuron] (neuron1-1)  {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-1-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-0] (synapse1-1-1) {Comm Mod Thread};
+              \end{tikzpicture}
+          };
+          \node [neuron,draw=blue,right=0.2cm of neuron1-1] (neuron1-2) {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-2-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-2-0] (synapse1-2-1) {Comm Mod Thread};
+              \end{tikzpicture}
+          };
+          \node [neuron,draw=blue,right=0.2cm of neuron1-2] (neuron1-3) {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-3-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-3-0] (synapse1-3-1) {Comm Mod Thread};
+              \end{tikzpicture}
+          };
+          \node [synapse,draw=blue,below=0.2cm of neuron1-2,minimum width=12cm,minimum height=0.5cm] (synapse1-4) {
+          };
+
+          \node [black,below] at (neuron1-1.north)  {Drone A};
+          \node [black,below] at (neuron1-2.north)  {Drone B};
+          \node [black,below] at (neuron1-3.north)  {Base Station};
+          \node [black,below] at (synapse1-4.north)	{Visualisation Thread};
+        \end{tikzpicture}
+      };
+
+    \end{tikzpicture}
+    };
+
+    \node [black,below] at (simulatorEngine.north) {Simulation Environment};
+\end{tikzpicture}
+\end{center}
+
+Communications modules allow for interrupt driven and time driven messaging. Inbound and outbound message queues are used to keep track of messages waiting to be processed, and the actual passing of messages (after processing) is handled by the simulation environment.
 }
 
 %----------------------------------------------------------------------------------------
-%	RESULTS 1
+%	DEPLOYMENT
 %----------------------------------------------------------------------------------------
 
-\headerbox{Communications Routing}{name=results,column=2,span=2,row=0}{
+\headerbox{Deployment}{name=results,column=2,span=2,row=0}{
 \begin{multicols}{2}
 
 Mobile Ad-hoc Networks (MANETs) have several distinguishing characteristics which must be accounted for when designing and evaluating routing algorithms[1]:
@@ -141,7 +200,7 @@ Multiple algorithms exist to route packets within a network, which are usually c
 
 Ad hoc On-Demand Distance Vector (AODV) routing is one of the most popular reactive protocols used in MANETS[2]. When a node wishes to send a message but does not have a route to the destination, it broadcasts a route request (RREQ) packet to it's neighbours. Each neighbour either returns a route if it has one (RREP) or rebroadcasts the RREQ to it's own neighbours. Sequence numbers are used to eliminate suboptimal routes and by extension to prevent cyclical routes.
 
-\includegraphics[scale=0.25]{figures/aodv-1}
+%\includegraphics[scale=0.25]{figures/aodv-1}
 
 If the network topology has changed and a route is invalid, a node returns a route error (RERR) message. This causes other nodes to flush the parts of their routing tables which have become invalid. AODV does not have a security component, but this can be added separately. As all nodes in the network are known beforehand, keys can be distributed prior to deployment.
 \newline
@@ -154,91 +213,46 @@ For MANETS, reactive protocols like AODV are preferred to proactive protocols (s
 %	REFERENCES
 %----------------------------------------------------------------------------------------
 
-\headerbox{Project Management}{name=references,column=0,span=2,above=bottom}{
-Weekly group meetings and an agile development methodology are used to manage project progress. Project material is handled by a git repository.
-}
-
-%----------------------------------------------------------------------------------------
-%	FUTURE RESEARCH
-%----------------------------------------------------------------------------------------
-
-\headerbox{References}{name=futureresearch,column=2,span=2,aligned=references,above=bottom}{ % This block is as tall as the references block
-\scriptsize{ % Reduce the font size in this block
-\noindent [1]Macker, Joseph. "Mobile ad hoc networking (MANET): Routing protocol performance issues and evaluation considerations." (1999).
-
-[2]Perkins, Charles, Elizabeth Belding-Royer, and Samir Das. Ad hoc on-demand distance vector (AODV) routing. No. RFC 3561. 2003.
-}
-}
-
-%----------------------------------------------------------------------------------------
-%	CONTACT INFORMATION
-%----------------------------------------------------------------------------------------
-
-%\headerbox{Contact Information}{name=contact,column=3,aligned=references,above=bottom}{ % This block is as tall as the references block
-
-%\begin{description}\compresslist
-%\item[Web] www.university.edu/smithlab
-%\item[Email] john@smith.com
-%\item[Phone] +1 (000) 111 1111
-%\end{description}
-%}
-
-%----------------------------------------------------------------------------------------
-%	CONCLUSION
-%----------------------------------------------------------------------------------------
-
-\headerbox{Planned Work}{name=conclusion,column=2,span=2,row=0,below=results,above=references}{
-
+\headerbox{References}{name=references,column=0,span=4,above=bottom}{
 \begin{multicols}{2}
-\begin{enumerate}\compresslist
-\item Finish implementing Simulator
-\item Implement physical routing
-\item Implement communications routing
-\item Implement fault tolerance
-\end{enumerate}
+\scriptsize{ % Reduce the font size in this block
+\noindent [1] Parrot SA, 2009. Promotional Materials. [online] Available at $<$\url{http://ardrone2.parrot.com/ardrone-2/specifications/}$>$.
 
-\includegraphics[scale=0.30]{figures/gannt2}
 
+[2] Mottola, L., et al., 2014. Team-level programming of drone sensor networks. 12th ACM Conference on Embedded Network Sensor Systems.
+
+[2] Mottola, L., et al., 2014. Team-level programming of drone sensor networks. 12th ACM Conference on Embedded Network Sensor Systems.
+
+[2] Mottola, L., et al., 2014. Team-level programming of drone sensor networks. 12th ACM Conference on Embedded Network Sensor Systems.
+}
 \end{multicols}
 }
 
 %----------------------------------------------------------------------------------------
-%	MATERIALS AND METHODS
+%	USES
 %----------------------------------------------------------------------------------------
 
-\headerbox{Physical Routing}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+\headerbox{Potential Uses}{name=conclusion,column=2,span=2,row=0,below=results,above=references}{
 
-Pathfinding for aerial vehicles is often easier than their ground based counterparts given the relative lack of obstacles. Given that the scope of the project extends only to pre-defined areas, problems with pylons and buildings can be avoided by providing coordinates of these fixtures in advance of deployment.
-
-In order to have drones avoid collisions with other drones, the following algorithm is proposed:
-\newline
-
-1) Each node begins with a pass counter $p = 0$.
-\newline
-
-2) When two nodes $i$ and $j$ identify themselves as being within a predefined collision radius they compare $p_i$ and $p_j$.
-\newline
-
-3) If $p_i < p_j$ then node $i$ waits for $j$ to pass, or vice versa.
-\newline
-
-4) A passing drone sets $p = 0$ and a passed drone sets $p = p + 1$.
-\newline
-
-5) A drone undertaking a high priority task sets $p = \infty$.
+\begin{multicols}{2}
+\end{multicols}
 }
 
 %----------------------------------------------------------------------------------------
-%	RESULTS 2
+%	DRONE NETWORKS
 %----------------------------------------------------------------------------------------
 
-\headerbox{Tools}{name=results2,column=1,below=introduction,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+\headerbox{Drone Networks}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
 
-NS3 is a popular ``discrete-event network simulator'' that allows for a complete simulation of network stacks and communications. However, using NS3 has proven to be more time consuming and complex than originally expected. 
-\newline
+Autonomous drones present a powerful way of extending traditional sensor networks, and are currently available at low cost for recreational and commercial use. By allowing for sampling of the environment at any point in 3D space, quadcopters can be more efficient and reduce costs compared to existing systems.
 
-Due to this, the network simulation will now be custom built, allowing the abstraction of features as appropriate. This will be done in C++ because it is easily portable to real drones, as well as being easily extensible and efficient. We can specify different modules in our program for tasks such as communication, one sending simulated packets and one sending packets to a real radio link.
+\begin{center}
+\includegraphics[scale=0.125]{figures/nevada}
 
+\tiny{A Parrot AR 2.0 quadcopter over the Nevada desert [1]}
+\end{center}
+
+Current popular uses for drone networks being researched include mapping, surveying, and delivery. Being able to quickly sample properties over a large area allows for more innovative and unusual uses, such as monitoring crops, managing parking spaces, and inspecting installations in dangerous conditions [2].
 }
 
 %----------------------------------------------------------------------------------------
