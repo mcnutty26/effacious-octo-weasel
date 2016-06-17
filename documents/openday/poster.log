@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.4.22)  16 JUN 2016 16:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.4.22)  17 JUN 2016 13:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -899,44 +899,44 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 84.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 97--97
 
  []
 
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 96.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 97.
 LaTeX Font Info:    Font shape `T1/ppl/bx/sc' in size <14.4> not available
-(Font)              Font shape `T1/ppl/b/sc' tried instead on input line 96.
+(Font)              Font shape `T1/ppl/b/sc' tried instead on input line 97.
 Missing character: There is no ; in font nullfont!
 
-Underfull \hbox (badness 2662) in paragraph at lines 167--167
+Underfull \hbox (badness 2662) in paragraph at lines 168--168
 []\T1/ppl/m/n/10 Our re-search found that net-work sim-u-la-tors
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 168--168
 
  []
 
 <figures/rreq.pdf, id=35, 501.875pt x 568.16263pt>
 File: figures/rreq.pdf Graphic file (type pdf)
  <use figures/rreq.pdf>
-Package pdftex.def Info: figures/rreq.pdf used on input line 167.
+Package pdftex.def Info: figures/rreq.pdf used on input line 168.
 (pdftex.def)             Requested size: 75.278pt x 85.2207pt.
 
-Overfull \hbox (1.90001pt too wide) in paragraph at lines 167--167
+Overfull \hbox (1.90001pt too wide) in paragraph at lines 168--168
 []$[]$ $[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 168--168
 
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 167--167
+Underfull \hbox (badness 1796) in paragraph at lines 168--168
 []\T1/ppl/m/n/10 Communications mod-ules al-low for in-ter-rupt
  []
 
@@ -944,33 +944,73 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
+Overfull \hbox (2.97212pt too wide) in paragraph at lines 292--292
+[][] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
+[]\T1/ppl/m/n/10 These AT com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
+\T1/ppl/m/n/10 the mid-dle-ware
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
+\T1/ppl/m/n/10 se-quence num-ber,
+ []
+
+
+Overfull \hbox (1.90001pt too wide) in paragraph at lines 292--292
+[]$[]$ $[]$ 
+ []
+
+<figures/setup.jpg, id=36, 3298.3225pt x 2441.12pt>
+File: figures/setup.jpg Graphic file (type jpg)
+ <use figures/setup.jpg>
+Package pdftex.def Info: figures/setup.jpg used on input line 292.
+(pdftex.def)             Requested size: 164.92578pt x 122.06314pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 229.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 311.
+
 (/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
 
-<figures/nevada.jpg, id=36, 1248.8256pt x 832.5504pt>
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+
+ []
+
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+<figures/nevada.jpg, id=37, 1248.8256pt x 832.5504pt>
 File: figures/nevada.jpg Graphic file (type jpg)
  <use figures/nevada.jpg>
-Package pdftex.def Info: figures/nevada.jpg used on input line 256.
+Package pdftex.def Info: figures/nevada.jpg used on input line 348.
 (pdftex.def)             Requested size: 156.10281pt x 104.06854pt.
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -979,26 +1019,25 @@ Missing character: There is no ; in font nullfont!
 [2
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/logo.png> <./fig
-ures/rreq.pdf> <./figures/nevada.jpg>] (./poster.aux) ) 
+ures/rreq.pdf> <./figures/setup.jpg> <./figures/nevada.jpg>] (./poster.aux) ) 
 Here is how much of TeX's memory you used:
- 19466 strings out of 493054
- 411695 string characters out of 6140586
- 512514 words of memory out of 5000000
- 22571 multiletter control sequences out of 15000+600000
+ 19542 strings out of 493054
+ 413183 string characters out of 6140586
+ 543417 words of memory out of 5000000
+ 22647 multiletter control sequences out of 15000+600000
  24122 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,20n,92p,482b,2642s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type
-1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a
-.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on poster.pdf (1 page, 12803041 bytes).
+ 62i,22n,92p,408b,2642s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/
+usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><
+/usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-dis
+t/fonts/type1/urw/palatino/uplr8a.pfb>
+Output written on poster.pdf (1 page, 15049720 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 136 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 141 words of extra memory for PDF output out of 10000 (max. 10000000)
 

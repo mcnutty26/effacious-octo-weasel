@@ -89,9 +89,10 @@ linewidth=2pt % Width of the border lines around content boxes
 
 \headerbox{Objectives}{name=objectives,column=0,row=0}{
 
-The aim of the project was to create a platform for the simulation and deployment of drone-based sensor networks. We aimed to develop a generic solution to the problem of modelling airborne sensor networks, including those comprised of heterogeneous hardware. \\
+The aim of the project was to create a platform for the simulation and deployment of drone-based sensor networks. We aimed to develop a generic solution to the problem of modelling airborne sensor networks, including those comprised of heterogeneous hardware.
+\newline
 
-By establishing a framework for implementing physical deployment without the requirement of changing program code, we hope that this solution will provide a basis for teaching and research into the way that these networks are used in the future.
+We aimed to  demonstrate the effectiveness of the simulator by establishing a framework for running simulations on real hardware, without requiring users to change their program code. We hope that this solution will provide a basis for teaching, and research into the way that these networks are used in the future.
 
 }
 
@@ -159,7 +160,7 @@ Each drone has separate threads representing its control and communication code.
     \end{tikzpicture}
     };
 
-    \node [black,below] at (simulatorEngine.north) {Simulation Environment};
+    \node [black,below] at (simulatorEngine.north) {Simulation Environment Thread};
 \end{tikzpicture}
 \end{center}
 
@@ -172,40 +173,121 @@ Communications modules allow for interrupt driven and time driven messaging. Inb
 
 \headerbox{Deployment}{name=results,column=2,span=2,row=0}{
 \begin{multicols}{2}
+The aim of this part of the project was to enable the running of octoDrone simulations on real hardware. By adapting the simulator we were able to run a sharded instance on each quadcopter, and have these instances communicate to pass messages between hardware units.
 
-Mobile Ad-hoc Networks (MANETs) have several distinguishing characteristics which must be accounted for when designing and evaluating routing algorithms[1]:
+%\begin{center}
+\begin{tikzpicture}[remember picture,
+  simulator engine/.style={fill=black!10,rounded corners,inner sep=20pt,inner xsep=5pt},
+  topology/.style={rounded corners,draw=blue!50,fill=blue!20,thick,inner sep=3pt},
+  neuron/.style={fill=blue!10,draw=blue,rounded corners,inner sep=15pt,inner xsep=5pt,minimum width=3cm},
+  synapse/.style={draw=red!75,fill=red!20,rounded corners,inner sep=5pt},
+  empty synapse/.style={draw=blue!10,rounded corners,inner sep=5pt},scale=0.55, every node/.style={transform shape}
+  ]
+  \node[simulator engine] (simulatorEngine) {
+    \begin{tikzpicture}
+      \node[topology] (topology1) {
+        \begin{tikzpicture}
+          \node [neuron] (neuron1-1)  {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-1-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-0] (synapse1-1-1) {Comm Mod Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-1] (synapse1-1-2) {Comm Server Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-2] (synapse1-1-3) {Node Server Thread};
+              \end{tikzpicture}
+          };
+          \node [black,below] at (neuron1-1.north)  {Drone A};
+        \end{tikzpicture}
+      };
 
-\begin{enumerate}\compresslist
-\item Dynamic topologies
-\item Bandwidth-constrained, variable capacity links
-\item Energy-constrained operation
-\item Limited physical security
-\end{enumerate}
+    \end{tikzpicture}
+    };
 
-All electromagnetic signals dissipate as they propagate through space, limiting the range at which communications can be received. Under ideal conditions this can be modelled using the Friis free space equation:
+    \node [black,below] at (simulatorEngine.north) {Simulation Thread};
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture,
+  simulator engine/.style={fill=black!10,rounded corners,inner sep=20pt,inner xsep=5pt,},
+  topology/.style={rounded corners,draw=blue!50,fill=blue!20,thick,inner sep=3pt},
+  neuron/.style={fill=blue!10,draw=blue,rounded corners,inner sep=15pt,inner xsep=5pt,minimum width=3cm},
+  synapse/.style={draw=red!75,fill=red!20,rounded corners,inner sep=5pt},
+  empty synapse/.style={draw=blue!10,rounded corners,inner sep=5pt},scale=0.55, every node/.style={transform shape}
+  ]
+  \node[simulator engine] (simulatorEngine) {
+    \begin{tikzpicture}
+      \node[topology] (topology1) {
+        \begin{tikzpicture}
+          \node [neuron] (neuron1-1)  {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-1-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-0] (synapse1-1-1) {Comm Mod Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-1] (synapse1-1-2) {Comm Server Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-2] (synapse1-1-3) {Node Server Thread};
+              \end{tikzpicture}
+          };
+          \node [black,below] at (neuron1-1.north)  {Drone B};
+        \end{tikzpicture}
+      };
 
-\begin{equation}
-P_{rx} = P_{tx}G_{tx}G_{rx}\frac{\lambda^2}{4{\pi}D}
-\label{friis}
-\end{equation} 
+    \end{tikzpicture}
+    };
 
-Where $P$ is the power of the radio signal, $G$ the gain (or efficiency) of the antenna and $D$ the distance between them. Under real world conditions additional path loss can be modelled  using the log distance path loss model:
+    \node [black,below] at (simulatorEngine.north) {Simulation Thread};
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture,
+  simulator engine/.style={fill=black!10,rounded corners,inner sep=20pt,inner xsep=5pt},
+  topology/.style={rounded corners,draw=blue!50,fill=blue!20,thick,inner sep=3pt},
+  neuron/.style={fill=blue!10,draw=blue,rounded corners,inner sep=15pt,inner xsep=5pt,minimum width=3cm},
+  synapse/.style={draw=red!75,fill=red!20,rounded corners,inner sep=5pt},
+  empty synapse/.style={draw=blue!10,rounded corners,inner sep=5pt},scale=0.55, every node/.style={transform shape}
+  ]
+  \node[simulator engine] (simulatorEngine) {
+    \begin{tikzpicture}
+      \node[topology] (topology1) {
+        \begin{tikzpicture}
+          \node [neuron] (neuron1-1)  {
+              \begin{tikzpicture}
+                  \node [synapse,draw=blue] (synapse1-1-0) {Program Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-0] (synapse1-1-1) {Comm Mod Thread};
+                  \node [synapse,draw=blue,below=0.1cm of synapse1-1-1] (synapse1-1-2) {Comm Server Thread};
+				  \node [empty synapse,below=0.35cm of synapse1-1-2] (synapse1-1-e) {};
+              \end{tikzpicture}
+          };
+          \node [black,below] at (neuron1-1.north)  {Base Station};
+        \end{tikzpicture}
+      };
 
-\begin{equation}
-L = 10n {\log_{10}}d + C
-\end{equation}
+    \end{tikzpicture}
+    };
 
-Multiple algorithms exist to route packets within a network, which are usually classified into topological and positional. For mobile networks, topological models are ineffective due to the aforementioned dynamic topologies employed.
+    \node [black,below] at (simulatorEngine.north) {Simulation Thread};
+\end{tikzpicture}
+%\end{center}
+
+Because the Parrot AR 2.0 drones used in the project could not be programmed directly, each was paired with a Raspberry Pi running octoDrone. These units were connected via Ethernet, and communicated with the drones via WiFi.
 \newline
 
-Ad hoc On-Demand Distance Vector (AODV) routing is one of the most popular reactive protocols used in MANETS[2]. When a node wishes to send a message but does not have a route to the destination, it broadcasts a route request (RREQ) packet to it's neighbours. Each neighbour either returns a route if it has one (RREP) or rebroadcasts the RREQ to it's own neighbours. Sequence numbers are used to eliminate suboptimal routes and by extension to prevent cyclical routes.
-
-%\includegraphics[scale=0.25]{figures/aodv-1}
-
-If the network topology has changed and a route is invalid, a node returns a route error (RERR) message. This causes other nodes to flush the parts of their routing tables which have become invalid. AODV does not have a security component, but this can be added separately. As all nodes in the network are known beforehand, keys can be distributed prior to deployment.
+Messages are sent and received by a communication server thread. An additional piece of middleware written in Node JS (The Node server)[3] is required to translate simulator instructions for a drone into commands that the firmware can interpret (called AT commands).
 \newline
 
-For MANETS, reactive protocols like AODV are preferred to proactive protocols (such as OLSR) due to low power and processing requirements.
+\begin{minipage}{0.4\linewidth}
+These AT commands are sent by the middleware and include a command (land, hover), sequence number, and some number of arguments.
+\end{minipage}
+\begin{minipage}{0.6\linewidth}
+\begin{tikzpicture}[
+cell/.style={rectangle, rounded corners, minimum width=7.5cm, minimum height=1cm,text centered, draw=black, fill=red!20, inner sep = 3pt}, arrow/.style={thick,->,>=stealth}, baseline={(current bounding box.east)}, scale=0.6, every node/.style={transform shape}]
+	\node (cmd1) [cell] {Simulator: Move 10m at 4m/s};
+	\node (cmd2) [cell, below= 0.1cm of cmd1] {Deployment: Move 3m/s for 2.5s};
+	\node (cmd3) [cell, below= 0.1cm of cmd2] {Middleware: AT$\ast$PCMD=21626, 1, 0, 0, 0.5, 0};
+	\node (cmd4) [cell, below= 0.1cm of cmd3] {Middleware: [Wait 2.5s]};
+	\node (cmd5) [cell, below= 0.1cm of cmd4] {Middleware: AT$\ast$PCMD=21627, 0, 0, 0, 0, 0};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{center}
+\includegraphics[scale=0.05]{figures/setup}
+\end{center}
+
+We were able to successfully demonstrate the deployment capabilities of octoDrone, and show that this approach can be used to make any commercial quadcopter autonomous.
+
 \end{multicols}
 }
 
@@ -221,7 +303,7 @@ For MANETS, reactive protocols like AODV are preferred to proactive protocols (s
 
 [2] Mottola, L., et al., 2014. Team-level programming of drone sensor networks. 12th ACM Conference on Embedded Network Sensor Systems.
 
-[2] Mottola, L., et al., 2014. Team-level programming of drone sensor networks. 12th ACM Conference on Embedded Network Sensor Systems.
+[3] Felix Geisendörfer, 2014. Node JS ar-drone package. [online] Available at $<$\url{https://github.com/felixge/node-ar-drone}$>$
 
 [2] Mottola, L., et al., 2014. Team-level programming of drone sensor networks. 12th ACM Conference on Embedded Network Sensor Systems.
 }
@@ -232,9 +314,19 @@ For MANETS, reactive protocols like AODV are preferred to proactive protocols (s
 %	USES
 %----------------------------------------------------------------------------------------
 
-\headerbox{Potential Uses}{name=conclusion,column=2,span=2,row=0,below=results,above=references}{
+\headerbox{Use Cases}{name=conclusion,column=2,span=2,row=0,below=results,above=references}{
 
 \begin{multicols}{2}
+\section*{Research}
+Network simulators form the basis for a large amount of research into sensor networks and IoT devices. By allowing researchers to test their work under real world conditions, more representative results can be obtained, leading to better research.
+\newline
+
+Additionally, octoDrone is flexible enough to allow for almost any conceivable feature to be implemented with minimal effort. This modular approach is vital when research requirements are changing rapidly in this evolving field.
+\section*{Outreach}
+With sensor networks, demonstrating research to students and members of the public can be difficult due to the many layered mechanics involved. Simulation offers a visual means of presenting this information, making it easier to understand.
+\newline
+
+Being able to deploy programs to drones opens up opportunities in schools, where hands on time with hardware is at a premium. Being able to see a physical result for their work is a great motivator for students.
 \end{multicols}
 }
 
@@ -244,7 +336,7 @@ For MANETS, reactive protocols like AODV are preferred to proactive protocols (s
 
 \headerbox{Drone Networks}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
 
-Autonomous drones present a powerful way of extending traditional sensor networks, and are currently available at low cost for recreational and commercial use. By allowing for sampling of the environment at any point in 3D space, quadcopters can be more efficient and reduce costs compared to existing systems.
+Drones present a powerful way of extending traditional sensor networks, and are currently available at low cost for recreational and commercial use. By allowing for sampling of the environment at any point in 3D space, quadcopters can be more efficient and reduce costs compared to existing systems.
 
 \begin{center}
 \includegraphics[scale=0.125]{figures/nevada}
