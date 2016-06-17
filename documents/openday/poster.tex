@@ -265,7 +265,7 @@ The aim of this part of the project was to enable the running of octoDrone simul
 Because the Parrot AR 2.0 drones used in the project could not be programmed directly, each was paired with a Raspberry Pi running octoDrone. These units were connected via Ethernet, and communicated with the drones via WiFi.
 \newline
 
-Messages are sent and received by a communication server thread. An additional piece of middleware written in Node JS (The Node server)[3] is required to translate simulator instructions for a drone into commands that the firmware can interpret (called AT commands).
+Messages are sent and received by a communication server thread. An additional piece of middleware written in Node JS (The Node server) [3] is required to translate simulator instructions for a drone into commands that the firmware can interpret (called AT commands).
 \newline
 
 \begin{minipage}{0.4\linewidth}
@@ -280,6 +280,8 @@ cell/.style={rectangle, rounded corners, minimum width=7.5cm, minimum height=1cm
 	\node (cmd4) [cell, below= 0.1cm of cmd3] {Middleware: [Wait 2.5s]};
 	\node (cmd5) [cell, below= 0.1cm of cmd4] {Middleware: AT$\ast$PCMD=21627, 0, 0, 0, 0, 0};
 \end{tikzpicture}
+
+\tiny{The lifetime of a command, with AT commands as per [4]}
 \end{minipage}
 
 \begin{center}
@@ -305,7 +307,7 @@ We were able to successfully demonstrate the deployment capabilities of octoDron
 
 [3] Felix Geisendörfer, 2014. Node JS ar-drone package. [online] Available at $<$\url{https://github.com/felixge/node-ar-drone}$>$
 
-[2] Mottola, L., et al., 2014. Team-level programming of drone sensor networks. 12th ACM Conference on Embedded Network Sensor Systems.
+[4] Stephane Piskorski, Nicolas Brulez, Pierre Eline, and Frederic D'Haeyer, 2012. Parrot SA AR Drone Developer Guide.
 }
 \end{multicols}
 }
