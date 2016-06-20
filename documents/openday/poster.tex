@@ -84,16 +84,20 @@ linewidth=2pt % Width of the border lines around content boxes
 {\includegraphics[height=4em]{logo.png}} % Second university/lab logo on the right
 
 %----------------------------------------------------------------------------------------
-%	OBJECTIVES
+%	NETWORKS
 %----------------------------------------------------------------------------------------
 
-\headerbox{Objectives}{name=objectives,column=0,row=0}{
+\headerbox{Drone Networks}{name=objectives,column=0,row=0}{
 
-The aim of the project was to create a platform for the simulation and deployment of drone-based sensor networks. We aimed to develop a generic solution to the problem of modelling airborne sensor networks, including those comprised of heterogeneous hardware.
-\newline
+Drones present a powerful way of extending traditional sensor networks, and are currently available at low cost for recreational and commercial use. By allowing for sampling of the environment at any point in 3D space, quadcopters can be more efficient and reduce costs compared to existing systems.
 
-We aimed to  demonstrate the effectiveness of the simulator by establishing a framework for running simulations on real hardware, without requiring users to change their program code. We hope that this solution will provide a basis for teaching, and research into the way that these networks are used in the future.
+\begin{center}
+\includegraphics[scale=0.125]{figures/nevada}
 
+\tiny{A Parrot AR 2.0 quadcopter over the Nevada desert [1]}
+\end{center}
+
+Current interesting uses for drone networks being researched include Disaster recovery after earthquakes and flooding, as well as the monitoring of active volcanoes. Most drone networks are heterogeneous: they feature many different models of drones from different vendors, posing a challenge when it comes to creating programs.
 }
 
 %----------------------------------------------------------------------------------------
@@ -101,8 +105,7 @@ We aimed to  demonstrate the effectiveness of the simulator by establishing a fr
 %----------------------------------------------------------------------------------------
 
 \headerbox{Simulation}{name=introduction,column=1,row=0}{
-
-Our research found that network simulators used for research often become difficult to use after years of continual development. The most popular product, ns3, suffers from a steep learning curve and feature bloat. Thus, we designed our own simulator, octoDrone, to be accessible, extensible, and lightweight. 
+We designed our simulator, octoDrone, to be accessible, extensible, and lightweight. By simulating solutions for drone networks, one can test designs at scale (in order to ensure correctness). This approach also allows for defects to be discovered before deployment to hundreds or thousands of drones.
 \newline
 
 Accessibility was achieved by exposing a limited set of API commands which still allowed for the creation of powerful programs. More complicated actions, like routing messages between drones, are handled by separate modules to promote simplicity whilst still allowing for low level control.
@@ -173,7 +176,7 @@ Communications modules allow for interrupt driven and time driven messaging. Inb
 
 \headerbox{Deployment}{name=results,column=2,span=2,row=0}{
 \begin{multicols}{2}
-The aim of this part of the project was to enable the running of octoDrone simulations on real hardware. By adapting the simulator we were able to run a sharded instance on each quadcopter, and have these instances communicate to pass messages between hardware units.
+This part of the project aimed to enable the running of octoDrone simulations on real hardware. We adapted the simulator so that sharded instances could be run on each quadcopter. This prevented the need to rewrite correct programs for each type of drone.
 
 %\begin{center}
 \begin{tikzpicture}[remember picture,
@@ -333,20 +336,15 @@ Being able to deploy programs to drones opens up opportunities in schools, where
 }
 
 %----------------------------------------------------------------------------------------
-%	DRONE NETWORKS
+%	OBJECTIVES
 %----------------------------------------------------------------------------------------
 
-\headerbox{Drone Networks}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+\headerbox{Objectives}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
 
-Drones present a powerful way of extending traditional sensor networks, and are currently available at low cost for recreational and commercial use. By allowing for sampling of the environment at any point in 3D space, quadcopters can be more efficient and reduce costs compared to existing systems.
+The aim of the project was to create a platform for the simulation and deployment of drone-based sensor networks. We aimed to develop a generic solution to the problem of modelling airborne sensor networks, including those comprised of heterogeneous hardware.
+\newline
 
-\begin{center}
-\includegraphics[scale=0.125]{figures/nevada}
-
-\tiny{A Parrot AR 2.0 quadcopter over the Nevada desert [1]}
-\end{center}
-
-Current popular uses for drone networks being researched include mapping, surveying, and delivery. Being able to quickly sample properties over a large area allows for more innovative and unusual uses, such as monitoring crops, managing parking spaces, and inspecting installations in dangerous conditions [2].
+We aimed to  demonstrate the effectiveness of the simulator by establishing a framework for running simulations on real hardware, without requiring users to change their program code. We hope that this solution will provide a basis for teaching, and research into the way that these networks are used in the future.
 }
 
 %----------------------------------------------------------------------------------------
