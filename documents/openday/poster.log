@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.4.22)  20 JUN 2016 14:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.4.22)  20 JUN 2016 14:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1019,25 +1019,22 @@ Missing character: There is no ; in font nullfont!
 [2
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/logo.png> <./fig
-ures/nevada.jpg> <./figures/rreq.pdf> <./figures/setup.jpg>] (./poster.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+ures/nevada.jpg> <./figures/rreq.pdf> <./figures/setup.jpg>] (./poster.aux) ) 
 Here is how much of TeX's memory you used:
  19542 strings out of 493054
  413183 string characters out of 6140586
- 544180 words of memory out of 5000000
+ 543202 words of memory out of 5000000
  22647 multiletter control sequences out of 15000+600000
  24122 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,22n,92p,408b,2642s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.p
-fb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf
--dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on poster.pdf (1 page, 15050074 bytes).
+{/
+usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><
+/usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-dis
+t/fonts/type1/urw/palatino/uplr8a.pfb>
+Output written on poster.pdf (1 page, 15050098 bytes).
 PDF statistics:
  71 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream
