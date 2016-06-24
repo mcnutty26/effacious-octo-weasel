@@ -17,13 +17,16 @@ endef
 vpath %.cpp src
 vpath %.o build
 
-all: aodvtest basictest parrottest sensing tod
+all: aodvtest basictest parrottest sensing tod scale
 
 AodvTestSim.o: AodvTestSim.cpp
 	$(CXX) $(CXXFLAGS) -c -o build/AodvTestSim.o src/AodvTestSim.cpp -I ../liboctodrone/include -I ../liboctodronecomms/include -I ../programs/include
 
 BasicTestSim.o: BasicTestSim.cpp
 	$(CXX) $(CXXFLAGS) -c -o build/BasicTestSim.o src/BasicTestSim.cpp -I ../liboctodrone/include -I ../liboctodronecomms/include -I ../programs/include
+
+Scale.o: Scale.cpp
+	$(CXX) $(CXXFLAGS) -c -o build/Scale.o src/Scale.cpp -I ../liboctodrone/include -I ../liboctodronecomms/include -I ../programs/include
 
 ParrotTestSimA.o: ParrotTestSimA.cpp
 	$(CXX) $(CXXFLAGS) -c -o build/ParrotTestSimA.o src/ParrotTestSimA.cpp -I ../liboctodroneparrot/include -I ../liboctodronecomms/include -I ../programs/include
@@ -51,6 +54,9 @@ aodvtest: AodvTestSim.o
 
 basictest: BasicTestSim.o
 	$(CXX) $(CXXFLAGS) -o bin/basictestsim build/BasicTestSim.o ../liboctodronecomms/src/Basic_message.cpp $(SIMLINK) $(SLDFLAGS)
+
+scale: Scale.o
+	$(CXX) $(CXXFLAGS) -o bin/scale build/Scale.o ../liboctodronecomms/src/Basic_message.cpp $(SIMLINK) $(SLDFLAGS)
 
 parrottest: ParrotTestSimA.o ParrotTestSimB.o
 	$(CXX) $(CXXFLAGS) -o bin/parrottestsima build/ParrotTestSimA.o ../liboctodronecomms/src/Basic_message.cpp $(PARLINK) $(PLDFLAGS)

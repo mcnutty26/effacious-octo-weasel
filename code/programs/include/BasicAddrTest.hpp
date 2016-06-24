@@ -22,16 +22,20 @@ along with octoDrone.  If not, see <http://www.gnu.org/licenses/>.
 	#include <Drone.hpp>
 	#include <CommMod.hpp>
 	#include <Message.hpp>
+	#include <atomic>
 
 	typedef std::vector<std::vector<std::vector<double>>> data_type;
 
 	class BasicAddrTest: public Drone {
 		public:
-			BasicAddrTest(CommMod*, double, double, double, double, Environment*, bool);
+			BasicAddrTest(CommMod*, double, double, double, double, Environment*, std::atomic_flag*, bool, int);
 			bool message_callback(Message*);
 			void run();
 		private:
 			bool sink_node;
-
+			std::atomic_flag* m_flag;
+			void log(std::string);
+			Environment* m_env;
+			int m_count;
 	};
 #endif

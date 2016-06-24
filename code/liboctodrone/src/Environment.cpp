@@ -156,7 +156,9 @@ void Environment::run()
 			}
 		}
 
-		step();
+		if (visualise){
+			step();
+		}
 		timeElapsed += timeStep;
 	}
 
